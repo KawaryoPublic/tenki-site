@@ -13,15 +13,15 @@ export default function Dates() {
     return (
         <div>
             {
-                Array.from({ length: 6 }).map((_, week) => {
-                    const weekDates = dates.slice(week * 7, week * 7 + 7);
+                Array.from({ length: 6 }).map((_, weekIndex) => {
+                    const weekDates = dates.slice(weekIndex * 7, weekIndex * 7 + 7);
 
                     return (
                         <div>
                             {
-                                weekDates.map((_, day) => {
+                                weekDates.map((date, dateIndex) => {
                                     return (
-                                        <button key={index} className="w-20 h-20 m-1 p-2 border rounded text-center">
+                                        <button key={dateIndex} className="w-20 h-20 m-1 p-2 border rounded text-center">
                                             {date.getDate()}
                                         </button>
                                     );
