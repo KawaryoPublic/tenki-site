@@ -18,7 +18,6 @@ export function HeaderNav() {
         .then(res => res.json())
         .then(data => {
             setPasswords(data);
-            console.log(data);
         })
     },[])
 
