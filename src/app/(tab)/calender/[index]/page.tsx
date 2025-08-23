@@ -1,5 +1,5 @@
-export default function Home({ index: index }: { index: string }) {
+export default function Home({ params }: { params: { index: string } }) {
     return (
-        <div>{index}</div>
+        <div>{params.index}</div>
     )
 }
