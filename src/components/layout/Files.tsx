@@ -30,7 +30,7 @@ export default function Files() {
                                 </Link>
                             </li>
                         );
-                    });
+                    })
                 }
             </ul>
         </section>
