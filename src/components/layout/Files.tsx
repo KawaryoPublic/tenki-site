@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function Files() {
-    const [files, setFiles] = useState<[{path: string, title: string, type: string}]>([]);
+    const [files, setFiles] = useState<{path: string, title: string, type: string}[]>([]);
 
     useEffect(() => {
         fetch("/data/files.json", {
