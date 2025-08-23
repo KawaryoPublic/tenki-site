@@ -1,9 +1,14 @@
 "use client";
 
 export default function Dates() {
-    const firstDay = new Date(new Date().getFullYear(), new Date().getMonth(), 1).getDay();
+    const firstDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
 
-    const dates = Array.from({ length: 42 }, (_, i) => i + 1 - firstDay);
+    const dates = Array.from({ length: 42 }, (_, i) => {
+        const date = new Date(firstDate);
+        date.setDate(date.getDate() + i - firstDate.getDay());
+
+        return date;
+    });
 
     return (
         <div>
@@ -11,7 +16,7 @@ export default function Dates() {
                 dates.map((date, index) => {
                     return (
                         <button key={index} className="w-20 h-20 m-1 p-2 border rounded text-center">
-                            {date > 0 ? date : ""}
+                            {date.getDate()}
                         </button>
                     );
                 })
