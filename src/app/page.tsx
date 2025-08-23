@@ -1,4 +1,4 @@
-import PassswordInput from "@/components/ui/main/PasswordInput";
+import PassswordInput from "@/components/ui/PasswordInput";
 
 export default function Home() {
   return (
