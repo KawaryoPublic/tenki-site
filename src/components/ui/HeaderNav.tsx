@@ -1,6 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 export function HeaderNav() {
   const password = useSearchParams().get("q");
@@ -13,19 +14,19 @@ export function HeaderNav() {
     <nav>
         <ul className="flex text-xl space-x-4 p-4">
             <li>
-                <a href={`/home?q=${password}`}>ホーム</a>
+                <Link href={`/home?q=${password}`}>ホーム</Link>
             </li>
             <li className={password === parentPassword || password === executivePassword ? "" : "hidden"}>
-                <a href={`/notification?q=${password}`}>告知</a>
+                <Link href={`/notification?q=${password}`}>告知</Link>
             </li>
             <li className={password === studentPassword || password === executivePassword ? "" : "hidden"}>
-                <a href={`/equipment?q=${password}`}>機材</a>
+                <Link href={`/equipment?q=${password}`}>機材</Link>
             </li>
             <li className={password === studentPassword || password === executivePassword ? "" : "hidden"}>
-                <a href={`/manual?q=${password}`}>マニュアル</a>
+                <Link href={`/manual?q=${password}`}>マニュアル</Link>
             </li>
             <li className={password === executivePassword ? "" : "hidden"}>
-                <a href={`/file?q=${password}`}>ファイル</a>
+                <Link href={`/file?q=${password}`}>ファイル</Link>
             </li>
         </ul>
       </nav>

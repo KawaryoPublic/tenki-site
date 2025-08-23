@@ -15,7 +15,7 @@ export default function PasswordInput() {
                 onChange={e => setPassword(e.target.value)} 
             />
             <button
-                onClick={e => location.href = `/home?password=${password}`}
+                onClick={e => location.href = `/home?q=${password}`}
             >決定</button>
         </div>
     );
