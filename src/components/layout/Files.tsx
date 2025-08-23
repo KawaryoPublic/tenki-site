@@ -23,11 +23,13 @@ export default function Files() {
             <ul>
                 {
                     files.map((file, index) => {
-                        <li key={index}>
-                            <Link href={file.path}>
-                                {file.title} ({file.type})
-                            </Link>
-                        </li>
+                        return (
+                            <li key={index}>
+                                <Link href={file.path}>
+                                    {file.title} ({file.type})
+                                </Link>
+                            </li>
+                        );
                     });
                 }
             </ul>
