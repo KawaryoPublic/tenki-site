@@ -1,3 +1,19 @@
 {
-    
+    "dates": [
+        {
+            "date": "2024-06-01",
+            "title": "Event 1",
+            "description": "Description for Event 1"
+        },
+        {
+            "date": "2024-06-15",
+            "title": "Event 2",
+            "description": "Description for Event 2"
+        },
+        {
+            "date": "2024-06-20",
+            "title": "Event 3",
+            "description": "Description for Event 3"
+        }
+    ]
 }
