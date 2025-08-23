@@ -8,7 +8,9 @@ export default function RootLayout({
   return (
     <>
         <Header />
-        {children}
+        <main className="pb-2 container flex-1 flex">
+          {children}
+        </main>
     </>
   );
 }

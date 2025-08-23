@@ -1,7 +1,9 @@
 "use client";
 
-export default function Dates() {
-    const firstDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+import DefaultLink from "../DefaultLink";
+
+export default function Dates({index}: { index: number }) {
+    const firstDate = new Date(new Date().getFullYear(), new Date().getMonth() + index, 1);
 
     const dates = Array.from({ length: 42 }, (_, i) => {
         const date = new Date(firstDate);
@@ -11,26 +13,25 @@ export default function Dates() {
     });
 
     return (
-        <div className="flex flex-col basis-3 space-around">
+        <div className="p-2 flex-1">
+            <div className="grid grid-cols-7 grid-rows-6 gap-2 h-full">
             {
-                Array.from({ length: 6 }).map((_, weekIndex) => {
-                    const weekDates = dates.slice(weekIndex * 7, weekIndex * 7 + 7);
-
-                    return (
-                        <div className="flex flex-row space-around">
-                            {
-                                weekDates.map((date, dateIndex) => {
-                                    return (
-                                        <button key={dateIndex} className="m-1 p-2 border rounded text-center">
-                                            {date.getDate()}
-                                        </button>
-                                    );
-                                })
-                            }
-                        </div>
-                    );
-                })
+                dates.map((date, index) => (
+                    <DefaultLink 
+                        key={index} 
+                        className={`
+                            flex items-center justify-center rounded 
+                            ${date.getMonth() === firstDate.getMonth() ? 'bg-white' : 'bg-gray-200 text-gray-400'}
+                            ${date.toDateString() === new Date().toDateString() ? 'border-2 border-blue-500 font-bold' : ''}
+                        `}
+                        href={`/calender/${index}`}
+                    >
+                        {date.getDate()}
+                    </DefaultLink>
+                ))
             }
         </div>
+        </div>
+        
     )
 }

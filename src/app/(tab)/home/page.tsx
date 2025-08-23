@@ -1,7 +1,5 @@
 export default function Home() {
     return (
-        <main>
-            <div>ホームです。</div>
-        </main>
+        <div>ホームです。</div>
     )
 }

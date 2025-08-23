@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import DefaultLink from "./DefaultLink";
 
 export function HeaderNav() {
     const [passwords, setPasswords] = useState({student: null, parent: null, executive: null});
@@ -25,22 +26,22 @@ export function HeaderNav() {
         <nav>
             <ul className="flex text-xl space-x-4 p-4">
                 <li>
-                    <Link href={`/home?q=${password}`}>ホーム</Link>
+                    <DefaultLink href="home">ホーム</DefaultLink>
                 </li>
                 <li className={password === passwords.parent || password === passwords.executive ? "" : "hidden"}>
-                    <Link href={`/notification?q=${password}`}>告知</Link>
+                    <DefaultLink href="notification">告知</DefaultLink>
                 </li>
                 <li>
-                    <Link href={`/calender?q=${password}`}>カレンダー</Link>
+                    <DefaultLink href="calender">カレンダー</DefaultLink>
                 </li>
                 <li className={password === passwords.student || password === passwords.executive ? "" : "hidden"}>
-                    <Link href={`/equipment?q=${password}`}>機材</Link>
+                    <DefaultLink href="equipment">機材</DefaultLink>
                 </li>
                 <li className={password === passwords.student || password === passwords.executive ? "" : "hidden"}>
-                    <Link href={`/manual?q=${password}`}>マニュアル</Link>
+                    <DefaultLink href="manual">マニュアル</DefaultLink>
                 </li>
                 <li className={password === passwords.executive ? "" : "hidden"}>
-                    <Link href={`/file?q=${password}`}>ファイル</Link>
+                    <DefaultLink href="file">ファイル</DefaultLink>
                 </li>
             </ul>
         </nav>
