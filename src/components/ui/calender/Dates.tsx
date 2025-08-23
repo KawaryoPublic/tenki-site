@@ -13,11 +13,21 @@ export default function Dates() {
     return (
         <div>
             {
-                dates.map((date, index) => {
+                Array.from({ length: 6 }).map((_, week) => {
+                    const weekDates = dates.slice(week * 7, week * 7 + 7);
+
                     return (
-                        <button key={index} className="w-20 h-20 m-1 p-2 border rounded text-center">
-                            {date.getDate()}
-                        </button>
+                        <div>
+                            {
+                                weekDates.map((_, day) => {
+                                    return (
+                                        <button key={index} className="w-20 h-20 m-1 p-2 border rounded text-center">
+                                            {date.getDate()}
+                                        </button>
+                                    );
+                                })
+                            }
+                        </div>
                     );
                 })
             }
