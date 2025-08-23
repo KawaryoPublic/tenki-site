@@ -4,7 +4,14 @@ export default function Home() {
   return (
     <main>
       <div>パスワード</div>
-      <PasswordInput />
+      <div>
+        <input 
+          type="password"
+          name="password" 
+          placeholder="パスワード" 
+          onChange={e => location.href = `/home?password=${e.target.value}`} 
+        />
+      </div>
     </main>
   );
 }
