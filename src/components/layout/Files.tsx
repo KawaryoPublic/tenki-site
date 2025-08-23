@@ -1,11 +1,11 @@
 "use client"
 
-import { usestate, useeffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function Files() {
-    const [files, setFiles] = usestate([{path: null, title: null, type: null}]);
+    const [files, setFiles] = useState([{path: null, title: null, type: null}]);
 
-    useeffect(() => {
+    useEffect(() => {
         fetch("/data/files.json", {
             headers: {
                 "Content-Type": "application/json",
