@@ -30,6 +30,9 @@ export function HeaderNav() {
                 <li className={password === passwords.parent || password === passwords.executive ? "" : "hidden"}>
                     <Link href={`/notification?q=${password}`}>告知</Link>
                 </li>
+                <li>
+                    <Link href={`/calender?q=${password}`}>カレンダー</Link>
+                </li>
                 <li className={password === passwords.student || password === passwords.executive ? "" : "hidden"}>
                     <Link href={`/equipment?q=${password}`}>機材</Link>
                 </li>
