@@ -9,7 +9,7 @@ export function HeaderNav() {
   const password = useSearchParams().get("q");
 
   useEffect(() => {
-        fetch('/api/password', {method: 'GET'})
+        fetch('/api/passwords.json', {method: 'GET'})
         .then(res => res.json())
         .then(data => {
             setPasswords(data);
