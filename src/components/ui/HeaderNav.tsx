@@ -9,12 +9,12 @@ export function HeaderNav() {
   const password = useSearchParams().get("q");
 
   useEffect(() => {
-        fetch('/data/passwords.json', 
+        fetch('/data/passwords.json', {
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
             },
-        )
+        })
         .then(res => res.json())
         .then(data => {
             setPasswords(data);
