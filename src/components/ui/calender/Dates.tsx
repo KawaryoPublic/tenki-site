@@ -11,17 +11,17 @@ export default function Dates() {
     });
 
     return (
-        <div>
+        <div className="flex flex-col basis-3 space-around">
             {
                 Array.from({ length: 6 }).map((_, weekIndex) => {
                     const weekDates = dates.slice(weekIndex * 7, weekIndex * 7 + 7);
 
                     return (
-                        <div>
+                        <div className="flex flex-row space-around">
                             {
                                 weekDates.map((date, dateIndex) => {
                                     return (
-                                        <button key={dateIndex} className="w-20 h-20 m-1 p-2 border rounded text-center">
+                                        <button key={dateIndex} className="m-1 p-2 border rounded text-center">
                                             {date.getDate()}
                                         </button>
                                     );
