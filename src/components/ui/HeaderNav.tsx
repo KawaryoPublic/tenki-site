@@ -15,7 +15,7 @@ export function HeaderNav() {
             <li>
                 <a href={`/home?q=${password}`}>ホーム</a>
             </li>
-            <li className={password === parentPassword ? "" : "hidden"}>
+            <li className={password === parentPassword || password === executivePassword ? "" : "hidden"}>
                 <a href={`/notification?q=${password}`}>告知</a>
             </li>
             <li className={password === studentPassword || password === executivePassword ? "" : "hidden"}>
