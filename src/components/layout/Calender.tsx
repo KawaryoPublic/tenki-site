@@ -6,7 +6,7 @@ export default function Calender() {
     console.log(firstDay.getDay());
 
     return (
-        <section className="flex flex-col">
+        <section className="w-screen h-screen flex flex-col">
             <Days />
             <Dates />
         </section>
