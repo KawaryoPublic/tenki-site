@@ -2,7 +2,7 @@
 
 export default function Calender() {
     const firstDay = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
-    alert(firstDay.getDay());
+    console.log(firstDay.getDay());
 
     return (
         <section>
