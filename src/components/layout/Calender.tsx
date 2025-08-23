@@ -1,6 +1,9 @@
 "use client";
 
 export default function Calender() {
+    const firstDay = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+    alert(firstDay.getDay());
+
     return (
         <section>
             {
