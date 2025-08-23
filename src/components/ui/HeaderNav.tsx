@@ -5,14 +5,15 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 export function HeaderNav() {
-  const [passwords, setPasswords] = useState({})
+  const [passwords, setPasswords] = useState({student: null, parent: null, executive: null});
   const password = useSearchParams().get("q");
 
   useEffect(() => {
         fetch('/api/password', {method: 'GET'})
         .then(res => res.json())
         .then(data => {
-            setPasswords(data)
+            setPasswords(data);
+            console.log(data);
         })
     },[])
 
