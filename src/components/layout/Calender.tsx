@@ -8,6 +8,7 @@ export default function Calender() {
                     return (
                         <button
                             key={index}
+                            className="w-20 h-20 m-1 p-2 border rounded"
                             onClick={e => {alert(`You clicked on date ${date}`)}}
                         >{date}</button>
                     )
