@@ -22,13 +22,13 @@ export default function Files() {
         <section>
             <ul>
                 {
-                    files.map(files, index) => {
+                    files.map((file, index) => {
                         <li key={index}>
-                            <Link href={files.path}>
-                                {files.title} ({files.type})
+                            <Link href={file.path}>
+                                {file.title} ({file.type})
                             </Link>
                         </li>
-                    }
+                    });
                 }
             </ul>
         </section>
