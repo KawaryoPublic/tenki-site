@@ -6,6 +6,8 @@ import { headers } from "next/headers";
 export default async function Header() {
   //const passwords: Passwords = await fetchJson("/api/passwords.json");
   const headersData = await headers();
+  console.log(headersData.get("host"));
+  console.log(headersData.get("x-forwarded-proto"));
   const res = await fetch(`${headersData.get("x-forwarded-proto") ?? "http"}://${headersData.get("host")}/api/passwords.json`);
   if (!res.ok) {
     throw new Error("Failed to fetch data");
