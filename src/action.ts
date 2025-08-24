@@ -13,6 +13,7 @@ export async function getPasswords(setPasswords: Dispatch<SetStateAction<Passwor
     .then(res => res.json())
     .then(data => {
        setPasswords(data);
+       console.log(data);
     })
 }
 
