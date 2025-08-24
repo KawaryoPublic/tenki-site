@@ -1,8 +1,9 @@
 "use server";
 
 import { Dispatch, SetStateAction } from "react";
+import { DateInfo, Passwords } from "./type";
 
-export async function getPasswords(setPasswords: Dispatch<SetStateAction<{student: string | null, parent: string | null, executive: string | null}>>) {
+export async function getPasswords(setPasswords: Dispatch<SetStateAction<Passwords>>) {
     fetch('/data/passwords.json', {
         headers: {
             "Content-Type": "application/json",
@@ -15,7 +16,7 @@ export async function getPasswords(setPasswords: Dispatch<SetStateAction<{studen
     })
 }
 
-export async function getDatePlans(setDataPlans: Dispatch<SetStateAction<{date: string, club: boolean, plan: string}[]>>) {
+export async function getDateInfo(setDataInfo: Dispatch<SetStateAction<DateInfo[]>>) {
     fetch('/data/plans.json', {
         headers: {
             "Content-Type": "application/json",
@@ -24,6 +25,6 @@ export async function getDatePlans(setDataPlans: Dispatch<SetStateAction<{date: 
     })
     .then(res => res.json())
     .then(data => {
-       setDataPlans(data);
+       setDataInfo(data);
     })
 }

@@ -4,9 +4,10 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import DefaultLink from "./DefaultLink";
 import { getPasswords } from "@/action";
+import { Passwords } from "@/type";
 
 export function HeaderNav() {
-    const [passwords, setPasswords] = useState<{student: string | null, parent: string | null, executive: string | null}>({student: null, parent: null, executive: null});
+    const [passwords, setPasswords] = useState<Passwords>({student: null, parent: null, executive: null});
     const password = useSearchParams().get("q");
 
     useEffect(() => {
