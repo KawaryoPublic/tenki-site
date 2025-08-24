@@ -1,8 +1,6 @@
 "use server";
 
-import { SetStateAction } from "react";
-
-export async function getPasswords(setPasswords: SetStateAction<{student: string | null, parent: string | null, executive: string | null}>) {
+export async function getPasswords(setPasswords: React.Dispatch<React.SetStateAction<{student: string | null, parent: string | null, executive: string | null}>>) {
     fetch('/data/passwords.json', {
         headers: {
             "Content-Type": "application/json",
