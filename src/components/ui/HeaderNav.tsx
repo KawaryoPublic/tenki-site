@@ -11,7 +11,7 @@ export function HeaderNav() {
     const password = useSearchParams().get("q");
 
     useEffect(() => {
-        setPasswords(getPasswords());
+        getPasswords(setPasswords);
     },[])
 
     return (
