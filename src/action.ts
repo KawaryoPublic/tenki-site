@@ -15,7 +15,7 @@ export async function getPasswords(setPasswords: Dispatch<SetStateAction<{studen
     })
 }
 
-export async function getDatePlans(setDataPlans: SetStateAction<{date: string, club: boolean, plan: string}[]>) {
+export async function getDatePlans(setDataPlans: Dispatch<SetStateAction<{date: string, club: boolean, plan: string}[]>>) {
     fetch('/data/plans.json', {
         headers: {
             "Content-Type": "application/json",
