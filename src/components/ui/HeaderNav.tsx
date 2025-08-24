@@ -12,6 +12,7 @@ export function HeaderNav() {
 
     useEffect(() => {
         getPasswords(setPasswords);
+        console.log(passwords.executive);
     },[])
 
     return (
