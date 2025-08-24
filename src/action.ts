@@ -12,3 +12,16 @@ export async function getPasswords() {
        return data;
     })
 }
+
+export async function getDatePlans() {
+    fetch('/data/plans.json', {
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+        },
+    })
+    .then(res => res.json())
+    .then(data => {
+       return data;
+    })
+}
