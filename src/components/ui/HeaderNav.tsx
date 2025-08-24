@@ -4,22 +4,14 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import DefaultLink from "./DefaultLink";
+import { getPasswords } from "@/action";
 
 export function HeaderNav() {
     const [passwords, setPasswords] = useState({student: null, parent: null, executive: null});
     const password = useSearchParams().get("q");
 
     useEffect(() => {
-        fetch('/data/passwords.json', {
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-            },
-        })
-        .then(res => res.json())
-        .then(data => {
-            setPasswords(data);
-        })
+        setPasswords(getPasswords());
     },[])
 
     return (
