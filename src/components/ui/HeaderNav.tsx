@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import DefaultLink from "./DefaultLink";
-import { Passwords } from "@/type";
+import { Passwords } from "@/lib/type";
 
 export function HeaderNav(props: { passwords: Passwords }) {
     const [passwords, setPasswords] = useState<Passwords>({student: null, parent: null, executive: null});
