@@ -8,12 +8,10 @@ export default async function Header() {
   const headersData = await headers();
   console.log(headersData.get("host"));
   console.log(headersData.get("x-forwarded-proto"));
-  const res = await fetch(`${headersData.get("x-forwarded-proto") ?? "http"}://${headersData.get("host")}/api/passwords.json`);
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  const passwords: Passwords = await res.json();
+  //const res = await fetch(`${headersData.get("x-forwarded-proto") ?? "http"}://${headersData.get("host")}/api/passwords.json`);
+  
+  //const passwords: Passwords = await res.json();
+  const passwords: Passwords = {student: null, parent: null, executive: null};
 
   return (
     <header className="top-4 left-0 w-full pt-4 pl-4">
