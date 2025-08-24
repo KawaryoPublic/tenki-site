@@ -17,7 +17,7 @@ export async function getPasswords(setPasswords: Dispatch<SetStateAction<Passwor
 }
 
 export async function getDateInfo(setDataInfo: Dispatch<SetStateAction<DateInfo[]>>) {
-    fetch('/data/plans.json', {
+    fetch('/data/dateInfo.json', {
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
