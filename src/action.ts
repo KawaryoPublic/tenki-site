@@ -1,6 +1,6 @@
 "use server";
 
-export async function getPasswords() {
+export async function getPasswords(): Promise<{student: string, parent: string, executive: string}> {
     fetch('/data/passwords.json', {
         headers: {
             "Content-Type": "application/json",
