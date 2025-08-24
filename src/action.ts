@@ -1,6 +1,8 @@
 "use server";
 
-export async function getPasswords(): Promise<{student: string | null, parent: string | null, executive: string | null}> {
+import { SetStateAction } from "react";
+
+export async function getPasswords(setPasswords: SetStateAction<{student: string | null, parent: string | null, executive: string | null}>) {
     fetch('/data/passwords.json', {
         headers: {
             "Content-Type": "application/json",
@@ -9,13 +11,11 @@ export async function getPasswords(): Promise<{student: string | null, parent: s
     })
     .then(res => res.json())
     .then(data => {
-       return data;
+       setPasswords(data);
     })
-
-    return {student: null, parent: null, executive: null};
 }
 
-export async function getDatePlans(): Promise<{date: string, club: boolean, plan: string}[]> {
+export async function getDatePlans(setDataPlans: SetStateAction<{date: string, club: boolean, plan: string}[]>) {
     fetch('/data/plans.json', {
         headers: {
             "Content-Type": "application/json",
@@ -24,8 +24,6 @@ export async function getDatePlans(): Promise<{date: string, club: boolean, plan
     })
     .then(res => res.json())
     .then(data => {
-       return data;
+       setDataPlans(data);
     })
-
-    return [];
 }
