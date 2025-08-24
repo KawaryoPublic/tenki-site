@@ -3,15 +3,14 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import DefaultLink from "./DefaultLink";
-import { getPasswords } from "@/action";
 import { Passwords } from "@/type";
 
-export function HeaderNav() {
+export function HeaderNav(props: { passwords: Passwords }) {
     const [passwords, setPasswords] = useState<Passwords>({student: null, parent: null, executive: null});
     const password = useSearchParams().get("q");
 
     useEffect(() => {
-        getPasswords(setPasswords);
+        setPasswords(props.passwords);
     },[])
 
     return (

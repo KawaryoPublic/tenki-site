@@ -1,12 +1,15 @@
 import { Suspense } from "react";
 import { HeaderNav } from "../ui/HeaderNav";
+import { Passwords } from "@/type";
 
-export default function Header() {
+export default async function Header() {
+  const passwords: Passwords = await fetch("/data/passwords.json").then((res) => res.json());
+
   return (
     <header className="top-4 left-0 w-full pt-4 pl-4">
       <h1 className="text-3xl">天文気象部</h1>
       <Suspense>
-        <HeaderNav />
+        <HeaderNav passwords={passwords} />
       </Suspense>
     </header>
   );
