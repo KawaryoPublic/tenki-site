@@ -15,7 +15,7 @@ export async function getPasswords(): Promise<{student: string | null, parent: s
     return {student: null, parent: null, executive: null};
 }
 
-export async function getDatePlans() {
+export async function getDatePlans(): Promise<{date: string, club: boolean, plan: string}[]> {
     fetch('/data/plans.json', {
         headers: {
             "Content-Type": "application/json",
@@ -26,4 +26,6 @@ export async function getDatePlans() {
     .then(data => {
        return data;
     })
+
+    return [];
 }

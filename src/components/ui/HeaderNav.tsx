@@ -7,7 +7,7 @@ import DefaultLink from "./DefaultLink";
 import { getPasswords } from "@/action";
 
 export function HeaderNav() {
-    const [passwords, setPasswords] = useState({student: null, parent: null, executive: null});
+    const [passwords, setPasswords] = useState<{student: string | null, parent: string | null, executive: string | null}>();
     const password = useSearchParams().get("q");
 
     useEffect(() => {
