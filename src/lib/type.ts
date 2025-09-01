@@ -4,7 +4,7 @@ export interface DateInfo {
     plan?: string;
 }
 
-export interface Notification {
+export interface NotificationType {
     title: string;
     content: string;
     createdAt: Date;

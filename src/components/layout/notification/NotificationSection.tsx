@@ -1,11 +1,11 @@
-"use cliend";
+"use client";
 
 import Notification from "@/components/ui/notification/Notification";
-import { Notification } from "@/lib/type";
+import { NotificationType } from "@/lib/type";
 import { useState, useEffect } from "react"
 
 export default function NotificationSection() {
-    const [ notifications, setNotifications ] = useState<Notification[]>([]);
+    const [ notifications, setNotifications ] = useState<NotificationType[]>([]);
 
     useEffect(() => {
         fetch("/api/notifications")
