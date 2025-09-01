@@ -24,7 +24,7 @@ export default function AddPlanButton({ date }: { date: Date }) {
 
                 await fetch('/api/dateInfo')
                     .then(res => res.json())
-                    .then(data => setInfo(data.find(info => info.date === `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`)))
+                    .then(data => setInfo(data.find((info: DateInfo) => info.date === `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`)))
                     .catch(err => console.log(err));
 
                 await redirect(`/calender/${info.id}`);
