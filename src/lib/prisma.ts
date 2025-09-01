@@ -1,5 +1,10 @@
 import { PrismaClient } from '@prisma/client';
 
+// Extend the NodeJS.Global interface to include prisma
+declare global {
+  var prisma: PrismaClient;
+}
+
 let prisma: PrismaClient;
 
 if (process.env.NODE_ENV === 'production') {
