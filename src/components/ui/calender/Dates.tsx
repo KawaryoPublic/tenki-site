@@ -52,7 +52,7 @@ export default function Dates({index}: { index: number }) {
                                         plan: ""
                                     }),
                                 }).then(() => alert("追加しました"))
-                                .then(() => window.location.reload())))
+                                .then(() => window.location.reload())
                                 .catch(err => console.log(err))
                             }
                         >
