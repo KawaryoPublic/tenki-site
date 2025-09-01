@@ -1,5 +1,10 @@
+import NotificationSection from "@/components/layout/notification/NotificationSection";
+
 export default function Home() {
   return (
-    <div></div>
+    <div>
+      <p>ボタン</p>
+      <NotificationSection />
+    </div>
   );
 }
