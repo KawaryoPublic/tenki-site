@@ -15,7 +15,8 @@ export default function AddPlanButton({ date }: { date: Date }) {
                     }).then(() => alert("追加しました"))
                     .then(() => window.location.reload())
                     .catch(err => console.log(err));
-            }}
+                }}
+            }
         />
     )
 }
