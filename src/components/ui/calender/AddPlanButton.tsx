@@ -20,7 +20,6 @@ export default function AddPlanButton({ date, firstDate }: { date: Date, firstDa
                 .then(() => window.location.reload())
                 .catch(err => console.log(err));
             }}
-            className="bg-blue-500 text-white px-4 py-2 rounded"
         >
             {date.getDate()}
         </button>
