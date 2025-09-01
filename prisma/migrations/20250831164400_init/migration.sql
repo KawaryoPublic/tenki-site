@@ -4,7 +4,7 @@ CREATE TABLE "public"."DateInfo" (
     "date" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "title" TEXT NOT NULL,
+    "club" BOOLEAN NOT NULL,
     "plan" TEXT,
 
     CONSTRAINT "DateInfo_pkey" PRIMARY KEY ("id")

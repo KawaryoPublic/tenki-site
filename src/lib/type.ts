@@ -1,11 +1,6 @@
 export interface DateInfo {
+    id: number;
     date: string;
     club: boolean;
-    plan: string;
-}
-
-export interface Passwords {
-    student: string | null;
-    parent: string | null;
-    executive: string | null;
+    plan?: string;
 }

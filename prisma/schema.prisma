@@ -10,8 +10,8 @@ datasource db {
 model DateInfo {
   id        Int      @id @default(autoincrement())
   date      String   @unique
+  club      Boolean
+  plan      String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  club Boolean
-  plan   String?
 }
