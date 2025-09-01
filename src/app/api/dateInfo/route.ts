@@ -14,16 +14,15 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
     try {
-        const { date, club, plan } = await req.json();
+        const { date, plan } = await req.json();
 
-        if (!date || !club) {
+        if (!date) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
         const newDateInfo = await prisma.dateInfo.create({
             data: {
                 date: date,
-                club: club,
                 plan: plan || "",
             },
         });
@@ -39,7 +38,7 @@ export async function PUT(req: NextRequest) {
     try {
         const { id, date, club, plan } = await req.json();
 
-        if (!id || !date || club === undefined) {
+        if (!id || !date) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -47,7 +46,6 @@ export async function PUT(req: NextRequest) {
             where: { id: id },
             data: {
                 date: date,
-                club: club,
                 plan: plan || "",
             },
         });
