@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
             },
         });
 
-        return NextResponse.json(newDateInfo, { status: 201 });
+        return NextResponse.json({}, { status: 201 });
     } catch (error) {
         console.error("Error creating date info:", error);
         return NextResponse.json({ error: "Failed to create date info" }, { status: 500 });
