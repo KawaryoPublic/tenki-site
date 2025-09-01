@@ -38,7 +38,7 @@ export default function Dates({index}: { index: number }) {
                         >   
                             {date.getDate()}
                         </DefaultLink> :
-                        <AddPlanButton key={index} date={date} />
+                        <AddPlanButton key={index} date={date} firstDate={firstDate} />
                     );
                 })
             }

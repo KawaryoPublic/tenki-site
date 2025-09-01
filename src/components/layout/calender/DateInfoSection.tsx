@@ -4,8 +4,8 @@ import { DateInfo } from "@/lib/type";
 import { Suspense, useEffect, useState } from "react"
 import RestrictedContent from "../../ui/global/RestrictedContent";
 import DefaultLink from "../../ui/global/DefaultLink";
-import EditPlanForm from "@/components/ui/calender/EditPlanForm";
-import DeletePlanButton from "@/components/ui/calender/DeletePlanButton";
+import EditPlanForm from "@/components/ui/calender/date_info/EditPlanForm";
+import DeletePlanButton from "@/components/ui/calender/date_info/DeletePlanButton";
 
 export default function DateInfoSection({ id }: { id: number }) {
     const [ info, setInfo ] = useState<DateInfo>({id: -1, date: ""});

@@ -1,3 +1,8 @@
+"use client";
+
+import { DateInfo } from "@/lib/type";
+import { Form } from "next/form";
+
 export default function EditPlanForm({ info }: { info: DateInfo }) {
     return (
         <Form 

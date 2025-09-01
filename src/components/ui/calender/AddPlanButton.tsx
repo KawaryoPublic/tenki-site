@@ -1,4 +1,6 @@
-export default function AddPlanButton({ date }: { date: Date }) {
+"use client";
+
+export default function AddPlanButton({ date, firstDate }: { date: Date, firstDate: Date }) {
     return (
         <button
             className={`
