@@ -7,7 +7,7 @@ import RestrictedContent from "../ui/global/RestrictedContent";
 import DefaultLink from "../ui/global/DefaultLink";
 
 export default function DateInfoSection({ id }: { id: number }) {
-    const [ info, setInfo ] = useState<DateInfo>({id: -1, date: "", club: false});
+    const [ info, setInfo ] = useState<DateInfo>({id: -1, date: ""});
 
     useEffect(() => {
         fetch("/api/dateInfo").then(res => res.json()).then(data => {
@@ -21,9 +21,6 @@ export default function DateInfoSection({ id }: { id: number }) {
         <div>
             <div className="pb-4">
                 <h1 className="text-lg">{`${info?.date}`}の詳細ページ</h1>
-                <div>
-                    部活: {info?.club ? "あり" : "なし"}
-                </div>
                 <div>
                     予定: {info?.plan ? info.plan : "なし"}
                 </div>
@@ -39,7 +36,6 @@ export default function DateInfoSection({ id }: { id: number }) {
                                     body: JSON.stringify({
                                         id: info.id,
                                         date: info.date,
-                                        club: formData.get("club") === "on",
                                         plan: formData.get("plan")
                                     }),
                                 }).catch(err => console.log(err));
@@ -47,13 +43,6 @@ export default function DateInfoSection({ id }: { id: number }) {
                                 window.location.reload();
                             }}
                         >
-                            <div>
-                                <label htmlFor="club">部活: </label>
-                                <input 
-                                    type="checkbox" 
-                                    name="club" 
-                                />
-                            </div>
                             <div>
                                 <label htmlFor="plan">予定: </label>
                                 <textarea 
