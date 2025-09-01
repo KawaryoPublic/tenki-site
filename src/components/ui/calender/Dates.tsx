@@ -3,7 +3,7 @@
 import { DateInfo } from "@/lib/type";
 import DefaultLink from "../global/DefaultLink";
 import { useEffect, useState } from "react";
-import AddPlanButton from "./button/AddPlanButton";
+import AddPlanButton from "./AddPlanButton";
 
 export default function Dates({index}: { index: number }) {
     const firstDate = new Date(new Date().getFullYear(), new Date().getMonth() + index, 1);
