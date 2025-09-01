@@ -10,7 +10,7 @@ export default function Home() {
         <h1 className="text-3xl">通知ページ</h1>
         <div>
           <RestrictedContent>
-            <DefaultLink href="/notification/edit" />
+            <DefaultLink href="/notification/edit">追加</DefaultLink>
           </RestrictedContent>
         </div>
       </div>
