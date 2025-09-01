@@ -48,7 +48,7 @@ export default function Dates({index}: { index: number }) {
         `                   }
                         >   
                             {date.getDate()}
-                            <RestrictedContent className="absolute top-0 left-0 w-full h-full">
+                            <RestrictedContent className="absolute w-full h-full">
                                 <AddPlanButton date={date} />
                             </RestrictedContent>
                         </div>

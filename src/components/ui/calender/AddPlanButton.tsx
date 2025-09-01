@@ -3,7 +3,7 @@
 export default function AddPlanButton({ date }: { date: Date }) {
     return (
         <button
-            className="absolute top-0 left-0 w-full h-full border-10 hover:bg-gray-200 rounded"
+            className="absolute w-full h-full border-10 hover:bg-gray-200 rounded"
             onClick={() => {
                 confirm("予定を追加しますか？") &&
                 fetch("/api/dateInfo", {
