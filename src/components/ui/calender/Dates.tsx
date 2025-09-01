@@ -51,7 +51,8 @@ export default function Dates({index}: { index: number }) {
                                         date: `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`,
                                         plan: ""
                                     }),
-                                }).then(() => alert(`追加しました ${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`))
+                                }).then(() => alert("追加しました"))
+                                .then(() => window.location.reload())))
                                 .catch(err => console.log(err))
                             }
                         >
