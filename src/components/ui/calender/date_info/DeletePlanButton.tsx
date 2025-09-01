@@ -14,4 +14,5 @@ export default function DeletePlanButton({ id }: { id: number }) {
         >
             削除
         </button>
-    )
+    );
+}
