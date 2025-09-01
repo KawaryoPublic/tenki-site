@@ -1,12 +1,6 @@
 "use client";
 
-import { DateInfo } from "@/lib/type";
-import { useState } from "react";
-import { redirect } from "next/navigation";
-
 export default function AddPlanButton({ date }: { date: Date }) {
-    const [ info, setInfo ] = useState<DateInfo>({id: -1, date: ""});
-
     return (
         <button
             className="w-full h-full"
@@ -20,14 +14,8 @@ export default function AddPlanButton({ date }: { date: Date }) {
                         plan: ""
                     }),
                 }).then(() => alert("追加しました"))
+                .then(() => window.location.reload())
                 .catch(err => console.log(err));
-
-                await fetch('/api/dateInfo')
-                    .then(res => res.json())
-                    .then(data => setInfo(data.find((info: DateInfo) => info.date === `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`)))
-                    .catch(err => console.log(err));
-
-                await redirect(`/calender/${info.id}`);
             }}
         />
     )
