@@ -1,14 +1,20 @@
 "use client";
 
+import { redirect } from "next/navigation";
+
 export default function DeletePlanButton({ id }: { id: number }) {
     return (
         <button
-            onClick={() => {
-                fetch("/api/dateInfo", {
+            onClick={async () => {
+                if(!confirm("本当に削除しますか？")) return;
+
+                await fetch("/api/dateInfo", {
                     method: "DELETE",
                     body: JSON.stringify({ id }),
                 }).then(() => alert("削除しました"))
                 .catch(err => console.log(err));
+
+                await redirect("/calender");
             }}
             className="bg-red-500 text-white px-4 py-2 rounded"
         >
