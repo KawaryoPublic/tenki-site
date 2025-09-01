@@ -11,6 +11,7 @@ export default function NotificationSection() {
         fetch("/api/notifications")
             .then(res => res.json())
             .then(data => setNotifications(data))
+            .then(() => console.log(notifications))
             .catch(err => console.error(err))
     }, []);
 
