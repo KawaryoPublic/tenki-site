@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
     try {
-        const { id, date, club, plan } = await req.json();
+        const { id, date, plan } = await req.json();
 
         if (!id || !date) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
