@@ -1,5 +1,7 @@
 "use cliend";
 
+import Notification from "@/components/ui/notification/Notification";
+
 export default function NotificationSection() {
     return (
         <section className="flex-1 flex flex-col min-h-[50%]">
