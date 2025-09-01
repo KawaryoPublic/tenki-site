@@ -2,7 +2,7 @@
 
 import Notification from "@/components/ui/notification/Notification";
 import { NotificationType } from "@/lib/type";
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 
 export default function NotificationSection() {
     const [ notifications, setNotifications ] = useState<NotificationType[]>([]);
@@ -15,7 +15,7 @@ export default function NotificationSection() {
     }, []);
 
     return (
-        <section className="flex-1 flex flex-col min-h-[50%]">
+        <section className="flex-1 flex flex-col min-h-[50%] w-full">
             <h2 className="flex justify-center item-center font-bold">通知</h2>
             {
                 notifications.length === 0 ? (

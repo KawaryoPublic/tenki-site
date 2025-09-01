@@ -2,7 +2,7 @@ export default function notification({ title, createdAt, content }: { title: str
     return (
         <div className="border p-4 rounded shadow-md w-full bg-white">
             <h3 className="font-bold mb-2">{title}</h3>
-            <p>{createdAt.toString()}</p>
+            <p className="bg-gray-400 pb-1">{`${createdAt.getFullYear()}年${createdAt.getMonth()}月${createdAt.getDate()}`}</p>
             <p>{content}</p>
         </div>
     );

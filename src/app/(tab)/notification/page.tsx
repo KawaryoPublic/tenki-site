@@ -1,4 +1,6 @@
 import NotificationSection from "@/components/layout/notification/NotificationSection";
+import DefaultLink from "@/components/ui/global/DefaultLink";
+import RestrictedContent from "@/components/ui/global/RestrictedContent";
 import AddNotificationButton from "@/components/ui/notification/AddNotificationButton";
 
 export default function Home() {
@@ -6,7 +8,11 @@ export default function Home() {
     <div>
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-3xl">通知ページ</h1>
-        <AddNotificationButton />
+        <div>
+          <RestrictedContent>
+            <DefaultLink href="/notification/edit">
+          </RestrictedContent>
+        </div>
       </div>
       <NotificationSection />
     </div>
