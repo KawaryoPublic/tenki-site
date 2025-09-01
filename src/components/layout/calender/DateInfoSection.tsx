@@ -67,8 +67,9 @@ export default function DateInfoSection({ id }: { id: number }) {
                                         method: "DELETE",
                                         body: JSON.stringify({ id: info.id }),
                                     }).then(() => alert("削除しました"))
-                                    .then(() => redirect("/calender"))
                                     .catch(err => console.log(err));
+
+                                    redirect("/calender");
                                 }}
                                 className="bg-red-500 text-white px-4 py-2 rounded"
                             >削除</button>

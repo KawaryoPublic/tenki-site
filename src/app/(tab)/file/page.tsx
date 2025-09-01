@@ -1,4 +1,4 @@
-import Files from "@/components/layout/Files"
+import Files from "@/components/layout/file/Files"
 
 export default function Home() {
     return (

@@ -53,7 +53,7 @@ export default function Dates({index}: { index: number }) {
                                     }),
                                 }).then(() => alert("追加しました"))
                                 .then(() => window.location.reload())
-                                .catch(err => console.log(err))
+                                .catch(err => console.log(err));
                             }
                         >
                             {date.getDate()}
