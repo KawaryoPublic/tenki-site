@@ -1,13 +1,9 @@
 "use client";
 
-export default function AddPlanButton({ date, firstDate }: { date: Date, firstDate: Date }) {
+export default function AddPlanButton({ date }: { date: Date }) {
     return (
         <button
-            className={`
-                flex items-center justify-center rounded 
-                ${date.getMonth() === firstDate.getMonth() ? 'bg-white' : 'bg-gray-200 text-gray-400'}
-                ${date.toDateString() === new Date().toDateString() ? 'border-2 border-blue-500 font-bold' : ''}
-        `   }
+            className="w-full h-full"
             onClick={() => {
                 confirm("予定を追加しますか？") &&
                 fetch("/api/dateInfo", {
@@ -20,8 +16,6 @@ export default function AddPlanButton({ date, firstDate }: { date: Date, firstDa
                 .then(() => window.location.reload())
                 .catch(err => console.log(err));
             }}
-        >
-            {date.getDate()}
-        </button>
+        />
     )
 }
