@@ -22,7 +22,6 @@ export async function POST(req: NextRequest) {
 
         const newDateInfo = await prisma.dateInfo.create({
             data: {
-                id: 100,
                 date: date,
                 plan: plan || "",
             },
@@ -30,7 +29,7 @@ export async function POST(req: NextRequest) {
 
         return NextResponse.json(newDateInfo, { status: 201 });
     } catch (error) {
-        console.error("Error creating date info:", error);
+        console.error("Error creating date info:", error.code);
         return NextResponse.json({ error: "Failed to create date info" }, { status: 500 });
     }
 }
