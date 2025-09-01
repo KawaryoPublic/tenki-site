@@ -6,13 +6,14 @@ export default function NotificationEditForm() {
     return (
         <Form 
             action={async (data: FormData) => {
-                await fetch('/api/notification', {
+                await fetch('/api/notifications', {
                     method: 'POST',
                     body: JSON.stringify({
                         title: data.get('title'),
                         content: data.get('content'),
                     }),
-                }).catch(err => console.log(err));
+                }).then(() => alert("告知を追加しました"))
+                .catch(err => console.log(err));
             }}
         >   
             <div>
