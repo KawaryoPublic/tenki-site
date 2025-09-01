@@ -20,14 +20,15 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
-        //const newDateInfo = await prisma.dateInfo.create({
-        //    data: {
-        //        date: date,
-        //        plan: plan || "",
-        //    },
-        //});
+        const newDateInfo = await prisma.dateInfo.create({
+            data: {
+                id: 100,
+                date: date,
+                plan: plan || "",
+            },
+        });
 
-        return NextResponse.json({date: date, plan: plan}, { status: 201 });
+        return NextResponse.json(newDateInfo, { status: 201 });
     } catch (error) {
         console.error("Error creating date info:", error);
         return NextResponse.json({ error: "Failed to create date info" }, { status: 500 });
