@@ -2,10 +2,17 @@
 
 import Notification from "@/components/ui/notification/Notification";
 import { Notification } from "@/lib/type";
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function NotificationSection() {
     const [ notifications, setNotifications ] = useState<Notification[]>([]);
+
+    useEffect(() => {
+        fetch("/api/notifications")
+            .then(res => res.json())
+            .then(data => setNotifications(data))
+            .catch(err => console.error(err))
+    }, []);
 
     return (
         <section className="flex-1 flex flex-col min-h-[50%]">
