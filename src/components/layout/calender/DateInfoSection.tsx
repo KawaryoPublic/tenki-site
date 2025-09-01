@@ -4,8 +4,8 @@ import { DateInfo } from "@/lib/type";
 import { Suspense, useEffect, useState } from "react"
 import { redirect } from "next/navigation";
 import Form from "next/form";
-import RestrictedContent from "../ui/global/RestrictedContent";
-import DefaultLink from "../ui/global/DefaultLink";
+import RestrictedContent from "../../ui/global/RestrictedContent";
+import DefaultLink from "../../ui/global/DefaultLink";
 
 export default function DateInfoSection({ id }: { id: number }) {
     const [ info, setInfo ] = useState<DateInfo>({id: -1, date: ""});

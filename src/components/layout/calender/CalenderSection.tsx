@@ -1,5 +1,5 @@
-import Days from "../ui/calender/Days";
-import Dates from "../ui/calender/Dates";
+import Days from "../../ui/calender/Days";
+import Dates from "../../ui/calender/Dates";
 import { Suspense } from "react";
 
 export default function CalenderSection({index}: { index: number }) {
