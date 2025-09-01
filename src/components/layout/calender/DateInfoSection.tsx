@@ -19,6 +19,7 @@ export default function DateInfoSection({ id }: { id: number }) {
     }, []);
 
     return (
+        !info ? <div>Loading...</div> :
         <div>
             <div className="pb-4">
                 <h1 className="text-3xl">{`${info?.date}`}の詳細ページ</h1>
