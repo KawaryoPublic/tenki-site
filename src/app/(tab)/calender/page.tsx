@@ -1,4 +1,4 @@
-import CalenderSection from "@/components/layout/CalenderSection";
+import CalenderSection from "@/components/layout/calender/CalenderSection";
 
 export default function Home() {
     return (
