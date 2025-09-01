@@ -1,8 +1,10 @@
 "use client";
 
+import RedButton from "../../global/button/RedButton";
+
 export default function DeletePlanButton({ id }: { id: number }) {
     return (
-        <button
+        <RedButton
             onClick={async () => {
                 if(!confirm("本当に削除しますか？")) return;
 
@@ -10,11 +12,11 @@ export default function DeletePlanButton({ id }: { id: number }) {
                     method: "DELETE",
                     body: JSON.stringify({ id }),
                 }).then(() => alert("削除しました"))
+                .then(() => location.reload())
                 .catch(err => console.log(err));
             }}
-            className="bg-red-500 text-white px-4 py-2 rounded"
         >
             削除
-        </button>
+        </RedButton>
     );
 }

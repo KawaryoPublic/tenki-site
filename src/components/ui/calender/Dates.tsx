@@ -4,19 +4,23 @@ import { DateInfo } from "@/lib/type";
 import DefaultLink from "../global/DefaultLink";
 import { useEffect, useState } from "react";
 import AddPlanButton from "./AddPlanButton";
-import RestrictedContent from "../global/RestrictedContent";
 
 export default function Dates({index}: { index: number }) {
     const firstDate = new Date(new Date().getFullYear(), new Date().getMonth() + index, 1);
     const [ dateInfo, setDateInfo ] = useState<DateInfo[]>([]);
+    const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {
-        fetch('/api/dateInfo').then(res => res.json()).then(data => setDateInfo(data)).catch(err => console.log(err));
+        fetch('/api/dateInfo')
+            .then(res => res.json())
+            .then(data => setDateInfo(data))
+            .finally(() => setLoading(false))
+            .catch(err => console.log(err));
     }, []);
 
     return (
-        dateInfo.length === 0 ? <div>Loading...</div> : 
-        <div className="p-2 flex-1">
+        loading ? <div>Loading...</div> : 
+        <div className="flex-1">
             <div className="grid grid-cols-7 grid-rows-6 gap-2 h-full">
             {
                 Array.from({ length: 42 }, (_, i) => {
@@ -40,19 +44,7 @@ export default function Dates({index}: { index: number }) {
                         >   
                             {date.getDate()}
                         </DefaultLink> :
-                        <div 
-                            key={index}
-                            className={`
-                                flex items-center justify-center rounded 
-                                ${date.getMonth() === firstDate.getMonth() ? 'bg-white' : 'bg-gray-200 text-gray-400'}
-                                ${date.toDateString() === new Date().toDateString() ? 'border-2 border-blue-500 font-bold' : ''}
-        `                   }
-                        >   
-                            {date.getDate()}
-                            <RestrictedContent className="relative w-full h-full">
-                                <AddPlanButton date={date} />
-                            </RestrictedContent>
-                        </div>
+                        <AddPlanButton key={index} date={date} firstDate={firstDate} />
                     );
                 })
             }

@@ -1,0 +1,5 @@
+const STUDENT_PASSWORD = "studenet";
+const PARENT_PASSWORD = "parent";
+const EXECUTIVE_PASSWORD = "executive";
+
+export { STUDENT_PASSWORD, PARENT_PASSWORD, EXECUTIVE_PASSWORD };

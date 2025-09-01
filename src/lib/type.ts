@@ -5,6 +5,7 @@ export interface DateInfo {
 }
 
 export interface NotificationType {
+    id: number;
     title: string;
     content: string;
     createdAt: Date;

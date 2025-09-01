@@ -1,6 +1,7 @@
 "use client";
 
 import Form from "next/form";
+import BlueButton from "../../global/button/BlueButton";
 
 export default function NotificationEditForm() {
     return (
@@ -22,6 +23,7 @@ export default function NotificationEditForm() {
                     name="title" 
                     rows={1} 
                     cols={100} 
+                    className="bg-white"
                 />
             </div>
             <div>
@@ -30,10 +32,11 @@ export default function NotificationEditForm() {
                     name="content" 
                     rows={10}
                     cols={100}
+                    className="bg-white"
                 />
             </div>
             <div>
-                <button type="submit">追加</button>
+                <BlueButton>追加</BlueButton>
             </div>
         </Form>
     )

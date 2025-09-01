@@ -2,6 +2,7 @@
 
 import { DateInfo } from "@/lib/type";
 import Form from "next/form";
+import BlueButton from "../../global/button/BlueButton";
 
 export default function EditPlanForm({ info }: { info: DateInfo }) {
     return (
@@ -29,7 +30,7 @@ export default function EditPlanForm({ info }: { info: DateInfo }) {
                 />
             </div>
             <div>
-                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">保存</button>
+                <BlueButton>保存</BlueButton>
             </div>
         </Form>
     );

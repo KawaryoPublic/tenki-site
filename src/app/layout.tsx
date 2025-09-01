@@ -13,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className="w-screen min-h-screen overflow-x-hidden flex flex-col items-center">
+      <body className="w-screen min-h-screen overflow-x-hidden flex flex-col items-center p-5">
         {children}
       </body>
     </html>
