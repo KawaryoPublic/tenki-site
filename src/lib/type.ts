@@ -3,3 +3,9 @@ export interface DateInfo {
     date: string;
     plan?: string;
 }
+
+export interface Notification {
+    title: string;
+    content: string;
+    createdAt: Date;
+}
