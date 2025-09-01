@@ -38,9 +38,9 @@ export default function DateInfoSection({ id }: { id: number }) {
                                         date: info.date,
                                         plan: formData.get("plan")
                                     }),
-                                }).catch(err => console.log(err));
-                            
-                                window.location.reload();
+                                }).then(() => alert("保存しました"))
+                                .then(() => window.location.reload())
+                                .catch(err => console.log(err));
                             }}
                         >
                             <div>
