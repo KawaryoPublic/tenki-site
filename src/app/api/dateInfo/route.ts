@@ -13,7 +13,7 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-    try {
+    
         const { date, plan } = await req.json();
 
         if (!date) {
@@ -28,10 +28,7 @@ export async function POST(req: NextRequest) {
         });
 
         return NextResponse.json(newDateInfo, { status: 201 });
-    } catch (error) {
-        console.error("Error creating date info:", error.code);
-        return NextResponse.json({ error: "Failed to create date info" }, { status: 500 });
-    }
+    
 }
 
 export async function PUT(req: NextRequest) {
