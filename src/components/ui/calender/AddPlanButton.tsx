@@ -3,7 +3,7 @@
 export default function AddPlanButton({ date }: { date: Date }) {
     return (
         <button
-            className="w-full h-full"
+            className="absolute top-0 left-0 w-full h-full"
             onClick={() => {
                 confirm("予定を追加しますか？") &&
                 fetch("/api/dateInfo", {
