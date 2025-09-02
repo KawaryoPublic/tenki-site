@@ -5,7 +5,7 @@ import { Suspense } from "react";
 
 export default function NotificationEditSection() {
     return (
-        <section>
+        <section className="w-full flex flex-col gap-4">
             <div className="mb-4">
                 <NotificationEditForm />
             </div>
