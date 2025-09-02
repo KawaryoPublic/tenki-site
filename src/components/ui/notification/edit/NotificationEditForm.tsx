@@ -16,7 +16,7 @@ export default function NotificationEditForm() {
                 }).then(() => alert("告知を追加しました"))
                 .catch(err => console.log(err));
             }}
-            className="w-full flex flex-col"
+            className="flex flex-col gap-2"
         >   
             <div>
                 <label htmlFor="title" className="font-bold">タイトル:</label><br />
