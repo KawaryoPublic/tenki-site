@@ -16,22 +16,22 @@ export default function NotificationEditForm() {
                 }).then(() => alert("告知を追加しました"))
                 .catch(err => console.log(err));
             }}
-            className="w-full"
+            className="w-full flex flex-col"
         >   
-            <div className="w-full pb-2">
+            <div>
                 <label htmlFor="title" className="font-bold">タイトル:</label><br />
                 <textarea 
                     name="title" 
                     rows={1} 
-                    className="bg-white resize-none w-full"
+                    className="bg-white resize-none"
                 />
             </div>
-            <div className="w-full pb-2">
+            <div>
                 <label htmlFor="content" className="font-bold">内容:</label><br />
                 <textarea 
                     name="content" 
                     rows={10}
-                    className="bg-white resize-none w-full"
+                    className="bg-white resize-none"
                 />
             </div>
             <div>
