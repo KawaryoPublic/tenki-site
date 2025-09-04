@@ -2,7 +2,7 @@ import NotificationEditSection from "@/components/layout/notification/Notificati
 
 export default function Home() {
     return (
-        <div>
+        <div className="w-full h-full flex flex-col">
             <NotificationEditSection />
         </div>
     )

@@ -23,7 +23,7 @@ export default function NotificationEditForm() {
                 <textarea 
                     name="title" 
                     rows={1} 
-                    className="bg-white resize-none"
+                    className="bg-white resize-none w-full"
                 />
             </div>
             <div>
@@ -31,7 +31,7 @@ export default function NotificationEditForm() {
                 <textarea 
                     name="content" 
                     rows={10}
-                    className="bg-white resize-none"
+                    className="bg-white resize-none w-full"
                 />
             </div>
             <div>

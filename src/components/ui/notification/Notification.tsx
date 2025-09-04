@@ -11,13 +11,12 @@ export default function Notification({ id, title, createdAt, content }: { id: nu
                     <span className="text-gray-800">{`${new Date(createdAt).getFullYear()}年${new Date(createdAt).getMonth() + 1}月${new Date(createdAt).getDate()}日`}</span>
                     <Suspense>
                         <RestrictedContent>
-                            
                             <DeleteNotificationButton id={id}/>
                         </RestrictedContent>
                     </Suspense>
                 </div>
             </div>
-            <p>{content}</p>
+            <p className="whitespace-pre-wrap">{content}</p>
         </div>
     );
 }

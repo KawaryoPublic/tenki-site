@@ -21,27 +21,30 @@ export default function DateInfoSection({ id }: { id: number }) {
     return (
         info ? 
         info.id === -1 ? <div>Loading...</div> :
-        <div>
-            <div className="pb-4">
+        <div className="flex flex-col gap-8">
+            <div>
                 <h1 className="text-3xl">{`${info?.date}`}の詳細ページ</h1>
                 <div>
-                    予定: {info?.plan ? info.plan : "なし"}
+                    予定: <br /> 
+                    <span className="whitespace-pre-wrap">{info?.plan ? info.plan : "なし"}</span>
                 </div>
             </div>
             <Suspense>
                 <RestrictedContent>
-                    <div className="pt-4">
+                    <div className="flex flex-col gap-2">
                         <h1 className="text-3xl">編集</h1>
-                        <div className="pb-4">
-                            <EditPlanForm info={info} />
-                        </div>
-                        <div className="pb-4">
-                            <DeletePlanButton id={id} />
+                        <div className="flex flex-col gap-6">
+                            <div>
+                                <EditPlanForm info={info} />
+                            </div>
+                            <div>
+                                <DeletePlanButton id={id} />
+                            </div>
                         </div>
                     </div>
                 </RestrictedContent>
             </Suspense>
-            <div className="pt-4">
+            <div>
                 <BlueButton>
                     <DefaultLink href="/calender">日付一覧に戻る</DefaultLink>
                 </BlueButton>

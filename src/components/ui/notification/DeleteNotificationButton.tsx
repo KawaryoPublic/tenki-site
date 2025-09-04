@@ -17,7 +17,7 @@ export default function DeleteNotificationButton({ id }: { id: number }) {
                 .catch(err => console.log(err));
             }}
         >
-            删除
+            削除
         </RedButton>
     );
 }

@@ -19,6 +19,7 @@ export default function EditPlanForm({ info }: { info: DateInfo }) {
                 .then(() => window.location.reload())
                 .catch(err => console.log(err));
             }}
+            className="flex flex-col gap-2"
         >
             <div>
                 <label htmlFor="plan">予定: </label><br />
@@ -26,7 +27,7 @@ export default function EditPlanForm({ info }: { info: DateInfo }) {
                     name="plan" 
                     rows={10}
                     cols={100}
-                    className="bg-white"
+                    className="bg-white w-full resize-none"
                 />
             </div>
             <div>

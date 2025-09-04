@@ -5,11 +5,11 @@ import { Suspense } from "react";
 
 export default function NotificationEditSection() {
     return (
-        <section className="w-full flex flex-col gap-4">
-            <div className="mb-4">
+        <section className="flex flex-col gap-16">
+            <div>
                 <NotificationEditForm />
             </div>
-            <div className="mt-4">
+            <div>
                 <BlueButton>
                     <Suspense>
                         <DefaultLink href="/notification">告知に戻る</DefaultLink>
