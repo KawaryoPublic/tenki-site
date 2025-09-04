@@ -23,7 +23,7 @@ export default function DateInfoSection({ id }: { id: number }) {
         info.id === -1 ? <div>Loading...</div> :
         <div className="flex flex-col gap-8">
             <div>
-                <h1 className="text-3xl">{`${info?.date}`}の詳細ページ</h1>
+                <h1 className="text-2xl">{`${info?.date}`}の詳細ページ</h1>
                 <div>
                     予定: <br /> 
                     <span className="whitespace-pre-wrap">{info?.plan ? info.plan : "なし"}</span>
@@ -32,7 +32,7 @@ export default function DateInfoSection({ id }: { id: number }) {
             <Suspense>
                 <RestrictedContent>
                     <div className="flex flex-col gap-2">
-                        <h1 className="text-3xl">編集</h1>
+                        <h1 className="text-xl">編集</h1>
                         <div className="flex flex-col gap-6">
                             <div>
                                 <EditPlanForm info={info} />
