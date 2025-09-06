@@ -16,7 +16,7 @@ export default function NotificationEditForm({ q }: { q: string }) {
                     }),
                 }).catch(err => console.log(err));
 
-                redirect(`/notification${q}`)
+                redirect(`/notification?q=${q}`)
             }}
             className="flex flex-col gap-2"
         >   

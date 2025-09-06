@@ -1,7 +1,6 @@
 import BlueButton from "@/components/ui/global/button/BlueButton";
 import RestrictedLink from "@/components/ui/global/RestrictedLink";
 import NotificationEditForm from "@/components/ui/member/notification/edit/NotificationEditForm";
-import { Suspense } from "react";
 
 export default function NotificationEditSection({ q }: { q: string }) {
     return (
@@ -11,9 +10,7 @@ export default function NotificationEditSection({ q }: { q: string }) {
             </div>
             <div>
                 <BlueButton>
-                    <Suspense>
-                        <RestrictedLink href="/notification">告知に戻る</RestrictedLink>
-                    </Suspense>
+                    <RestrictedLink href="/notification">告知に戻る</RestrictedLink>
                 </BlueButton>
             </div>
         </section>

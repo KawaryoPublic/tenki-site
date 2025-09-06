@@ -1,7 +1,7 @@
 "use client";
 
 import { DateInfo } from "@/lib/type";
-import { Suspense, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import RestrictedContent from "@/components/ui/global/RestrictedContent";
 import RestrictedLink from "@/components/ui/global/RestrictedLink";
 import EditPlanForm from "@/components/ui/member/calender/date_info/EditPlanForm";
@@ -29,21 +29,19 @@ export default function DateInfoSection({ id, q }: { id: number, q: string }) {
                     <span className="whitespace-pre-wrap">{info?.plan ? info.plan : "なし"}</span>
                 </div>
             </div>
-            <Suspense>
-                <RestrictedContent>
-                    <div className="flex flex-col gap-2">
-                        <h1 className="text-xl">編集</h1>
-                        <div className="flex flex-col gap-6">
-                            <div>
-                                <EditPlanForm info={info} />
-                            </div>
-                            <div>
-                                <DeletePlanButton id={id} q={q} />
-                            </div>
+            <RestrictedContent>
+                <div className="flex flex-col gap-2">
+                    <h1 className="text-xl">編集</h1>
+                    <div className="flex flex-col gap-6">
+                        <div>
+                            <EditPlanForm info={info} />
+                        </div>
+                        <div>
+                            <DeletePlanButton id={id} q={q} />
                         </div>
                     </div>
-                </RestrictedContent>
-            </Suspense>
+                </div>
+            </RestrictedContent>
             <div>
                 <BlueButton>
                     <RestrictedLink href="/calender">日付一覧に戻る</RestrictedLink>
