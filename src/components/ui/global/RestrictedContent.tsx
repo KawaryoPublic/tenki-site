@@ -3,7 +3,7 @@
 import { EXECUTIVE_PASSWORD, PARENT_PASSWORD, STUDENT_PASSWORD } from "@/lib/const";
 import { useSearchParams } from "next/navigation";
 
-export default function RestrictedContent({ allowParent, allowStudent, className, children }: { allowParent?: boolean, allowStudent?: boolean, className?: string, children: React.ReactNode }) {
+export default function RestrictedContent({ allowParent, allowStudent, children }: { allowParent?: boolean, allowStudent?: boolean, children: React.ReactNode}) {
     const password = useSearchParams().get("q");
 
     return (

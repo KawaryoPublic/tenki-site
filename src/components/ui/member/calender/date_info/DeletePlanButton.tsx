@@ -1,0 +1,23 @@
+"use client";
+
+import RedButton from "@/components/ui/global/button/RedButton";
+import { redirect } from "next/navigation";
+
+export default function DeletePlanButton({ id, q }: { id: number, q: string }) {
+    return (
+        <RedButton
+            onClick={async () => {
+                if(!confirm("本当に削除しますか？")) return;
+
+                await fetch("/api/dateInfo", {
+                    method: "DELETE",
+                    body: JSON.stringify({ id }),
+                }).catch(err => console.log(err));
+
+                redirect(`/calender?q=${q}`)
+            }}
+        >
+            削除
+        </RedButton>
+    );
+}
