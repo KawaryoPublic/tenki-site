@@ -1,4 +1,6 @@
 import DateInfoSection from "@/components/layout/member/calendar/DateInfoSection";
+import RestrictedContent from "@/components/ui/global/RestrictedContent";
+import { Suspense } from "react";
 
 export default async function Home({ params, searchParams }: { params: { id: number }, searchParams: { q: string } }) {
     return (
