@@ -1,4 +1,4 @@
-const STUDENT_PASSWORD = "studenet";
+const STUDENT_PASSWORD = "student";
 const PARENT_PASSWORD = "parent";
 const EXECUTIVE_PASSWORD = "executive";
 
