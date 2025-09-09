@@ -5,7 +5,7 @@ import RestrictedLink from "@/components/ui/global/RestrictedLink";
 import { useEffect, useState } from "react";
 import AddPlanButton from "./AddPlanButton";
 
-export default function Dates({index}: { index: number }) {
+export default function Dates({ index }: { index: number }) {
     const firstDate = new Date(new Date().getFullYear(), new Date().getMonth() + index, 1);
     const [ dateInfo, setDateInfo ] = useState<DateInfo[]>([]);
     const [ loading, setLoading ] = useState(true);
