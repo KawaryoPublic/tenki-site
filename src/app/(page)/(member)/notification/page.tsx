@@ -16,8 +16,8 @@ export default function Home() {
               </RestrictedContent>
             </BlueButton>
           </div>
-          </RestrictedContent>
           <NotificationSection />
+        </RestrictedContent>
       </Suspense>
     </div>
   );
