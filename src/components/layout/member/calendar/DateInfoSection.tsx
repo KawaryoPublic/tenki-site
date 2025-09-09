@@ -4,8 +4,8 @@ import { DateInfo } from "@/lib/type";
 import { useEffect, useState } from "react"
 import RestrictedContent from "@/components/ui/global/RestrictedContent";
 import RestrictedLink from "@/components/ui/global/RestrictedLink";
-import EditPlanForm from "@/components/ui/member/calender/date_info/EditPlanForm";
-import DeletePlanButton from "@/components/ui/member/calender/date_info/DeletePlanButton";
+import EditPlanForm from "@/components/ui/member/calendar/date_info/EditPlanForm";
+import DeletePlanButton from "@/components/ui/member/calendar/date_info/DeletePlanButton";
 import BlueButton from "@/components/ui/global/button/BlueButton";
 
 export default function DateInfoSection({ id, q }: { id: number, q: string }) {

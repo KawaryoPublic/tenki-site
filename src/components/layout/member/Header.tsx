@@ -18,7 +18,7 @@ export default async function Header() {
                 </RestrictedContent>
                 <RestrictedContent allowStudent>
                     <li>
-                        <RestrictedLink href="/calender">カレンダー</RestrictedLink>
+                        <RestrictedLink href="/calendar">カレンダー</RestrictedLink>
                     </li>
                 </RestrictedContent>
                 <RestrictedContent allowStudent>

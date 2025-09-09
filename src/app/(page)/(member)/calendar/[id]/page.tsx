@@ -1,4 +1,4 @@
-import DateInfoSection from "@/components/layout/member/calender/DateInfoSection";
+import DateInfoSection from "@/components/layout/member/calendar/DateInfoSection";
 
 export default async function Home({ params, searchParams }: { params: { id: number }, searchParams: { q: string } }) {
     return (

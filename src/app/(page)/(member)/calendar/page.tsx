@@ -1,4 +1,4 @@
-import CalenderSection from "@/components/layout/member/calender/CalenderSection";
+import CalendarSection from "@/components/layout/member/calendar/CalendarSection";
 import RestrictedContent from "@/components/ui/global/RestrictedContent";
 import { Suspense } from "react";
 
@@ -9,7 +9,7 @@ export default function Home() {
                 <RestrictedContent allowStudent>
                     {
                         Array.from({ length: 3 }).map((_, i) => (
-                            <CalenderSection key={i} index={i} />
+                            <CalendarSection key={i} index={i} />
                         ))
                     }
                 </RestrictedContent>
