@@ -40,7 +40,7 @@ export default function Dates({ index }: { index: number }) {
                                 ${date.getMonth() === firstDate.getMonth() ? 'bg-red-300' : 'bg-gray-200 text-gray-400'}
                                 ${date.toDateString() === new Date().toDateString() ? 'border-2 border-blue-500 font-bold' : ''}
                             `}
-                            href={`/calender/${info.id}`}
+                            href={`/calendar/${info.id}`}
                         >   
                             {date.getDate()}
                         </RestrictedLink> :
