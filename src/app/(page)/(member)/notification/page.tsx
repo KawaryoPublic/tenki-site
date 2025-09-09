@@ -10,11 +10,11 @@ export default function Home() {
       <Suspense>
         <RestrictedContent allowParent allowStudent>
           <div className="flex justify-between items-center mb-4">
-            <BlueButton>
-              <RestrictedContent>
+            <RestrictedContent>
+              <BlueButton>
                 <RestrictedLink href="/notification/edit">追加</RestrictedLink>
-              </RestrictedContent>
-            </BlueButton>
+              </BlueButton>
+            </RestrictedContent>
           </div>
           <NotificationSection />
         </RestrictedContent>
