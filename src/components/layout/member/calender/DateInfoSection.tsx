@@ -19,7 +19,6 @@ export default function DateInfoSection({ id, q }: { id: number, q: string }) {
     }, []);
 
     return (
-        info ? 
         info.id === -1 ? <div>Loading...</div> :
         <div className="flex flex-col gap-8">
             <div>
@@ -47,11 +46,6 @@ export default function DateInfoSection({ id, q }: { id: number, q: string }) {
                     <RestrictedLink href="/calender">日付一覧に戻る</RestrictedLink>
                 </BlueButton>
             </div>
-        </div> :
-        <div>
-            <BlueButton>
-                <RestrictedLink href="/calender">日付一覧に戻る</RestrictedLink>
-            </BlueButton>
         </div>
     )
 }
