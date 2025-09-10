@@ -13,20 +13,38 @@ export default function EditPlanForm({ info }: { info: DateInfo }) {
                     body: JSON.stringify({
                         id: info.id,
                         date: info.date,
-                        plan: formData.get("plan"),
-                        observation: info.observation
+                        plan: info.plan,
+                        observation: {
+                            morning: formData.get("morning"),
+                            noon: formData.get("noon"),
+                            afterSchool: formData.get("afterSchool")
+                        }
                     }),
-                }).then(() => window.location.reload())
+                }).then()
                 .catch(err => console.log(err));
             }}
             className="flex flex-col gap-2"
         >
             <div>
                 <textarea 
-                    name="plan" 
-                    rows={4}
+                    name="morning" 
+                    rows={1}
                     cols={100}
-                    placeholder="予定"
+                    placeholder="朝"
+                    className="bg-white w-full resize-none"
+                />
+                <textarea 
+                    name="noon" 
+                    rows={1}
+                    cols={100}
+                    placeholder="昼"
+                    className="bg-white w-full resize-none"
+                />
+                <textarea 
+                    name="afterSchool" 
+                    rows={1}
+                    cols={100}
+                    placeholder="放課後"
                     className="bg-white w-full resize-none"
                 />
             </div>
