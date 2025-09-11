@@ -18,7 +18,7 @@ export default function EditPlanForm({ day }: { day: number }) {
     return (
         <Form 
             action={async (formData) => {
-                await fetch(`/api/observation/${day}`, {
+                await fetch("/api/observation", {
                     method: "PUT",
                     body: JSON.stringify({
                         id: observation.id,
