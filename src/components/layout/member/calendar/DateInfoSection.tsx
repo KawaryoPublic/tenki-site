@@ -7,7 +7,6 @@ import RestrictedLink from "@/components/ui/global/RestrictedLink";
 import EditPlanForm from "@/components/ui/member/calendar/date_info/EditPlanForm";
 import DeleteInfoButton from "@/components/ui/member/calendar/date_info/DeleteInfoButton";
 import BlueButton from "@/components/ui/global/button/BlueButton";
-import EditObservationForm from "@/components/ui/member/calendar/date_info/EditObservationForm";
 
 export default function DateInfoSection({ id, q }: { id: number, q: string }) {
     const [ info, setInfo ] = useState<DateInfo>({id: -1, date: ""});
@@ -40,24 +39,6 @@ export default function DateInfoSection({ id, q }: { id: number, q: string }) {
                             <h1 className="text-xl">編集</h1>
                             <div>
                                 <EditPlanForm info={info} />
-                            </div>
-                        </div>
-                    </RestrictedContent>
-                </div>
-                <div className="flex flex-1 flex-col gap-4 border-l pl-2">
-                    <div>
-                        観測: <br />
-                        {
-                            info.observation ?
-                            `朝 = ${info.observation.morning} | 昼 = ${info.observation.noon} | 放課後 = ${info.observation.afterSchool}` :
-                            "なし" 
-                        }
-                    </div>
-                    <RestrictedContent>
-                        <div className="flex flex-col gap-2">
-                            <h1 className="text-xl">編集</h1>
-                            <div>
-                                <EditObservationForm info={info} />
                             </div>
                         </div>
                     </RestrictedContent>

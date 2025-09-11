@@ -9,10 +9,12 @@ datasource db {
 
 model Observation {
   id          Int         @id @default(autoincrement())
+  day         Int         @unique
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
   morning     String
   noon        String
   afterSchool String
-  DateInfo    DateInfo[]
 }
 
 model DateInfo {
@@ -21,8 +23,6 @@ model DateInfo {
   createdAt            DateTime     @default(now())
   updatedAt            DateTime     @updatedAt
   plan                 String?
-  observation          Observation? @relation(fields: [observationId], references: [id])
-  observationId Int?
 }
 
 model Notification {

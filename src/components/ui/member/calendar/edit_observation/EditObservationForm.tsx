@@ -1,26 +1,33 @@
 "use client";
 
-import { DateInfo } from "@/lib/type";
+import { useEffect, useState } from "react";
+import { Observation } from "@/types/observation";
 import Form from "next/form";
 import BlueButton from "@/components/ui/global/button/BlueButton";
 
-export default function EditPlanForm({ info }: { info: DateInfo }) {
+export default function EditPlanForm({ day }: { day: number }) {
+    const [observation, setObservation] = useState<Observation>({id: -1, day: -1, morning: "", noon: "", afterSchool: ""});
+
+    useEffect(() => {
+        fetch(`/api/observation/${day}`)
+            .then(res => res.json())
+            .then(data => setObservation(data))
+            .catch(err => console.log(err));
+    })
+
     return (
         <Form 
             action={async (formData) => {
-                await fetch("/api/dateInfo", {
+                await fetch(`/api/observation/${day}`, {
                     method: "PUT",
                     body: JSON.stringify({
-                        id: info.id,
-                        date: info.date,
-                        plan: info.plan,
-                        observation: {
-                            morning: formData.get("morning"),
-                            noon: formData.get("noon"),
-                            afterSchool: formData.get("afterSchool")
-                        }
+                        id: observation.id,
+                        day: day,
+                        morning: formData.get("morning"),
+                        noon: formData.get("noon"),
+                        afterSchool: formData.get("afterSchool"),
                     }),
-                }).then()
+                }).then(() => window.location.reload())
                 .catch(err => console.log(err));
             }}
             className="flex flex-col gap-2"

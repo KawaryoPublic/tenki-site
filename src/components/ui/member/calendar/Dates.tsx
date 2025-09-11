@@ -3,7 +3,7 @@
 import { DateInfo } from "@/lib/type";
 import RestrictedLink from "@/components/ui/global/RestrictedLink";
 import { useEffect, useState } from "react";
-import AddPlanButton from "./AddPlanButton";
+import AddDateInfoButton from "./AddDateInfoButton";
 
 export default function Dates({ index }: { index: number }) {
     const firstDate = new Date(new Date().getFullYear(), new Date().getMonth() + index, 1);
@@ -44,7 +44,7 @@ export default function Dates({ index }: { index: number }) {
                         >   
                             {date.getDate()}
                         </RestrictedLink> :
-                        <AddPlanButton key={index} date={date} firstDate={firstDate} />
+                        <AddDateInfoButton key={index} date={date} firstDate={firstDate} />
                     );
                 })
             }
