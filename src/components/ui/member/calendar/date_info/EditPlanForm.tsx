@@ -14,6 +14,8 @@ export default function EditPlanForm({ info }: { info: DateInfo }) {
                         id: info.id,
                         date: info.date,
                         plan: formData.get("plan"),
+                        event: formData.get("event"),
+                        holiday: formData.get("holiday"),
                     }),
                 }).then(() => window.location.reload())
                 .catch(err => console.log(err));
@@ -21,12 +23,36 @@ export default function EditPlanForm({ info }: { info: DateInfo }) {
             className="flex flex-col gap-2"
         >
             <div>
+                <label htmlFor="plan" className="font-bold">予定</label>
                 <textarea 
                     name="plan" 
                     rows={4}
                     cols={100}
                     placeholder="予定"
-                    className="bg-white w-full resize-none"
+                    defaultValue={info.plan ? info.plan : ""}
+                    className="bg-grey-800 w-full resize-none"
+                />
+            </div>
+            <div>
+                <label htmlFor="event" className="font-bold">イベント</label>
+                <textarea 
+                    name="event" 
+                    rows={4}
+                    cols={100}
+                    placeholder="イベント"
+                    defaultValue={info.event ? info.event : ""}
+                    className="bg-grey-800 w-full resize-none"
+                />
+            </div>
+            <div>
+                <label htmlFor="holiday" className="font-bold">休日観測</label>
+                <textarea 
+                    name="holiday" 
+                    rows={4}
+                    cols={100}
+                    placeholder="休日観測"
+                    defaultValue={info.holiday ? info.holiday : ""}
+                    className="bg-grey-800 w-full resize-none"
                 />
             </div>
             <div>

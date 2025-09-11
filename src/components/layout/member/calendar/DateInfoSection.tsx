@@ -39,11 +39,11 @@ export default function DateInfoSection({ id, q }: { id: number, q: string }) {
                         </div>
                         <div>
                             <p className="font-bold">イベント</p>
-                            <p className="whitespace-pre-wrap">{"なし"}</p>
+                            <p className="whitespace-pre-wrap">{info.event ? info.event : "なし"}</p>
                         </div>
                         <div>
                             <p className="font-bold">休日観測</p>
-                            <p className="whitespace-pre-wrap">{"なし"}</p>
+                            <p className="whitespace-pre-wrap">{info.holiday ? info.holiday : "なし"}</p>
                         </div>
                     </WhiteFrame>
                     <RestrictedContent>

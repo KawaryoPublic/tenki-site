@@ -14,7 +14,7 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
     try {
-        const { date, plan } = await req.json();
+        const { date, plan, event, holiday } = await req.json();
 
         if (!date) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -24,6 +24,8 @@ export async function POST(req: NextRequest) {
             data: {
                 date: date,
                 plan: plan || "",
+                event: event || "",
+                holiday: holiday || "",
             },
         });
 
@@ -36,7 +38,7 @@ export async function POST(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
     try {
-        const { id, date, plan } = await req.json();
+        const { id, date, plan, event, holiday } = await req.json();
 
         if (!id || !date) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -47,6 +49,8 @@ export async function PUT(req: NextRequest) {
             data: {
                 date: date,
                 plan: plan || "",
+                event: event || "",
+                holiday: holiday || "",
             },
         });
         return NextResponse.json(updatedDateInfo, { status: 200 });
