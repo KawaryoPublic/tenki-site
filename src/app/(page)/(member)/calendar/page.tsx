@@ -4,7 +4,7 @@ import { Suspense } from "react";
 
 export default function Home() {
     return (
-        <div className="flex flex-col space-x-4 lg:flex-row lg:space-y-4 w-full">
+        <div className="flex flex-col lg:flex-row gap-4 w-full">
             <Suspense>
                 <RestrictedContent allowStudent>
                     {
