@@ -21,7 +21,6 @@ export default function EditPlanForm({ day }: { day: number }) {
                 await fetch("/api/observation", {
                     method: "PUT",
                     body: JSON.stringify({
-                        id: observation.id,
                         day: day,
                         morning: formData.get("morning"),
                         noon: formData.get("noon"),
