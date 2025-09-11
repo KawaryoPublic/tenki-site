@@ -26,33 +26,33 @@ export default function EditPlanForm({ info }: { info: DateInfo }) {
                 <label htmlFor="plan" className="font-bold">予定</label>
                 <textarea 
                     name="plan" 
-                    rows={4}
+                    rows={3}
                     cols={100}
                     placeholder="予定"
                     defaultValue={info.plan ? info.plan : ""}
-                    className="bg-grey-800 w-full resize-none"
+                    className="bg-gray-800 w-full resize-none border border-gray-600 rounded-md px-2 py-1"
                 />
             </div>
             <div>
                 <label htmlFor="event" className="font-bold">イベント</label>
                 <textarea 
                     name="event" 
-                    rows={4}
+                    rows={3}
                     cols={100}
                     placeholder="イベント"
                     defaultValue={info.event ? info.event : ""}
-                    className="bg-grey-800 w-full resize-none"
+                    className="bg-gray-800 w-full resize-none border border-gray-600 rounded-md px-2 py-1"
                 />
             </div>
             <div>
                 <label htmlFor="holiday" className="font-bold">休日観測</label>
                 <textarea 
                     name="holiday" 
-                    rows={4}
+                    rows={1}
                     cols={100}
                     placeholder="休日観測"
                     defaultValue={info.holiday ? info.holiday : ""}
-                    className="bg-grey-800 w-full resize-none"
+                    className="bg-gray-800 w-full resize-none border border-gray-600 rounded-md px-2 py-1"
                 />
             </div>
             <div>
