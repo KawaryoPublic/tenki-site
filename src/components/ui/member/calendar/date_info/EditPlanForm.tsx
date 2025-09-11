@@ -14,7 +14,6 @@ export default function EditPlanForm({ info }: { info: DateInfo }) {
                         id: info.id,
                         date: info.date,
                         plan: formData.get("plan"),
-                        observation: info.observation
                     }),
                 }).then(() => window.location.reload())
                 .catch(err => console.log(err));
