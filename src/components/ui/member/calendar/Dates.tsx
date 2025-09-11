@@ -41,9 +41,9 @@ export default function Dates({ index }: { index: number }) {
                             key={index}
                         >
                             <div className="w-full h-full flex-1 flex flex-row justify-around">
-                                <span className="border rounded-full bg-red-400 flex-1 aspect-square" />
-                                <span className="border rounded-full bg-red-400 flex-1 aspect-square" />
-                                <span className="border rounded-full bg-red-400 flex-1 aspect-square" />
+                                <span className="border rounded-full bg-red-400 w-5 h-5" />
+                                <span className="border rounded-full bg-red-400 w-5 h-5" />
+                                <span className="border rounded-full bg-red-400 w-5 h-5" />
                             </div>
                             <div className="w-full h-full flex-3 flex items-center justify-center">
                             {
