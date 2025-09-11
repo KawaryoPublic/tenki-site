@@ -41,9 +41,9 @@ export default function Dates({ index }: { index: number }) {
                             key={index}
                         >
                             <div className="flex-1 flex flex-row justify-between">
-                                <span className="bg-red-400"></span>
-                                <span className="bg-blue-400"></span>
-                                <span className="bg-green-400"></span>
+                                <span className="bg-red-400 flex-1"></span>
+                                <span className="bg-blue-400 flex-1"></span>
+                                <span className="bg-green-400 flex-1"></span>
                             </div>
                             <div className="flex-3 flex items-center justify-center">
                             {
