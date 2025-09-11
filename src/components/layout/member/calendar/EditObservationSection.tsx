@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { Observation } from "@/lib/type";
 import EditObservationForm from "@/components/ui/member/calendar/edit_observation/EditObservationForm";
 import { DAYS } from "@/lib/const";
+import WhiteFrame from "@/components/ui/global/WhiteFrame";
+import RestrictedContent from "@/components/ui/global/RestrictedContent";
 
 export default function EditObservationSection({ day }: { day: number }) {
     const [observation, setObservation] = useState<Observation>({day: -1, morning: "", noon: "", afterSchool: ""});
