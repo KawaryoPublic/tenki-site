@@ -3,7 +3,7 @@
 import { EXECUTIVE_PASSWORD } from "@/lib/const";
 import { useSearchParams } from "next/navigation";
 
-export default function AddDateInfoButton({ date, firstDate }: { date: Date, firstDate: Date }) {
+export default function AddDateInfoButton({ date }: { date: Date }) {
     return (
         <button
             className="w-full h-full text-center"
