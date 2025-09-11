@@ -1,4 +1,4 @@
-import NotificationEditSection from "@/components/layout/member/notification/NotificationEditSection";
+import EditNotificationSection from "@/components/layout/member/notification/EditNotificationSection";
 import RestrictedContent from "@/components/ui/global/RestrictedContent";
 import { Suspense } from "react";
 
@@ -7,7 +7,7 @@ export default async function Home({ searchParams }: { searchParams: { q: string
         <div className="w-full h-full flex flex-col">
             <Suspense>
                 <RestrictedContent>
-                    <NotificationEditSection q={(await searchParams).q} />
+                    <EditNotificationSection q={(await searchParams).q} />
                 </RestrictedContent>
             </Suspense>
         </div>

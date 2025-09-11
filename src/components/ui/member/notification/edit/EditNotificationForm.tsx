@@ -3,6 +3,7 @@
 import Form from "next/form";
 import BlueButton from "@/components/ui/global/button/BlueButton";
 import { redirect } from "next/navigation";
+import DefaultTextArea from "@/components/ui/global/DefaultTextArea";
 
 export default function NotificationEditForm({ q }: { q: string }) {
     return (
@@ -20,22 +21,16 @@ export default function NotificationEditForm({ q }: { q: string }) {
             }}
             className="flex flex-col gap-2"
         >   
-            <div>
-                <label htmlFor="title" className="font-bold">タイトル:</label><br />
-                <textarea 
-                    name="title" 
-                    rows={1} 
-                    className="bg-white resize-none w-full"
-                />
-            </div>
-            <div>
-                <label htmlFor="content" className="font-bold">内容:</label><br />
-                <textarea 
-                    name="content" 
-                    rows={10}
-                    className="bg-white resize-none w-full"
-                />
-            </div>
+            <DefaultTextArea
+                title="タイトル"
+                name="title"
+                rows={1}
+            />
+            <DefaultTextArea
+                title="内容"
+                name="content"
+                rows={3}
+            />
             <div>
                 <BlueButton>追加</BlueButton>
             </div>
