@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Observation } from "@/types/observation";
+import { Observation } from "@/lib/type";
 import Form from "next/form";
 import BlueButton from "@/components/ui/global/button/BlueButton";
 
