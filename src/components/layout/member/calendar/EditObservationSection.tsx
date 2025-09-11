@@ -8,10 +8,27 @@ import { DAYS } from "@/lib/const";
 export default function EditObservationSection({ day }: { day: number }) {
     const [observation, setObservation] = useState<Observation>({day: -1, morning: "", noon: "", afterSchool: ""});
     
-    useEffect(() => {
-        fetch(`/api/observation`)
+    useEffect(async () => {
+        fetch("/api/observation")
             .then(res => res.json())
-            .then((data: Observation[]) => setObservation(data.find(d => d.day === Number(day))))
+            .then(data => {
+                const observation = data.find((obs: Observation) => obs.day === day);
+                if (observation) {
+                    setObservation(observation);
+                    return;
+                } 
+
+                fetch("/api/observation", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        day: day,
+                        morning: "",
+                        noon: "",
+                        afterSchool: "",
+                    }),
+                }).then(res => res.json())
+                .then(data => setObservation(data));
+            })
             .catch(err => console.log(err));
     });
 
