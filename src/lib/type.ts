@@ -8,9 +8,9 @@ export interface Observation {
 export interface DateInfo {
     id: number;
     date: string;
-    plan?: string;
-    event?: string;
-    holiday?: string;
+    plan: string;
+    event: string;
+    holiday: string;
 }
 
 export interface NotificationType {

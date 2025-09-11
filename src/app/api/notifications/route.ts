@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     try {
         const { title, content } = await request.json();
 
-        if (!title || !content) {
+        if (title === undefined || content === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -40,7 +40,7 @@ export async function PUT(request: NextRequest) {
     try {
         const { id, title, content } = await request.json();
 
-        if (!id || !title || !content) {
+        if (!id || title === undefined || content === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 

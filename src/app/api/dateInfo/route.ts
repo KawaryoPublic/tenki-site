@@ -16,16 +16,16 @@ export async function POST(req: NextRequest) {
     try {
         const { date, plan, event, holiday } = await req.json();
 
-        if (!date) {
+        if (!date || plan === undefined || event === undefined || holiday === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
         const newDateInfo = await prisma.dateInfo.create({
             data: {
                 date: date,
-                plan: plan || "",
-                event: event || "",
-                holiday: holiday || "",
+                plan: plan,
+                event: event,
+                holiday: holiday,
             },
         });
 
@@ -40,7 +40,7 @@ export async function PUT(req: NextRequest) {
     try {
         const { id, date, plan, event, holiday } = await req.json();
 
-        if (!id || !date) {
+        if (!id || !date || plan === undefined || event === undefined || holiday === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -48,9 +48,9 @@ export async function PUT(req: NextRequest) {
             where: { id: id },
             data: {
                 date: date,
-                plan: plan || "",
-                event: event || "",
-                holiday: holiday || "",
+                plan: plan,
+                event: event,
+                holiday: holiday,
             },
         });
         return NextResponse.json(updatedDateInfo, { status: 200 });

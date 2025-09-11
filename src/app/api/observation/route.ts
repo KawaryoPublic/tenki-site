@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
     try {
         const { day, morning, noon, afterSchool } = await req.json();
 
-        if (!day || !morning || !noon || !afterSchool) {
+        if (!day || morning === undefined || noon === undefined || afterSchool === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -40,7 +40,7 @@ export async function PUT(req: NextRequest) {
     try {
         const { day, morning, noon, afterSchool } = await req.json();
 
-        if (!day || !morning || !noon || !afterSchool) {
+        if (!day || morning === undefined || noon === undefined || afterSchool === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
