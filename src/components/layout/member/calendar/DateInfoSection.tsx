@@ -32,7 +32,7 @@ export default function DateInfoSection({ id, q }: { id: number, q: string }) {
             <div className="pb-8 flex flex-row">
                 <div className="flex flex-1 flex-col gap-4">
                     <WhiteFrame className="flex flex-col gap-2">
-                        <h2>詳細</h2>
+                        <h2 className="text-xl">詳細</h2>
                         <div>
                             <p className="font-bold">予定</p>
                             <p className="whitespace-pre-wrap">{info.plan ? info.plan : "なし"}</p>
@@ -48,7 +48,7 @@ export default function DateInfoSection({ id, q }: { id: number, q: string }) {
                     </WhiteFrame>
                     <RestrictedContent>
                         <WhiteFrame className="flex flex-col gap-2">
-                            <h1 className="text-xl">編集</h1>
+                            <h2 className="text-xl">編集</h1>
                             <div>
                                 <EditPlanForm info={info} />
                             </div>
