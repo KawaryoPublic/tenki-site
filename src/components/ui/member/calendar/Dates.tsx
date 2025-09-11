@@ -4,7 +4,6 @@ import { DateInfo } from "@/lib/type";
 import RestrictedLink from "@/components/ui/global/RestrictedLink";
 import { useEffect, useState } from "react";
 import AddDateInfoButton from "./AddDateInfoButton";
-import WhiteFrame from "../../global/WhiteFrame";
 
 export default function Dates({ index }: { index: number }) {
     const firstDate = new Date(new Date().getFullYear(), new Date().getMonth() + index, 1);
@@ -33,9 +32,9 @@ export default function Dates({ index }: { index: number }) {
                     const info = dateInfo.find((d: DateInfo) => d.date === `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`);
 
                     return (
-                        <WhiteFrame 
+                        <div 
                             className={`
-                                flex flex-col
+                                flex flex-col items-center justify-center bg-white rounded
                                 ${date.getMonth() === firstDate.getMonth() ? '' : 'bg-gray-200 text-gray-400'}
                                 ${date.toDateString() === new Date().toDateString() ? 'border-2 border-blue-500 font-bold' : ''}
                             `}
@@ -45,9 +44,9 @@ export default function Dates({ index }: { index: number }) {
                             info ? 
                             <>
                                 <div className="flex-1 flex flex-row justify-between">
-                                    <span>a</span>
-                                    <span>b</span>
-                                    <span>c</span>
+                                    <span className="bg-red-400"></span>
+                                    <span className="bg-blue-400"></span>
+                                    <span className="bg-green-400"></span>
                                 </div>
                                 <div className="flex-3 flex items-center justify-center">
                                     <RestrictedLink href={`/calendar/${info.id}`}>{date.getDate()}</RestrictedLink>
@@ -57,7 +56,7 @@ export default function Dates({ index }: { index: number }) {
                                 <AddDateInfoButton key={index} date={date} firstDate={firstDate} />
                             </div>  
                         }
-                        </WhiteFrame>
+                        </div>
                     );
                 })
             }
