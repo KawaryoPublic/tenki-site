@@ -40,12 +40,12 @@ export default function Dates({ index }: { index: number }) {
                             `}
                             key={index}
                         >
-                            <div className="w-full h-full flex-1 flex flex-row justify-between">
-                                <span className="bg-red-400 flex-1"></span>
-                                <span className="bg-blue-400 flex-1"></span>
-                                <span className="bg-green-400 flex-1"></span>
+                            <div className="w-full h-full flex-1 flex flex-row gap-1">
+                                <span className="border rounded-full bg-red-400 flex-1"></span>
+                                <span className="border rounded-full bg-red-400 flex-1"></span>
+                                <span className="border rounded-full bg-red-400 flex-1"></span>
                             </div>
-                            <div className="flex-3 flex items-center justify-center">
+                            <div className="w-full h-full flex-3 flex items-center justify-center">
                             {
                                 info ? 
                                 <RestrictedLink href={`/calendar/${info.id}`}>{date.getDate()}</RestrictedLink> :
