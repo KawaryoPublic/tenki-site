@@ -33,18 +33,29 @@ export default function Dates({ index }: { index: number }) {
 
                     return (
                         info ? 
-                        <RestrictedLink 
-                            key={index} 
-                            className={`
-                                flex items-center justify-center rounded 
-                                ${date.getMonth() === firstDate.getMonth() ? 'bg-red-300' : 'bg-gray-200 text-gray-400'}
-                                ${date.toDateString() === new Date().toDateString() ? 'border-2 border-blue-500 font-bold' : ''}
-                            `}
-                            href={`/calendar/${info.id}`}
-                        >   
-                            {date.getDate()}
-                        </RestrictedLink> :
-                        <AddDateInfoButton key={index} date={date} firstDate={firstDate} />
+                        <div className="flex flex-col rounded" key={index}>
+                            <div className="w-full flex-1 flex flex-row">
+                                <span>a</span>
+                                <span>b</span>
+                                <span>c</span>
+                            </div>
+                            <div className="w-full flex-3 flex items-center justify-center">
+                                <RestrictedLink 
+                                    key={index} 
+                                    className={`
+                                        ${date.getMonth() === firstDate.getMonth() ? '' : 'bg-gray-200 text-gray-400'}
+                                        ${date.toDateString() === new Date().toDateString() ? 'border-2 border-blue-500 font-bold' : ''}
+                            `       }
+                                    href={`/calendar/${info.id}`}
+                                >   
+                                    {date.getDate()}
+                                </RestrictedLink>
+                            </div>
+                            
+                        </div> :
+                        <div>
+                            <AddDateInfoButton key={index} date={date} firstDate={firstDate} />
+                        </div>  
                     );
                 })
             }
