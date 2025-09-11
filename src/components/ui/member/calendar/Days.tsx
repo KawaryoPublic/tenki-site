@@ -1,4 +1,5 @@
 import Link from "next/link";
+import RestrictedLink from "../../global/RestrictedLink";
 
 export default function Days() {
     return (
@@ -6,13 +7,13 @@ export default function Days() {
             {
                 ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day, index) => {
                     return (
-                        <Link 
+                        <RestrictedLink 
                             key={index} 
                             className="flex items-center justify-center rounded"
                             href={`/calendar/edit_observation/${index}`}
                         >
                             {day}
-                        </Link>
+                        </RestrictedLink>
                     );
                 })
             }
