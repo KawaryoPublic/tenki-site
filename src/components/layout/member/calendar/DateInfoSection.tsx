@@ -10,7 +10,7 @@ import BlueButton from "@/components/ui/global/button/BlueButton";
 import WhiteFrame from "@/components/ui/global/WhiteFrame";
 
 export default function DateInfoSection({ id, q }: { id: number, q: string }) {
-    const [ info, setInfo ] = useState<DateInfo>({id: -1, date: ""});
+    const [ info, setInfo ] = useState<DateInfo>({id: -1, date: "", plan: "", event: "", holiday: ""});
 
     useEffect(() => {
         fetch("/api/dateInfo")
