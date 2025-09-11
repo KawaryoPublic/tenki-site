@@ -30,7 +30,7 @@ export default function EditPlanForm({ info }: { info: DateInfo }) {
                     cols={100}
                     placeholder="予定"
                     defaultValue={info.plan ? info.plan : ""}
-                    className="bg-gray-800 w-full resize-none border border-gray-600 rounded-md px-2 py-1"
+                    className="bg-gray-100 w-full resize-none border border-gray-600 rounded-md px-2 py-1"
                 />
             </div>
             <div>
@@ -41,7 +41,7 @@ export default function EditPlanForm({ info }: { info: DateInfo }) {
                     cols={100}
                     placeholder="イベント"
                     defaultValue={info.event ? info.event : ""}
-                    className="bg-gray-800 w-full resize-none border border-gray-600 rounded-md px-2 py-1"
+                    className="bg-gray-100 w-full resize-none border border-gray-600 rounded-md px-2 py-1"
                 />
             </div>
             <div>
@@ -52,7 +52,7 @@ export default function EditPlanForm({ info }: { info: DateInfo }) {
                     cols={100}
                     placeholder="休日観測"
                     defaultValue={info.holiday ? info.holiday : ""}
-                    className="bg-gray-800 w-full resize-none border border-gray-600 rounded-md px-2 py-1"
+                    className="bg-gray-100 w-full resize-none border border-gray-600 rounded-md px-2 py-1"
                 />
             </div>
             <div>
