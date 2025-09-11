@@ -35,12 +35,12 @@ export default function Dates({ index }: { index: number }) {
                     return (
                         info ? 
                         <WhiteFrame className="flex flex-col" key={index}>
-                            <div className="w-full flex-1 flex flex-row">
+                            <div className="flex-1 flex flex-row">
                                 <span>a</span>
                                 <span>b</span>
                                 <span>c</span>
                             </div>
-                            <div className="w-full flex-3 flex items-center justify-center">
+                            <div className="flex-3 flex items-center justify-center">
                                 <RestrictedLink 
                                     className={`
                                         ${date.getMonth() === firstDate.getMonth() ? '' : 'bg-gray-200 text-gray-400'}
@@ -53,7 +53,7 @@ export default function Dates({ index }: { index: number }) {
                             </div>
                             
                         </WhiteFrame> :
-                        <div>
+                        <div className="flex items-center justify-center" key={index}>
                             <AddDateInfoButton key={index} date={date} firstDate={firstDate} />
                         </div>  
                     );
