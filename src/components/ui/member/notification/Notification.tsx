@@ -1,10 +1,11 @@
 import { Suspense } from "react";
 import RestrictedContent from "@/components/ui/global/RestrictedContent";
 import DeleteNotificationButton from "./DeleteNotificationButton";
+import WhiteFrame from "../../global/WhiteFrame";
 
 export default function Notification({ id, title, createdAt, content }: { id: number, title: string, createdAt: Date, content: string }) {
     return (
-        <div className="border p-4 rounded shadow-md w-full bg-white">
+        <WhiteFrame>
             <div className="flex justify-between items-center mb-2 border-b pb-2">
                 <span className="text-xl lg:text-3xl font-bold">{title}</span>
                 <div className="flex items-center gap-4">
@@ -17,6 +18,6 @@ export default function Notification({ id, title, createdAt, content }: { id: nu
                 </div>
             </div>
             <p className="whitespace-pre-wrap text-sm lg:text-base">{content}</p>
-        </div>
+        </WhiteFrame>
     );
 }

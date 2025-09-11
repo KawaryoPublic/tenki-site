@@ -29,7 +29,7 @@ export default function Dates({ index }: { index: number }) {
 
                     return date;
                 }).map((date, index) => {
-                    const info = dateInfo.find(d => d.date === `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`);
+                    const info = dateInfo.find((d: DateInfo) => d.date === `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`);
 
                     return (
                         info ? 

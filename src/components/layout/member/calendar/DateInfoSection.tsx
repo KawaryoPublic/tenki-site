@@ -7,6 +7,7 @@ import RestrictedLink from "@/components/ui/global/RestrictedLink";
 import EditPlanForm from "@/components/ui/member/calendar/date_info/EditPlanForm";
 import DeleteInfoButton from "@/components/ui/member/calendar/date_info/DeleteInfoButton";
 import BlueButton from "@/components/ui/global/button/BlueButton";
+import WhiteFrame from "@/components/ui/global/WhiteFrame";
 
 export default function DateInfoSection({ id, q }: { id: number, q: string }) {
     const [ info, setInfo ] = useState<DateInfo>({id: -1, date: ""});
@@ -29,18 +30,29 @@ export default function DateInfoSection({ id, q }: { id: number, q: string }) {
         <div>
             <h1 className="text-2xl">{formatDate(info.date)}の予定</h1>
             <div className="pb-8 flex flex-row">
-                <div className="flex flex-1 flex-col gap-4 border-r pr-2">
-                    <div>
-                        予定: <br /> 
-                        <span className="whitespace-pre-wrap">{info.plan ? info.plan : "なし"}</span>
-                    </div>
+                <div className="flex flex-1 flex-col gap-4">
+                    <WhiteFrame className="flex flex-col gap-2">
+                        <h2>詳細</h2>
+                        <div>
+                            <p className="font-bold">予定</p>
+                            <p className="whitespace-pre-wrap">{info.plan ? info.plan : "なし"}</p>
+                        </div>
+                        <div>
+                            <p className="font-bold">イベント</p>
+                            <p className="whitespace-pre-wrap">{"なし"}</p>
+                        </div>
+                        <div>
+                            <p className="font-bold">休日観測</p>
+                            <p className="whitespace-pre-wrap">{"なし"}</p>
+                        </div>
+                    </WhiteFrame>
                     <RestrictedContent>
-                        <div className="flex flex-col gap-2">
+                        <WhiteFrame className="flex flex-col gap-2">
                             <h1 className="text-xl">編集</h1>
                             <div>
                                 <EditPlanForm info={info} />
                             </div>
-                        </div>
+                        </WhiteFrame>
                     </RestrictedContent>
                 </div>
             </div>
