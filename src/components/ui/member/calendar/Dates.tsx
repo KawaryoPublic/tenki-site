@@ -33,29 +33,31 @@ export default function Dates({ index }: { index: number }) {
                     const info = dateInfo.find((d: DateInfo) => d.date === `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`);
 
                     return (
-                        info ? 
-                        <WhiteFrame className="flex flex-col" key={index}>
-                            <div className="flex-1 flex flex-row">
-                                <span>a</span>
-                                <span>b</span>
-                                <span>c</span>
-                            </div>
-                            <div className="flex-3 flex items-center justify-center">
-                                <RestrictedLink 
-                                    className={`
-                                        ${date.getMonth() === firstDate.getMonth() ? '' : 'bg-gray-200 text-gray-400'}
-                                        ${date.toDateString() === new Date().toDateString() ? 'border-2 border-blue-500 font-bold' : ''}
-                            `       }
-                                    href={`/calendar/${info.id}`}
-                                >   
-                                    {date.getDate()}
-                                </RestrictedLink>
-                            </div>
-                            
-                        </WhiteFrame> :
-                        <div className="flex items-center justify-center" key={index}>
-                            <AddDateInfoButton key={index} date={date} firstDate={firstDate} />
-                        </div>  
+                        <WhiteFrame 
+                            className={`
+                                flex flex-col
+                                ${date.getMonth() === firstDate.getMonth() ? '' : 'bg-gray-200 text-gray-400'}
+                                ${date.toDateString() === new Date().toDateString() ? 'border-2 border-blue-500 font-bold' : ''}
+                            `}
+                            key={index}
+                        >
+                        {
+                            info ? 
+                            <>
+                                <div className="flex-1 flex flex-row justify-between">
+                                    <span>a</span>
+                                    <span>b</span>
+                                    <span>c</span>
+                                </div>
+                                <div className="flex-3 flex items-center justify-center">
+                                    <RestrictedLink href={`/calendar/${info.id}`}>{date.getDate()}</RestrictedLink>
+                                </div>
+                            </> : 
+                            <div className="flex items-center justify-center" key={index}>
+                                <AddDateInfoButton key={index} date={date} firstDate={firstDate} />
+                            </div>  
+                        }
+                        </WhiteFrame>
                     );
                 })
             }
