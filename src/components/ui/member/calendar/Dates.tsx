@@ -34,18 +34,18 @@ export default function Dates({ index }: { index: number }) {
                     return (
                         <div 
                             className={`
-                                flex flex-col items-center justify-center bg-white rounded
+                                flex flex-col gap-1 items-center justify-center bg-white rounded
                                 ${date.getMonth() === firstDate.getMonth() ? '' : 'bg-gray-400 text-gray-400'}
                                 ${date.toDateString() === new Date().toDateString() ? 'border-2 border-blue-500 font-bold' : ''}
                             `}
                             key={index}
                         >
-                            <div className="w-full h-full flex-1 flex flex-row justify-around">
-                                <span className="border rounded-full bg-red-400 w-5 h-5" />
-                                <span className="border rounded-full bg-red-400 w-5 h-5" />
-                                <span className="border rounded-full bg-red-400 w-5 h-5" />
+                            <div className="w-full h-full flex-1 flex flex-row justify-around border-b border-gray-300">
+                                <span className="border rounded-full bg-red-400 w-2 h-2 lg:w-5 lg:h-5" />
+                                <span className="border rounded-full bg-red-400 w-2 h-2 lg:w-5 lg:h-5" />
+                                <span className="border rounded-full bg-red-400 w-2 h-2 lg:w-5 lg:h-5" />
                             </div>
-                            <div className="w-full h-full flex-3 flex items-center justify-center">
+                            <div className="w-full h-full flex-1 flex items-center justify-center">
                             {
                                 info ? 
                                 <RestrictedLink className="w-full h-full flex items-center justify-center" href={`/calendar/${info.id}`}>{date.getDate()}</RestrictedLink> :
