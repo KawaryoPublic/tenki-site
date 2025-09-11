@@ -12,7 +12,8 @@ export default function AddDateInfoButton({ date, firstDate }: { date: Date, fir
                 ${date.toDateString() === new Date().toDateString() ? 'border-2 border-blue-500 font-bold' : ''}
             `}
             onClick={async () => {
-                if(!confirm("予定を追加しますか？") && useSearchParams().get("q") !== EXECUTIVE_PASSWORD) return;
+                if(useSearchParams().get("q") !== EXECUTIVE_PASSWORD) return;
+                if(!confirm("予定を追加しますか？")) return;
 
                 await fetch("/api/dateInfo", {
                     method: "POST",
