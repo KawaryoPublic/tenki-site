@@ -35,27 +35,23 @@ export default function Dates({ index }: { index: number }) {
                         <div 
                             className={`
                                 flex flex-col items-center justify-center bg-white rounded
-                                ${date.getMonth() === firstDate.getMonth() ? '' : 'bg-gray-200 text-gray-400'}
+                                ${date.getMonth() === firstDate.getMonth() ? '' : 'bg-gray-400 text-gray-400'}
                                 ${date.toDateString() === new Date().toDateString() ? 'border-2 border-blue-500 font-bold' : ''}
                             `}
                             key={index}
                         >
-                        {
-                            info ? 
-                            <>
-                                <div className="flex-1 flex flex-row justify-between">
-                                    <span className="bg-red-400"></span>
-                                    <span className="bg-blue-400"></span>
-                                    <span className="bg-green-400"></span>
-                                </div>
-                                <div className="flex-3 flex items-center justify-center">
-                                    <RestrictedLink href={`/calendar/${info.id}`}>{date.getDate()}</RestrictedLink>
-                                </div>
-                            </> : 
-                            <div className="flex items-center justify-center" key={index}>
-                                <AddDateInfoButton key={index} date={date} firstDate={firstDate} />
-                            </div>  
-                        }
+                            <div className="flex-1 flex flex-row justify-between">
+                                <span className="bg-red-400"></span>
+                                <span className="bg-blue-400"></span>
+                                <span className="bg-green-400"></span>
+                            </div>
+                            <div className="flex-3 flex items-center justify-center">
+                            {
+                                info ? 
+                                <RestrictedLink href={`/calendar/${info.id}`}>{date.getDate()}</RestrictedLink> :
+                                <AddDateInfoButton date={date} firstDate={firstDate} />
+                            }
+                            </div>
                         </div>
                     );
                 })
