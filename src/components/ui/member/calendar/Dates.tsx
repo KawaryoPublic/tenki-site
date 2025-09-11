@@ -40,7 +40,7 @@ export default function Dates({ index }: { index: number }) {
                             `}
                             key={index}
                         >
-                            <div className="flex-1 flex flex-row justify-between">
+                            <div className="w-full h-full flex-1 flex flex-row justify-between">
                                 <span className="bg-red-400 flex-1"></span>
                                 <span className="bg-blue-400 flex-1"></span>
                                 <span className="bg-green-400 flex-1"></span>
