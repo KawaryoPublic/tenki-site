@@ -40,10 +40,10 @@ export default function Dates({ index }: { index: number }) {
                             `}
                             key={index}
                         >
-                            <div className="w-full h-full flex-1 flex flex-row justify-around border-b border-gray-300">
-                                <span className="border rounded-full bg-red-400 w-2 h-2 lg:w-5 lg:h-5" />
-                                <span className="border rounded-full bg-red-400 w-2 h-2 lg:w-5 lg:h-5" />
-                                <span className="border rounded-full bg-red-400 w-2 h-2 lg:w-5 lg:h-5" />
+                            <div className="w-full h-full flex-1 flex flex-row items-center justify-around border-b border-gray-300">
+                                <span className={`border rounded-full ${info.plan ? "bg-red-400" : ""} w-2 h-2`} />
+                                <span className={`"border rounded-full ${info.plan ? "bg-red-400" : ""} w-2 h-2`} />
+                                <span className={`"border rounded-full ${info.plan ? "bg-red-400" : ""} w-2 h-2`} />
                             </div>
                             <div className="w-full h-full flex-1 flex items-center justify-center">
                             {
