@@ -48,7 +48,7 @@ export default function DateInfoSection({ id, q }: { id: number, q: string }) {
                     </WhiteFrame>
                     <RestrictedContent>
                         <WhiteFrame className="flex flex-col gap-2">
-                            <h2 className="text-xl">編集</h1>
+                            <h2 className="text-xl">編集</h2>
                             <div>
                                 <EditPlanForm info={info} />
                             </div>
