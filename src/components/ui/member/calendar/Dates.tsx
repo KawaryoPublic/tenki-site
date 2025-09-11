@@ -42,8 +42,8 @@ export default function Dates({ index }: { index: number }) {
                         >
                             <div className="w-full h-full flex-1 flex flex-row items-center justify-around border-b border-gray-300">
                                 <span className={`border rounded-full ${info?.plan ? "bg-red-400" : ""} w-2 h-2`} />
-                                <span className={`"border rounded-full ${info?.event ? "bg-red-400" : ""} w-2 h-2`} />
-                                <span className={`"border rounded-full ${info?.holiday ? "bg-red-400" : ""} w-2 h-2`} />
+                                <span className={`border rounded-full ${info?.event ? "bg-red-400" : ""} w-2 h-2`} />
+                                <span className={`border rounded-full ${info?.holiday ? "bg-red-400" : ""} w-2 h-2`} />
                             </div>
                             <div className="w-full h-full flex-1 flex items-center justify-center">
                             {
