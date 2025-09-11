@@ -41,14 +41,14 @@ export default function Dates({ index }: { index: number }) {
                             key={index}
                         >
                             <div className="w-full h-full flex-1 flex flex-row items-center justify-around border-b border-gray-300">
-                                <span className={`border rounded-full ${info?.plan ? "bg-red-400" : ""} w-2 h-2`} />
-                                <span className={`border rounded-full ${info?.event ? "bg-red-400" : ""} w-2 h-2`} />
-                                <span className={`border rounded-full ${info?.holiday ? "bg-red-400" : ""} w-2 h-2`} />
+                                <span className={`border rounded-full ${info?.plan ? "bg-blue-400" : ""} w-2 h-2`} />
+                                <span className={`border rounded-full ${info?.event ? "bg-blue-400" : ""} w-2 h-2`} />
+                                <span className={`border rounded-full ${info?.holiday ? "bg-blue-400" : ""} w-2 h-2`} />
                             </div>
                             <div className="w-full h-full flex-1 flex items-center justify-center">
                             {
                                 info ? 
-                                <RestrictedLink className="w-full h-full flex items-center justify-center" href={`/calendar/${info.id}`}>{date.getDate()}</RestrictedLink> :
+                                <RestrictedLink className="bg-red-400 w-full h-full flex items-center justify-center" href={`/calendar/${info.id}`}>{date.getDate()}</RestrictedLink> :
                                 <AddDateInfoButton date={date} />
                             }
                             </div>

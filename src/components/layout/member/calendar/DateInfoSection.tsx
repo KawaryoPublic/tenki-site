@@ -28,7 +28,7 @@ export default function DateInfoSection({ id, q }: { id: number, q: string }) {
     return (
         info.id === -1 ? <div>Loading...</div> :
         <div className="flex flex-col gap-4">
-            <h1 className="text-2xl">{formatDate(info.date)}の予定</h1>
+            <h1 className="text-2xl">{formatDate(info.date)}</h1>
             <div className="flex flex-row">
                 <div className="flex flex-1 flex-col gap-4">
                     <WhiteFrame className="flex flex-col gap-2">
