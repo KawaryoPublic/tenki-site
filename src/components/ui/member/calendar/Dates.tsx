@@ -47,8 +47,8 @@ export default function Dates({ index }: { index: number }) {
                     return (
                         <div 
                             className={`
-                                flex flex-col items-center justify-center bg-white rounded
-                                ${date.getMonth() === firstDate.getMonth() ? '' : 'bg-gray-600 text-gray-400'}
+                                flex flex-col items-center justify-center rounded
+                                ${date.getMonth() === firstDate.getMonth() ? 'bg-white' : 'bg-gray-200 text-gray-100'}
                                 ${date.toDateString() === new Date().toDateString() ? 'border-2 border-blue-500 font-bold' : ''}
                                 ${filter && (observationDays.includes(date.getDay()) || (info && info.holiday.includes(filter))) ? 'bg-yellow-200' : ''}
                             `}

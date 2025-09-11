@@ -11,7 +11,7 @@ export default function Days() {
                         index === 0 ?
                         <div 
                             key={index} 
-                            className="w-full h-full font-bold flex items-center justify-center bg-gray-600 text-gray-400 rounded"
+                            className="w-full h-full font-bold flex items-center justify-center bg-gray-200 text-gray-100 rounded"
                         >
                             {day}
                         </div> :
