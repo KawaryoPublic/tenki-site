@@ -14,8 +14,7 @@ export default function AddDateInfoButton({ date }: { date: Date }) {
                 await fetch("/api/dateInfo", {
                     method: "POST",
                     body: JSON.stringify({
-                        date: `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`,
-                        plan: ""
+                        date: `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
                     }),
                 }).then(() => window.location.reload())
                 .catch(err => console.log(err));

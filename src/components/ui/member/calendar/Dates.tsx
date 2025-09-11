@@ -35,7 +35,7 @@ export default function Dates({ index }: { index: number }) {
                         <div 
                             className={`
                                 flex flex-col gap-1 items-center justify-center bg-white rounded
-                                ${date.getMonth() === firstDate.getMonth() ? '' : 'bg-gray-400 text-gray-400'}
+                                ${date.getMonth() === firstDate.getMonth() ? '' : 'bg-gray-600 text-gray-400'}
                                 ${date.toDateString() === new Date().toDateString() ? 'border-2 border-blue-500 font-bold' : ''}
                             `}
                             key={index}
