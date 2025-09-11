@@ -4,6 +4,7 @@ import { DateInfo } from "@/lib/type";
 import RestrictedLink from "@/components/ui/global/RestrictedLink";
 import { useEffect, useState } from "react";
 import AddDateInfoButton from "./AddDateInfoButton";
+import WhiteFrame from "../../global/WhiteFrame";
 
 export default function Dates({ index }: { index: number }) {
     const firstDate = new Date(new Date().getFullYear(), new Date().getMonth() + index, 1);
@@ -33,7 +34,7 @@ export default function Dates({ index }: { index: number }) {
 
                     return (
                         info ? 
-                        <div className="flex flex-col rounded" key={index}>
+                        <WhiteFrame className="flex flex-col" key={index}>
                             <div className="w-full flex-1 flex flex-row">
                                 <span>a</span>
                                 <span>b</span>
@@ -41,7 +42,6 @@ export default function Dates({ index }: { index: number }) {
                             </div>
                             <div className="w-full flex-3 flex items-center justify-center">
                                 <RestrictedLink 
-                                    key={index} 
                                     className={`
                                         ${date.getMonth() === firstDate.getMonth() ? '' : 'bg-gray-200 text-gray-400'}
                                         ${date.toDateString() === new Date().toDateString() ? 'border-2 border-blue-500 font-bold' : ''}
@@ -52,7 +52,7 @@ export default function Dates({ index }: { index: number }) {
                                 </RestrictedLink>
                             </div>
                             
-                        </div> :
+                        </WhiteFrame> :
                         <div>
                             <AddDateInfoButton key={index} date={date} firstDate={firstDate} />
                         </div>  
