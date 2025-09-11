@@ -8,7 +8,7 @@ import { DAYS } from "@/lib/const";
 export default function EditObservationSection({ day }: { day: number }) {
     const [observation, setObservation] = useState<Observation>({day: -1, morning: "", noon: "", afterSchool: ""});
     
-    useEffect(async () => {
+    useEffect(() => {
         fetch("/api/observation")
             .then(res => res.json())
             .then(data => {
