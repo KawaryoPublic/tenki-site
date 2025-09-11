@@ -1,19 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Observation } from "@/lib/type";
 import Form from "next/form";
 import BlueButton from "@/components/ui/global/button/BlueButton";
+import { Observation } from "@/lib/type";
+import DefaultTextArea from "@/components/ui/global/DefaultTextArea";
 
-export default function EditPlanForm({ day }: { day: number }) {
-    const [observation, setObservation] = useState<Observation>({day: -1, morning: "", noon: "", afterSchool: ""});
+export default function EditPlanForm({ observation }: { observation: Observation }) {
 
-    useEffect(() => {
-        fetch(`/api/observation/${day}`)
-            .then(res => res.json())
-            .then(data => setObservation(data))
-            .catch(err => console.log(err));
-    })
 
     return (
         <Form 
@@ -21,7 +14,7 @@ export default function EditPlanForm({ day }: { day: number }) {
                 await fetch("/api/observation", {
                     method: "PUT",
                     body: JSON.stringify({
-                        day: day,
+                        day: observation.day,
                         morning: formData.get("morning"),
                         noon: formData.get("noon"),
                         afterSchool: formData.get("afterSchool"),
@@ -31,29 +24,24 @@ export default function EditPlanForm({ day }: { day: number }) {
             }}
             className="flex flex-col gap-2"
         >
-            <div>
-                <textarea 
-                    name="morning" 
-                    rows={1}
-                    cols={100}
-                    placeholder="朝"
-                    className="bg-white w-full resize-none"
-                />
-                <textarea 
-                    name="noon" 
-                    rows={1}
-                    cols={100}
-                    placeholder="昼"
-                    className="bg-white w-full resize-none"
-                />
-                <textarea 
-                    name="afterSchool" 
-                    rows={1}
-                    cols={100}
-                    placeholder="放課後"
-                    className="bg-white w-full resize-none"
-                />
-            </div>
+            <DefaultTextArea
+                title="朝"
+                name="morning"
+                rows={1}
+                defaultValue={observation.morning}
+            />
+            <DefaultTextArea
+                title="昼"
+                name="noon"
+                rows={1}
+                defaultValue={observation.noon}
+            />
+            <DefaultTextArea
+                title="放課後"
+                name="afterSchool"
+                rows={1}
+                defaultValue={observation.afterSchool}
+            />
             <div>
                 <BlueButton>保存</BlueButton>
             </div>
