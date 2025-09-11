@@ -8,6 +8,13 @@ export default function Days() {
             {
                 DAYS.map((day, index) => {
                     return (
+                        index === 0 ?
+                        <div 
+                            key={index} 
+                            className="w-full h-full font-bold flex items-center justify-center bg-gray-600 text-gray-400 rounded"
+                        >
+                            {day}
+                        </div> :
                         <RestrictedLink 
                             key={index} 
                             className="w-full h-full font-bold flex items-center justify-center bg-white rounded"
