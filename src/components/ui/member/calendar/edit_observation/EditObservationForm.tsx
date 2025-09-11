@@ -6,7 +6,7 @@ import Form from "next/form";
 import BlueButton from "@/components/ui/global/button/BlueButton";
 
 export default function EditPlanForm({ day }: { day: number }) {
-    const [observation, setObservation] = useState<Observation>({id: -1, day: -1, morning: "", noon: "", afterSchool: ""});
+    const [observation, setObservation] = useState<Observation>({day: -1, morning: "", noon: "", afterSchool: ""});
 
     useEffect(() => {
         fetch(`/api/observation/${day}`)

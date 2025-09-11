@@ -8,7 +8,6 @@ datasource db {
 }
 
 model Observation {
-  id          Int         @id @default(autoincrement())
   day         Int         @unique
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
