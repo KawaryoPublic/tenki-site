@@ -23,7 +23,7 @@ export default function EditObservationSection({ day }: { day: number }) {
                 fetch("/api/observation", {
                     method: "POST",
                     body: JSON.stringify({
-                        day: day,
+                        day: Number(day),
                         morning: "",
                         noon: "",
                         afterSchool: "",
@@ -32,7 +32,7 @@ export default function EditObservationSection({ day }: { day: number }) {
                 .then(data => setObservation(data));
             })
             .catch(err => console.log(err));
-    });
+    }, []);
 
     return (
         observation.day === -1 ? <div>Loading...</div> :
