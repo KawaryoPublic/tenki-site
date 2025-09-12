@@ -5,7 +5,7 @@ import AddBoxForm from "@/components/ui/member/storage/AddBoxForm";
 import { Box } from "@/lib/type";
 import { useEffect, useState } from "react";
 
-export default function StorageSection() {7
+export default function StorageSection() {
     const [newBox, setNewBox] = useState<Box>({
         id: -1, 
         name: "", 
