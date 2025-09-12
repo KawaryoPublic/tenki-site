@@ -3,6 +3,7 @@
 import DefaultTextArea from "../../global/DefaultTextArea";
 import Form from "next/form"
 import { redirect } from "next/navigation";
+import BlueButton from "../../global/button/BlueButton";
 
 export default function FilterObservation() {
     return (
@@ -17,7 +18,7 @@ export default function FilterObservation() {
                 className="flex-1"
                 label
             />
-            <button>検索</button>
+            <BlueButton>検索</BlueButton>
         </Form>
     );
 }
