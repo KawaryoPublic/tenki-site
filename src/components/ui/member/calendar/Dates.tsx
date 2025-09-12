@@ -1,28 +1,12 @@
-"use client";
-
 import { DateInfo } from "@/lib/type";
 import RestrictedLink from "@/components/ui/global/RestrictedLink";
-import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import AddDateInfoButton from "./AddDateInfoButton";
 import DateElement from "./DateElement";
 
-export default function Dates({ index }: { index: number }) {
+export default function Dates({ index, filter, dateInfo }: { index: number, filter: string | null, dateInfo: DateInfo[] }) {
     const firstDate = new Date(new Date().getFullYear(), new Date().getMonth() + index, 1);
-    const filter = useSearchParams().get("filter");
-    const [ dateInfo, setDateInfo ] = useState<DateInfo[]>([]);
-    const [ loading, setLoading ] = useState(true);
-
-    useEffect(() => {
-        fetch('/api/dateInfo')
-            .then(res => res.json())
-            .then(data => setDateInfo(data))
-            .finally(() => setLoading(false))
-            .catch(err => console.log(err));
-    }, []);
 
     return (
-        loading ? <div>Loading...</div> : 
         <div className="flex-1">
             <div className="grid grid-cols-7 grid-rows-6 gap-2 h-full">
             {
