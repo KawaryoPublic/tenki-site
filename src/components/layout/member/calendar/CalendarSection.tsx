@@ -16,7 +16,6 @@ export default function CalendarSection() {
         fetch('/api/dateInfo')
             .then(res => res.json())
             .then(data => setDateInfo(data))
-            .finally(() => setLoading(false))
             .catch(err => console.log(err));
 
         if (!filter) {
@@ -44,7 +43,7 @@ export default function CalendarSection() {
                 Array.from({ length: 3 }).map((_, i) => (
                     <div className="flex-1 flex flex-col min-h-[50%]" key={i}>
                         <h2 className="flex justify-center item-center font-bold text-xl">{new Date().getMonth() + i + 1}月</h2>
-                        <Days filter={filter} observationDays={observationDays} />
+                        <Days observationDays={observationDays} />
                         <Dates index={i} filter={filter} dateInfo={dateInfo} />
                     </div>
                 ))

@@ -1,7 +1,7 @@
 import RestrictedLink from "../../global/RestrictedLink";
 import { DAYS } from "@/lib/const";
 
-export default function Days({ filter, observationDays }: { filter: string | null, observationDays: Number[] }) {
+export default function Days({ observationDays }: { observationDays: Number[] }) {
     return (
         <div className="pt-3 pb-3 flex gap-2">
             {
