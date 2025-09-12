@@ -4,7 +4,7 @@ import { Suspense } from "react";
 
 export default function Home() {
     return (
-        <div className="w-full">
+        <div className="w-full min-h-full">
             <Suspense>
                 <RestrictedContent allowStudent>
                     <CalendarSection />
