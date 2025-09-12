@@ -3,7 +3,7 @@ export default function DefaultTextArea({ title, name, rows, defaultValue, class
         <div className="flex flex-col">
             {
                 label ? 
-                <label htmlFor={name} className="font-bold flex-1">{title}</label> : ""
+                <label htmlFor={name} className="font-bold">{title}</label> : ""
             }
             <textarea 
                 name={name}
