@@ -1,6 +1,6 @@
 "use client";
 
-import { DateInfo, Observation } from "@/lib/type";
+import { DateInfo } from "@/lib/type";
 import RestrictedLink from "@/components/ui/global/RestrictedLink";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
@@ -11,7 +11,6 @@ export default function Dates({ index }: { index: number }) {
     const firstDate = new Date(new Date().getFullYear(), new Date().getMonth() + index, 1);
     const filter = useSearchParams().get("filter");
     const [ dateInfo, setDateInfo ] = useState<DateInfo[]>([]);
-    const [ observationDays, setObservationDays ] = useState<Number[]>([]);
     const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {
@@ -20,16 +19,6 @@ export default function Dates({ index }: { index: number }) {
             .then(data => setDateInfo(data))
             .finally(() => setLoading(false))
             .catch(err => console.log(err));
-
-        if (!filter) return;
-
-        fetch("/api/observation")
-            .then(res => res.json())
-            .then(data => {
-                const observations = data.findAll((observation: Observation) => observation.morning === filter || observation.noon === filter || observation.afterSchool === filter);
-                setObservationDays(observations.map((observation: Observation) => observation.day));
-            })
-            .catch(err => console.error(err));
     }, []);
 
     return (
@@ -51,8 +40,8 @@ export default function Dates({ index }: { index: number }) {
                             className={`
                                 flex flex-col items-center justify-center rounded
                                 ${date.toDateString() === new Date().toDateString() ? 'border-2 border-blue-500 font-bold' : ''}
-                                ${filter && (observationDays.includes(date.getDay()) || (info && info.holiday.includes(filter))) ? 'bg-yellow-200' : 
-                                    date.getMonth() === firstDate.getMonth() ? 'bg-white' : 'bg-gray-200'
+                                ${info && info.holiday.includes(filter) ? 'bg-yellow-200' : 
+                                    date.getMonth() === firstDate.getMonth() ? 'bg-white' : 'bg-gray-200 text-gray-600'
                                 }
                             `}
                         >
