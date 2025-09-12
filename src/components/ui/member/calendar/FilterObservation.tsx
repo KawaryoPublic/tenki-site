@@ -1,3 +1,5 @@
+"use client";
+
 import DefaultTextArea from "../../global/DefaultTextArea";
 import Form from "next/form"
 import { redirect } from "next/navigation";
