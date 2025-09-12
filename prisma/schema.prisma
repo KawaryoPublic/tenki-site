@@ -21,9 +21,9 @@ model DateInfo {
   date                 String       @unique
   createdAt            DateTime     @default(now())
   updatedAt            DateTime     @updatedAt
-  plan                 String?
-  event                String?
-  holiday              String?
+  plan                 String
+  event                String
+  holiday              String
 }
 
 model Notification {
