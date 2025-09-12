@@ -25,7 +25,7 @@ export default async function Header() {
                     </RestrictedContent>
                     <RestrictedContent allowStudent>
                         <li>
-                            <RestrictedLink href="/equipment">機材</RestrictedLink>
+                            <RestrictedLink href="/storage">倉庫</RestrictedLink>
                         </li>
                     </RestrictedContent>
                     <RestrictedContent allowStudent>

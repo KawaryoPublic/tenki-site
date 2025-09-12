@@ -15,7 +15,7 @@ export default function FilterObservation() {
             className="flex flex-row"
         >
             <DefaultTextArea
-                title="観測"
+                title="記号を入力"
                 name="filter"
                 rows={1}
                 className="flex-1"
