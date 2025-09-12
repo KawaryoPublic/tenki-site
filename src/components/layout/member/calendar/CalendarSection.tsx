@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Observation, DateInfo } from "@/lib/type";
 
-export default function CalendarSection({ index }: { index: number }) {
+export default function CalendarSection() {
     const filter = useSearchParams().get("filter");
     const [ observationDays, setObservationDays ] = useState<Number[]>([]);
     const [ dateInfo, setDateInfo ] = useState<DateInfo[]>([]);
@@ -20,7 +20,7 @@ export default function CalendarSection({ index }: { index: number }) {
             .catch(err => console.log(err));
 
         if (!filter) {
-            setLoading(false)
+            setLoading(false);
             return;
         }
     
@@ -39,10 +39,17 @@ export default function CalendarSection({ index }: { index: number }) {
 
     return (
         loading ? <div>Loading...</div> :
-        <section className="flex-1 flex flex-col min-h-[50%]">
-            <h2 className="flex justify-center item-center font-bold text-xl">{new Date().getMonth() + index + 1}月</h2>
-            <Days filter={filter} observationDays={observationDays} />
-            <Dates index={index} filter={filter} dateInfo={dateInfo} />
+        <section className="flex flex-col lg:flex-row gap-4 w-full">
+            {
+                Array.from({ length: 3 }).map((_, i) => (
+                    <div className="flex-1 flex flex-col min-h-[50%]" key={i}>
+                        <h2 className="flex justify-center item-center font-bold text-xl">{new Date().getMonth() + index + 1}月</h2>
+                        <Days filter={filter} observationDays={observationDays} />
+                        <Dates index={i} filter={filter} dateInfo={dateInfo} />
+                    </div>
+                ))
+            }
         </section>
+        
     )
 }
