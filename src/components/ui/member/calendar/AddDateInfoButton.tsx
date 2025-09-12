@@ -8,7 +8,7 @@ export default function AddDateInfoButton({ date }: { date: Date }) {
 
     return (
         <button
-            className="w-full h-full flex items-center justify-center"
+            className="w-full h-full flex flex-col items-center justify-center bg-white"
             onClick={async () => {
                 if(searchParams.get("q") !== EXECUTIVE_PASSWORD) return;
                 if(!confirm("予定を追加しますか？")) return;

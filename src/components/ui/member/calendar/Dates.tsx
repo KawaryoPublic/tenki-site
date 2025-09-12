@@ -46,26 +46,21 @@ export default function Dates({ index }: { index: number }) {
 
                     return (
                         <div 
+                            key={index}
                             className={`
                                 flex flex-col items-center justify-center rounded
-                                ${date.getMonth() === firstDate.getMonth() ? 'bg-white' : 'bg-gray-200 text-gray-100'}
+                                ${date.getMonth() === firstDate.getMonth() ? '' : 'bg-gray-200 text-gray-100'}
                                 ${date.toDateString() === new Date().toDateString() ? 'border-2 border-blue-500 font-bold' : ''}
                                 ${filter && (observationDays.includes(date.getDay()) || (info && info.holiday.includes(filter))) ? 'bg-yellow-200' : ''}
                             `}
-                            key={index}
                         >
-                            <div className="w-full h-full flex-1 flex flex-row items-center justify-around border-b border-gray-300">
-                                <span className={`border rounded-full ${info?.plan ? "bg-blue-400" : ""} w-2 h-2`} />
-                                <span className={`border rounded-full ${info?.event ? "bg-blue-400" : ""} w-2 h-2`} />
-                                <span className={`border rounded-full ${info?.holiday ? "bg-blue-400" : ""} w-2 h-2`} />
-                            </div>
-                            <div className="w-full h-full flex-1 flex items-center justify-center">
                             {
                                 info ? 
-                                <RestrictedLink className="bg-red-400 w-full h-full flex items-center justify-center" href={`/calendar/${info.id}`}>{date.getDate()}</RestrictedLink> :
+                                <RestrictedLink href={`/calendar/${info.id}`} className="w-full h-full flex flex-col items-center justify-center bg-red-400">
+                                    <Date date={date} info={info} />
+                                </RestrictedLink> :
                                 <AddDateInfoButton date={date} />
                             }
-                            </div>
                         </div>
                     );
                 })
