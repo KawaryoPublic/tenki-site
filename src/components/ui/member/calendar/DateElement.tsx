@@ -9,7 +9,7 @@ export default function DateElement({ date, info }: { date: Date, info: DateInfo
                 <span className={`border rounded-full ${info?.holiday ? "bg-blue-400" : ""} w-2 h-2`} />
             </div>
             <div className="w-full h-full flex-1 flex items-center justify-center">
-                <span className="bg-red-400 w-full h-full flex items-center justify-center">{date.getDate()}</span>
+                <span className="w-full h-full flex items-center justify-center">{date.getDate()}</span>
             </div>
         </>
     );
