@@ -1,9 +1,9 @@
 export default function DefaultTextArea({ title, name, rows, defaultValue, className, label = false }: { title: string, name: string, rows: number, defaultValue?: string, className?: string, label?: boolean }) {
     return (
-        <div>
+        <div className="flex flex-col">
             {
                 label ? 
-                <label htmlFor={name} className="font-bold">{title}</label> : ""
+                <label htmlFor={name} className="font-bold flex-1">{title}</label> : ""
             }
             <textarea 
                 name={name}
@@ -12,7 +12,7 @@ export default function DefaultTextArea({ title, name, rows, defaultValue, class
                 placeholder={title}
                 defaultValue={defaultValue ? defaultValue : ""}
                 className={`
-                    bg-gray-100 w-full resize-none border border-gray-600 rounded-md px-2 py-1
+                    bg-gray-100 w-full resize-none border border-gray-600 rounded-md px-2 py-1 flex-1
                     ${className ? className : ""}
                 `}
             />
