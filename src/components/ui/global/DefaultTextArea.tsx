@@ -1,4 +1,4 @@
-export default function DefaultTextArea({ title, name, rows, defaultValue, className, label = false }: { title: string, name: string, rows: number, defaultValue?: string, className?: string, label: boolean }) {
+export default function DefaultTextArea({ title, name, rows, defaultValue, className, label = false }: { title: string, name: string, rows: number, defaultValue?: string, className?: string, label?: boolean }) {
     return (
         <div>
             {
