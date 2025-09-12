@@ -34,49 +34,36 @@ export default function StorageSection() {
                     <p className="font-bold">2</p>
                     <p className="font-bold">3</p>
                 </div>
-                <div className="border aspect-[1/2]">
+                <div className="border aspect-[1/2] relative">
                     <div
-                        className="border relative text-sm"
+                        className="border text-sm absolute flex justify-center items-center"
                         style={{
                             width: `${newBox.width}%`,
                             height: `${newBox.height}%`,
+                            top: `${newBox.top}%`,
+                            left: `${newBox.left}%`
                         }}
                     >
-                        <div
-                            className="absolute w-full h-full flex justify-center items-center"
-                            style={{
-                                top: `${newBox.top}%`,
-                                left: `${newBox.left}%`
-                            }}
-                        >
-                            {newBox.name}
-                        </div>
+                        {newBox.name}
                     </div>
                     {
                         boxes.map((box, index) => {
                             return (
                                 <div
-                                    className="border relative text-sm"
+                                    key={index}
+                                    className="border text-sm absolute w-full h-full flex justify-center items-center"
                                     style={{
                                         width: `${box.width}%`,
-                                        height: `${box.height}%`
+                                        height: `${box.height}%`,
+                                        top: `${box.top}%`,
+                                        left: `${box.left}%`
                                     }}
                                 >
-                                    <div
-                                        key={index}
-                                        className="absolute w-full h-full flex justify-center items-center"
-                                        style={{
-                                            top: `${box.top}%`,
-                                            left: `${box.left}%`
-                                        }}
-                                    >
-                                        {box.name}
-                                    </div>
+                                    {box.name}
                                 </div>
                             );
                         })
                     }
-                    
                 </div>
             </div>
             <div className="lg:flex-1">
