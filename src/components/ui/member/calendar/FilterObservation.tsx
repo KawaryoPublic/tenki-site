@@ -15,6 +15,7 @@ export default function FilterObservation() {
                 name="filter"
                 rows={1}
                 className="flex-1"
+                label
             />
             <button>検索</button>
         </Form>
