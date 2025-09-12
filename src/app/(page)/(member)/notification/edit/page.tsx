@@ -4,7 +4,7 @@ import { Suspense } from "react";
 
 export default async function Home({ searchParams }: { searchParams: { q: string } }) {
     return (
-        <div className="w-full h-full flex flex-col">
+        <div className="flex-1 flex flex-col">
             <Suspense>
                 <RestrictedContent>
                     <EditNotificationSection q={(await searchParams).q} />

@@ -1,6 +1,6 @@
 "use client";
 
-import DefaultTextArea from "../../global/DefaultTextArea";
+import DefaultTextArea from "../../global/form/DefaultTextArea";
 import Form from "next/form"
 import { redirect } from "next/navigation";
 import BlueButton from "../../global/button/BlueButton";

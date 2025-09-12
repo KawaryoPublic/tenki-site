@@ -33,3 +33,14 @@ model Notification {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Box {
+  id        Int      @id @default(autoincrement())
+  name      String
+  width     Int
+  height    Int
+  top       Int
+  left      Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

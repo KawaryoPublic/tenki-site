@@ -3,7 +3,7 @@
 import { DateInfo } from "@/lib/type";
 import Form from "next/form";
 import BlueButton from "@/components/ui/global/button/BlueButton";
-import DefaultTextArea from "@/components/ui/global/DefaultTextArea";
+import DefaultTextArea from "@/components/ui/global/form/DefaultTextArea";
 
 export default function EditPlanForm({ info }: { info: DateInfo }) {
     return (

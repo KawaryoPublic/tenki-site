@@ -3,7 +3,7 @@
 import Form from "next/form";
 import BlueButton from "@/components/ui/global/button/BlueButton";
 import { Observation } from "@/lib/type";
-import DefaultTextArea from "@/components/ui/global/DefaultTextArea";
+import DefaultTextArea from "@/components/ui/global/form/DefaultTextArea";
 
 export default function EditPlanForm({ observation }: { observation: Observation }) {
 

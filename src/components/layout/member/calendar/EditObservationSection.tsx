@@ -40,7 +40,7 @@ export default function EditObservationSection({ day }: { day: number }) {
         observation.day === -1 ? <div>Loading...</div> :
         <section>
             <h1 className="text-2xl">{DAYS[Number(day)]}曜日の観測</h1>
-            <div className="flex flex-row gap-4">
+            <div className="flex flex-col gap-4">
                 <div className="flex flex-1 flex-col gap-4">
                     <WhiteFrame className="flex flex-col gap-2">
                         <h2 className="text-xl border-b">観測</h2>

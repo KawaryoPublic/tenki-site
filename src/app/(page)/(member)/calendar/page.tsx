@@ -5,7 +5,7 @@ import { Suspense } from "react";
 
 export default function Home() {
     return (
-        <div className="w-full flex flex-col gap-4 min-h-full">
+        <div className="flex-1 flex flex-col gap-4 min-h-full">
             <Suspense>
                 <RestrictedContent allowStudent>
                     <div className="flex justify-end">

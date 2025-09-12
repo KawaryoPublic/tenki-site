@@ -4,7 +4,7 @@ import RestrictedContent from "@/components/ui/global/RestrictedContent";
 
 export default function Home({ params }: { params: { day: string } }) {
     return (
-        <div className="w-full flex flex-col">
+        <div className="flex-1 flex flex-col">
             <Suspense>
                 <RestrictedContent allowStudent>
                     <EditObservationSection day={Number(params.day)} />

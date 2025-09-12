@@ -19,3 +19,12 @@ export interface NotificationType {
     content: string;
     createdAt: Date;
 }
+
+export interface Box {
+    id: number;
+    name: string;
+    top: number;
+    left: number;
+    width: number;
+    height: number;
+}
