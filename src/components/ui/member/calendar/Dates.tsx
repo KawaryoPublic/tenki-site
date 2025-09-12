@@ -57,7 +57,7 @@ export default function Dates({ index }: { index: number }) {
                             {
                                 info ? 
                                 <RestrictedLink href={`/calendar/${info.id}`} className="w-full h-full flex flex-col items-center justify-center bg-red-400">
-                                    <Date date={date} info={info} />
+                                    <DateElement date={date} info={info} />
                                 </RestrictedLink> :
                                 <AddDateInfoButton date={date} />
                             }

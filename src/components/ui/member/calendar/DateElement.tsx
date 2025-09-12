@@ -1,6 +1,6 @@
 import { DateInfo } from "@/lib/type"
 
-export default function Date({ date, info }: { date: Date, info: DateInfo }) {
+export default function DateElement({ date, info }: { date: Date, info: DateInfo }) {
     return (
         <>
             <div className="w-full h-full flex-1 flex flex-row items-center justify-around border-b border-gray-300">
