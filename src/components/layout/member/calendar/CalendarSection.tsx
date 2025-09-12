@@ -39,7 +39,7 @@ export default function CalendarSection() {
 
     return (
         loading ? <div>Loading...</div> :
-        <section className="flex flex-col lg:flex-row gap-4 w-full h-full">
+        <section className="flex-1 flex flex-col lg:flex-row gap-4">
             {
                 Array.from({ length: 3 }).map((_, i) => (
                     <div className="flex-1 flex flex-col min-h-[50%]" key={i}>

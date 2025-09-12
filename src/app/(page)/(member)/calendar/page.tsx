@@ -5,10 +5,12 @@ import { Suspense } from "react";
 
 export default function Home() {
     return (
-        <div className="w-full min-h-full">
+        <div className="w-full flex flex-col min-h-full">
             <Suspense>
                 <RestrictedContent allowStudent>
-                    <FilterObservation />
+                    <div className="flex justify-end">
+                        <FilterObservation />
+                    </div>
                     <CalendarSection />
                 </RestrictedContent>
             </Suspense>
