@@ -50,9 +50,9 @@ export default function Dates({ index }: { index: number }) {
                             key={index}
                             className={`
                                 flex flex-col items-center justify-center rounded
-                                ${date.getMonth() === firstDate.getMonth() ? '' : 'bg-gray-200 text-gray-100'}
+                                ${date.getMonth() === firstDate.getMonth() ? '' : 'bg-gray-200'}
                                 ${date.toDateString() === new Date().toDateString() ? 'border-2 border-blue-500 font-bold' : ''}
-                                ${filter && (observationDays.includes(date.getDay()) || (info && info.holiday.includes(filter))) ? 'bg-yellow-200' : ''}
+                                ${filter && (observationDays.includes(date.getDay()) || (info && info.holiday.includes(filter))) ? 'bg-yellow-200' : 'bg-white'}
                             `}
                         >
                             {
