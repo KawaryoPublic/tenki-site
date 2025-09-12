@@ -8,13 +8,15 @@ export default function FilterObservation() {
     return (
         <Form
             action={formData => redirect(`/calendar?filter=${formData.get('filter')}`)}
-            className="flex flex-col md:flex-row gap-2"
+            className="flex flex-row"
         >
             <DefaultTextArea
                 title="観測"
                 name="filter"
                 rows={1}
+                className="flex-1"
             />
+            <button>検索</button>
         </Form>
     );
 }
