@@ -40,7 +40,7 @@ export default function Dates({ index }: { index: number }) {
                             className={`
                                 flex flex-col items-center justify-center rounded
                                 ${date.toDateString() === new Date().toDateString() ? 'border-2 border-blue-500 font-bold' : ''}
-                                ${info?.holiday?.includes(filter) ? 'bg-yellow-200' : 
+                                ${filter && info?.holiday.includes(filter) ? 'bg-yellow-200' : 
                                     date.getMonth() === firstDate.getMonth() ? 'bg-white' : 'bg-gray-200 text-gray-600'
                                 }
                             `}
