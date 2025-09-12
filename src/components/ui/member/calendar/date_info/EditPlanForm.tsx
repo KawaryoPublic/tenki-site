@@ -28,18 +28,21 @@ export default function EditPlanForm({ info }: { info: DateInfo }) {
                 name="plan" 
                 defaultValue={info.plan ? info.plan : ""} 
                 rows={3} 
+                label
             />
             <DefaultTextArea 
                 title="イベント" 
                 name="event" 
                 defaultValue={info.event ? info.event : ""} 
                 rows={3} 
+                label
             />
             <DefaultTextArea 
                 title="休日観測" 
                 name="holiday" 
                 defaultValue={info.holiday ? info.holiday : ""} 
                 rows={1} 
+                label
             />
             <div>
                 <BlueButton>保存</BlueButton>

@@ -25,11 +25,13 @@ export default function NotificationEditForm({ q }: { q: string }) {
                 title="タイトル"
                 name="title"
                 rows={1}
+                label
             />
             <DefaultTextArea
                 title="内容"
                 name="content"
                 rows={3}
+                label
             />
             <div>
                 <BlueButton>追加</BlueButton>
