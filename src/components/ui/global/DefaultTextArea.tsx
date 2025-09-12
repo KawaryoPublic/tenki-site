@@ -1,6 +1,6 @@
 export default function DefaultTextArea({ title, name, rows, defaultValue, className, label = false }: { title: string, name: string, rows: number, defaultValue?: string, className?: string, label?: boolean }) {
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-1">
             {
                 label ? 
                 <label htmlFor={name} className="font-bold">{title}</label> : ""
