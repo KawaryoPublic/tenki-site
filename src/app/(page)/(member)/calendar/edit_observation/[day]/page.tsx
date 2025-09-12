@@ -6,7 +6,7 @@ export default function Home({ params }: { params: { day: string } }) {
     return (
         <div className="w-full flex flex-col">
             <Suspense>
-                <RestrictedContent>
+                <RestrictedContent allowStudent>
                     <EditObservationSection day={Number(params.day)} />
                 </RestrictedContent>
             </Suspense>

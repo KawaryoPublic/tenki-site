@@ -1,5 +1,6 @@
 import CalendarSection from "@/components/layout/member/calendar/CalendarSection";
 import RestrictedContent from "@/components/ui/global/RestrictedContent";
+import FilterObservation from "@/components/ui/member/calendar/FilterObservation";
 import { Suspense } from "react";
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
         <div className="w-full min-h-full">
             <Suspense>
                 <RestrictedContent allowStudent>
+                    <FilterObservation />
                     <CalendarSection />
                 </RestrictedContent>
             </Suspense>
