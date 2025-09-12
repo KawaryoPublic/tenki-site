@@ -6,6 +6,8 @@ import EditObservationForm from "@/components/ui/member/calendar/edit_observatio
 import { DAYS } from "@/lib/const";
 import WhiteFrame from "@/components/ui/global/WhiteFrame";
 import RestrictedContent from "@/components/ui/global/RestrictedContent";
+import BlueButton from "@/components/ui/global/button/BlueButton";
+import RestrictedLink from "@/components/ui/global/RestrictedLink";
 
 export default function EditObservationSection({ day }: { day: number }) {
     const [observation, setObservation] = useState<Observation>({day: -1, morning: "", noon: "", afterSchool: ""});
