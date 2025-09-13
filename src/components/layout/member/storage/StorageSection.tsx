@@ -16,10 +16,18 @@ export default function StorageSection() {
         fetch("/api/box")
             .then(res => res.json())
             .then(data => setBoxes(data))
-            .then(() => setLoading(true))
             .catch(err => console.log(err));
 
-        if (box) setUpdateBox(boxes.find((b: Box) => b.id === Number(box)));
+        if (!box) {
+            setLoading(true);
+            return;
+        }
+        
+        const temp = boxes.find((b: Box) => b.id === Number(box));
+
+        if (temp) setUpdateBox(temp);
+
+        setLoading(true);
     }, []);
 
     return (
