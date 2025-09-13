@@ -69,7 +69,7 @@ export default function StorageSection() {
                 box ?
                 <div className="flex-1">
                     <BoxDetail updateBox={updateBox} setUpdateBox={setUpdateBox} />
-                </div> : <AddBoxButton floor={floor} />
+                </div> : <AddBoxButton floor={floor ? floor : 0} />
             }
         </section>
     )
