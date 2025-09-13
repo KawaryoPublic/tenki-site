@@ -46,7 +46,7 @@ export default function BoxDetail({ updateBox, setUpdateBox }: { updateBox: Box,
                 </div>
                 <div>
                     <BlueButton>
-                        <RestrictedLink href="/storage" onNavigate={e => window.location.reload()}>戻る</RestrictedLink>
+                        <RestrictedLink href="/storage" replace>戻る</RestrictedLink>
                     </BlueButton>
                 </div>
             </div>
