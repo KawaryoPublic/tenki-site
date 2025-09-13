@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
-export default function RestrictedLink({ href, children, otherParams, className }: { href: string, children: React.ReactNode, otherParams?: string, className?: string }) {
+export default function RestrictedLink({ href, children, className, onNavigate }: { href: string, children: React.ReactNode, className?: string, onNavigate: (e: any) => void }) {
     return (
-        <Link href={`${href}?q=${useSearchParams().get("q")}&${otherParams}`} className={className}>{children}</Link>
+        <Link href={`${href}?q=${useSearchParams().get("q")}`} className={className} onNavigate={e => onNavigate(e)}>{children}</Link>
     )
 }
