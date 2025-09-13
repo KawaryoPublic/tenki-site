@@ -20,12 +20,12 @@ export default async function Header() {
                     </RestrictedContent>
                     <RestrictedContent allowStudent>
                         <li>
-                            <RestrictedLink href="/calendar">カレンダー</RestrictedLink>
+                            <RestrictedLink href="/calendar" otherParams="temp=">カレンダー</RestrictedLink>
                         </li>
                     </RestrictedContent>
                     <RestrictedContent allowStudent>
                         <li>
-                            <RestrictedLink href="/storage">倉庫</RestrictedLink>
+                            <RestrictedLink href="/storage" otherParams="floor=0">倉庫</RestrictedLink>
                         </li>
                     </RestrictedContent>
                     <RestrictedContent allowStudent>

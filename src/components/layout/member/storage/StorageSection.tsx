@@ -5,9 +5,11 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import BoxElement from "@/components/ui/member/storage/BoxElement";
 import BoxDetail from "@/components/ui/member/storage/BoxDetail";
+import RestrictedLink from "@/components/ui/global/RestrictedLink";
 
 export default function StorageSection() {
     const box = useSearchParams().get("box");
+    const floor = useSearchParams().get("floor");
     const [updateBox, setUpdateBox] = useState<Box>({id: -1, name: "", number: "", annotation: "", link: "", width: 0, height: 0, top: 0, left: 0});
     const [boxes, setBoxes] = useState<Box[]>([]);
     const [loading, setLoading] = useState(true);
@@ -35,13 +37,22 @@ export default function StorageSection() {
     return (
         loading ? <div>Loading...</div> :
         <section className="flex flex-col md:flex-row justify-center gap-4 min-h-full">
-            <div className="min-w-full flex-1 flex flex-row justify-center gap-4">
+            <div className="flex-1 flex flex-row justify-center gap-4">
                 <div className="flex flex-col justify-center">
-                    <p className="font-bold">1</p>
-                    <p className="font-bold">2</p>
-                    <p className="font-bold">3</p>
+                    <div>
+                        <RestrictedLink href="/storage" otherParams="floor=0" className="font-bold">地</RestrictedLink>
+                    </div>
+                    <div>
+                        <RestrictedLink href="/storage" otherParams="floor=1" className="font-bold">1</RestrictedLink>
+                    </div>
+                    <div>
+                        <RestrictedLink href="/storage" otherParams="floor=2" className="font-bold">2</RestrictedLink>
+                    </div>
+                    <div>
+                        <RestrictedLink href="/storage" otherParams="floor=3" className="font-bold">3</RestrictedLink>
+                    </div>
                 </div>
-                <div className="border aspect-[1/2] relative">
+                <div className="border aspect-[1/2] relative flex-1">
                     {
                         box ? 
                         <BoxElement box={updateBox} /> : ""
