@@ -15,15 +15,16 @@ export default function StorageSection() {
     useEffect(() => {
         fetch("/api/box")
             .then(res => res.json())
-            .then(data => setBoxes(data))
-            .then(() => {
+            .then(data => {
+                setBoxes(data);
+
                 if(!box) {
                     setLoading(false);
                     return;
                 }
 
-                const temp = boxes.find((b: Box) => b.id === Number(box));
-                console.log(boxes);
+                const temp = data.find((b: Box) => b.id === Number(box));
+                console.log(data);
 
                 if (temp) setUpdateBox(temp);
 
