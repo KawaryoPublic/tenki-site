@@ -11,7 +11,7 @@ import AddBoxButton from "@/components/ui/member/storage/AddBoxButton";
 export default function StorageSection() {
     const box = useSearchParams().get("box");
     const floor = useSearchParams().get("floor");
-    const [updateBox, setUpdateBox] = useState<Box>({id: -1, name: "", number: "", annotation: "", link: "", floor: floor, width: 0, height: 0, top: 0, left: 0});
+    const [updateBox, setUpdateBox] = useState<Box>({id: -1, name: "", number: "", annotation: "", link: "", floor: 0, width: 0, height: 0, top: 0, left: 0});
     const [boxes, setBoxes] = useState<Box[]>([]);
     const [loading, setLoading] = useState(true);
 
