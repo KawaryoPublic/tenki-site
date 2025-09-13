@@ -8,7 +8,7 @@ import BoxDetail from "@/components/ui/member/storage/BoxDetail";
 
 export default function StorageSection() {
     const box = useSearchParams().get("box");
-    const [updateBox, setUpdateBox] = useState<Box>({id: -1, name: "", number: 0, annotation: "", link: "", width: 0, height: 0, top: 0, left: 0});
+    const [updateBox, setUpdateBox] = useState<Box>({id: -1, name: "", number: "", annotation: "", link: "", width: 0, height: 0, top: 0, left: 0});
     const [boxes, setBoxes] = useState<Box[]>([]);
     const [loading, setLoading] = useState(true);
 
