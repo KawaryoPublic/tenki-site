@@ -104,7 +104,7 @@ export default function EditBoxForm({ updateBox, setUpdateBox }: { updateBox: Bo
                     className="flex-1"
                 />  
             </div>
-            <BlueButton>追加</BlueButton>
+            <BlueButton>保存</BlueButton>
         </Form>
     )
 }

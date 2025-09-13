@@ -37,9 +37,9 @@ model Notification {
 model Box {
   id         Int      @id @default(autoincrement())
   name       String
-  number     Int      
-  annotation String
-  link       String
+  number     Int?      
+  annotation String?
+  link       String?
   width      Int
   height     Int
   top        Int
