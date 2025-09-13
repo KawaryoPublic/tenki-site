@@ -19,7 +19,7 @@ export default function StorageSection() {
             .catch(err => console.log(err));
 
         if (!box) {
-            setLoading(true);
+            setLoading(false);
             return;
         }
         
@@ -27,7 +27,7 @@ export default function StorageSection() {
 
         if (temp) setUpdateBox(temp);
 
-        setLoading(true);
+        setLoading(false);
     }, []);
 
     return (
