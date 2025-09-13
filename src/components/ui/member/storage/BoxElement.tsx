@@ -12,7 +12,7 @@ export default function BoxElement({ box }: { box: Box }) {
                 left: `${box.left}%`
             }}
         >
-            <RestrictedLink href="/storage">
+            <RestrictedLink href="/storage" className="w-full h-full flex justify-center items-center" otherParams={`box=${box.id}`}>
                 {box.name}
             </RestrictedLink>
         </div>
