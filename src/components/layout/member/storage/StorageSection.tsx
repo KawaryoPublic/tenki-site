@@ -37,7 +37,7 @@ export default function StorageSection() {
     return (
         loading ? <div>Loading...</div> :
         <section className="flex flex-col md:flex-row justify-center gap-4">
-            <div className="max-sm:w-full md:h-full flex flex-row justify-center gap-4">
+            <div className="md:h-full flex flex-row justify-center gap-4">
                 <div className="flex flex-col justify-center">
                     <div>
                         <RestrictedLink href="/storage" otherParams="floor=0" className="font-bold">地</RestrictedLink>
@@ -52,7 +52,7 @@ export default function StorageSection() {
                         <RestrictedLink href="/storage" otherParams="floor=3" className="font-bold">3</RestrictedLink>
                     </div>
                 </div>
-                <div className="border aspect-[1/2] relative flex-1">
+                <div className="border aspect-[1/2] relative md:h-full">
                     {
                         box ? 
                         <BoxElement box={updateBox} /> : ""
