@@ -1,5 +1,5 @@
 import { Box } from "@/lib/type";
-import Link from "next/link";
+import RestrictedLink from "../../global/RestrictedLink";
 
 export default function BoxElement({ box }: { box: Box }) {
     return (
