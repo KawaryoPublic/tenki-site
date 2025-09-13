@@ -24,7 +24,6 @@ export default function StorageSection() {
                 }
 
                 const temp = data.find((b: Box) => b.id === Number(box));
-                console.log(data);
 
                 if (temp) setUpdateBox(temp);
 
@@ -57,7 +56,6 @@ export default function StorageSection() {
             <div className="lg:flex-1">
                 <BoxDetail updateBox={updateBox} setUpdateBox={setUpdateBox} />
             </div>
-            {`${updateBox.id} ${box} ${boxes}`}
         </section>
     )
 }
