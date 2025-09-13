@@ -24,7 +24,7 @@ export default function StorageSection() {
         }
         
         const temp = boxes.find((b: Box) => b.id === Number(box));
-        console.log(temp);
+        console.log(boxes);
 
         if (temp) setUpdateBox(temp);
 
