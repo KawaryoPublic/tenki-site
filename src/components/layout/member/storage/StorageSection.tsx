@@ -16,17 +16,19 @@ export default function StorageSection() {
         fetch("/api/box")
             .then(res => res.json())
             .then(data => setBoxes(data))
-            .then(() => {
-                    if (!box) {
-                        setLoading(false);
-                        return;
-                    };
-                    const temp = boxes.find((b: Box) => b.id === Number(box));
-                    if (temp) setUpdateBox(temp);
-                    setLoading(false);
-                }
-            )
             .catch(err => console.log(err));
+
+        if (!box) {
+            setLoading(false);
+            return;
+        }
+        
+        const temp = boxes.find((b: Box) => b.id === Number(box));
+        console.log(boxes);
+
+        if (temp) setUpdateBox(temp);
+
+        setLoading(false);
     }, []);
 
     return (
@@ -53,6 +55,7 @@ export default function StorageSection() {
             <div className="lg:flex-1">
                 <BoxDetail updateBox={updateBox} setUpdateBox={setUpdateBox} />
             </div>
+            {`${updateBox.id} ${box} ${boxes}`}
         </section>
     )
 }
