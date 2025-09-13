@@ -36,7 +36,7 @@ export default function StorageSection() {
 
     return (
         loading ? <div>Loading...</div> :
-        <section className="flex flex-col md:flex-row justify-center gap-4 min-h-full">
+        <section className="flex flex-col md:flex-row justify-center gap-4 md:max-h-full">
             <div className="flex-1 flex flex-row justify-center gap-4">
                 <div className="flex flex-col justify-center">
                     <div>
