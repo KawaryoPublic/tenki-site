@@ -66,7 +66,7 @@ export default function StorageSection() {
             </div>
             {
                 box ?
-                <div className="">
+                <div className="flex-1">
                     <BoxDetail updateBox={updateBox} setUpdateBox={setUpdateBox} />
                 </div> : ""
             }

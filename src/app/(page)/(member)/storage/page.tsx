@@ -4,7 +4,7 @@ import { Suspense } from "react";
 
 export default function Home() {
   return (
-    <div className="flex-1">
+    <div className="flex-1 max-h-full h-full">
       <Suspense>
         <RestrictedContent>
           <StorageSection />
