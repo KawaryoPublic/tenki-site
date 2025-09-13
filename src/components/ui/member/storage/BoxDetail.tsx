@@ -1,8 +1,10 @@
+import { Box } from "@/lib/type";
 import BlueButton from "../../global/button/BlueButton";
 import RestrictedContent from "../../global/RestrictedContent";
 import RestrictedLink from "../../global/RestrictedLink";
 import WhiteFrame from "../../global/WhiteFrame";
 import EditBoxForm from "./EditBoxForm";
+import { Dispatch, SetStateAction } from "react";
 
 export default function BoxDetail({ updateBox, setUpdateBox }: { updateBox: Box, setUpdateBox: Dispatch<SetStateAction<Box>>}) {
     return (
