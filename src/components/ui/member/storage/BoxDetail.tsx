@@ -5,12 +5,21 @@ import RestrictedLink from "../../global/RestrictedLink";
 import WhiteFrame from "../../global/WhiteFrame";
 import EditBoxForm from "./EditBoxForm";
 import { Dispatch, SetStateAction } from "react";
+import DeleteBoxButton from "./DeleteBoxButton";
 
 export default function BoxDetail({ updateBox, setUpdateBox }: { updateBox: Box, setUpdateBox: Dispatch<SetStateAction<Box>>}) {
     return (
         <div className="flex flex-col gap-4">
             <div className="flex flex-row">
                 <div className="flex flex-1 flex-col gap-4">
+                    <RestrictedContent>
+                        <WhiteFrame className="flex flex-col gap-2">
+                            <h2 className="text-xl border-b">編集</h2>
+                            <div>
+                                <EditBoxForm updateBox={updateBox} setUpdateBox={setUpdateBox} />
+                            </div>
+                        </WhiteFrame>
+                    </RestrictedContent>
                     <WhiteFrame className="flex flex-col gap-2">
                         <h2 className="text-xl border-b">詳細</h2>
                         <div>
@@ -30,19 +39,11 @@ export default function BoxDetail({ updateBox, setUpdateBox }: { updateBox: Box,
                             <p className="whitespace-pre-wrap">{updateBox.link ? updateBox.link : "なし"}</p>
                         </div>
                     </WhiteFrame>
-                    <RestrictedContent>
-                        <WhiteFrame className="flex flex-col gap-2">
-                            <h2 className="text-xl border-b">編集</h2>
-                            <div>
-                                <EditBoxForm updateBox={updateBox} setUpdateBox={setUpdateBox} />
-                            </div>
-                        </WhiteFrame>
-                    </RestrictedContent>
                 </div>
             </div>
             <div className="flex flex-col gap-4">
                 <div>
-                    <BlueButton>aaa</BlueButton>
+                    <DeleteBoxButton boxId={updateBox.id} />
                 </div>
                 <div>
                     <BlueButton>

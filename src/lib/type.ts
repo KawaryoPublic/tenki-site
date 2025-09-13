@@ -26,6 +26,7 @@ export interface Box {
     number: string;
     annotation: string;
     link: string;
+    floor: number;
     top: number;
     left: number;
     width: number;

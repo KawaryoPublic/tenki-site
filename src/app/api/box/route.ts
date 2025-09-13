@@ -14,9 +14,9 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
     try {
-        const { name, number, annotation, link, width, height, top, left } = await req.json();
+        const { name, number, annotation, link, floor, width, height, top, left } = await req.json();
 
-        if (name === undefined) {
+        if (name === undefined || floor === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -26,6 +26,7 @@ export async function POST(req: NextRequest) {
                 number: number || 0,
                 annotation: annotation || "",
                 link: link || "",
+                floor: floor,
                 width: width || 20,
                 height: height || 20,
                 top: top || 0,
@@ -42,9 +43,9 @@ export async function POST(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
     try {
-        const { id, name, number, annotation, link, width, height, top, left } = await req.json();
+        const { id, name, number, annotation, link, floor, width, height, top, left } = await req.json();
 
-        if (!id || name === undefined || number === undefined || annotation === undefined || link === undefined || width === undefined || height === undefined || top === undefined || left === undefined) {
+        if (!id || name === undefined || number === undefined || annotation === undefined || link === undefined || floor === undefined || width === undefined || height === undefined || top === undefined || left === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -55,6 +56,7 @@ export async function PUT(req: NextRequest) {
                 number: number,
                 annotation: annotation,
                 link: link,
+                floor: floor,
                 width: width,
                 height: height,
                 top: top,
