@@ -23,7 +23,7 @@ export interface NotificationType {
 export interface Box {
     id: number;
     name: string;
-    number: number;
+    number: string;
     annotation: string;
     link: string;
     top: number;
