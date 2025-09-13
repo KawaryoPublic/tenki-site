@@ -34,7 +34,7 @@ export default function StorageSection() {
 
     return (
         loading ? <div>Loading...</div> :
-        <section className="flex flex-col lg:flex-row justify-center gap-4 h-full">
+        <section className="flex flex-col lg:flex-row justify-center gap-4 min-h-full">
             <div className="flex-1 flex flex-row justify-center gap-4">
                 <div className="flex flex-col justify-center">
                     <p className="font-bold">1</p>
@@ -53,9 +53,12 @@ export default function StorageSection() {
                     }
                 </div>
             </div>
-            <div className="lg:flex-1">
-                <BoxDetail updateBox={updateBox} setUpdateBox={setUpdateBox} />
-            </div>
+            {
+                box ?
+                <div className="lg:flex-1">
+                    <BoxDetail updateBox={updateBox} setUpdateBox={setUpdateBox} />
+                </div> : ""
+            }
         </section>
     )
 }

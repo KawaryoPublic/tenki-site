@@ -1,4 +1,5 @@
 import { Box } from "@/lib/type";
+import Link from "next/link";
 
 export default function BoxElement({ box }: { box: Box }) {
     return (
@@ -11,7 +12,9 @@ export default function BoxElement({ box }: { box: Box }) {
                 left: `${box.left}%`
             }}
         >
-            {box.name}
+            <RestrictedLink href="/storage">
+                {box.name}
+            </RestrictedLink>
         </div>
     );
 }
