@@ -30,7 +30,7 @@ export default function StorageSection() {
                 setLoading(false);
             })
             .catch(err => console.log(err));
-    }, []);
+    }, [box]);
 
     return (
         loading ? <div>Loading...</div> :
