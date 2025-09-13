@@ -14,19 +14,22 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
     try {
-        const { name, width, height, top, left } = await req.json();
+        const { name, number, annotation, link, width, height, top, left } = await req.json();
 
-        if (name === undefined || width === undefined || height === undefined || top === undefined || left === undefined) {
+        if (name === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
         const newBox = await prisma.box.create({
             data: {
                 name: name,
-                width: width,
-                height: height,
-                top: top,
-                left: left
+                number: number || 0,
+                annotation: annotation || "",
+                link: link || "",
+                width: width || 20,
+                height: height || 20,
+                top: top || 0,
+                left: left || 0
             },
         });
 
@@ -39,9 +42,9 @@ export async function POST(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
     try {
-        const { id, name, width, height, top, left } = await req.json();
+        const { id, name, number, annotation, link, width, height, top, left } = await req.json();
 
-        if (!id || name === undefined || width === undefined || height === undefined || top === undefined || left === undefined) {
+        if (!id || name === undefined || number === undefined || annotation === undefined || link === undefined || width === undefined || height === undefined || top === undefined || left === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -49,6 +52,9 @@ export async function PUT(req: NextRequest) {
             where: { id: id },
             data: {
                 name: name,
+                number: number,
+                annotation: annotation,
+                link: link,
                 width: width,
                 height: height,
                 top: top,

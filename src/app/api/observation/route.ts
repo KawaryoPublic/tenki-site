@@ -16,16 +16,16 @@ export async function POST(req: NextRequest) {
     try {
         const { day, morning, noon, afterSchool } = await req.json();
 
-        if (!day || morning === undefined || noon === undefined || afterSchool === undefined) {
+        if (!day) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
         const newObservation = await prisma.observation.create({
             data: {
                 day: day,
-                morning: morning,
-                noon: noon,
-                afterSchool: afterSchool,
+                morning: morning || "",
+                noon: noon || "",
+                afterSchool: afterSchool || "",
             },
         });
 

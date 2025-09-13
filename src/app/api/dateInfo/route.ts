@@ -16,16 +16,16 @@ export async function POST(req: NextRequest) {
     try {
         const { date, plan, event, holiday } = await req.json();
 
-        if (!date || plan === undefined || event === undefined || holiday === undefined) {
+        if (!date) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
         const newDateInfo = await prisma.dateInfo.create({
             data: {
                 date: date,
-                plan: plan,
-                event: event,
-                holiday: holiday,
+                plan: plan || "",
+                event: event || "",
+                holiday: holiday || "",
             },
         });
 

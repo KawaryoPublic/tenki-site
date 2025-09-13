@@ -1,20 +1,14 @@
 "use client";
 
-import DefaultTextArea from "@/components/ui/global/form/DefaultTextArea";
-import AddBoxForm from "@/components/ui/member/storage/AddBoxForm";
 import { Box } from "@/lib/type";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import BoxElement from "@/components/ui/member/storage/BoxElement";
+import BoxDetail from "@/components/ui/member/storage/BoxDetail";
 
 export default function StorageSection() {
-    const [newBox, setNewBox] = useState<Box>({
-        id: -1, 
-        name: "", 
-        top: 0,
-        left: 0,
-        width: 20,
-        height: 20
-    });
-
+    const box = useSearchParams().get("box");
+    const [updateBox, setUpdateBox] = useState<Box>({id: -1, name: "", width: 0, height: 0, top: 0, left: 0});
     const [boxes, setBoxes] = useState<Box[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -24,9 +18,12 @@ export default function StorageSection() {
             .then(data => setBoxes(data))
             .then(() => setLoading(true))
             .catch(err => console.log(err));
+
+        if (box) setUpdateBox(boxes.find((b: Box) => b.id === Number(box)));
     }, []);
 
     return (
+        loading ? <div>Loading...</div> :
         <section className="flex flex-col lg:flex-row justify-center gap-4 h-full">
             <div className="flex-1 flex flex-row justify-center gap-4">
                 <div className="flex flex-col justify-center">
@@ -35,39 +32,19 @@ export default function StorageSection() {
                     <p className="font-bold">3</p>
                 </div>
                 <div className="border aspect-[1/2] relative">
-                    <div
-                        className="border text-sm absolute flex justify-center items-center"
-                        style={{
-                            width: `${newBox.width}%`,
-                            height: `${newBox.height}%`,
-                            top: `${newBox.top}%`,
-                            left: `${newBox.left}%`
-                        }}
-                    >
-                        {newBox.name}
-                    </div>
+                    {
+                        box ? 
+                        <BoxElement box={updateBox} /> : ""
+                    }
                     {
                         boxes.map((box, index) => {
-                            return (
-                                <div
-                                    key={index}
-                                    className="border text-sm absolute w-full h-full flex justify-center items-center"
-                                    style={{
-                                        width: `${box.width}%`,
-                                        height: `${box.height}%`,
-                                        top: `${box.top}%`,
-                                        left: `${box.left}%`
-                                    }}
-                                >
-                                    {box.name}
-                                </div>
-                            );
+                            return box === updateBox ? "" : <BoxElement key={index} box={box} />
                         })
                     }
                 </div>
             </div>
             <div className="lg:flex-1">
-                <AddBoxForm newBox={newBox} setNewBox={setNewBox} />
+                <BoxDetail updateBox={updateBox} setUpdateBox={setUpdateBox} />
             </div>
         </section>
     )

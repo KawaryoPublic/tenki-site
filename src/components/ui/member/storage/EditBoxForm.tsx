@@ -6,14 +6,18 @@ import { Dispatch, SetStateAction } from "react";
 import DefaultTextArea from "../../global/form/DefaultTextArea";
 import BlueButton from "../../global/button/BlueButton";
 
-export default function AddBoxForm({ newBox, setNewBox }: { newBox: Box, setNewBox: Dispatch<SetStateAction<Box>>}) {
+export default function EditBoxForm({ updateBox, setUpdateBox }: { updateBox: Box, setUpdateBox: Dispatch<SetStateAction<Box>>}) {
     return (
         <Form
             action={async formData => {
                 await fetch("/api/box", {
-                    method: "POST",
+                    method: "PUT",
                     body: JSON.stringify({
+                        id: updateBox.id,
                         name: formData.get("name"),
+                        number: formData.get("number"),
+                        annotation: formData.get("annotation"),
+                        link: formData.get("link"),
                         width: Number(formData.get("width")),
                         height: Number(formData.get("height")),
                         top: Number(formData.get("top")),
@@ -22,14 +26,35 @@ export default function AddBoxForm({ newBox, setNewBox }: { newBox: Box, setNewB
                 }).then(() => window.location.reload())
                 .catch(err => console.log(err));
             }}
-            className="w-full h-full flex flex-col justify-center gap-2"
+            className="flex flex-col gap-2"
         >
             <DefaultTextArea
                 title="名前"
                 name="name"
                 rows={1}
-                value={newBox.name}
-                onChange={e => setNewBox({...newBox, name: e.target.value})}
+                value={updateBox.name}
+                onChange={e => setUpdateBox({...updateBox, name: e.target.value})}
+            />
+            <DefaultTextArea
+                title="個数"
+                name="number"
+                rows={1}
+                value={updateBox.number}
+                onChange={e => setUpdateBox({...updateBox, number: e.target.value})}
+            />
+            <DefaultTextArea
+                title="注記"
+                name="annotation"
+                rows={1}
+                value={updateBox.annotation}
+                onChange={e => setUpdateBox({...updateBox, annotation: e.target.value})}
+            />
+            <DefaultTextArea
+                title="リンク"
+                name="link"
+                rows={1}
+                value={updateBox.link}
+                onChange={e => setUpdateBox({...updateBox, link: e.target.value})}
             />
             <div className="flex justify-center gap-2">
                 <label htmlFor="width" className="font-bold">横幅</label>
@@ -37,9 +62,9 @@ export default function AddBoxForm({ newBox, setNewBox }: { newBox: Box, setNewB
                     type="range" 
                     name="width" 
                     min={0} 
-                    max={100 - newBox.left} 
-                    value={newBox.width} 
-                    onChange={e => setNewBox({...newBox, width: Number(e.target.value)})}
+                    max={100 - updateBox.left} 
+                    value={updateBox.width} 
+                    onChange={e => setUpdateBox({...updateBox, width: Number(e.target.value)})}
                     className="flex-1"
                 />  
             </div>
@@ -49,9 +74,9 @@ export default function AddBoxForm({ newBox, setNewBox }: { newBox: Box, setNewB
                     type="range" 
                     name="height" 
                     min={0} 
-                    max={100 - newBox.top} 
-                    value={newBox.height} 
-                    onChange={e => setNewBox({...newBox, height: Number(e.target.value)})}
+                    max={100 - updateBox.top} 
+                    value={updateBox.height} 
+                    onChange={e => setUpdateBox({...updateBox, height: Number(e.target.value)})}
                     className="flex-1"
                 />  
             </div>
@@ -61,9 +86,9 @@ export default function AddBoxForm({ newBox, setNewBox }: { newBox: Box, setNewB
                     type="range" 
                     name="left" 
                     min={0} 
-                    max={100 - newBox.width} 
-                    value={newBox.left} 
-                    onChange={e => setNewBox({...newBox, left: Number(e.target.value)})}
+                    max={100 - updateBox.width} 
+                    value={updateBox.left} 
+                    onChange={e => setUpdateBox({...updateBox, left: Number(e.target.value)})}
                     className="flex-1"
                 />  
             </div>
@@ -73,9 +98,9 @@ export default function AddBoxForm({ newBox, setNewBox }: { newBox: Box, setNewB
                     type="range" 
                     name="top" 
                     min={0} 
-                    max={100 - newBox.height} 
-                    value={newBox.top} 
-                    onChange={e => setNewBox({...newBox, top: Number(e.target.value)})}
+                    max={100 - updateBox.height} 
+                    value={updateBox.top} 
+                    onChange={e => setUpdateBox({...updateBox, top: Number(e.target.value)})}
                     className="flex-1"
                 />  
             </div>

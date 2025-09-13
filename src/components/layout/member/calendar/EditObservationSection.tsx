@@ -25,10 +25,7 @@ export default function EditObservationSection({ day }: { day: number }) {
                 fetch("/api/observation", {
                     method: "POST",
                     body: JSON.stringify({
-                        day: Number(day),
-                        morning: "",
-                        noon: "",
-                        afterSchool: "",
+                        day: Number(day)
                     }),
                 }).then(res => res.json())
                 .then(data => setObservation(data));
