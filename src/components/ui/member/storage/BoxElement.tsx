@@ -1,7 +1,7 @@
 import { Box } from "@/lib/type";
 import RestrictedLink from "../../global/RestrictedLink";
 
-export default function BoxElement({ box }: { box: Box }) {
+export default function BoxElement({ box, floor }: { box: Box, floor: number }) {
     return (
         <div
             className="border text-sm absolute flex justify-center items-center"
@@ -12,7 +12,7 @@ export default function BoxElement({ box }: { box: Box }) {
                 left: `${box.left}%`
             }}
         >
-            <RestrictedLink href="/storage" className="w-full h-full flex justify-center items-center" otherParams={`box=${box.id}`}>
+            <RestrictedLink href="/storage" className="w-full h-full flex justify-center items-center whitespace-nowrap overflow-x-auto hide-scroll" otherParams={`floor=${floor}&box=${box.id}`}>
                 {box.name}
             </RestrictedLink>
         </div>

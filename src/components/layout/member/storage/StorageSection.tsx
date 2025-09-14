@@ -9,19 +9,24 @@ import RestrictedLink from "@/components/ui/global/RestrictedLink";
 import AddBoxButton from "@/components/ui/member/storage/AddBoxButton";
 
 export default function StorageSection() {
-    const box = useSearchParams().get("box");
-    const floor = useSearchParams().get("floor");
+    const searchParams = useSearchParams();
+    const box = searchParams.get("box");
+    const floor = searchParams.get("floor");
+    const q = searchParams.get("q") ?? "";
     const [updateBox, setUpdateBox] = useState<Box>({id: -1, name: "", number: "", annotation: "", link: "", floor: 0, width: 0, height: 0, top: 0, left: 0});
     const [boxes, setBoxes] = useState<Box[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        setLoading(true);
+
         fetch("/api/box")
             .then(res => res.json())
             .then(data => {
                 setBoxes(data.map((b: Box) => b.floor === Number(floor) ? b : []));
 
                 if(!box) {
+                    setUpdateBox({id: -1, name: "", number: "", annotation: "", link: "", floor: 0, width: 0, height: 0, top: 0, left: 0})
                     setLoading(false);
                     return;
                 }
@@ -33,12 +38,12 @@ export default function StorageSection() {
                 setLoading(false);
             })
             .catch(err => console.log(err));
-    }, [box]);
+    }, [searchParams]);
 
     return (
         loading ? <div>Loading...</div> :
-        <section className="flex flex-col md:flex-row justify-center gap-4">
-            <div className="flex-1 flex flex-row justify-center gap-4">
+        <section className="flex flex-col lg:flex-row lg:justify-center gap-4 h-full">
+            <div className="flex flex-row justify-center gap-2 lg:gap-4 h-full min-h-full">
                 <div className="flex flex-col justify-center">
                     <div>
                         <RestrictedLink href="/storage" otherParams="floor=3" className="font-bold">3</RestrictedLink>
@@ -50,26 +55,29 @@ export default function StorageSection() {
                         <RestrictedLink href="/storage" otherParams="floor=1" className="font-bold">1</RestrictedLink>
                     </div>
                     <div>
-                        <RestrictedLink href="/storage" otherParams="floor=0" className="font-bold">地</RestrictedLink>
+                        <RestrictedLink href="/storage" otherParams="floor=0" className="font-bold">0</RestrictedLink>
                     </div>
                 </div>
-                <div className="border aspect-[1/2] relative flex-1">
+                <div className="border aspect-[1/2] relative">
                     {
                         box ? 
-                        <BoxElement box={updateBox} /> : ""
+                        <BoxElement floor={Number(floor)} box={updateBox} /> : ""
                     }
                     {
                         boxes.map((box, index) => {
-                            return box.id === updateBox.id ? "" : <BoxElement key={index} box={box} />
+                            return box.id === updateBox.id ? "" : <BoxElement key={index} floor={Number(floor)} box={box} />
                         })
                     }
                 </div>
             </div>
             {
                 box ?
-                <div className="flex-1">
-                    <BoxDetail updateBox={updateBox} setUpdateBox={setUpdateBox} />
-                </div> : <AddBoxButton floor={floor ? Number(floor) : 0} />
+                <div className="lg:min-w-[40%] lg:w-[40%]">
+                    <BoxDetail updateBox={updateBox} setUpdateBox={setUpdateBox} q={q} />
+                </div> : 
+                <div className="flex justify-center items-center">
+                    <span><AddBoxButton floor={Number(floor)} /></span>
+                </div>
             }
         </section>
     )

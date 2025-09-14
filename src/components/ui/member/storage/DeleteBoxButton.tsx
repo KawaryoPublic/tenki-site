@@ -1,8 +1,10 @@
 "use client";
 
+import { redirect, useSearchParams } from "next/navigation";
 import RedButton from "../../global/button/RedButton";
+import { Box } from "@/lib/type";
 
-export default function DeleteBoxButton({ boxId }: { boxId: number }) {
+export default function DeleteBoxButton({ q, updateBox }: { q: string, updateBox: Box }) {
     return (
         <RedButton
             onClick={async () => {
@@ -10,10 +12,11 @@ export default function DeleteBoxButton({ boxId }: { boxId: number }) {
                 await fetch("/api/box", {
                     method: "DELETE",
                     body: JSON.stringify({
-                        id: boxId
+                        id: updateBox.id
                     })
-                }).then(() => window.location.href = "/storage")
-                .catch(err => console.log(err));
+                }).catch(err => console.log(err));
+
+                redirect(`/storage?q=${q}&floor=${updateBox.floor}`);
             }}
         >
             削除

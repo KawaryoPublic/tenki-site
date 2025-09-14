@@ -14,7 +14,7 @@ export default function AddBoxButton({ floor }: { floor: number }) {
                 .catch(err => console.log(err));
             }}
         >
-            追加
+            機材を追加
         </BlueButton>
     );
 }

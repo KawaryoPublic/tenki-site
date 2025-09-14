@@ -5,6 +5,7 @@ import Form from "next/form";
 import { Dispatch, SetStateAction } from "react";
 import DefaultTextArea from "../../global/form/DefaultTextArea";
 import BlueButton from "../../global/button/BlueButton";
+import RestrictedLink from "../../global/RestrictedLink";
 
 export default function EditBoxForm({ updateBox, setUpdateBox }: { updateBox: Box, setUpdateBox: Dispatch<SetStateAction<Box>>}) {
     return (
@@ -83,6 +84,7 @@ export default function EditBoxForm({ updateBox, setUpdateBox }: { updateBox: Bo
                 rows={1}
                 value={updateBox.name}
                 onChange={e => setUpdateBox({...updateBox, name: e.target.value})}
+                label
             />
             <DefaultTextArea
                 title="個数"
@@ -90,13 +92,15 @@ export default function EditBoxForm({ updateBox, setUpdateBox }: { updateBox: Bo
                 rows={1}
                 value={updateBox.number}
                 onChange={e => setUpdateBox({...updateBox, number: e.target.value})}
+                label
             />
             <DefaultTextArea
                 title="注記"
                 name="annotation"
-                rows={1}
+                rows={2}
                 value={updateBox.annotation}
                 onChange={e => setUpdateBox({...updateBox, annotation: e.target.value})}
+                label
             />
             <DefaultTextArea
                 title="リンク"
@@ -104,7 +108,13 @@ export default function EditBoxForm({ updateBox, setUpdateBox }: { updateBox: Bo
                 rows={1}
                 value={updateBox.link}
                 onChange={e => setUpdateBox({...updateBox, link: e.target.value})}
+                label
             />
+            {
+                updateBox.link ? 
+                <RestrictedLink href={updateBox.link} className="underline">こちらから</RestrictedLink> : 
+                <p>なし</p>
+            }
             <BlueButton>保存</BlueButton>
         </Form>
     )

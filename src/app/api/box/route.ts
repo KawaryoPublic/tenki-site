@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
         const newBox = await prisma.box.create({
             data: {
                 name: name,
-                number: number || 0,
+                number: number || "",
                 annotation: annotation || "",
                 link: link || "",
                 floor: floor,

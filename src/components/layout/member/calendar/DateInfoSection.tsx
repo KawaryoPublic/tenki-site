@@ -8,6 +8,7 @@ import EditPlanForm from "@/components/ui/member/calendar/date_info/EditPlanForm
 import DeleteInfoButton from "@/components/ui/member/calendar/date_info/DeleteInfoButton";
 import BlueButton from "@/components/ui/global/button/BlueButton";
 import WhiteFrame from "@/components/ui/global/WhiteFrame";
+import { EXECUTIVE_PASSWORD } from "@/lib/const";
 
 export default function DateInfoSection({ id, q }: { id: number, q: string }) {
     const [ info, setInfo ] = useState<DateInfo>({id: -1, date: "", plan: "", event: "", holiday: ""});
@@ -29,8 +30,9 @@ export default function DateInfoSection({ id, q }: { id: number, q: string }) {
         info.id === -1 ? <div>Loading...</div> :
         <div className="flex flex-col gap-4">
             <h1 className="text-2xl">{formatDate(info.date)}の詳細</h1>
-            <div className="flex flex-row">
-                <div className="flex flex-1 flex-col gap-4">
+            <div>
+                {
+                    q !== EXECUTIVE_PASSWORD ? 
                     <WhiteFrame className="flex flex-col gap-2">
                         <h2 className="text-xl border-b">詳細</h2>
                         <div>
@@ -45,16 +47,16 @@ export default function DateInfoSection({ id, q }: { id: number, q: string }) {
                             <p className="font-bold">休日観測</p>
                             <p className="whitespace-pre-wrap">{info.holiday ? info.holiday : "なし"}</p>
                         </div>
-                    </WhiteFrame>
+                    </WhiteFrame> :
                     <RestrictedContent>
                         <WhiteFrame className="flex flex-col gap-2">
-                            <h2 className="text-xl border-b">編集</h2>
+                            <h2 className="text-xl border-b">詳細</h2>
                             <div>
                                 <EditPlanForm info={info} />
                             </div>
                         </WhiteFrame>
                     </RestrictedContent>
-                </div>
+                }
             </div>
             <div className="flex flex-col gap-4">
                 <div>

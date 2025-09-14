@@ -4,9 +4,9 @@ import { Suspense } from "react";
 
 export default function Home() {
   return (
-    <div className="flex-1 max-h-full h-full">
+    <div className="flex-1">
       <Suspense>
-        <RestrictedContent>
+        <RestrictedContent allowStudent>
           <StorageSection />
         </RestrictedContent>
       </Suspense>

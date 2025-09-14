@@ -40,7 +40,7 @@ model Box {
   number     String      
   annotation String
   link       String
-  floor      Int?
+  floor      Int
   width      Int
   height     Int
   top        Int

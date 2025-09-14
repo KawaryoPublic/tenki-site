@@ -7,33 +7,38 @@ import { useSearchParams } from "next/navigation";
 import { Observation, DateInfo } from "@/lib/type";
 
 export default function CalendarSection() {
-    const filter = useSearchParams().get("filter");
+    const searchParams = useSearchParams();
+    const filter = searchParams.get("filter");
     const [ observationDays, setObservationDays ] = useState<Number[]>([]);
     const [ dateInfo, setDateInfo ] = useState<DateInfo[]>([]);
     const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {
+        setLoading(true);
+
         fetch('/api/dateInfo')
             .then(res => res.json())
             .then(data => setDateInfo(data))
-            .catch(err => console.log(err));
+            .then(() => {
+                if (!filter) {
+                    setObservationDays([]);
+                    setLoading(false);
+                    return;
+                }
 
-        if (!filter) {
-            setLoading(false);
-            return;
-        }
-    
-        fetch("/api/observation")
-            .then(res => res.json())
-            .then(data => {
-                setObservationDays(
-                    data.filter((observation: Observation) => observation.morning.includes(filter) || observation.noon.includes(filter) || observation.afterSchool.includes(filter))
-                    .map((observation: Observation) => observation.day)
-                );
+                fetch("/api/observation")
+                    .then(res => res.json())
+                    .then(data => {
+                        setObservationDays(
+                            data.filter((observation: Observation) => observation.morning.includes(filter) || observation.noon.includes(filter) || observation.afterSchool.includes(filter))
+                            .map((observation: Observation) => observation.day)
+                        );
+                    })
+                    .finally(() => setLoading(false))
+                    .catch(err => console.error(err));
             })
-            .finally(() => setLoading(false))
-            .catch(err => console.error(err));
-    }, []);
+            .catch(err => console.log(err));
+    }, [searchParams]);
 
 
     return (
