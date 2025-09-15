@@ -1,9 +1,9 @@
 import { DateInfo } from "@/lib/type";
-import RestrictedLink from "@/components/ui/global/RestrictedLink";
 import AddDateInfoButton from "./AddDateInfoButton";
 import DateElement from "./DateElement";
+import Link from "next/link";
 
-export default function Dates({ index, filter, dateInfo }: { index: number, filter: string | null, dateInfo: DateInfo[] }) {
+export default function Dates({ index, filter, dateInfo, password }: { index: number, filter: string | null, dateInfo: DateInfo[], password: string }) {
     const firstDate = new Date(new Date().getFullYear(), new Date().getMonth() + index, 1);
 
     return (
@@ -24,17 +24,17 @@ export default function Dates({ index, filter, dateInfo }: { index: number, filt
                             className={`
                                 flex flex-col items-center justify-center rounded
                                 ${date.toDateString() === new Date().toDateString() ? 'border-2 border-blue-500 font-bold' : ''}
-                                ${filter && info?.holiday.includes(filter) ? 'bg-yellow-200' : 
-                                    date.getMonth() === firstDate.getMonth() ? 'bg-white' : 'bg-gray-200 text-gray-600'
+                                ${filter && info?.holiday.includes(filter) ? 'bg-yellow-200 hover:bg-yellow-300' : 
+                                    date.getMonth() === firstDate.getMonth() ? 'bg-gray-200 hover:bg-gray-300' : 'bg-gray-300 text-gray-600 opacity-50'
                                 }
                             `}
                         >
                             {
                                 info ? 
-                                <RestrictedLink href={`/calendar/${info.id}`} className="w-full h-full flex flex-col items-center justify-center">
+                                <Link href={`/calendar/${info.id}`} className="w-full h-full flex flex-col items-center justify-center">
                                     <DateElement date={date} info={info} />
-                                </RestrictedLink> :
-                                <AddDateInfoButton date={date} />
+                                </Link> :
+                                <AddDateInfoButton date={date} password={password} />
                             }
                         </div>
                     );

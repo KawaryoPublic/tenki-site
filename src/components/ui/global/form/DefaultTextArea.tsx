@@ -17,7 +17,7 @@ export default function DefaultTextArea({ title, name, rows, defaultValue, value
                     value={value}
                     onChange={e => onChange(e)}
                     className={`
-                        bg-gray-100 w-full resize-none border border-gray-600 rounded-md px-2 py-1 flex-1
+                        bg-gray-300 w-full resize-none border border-gray-600 rounded-md px-2 py-1 flex-1
                         ${className ? className : ""}
                     `}
                 /> : 
@@ -28,7 +28,7 @@ export default function DefaultTextArea({ title, name, rows, defaultValue, value
                     placeholder={title}
                     defaultValue={defaultValue ? defaultValue : ""}
                     className={`
-                        bg-gray-100 w-full resize-none border border-gray-600 rounded-md px-2 py-1 flex-1
+                        bg-gray-300 w-full resize-none border border-gray-600 rounded-md px-2 py-1 flex-1
                         ${className ? className : ""}
                     `}
                 />

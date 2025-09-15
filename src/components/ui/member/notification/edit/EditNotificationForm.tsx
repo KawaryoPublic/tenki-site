@@ -5,7 +5,7 @@ import BlueButton from "@/components/ui/global/button/BlueButton";
 import { redirect } from "next/navigation";
 import DefaultTextArea from "@/components/ui/global/form/DefaultTextArea";
 
-export default function NotificationEditForm({ q }: { q: string }) {
+export default function NotificationEditForm() {
     return (
         <Form 
             action={async (data: FormData) => {
@@ -17,7 +17,7 @@ export default function NotificationEditForm({ q }: { q: string }) {
                     }),
                 }).catch(err => console.log(err));
 
-                redirect(`/notification?q=${q}`)
+                redirect(`/notification`)
             }}
             className="flex flex-col gap-2"
         >   
@@ -33,7 +33,7 @@ export default function NotificationEditForm({ q }: { q: string }) {
                 rows={3}
                 label
             />
-            <div>
+            <div className="pt-4">
                 <BlueButton>追加</BlueButton>
             </div>
         </Form>

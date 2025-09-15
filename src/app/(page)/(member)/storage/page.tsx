@@ -1,15 +1,14 @@
 import StorageSection from "@/components/layout/member/storage/StorageSection";
-import RestrictedContent from "@/components/ui/global/RestrictedContent";
-import { Suspense } from "react";
+import { getPassword } from "@/lib/action";
+import { checkPassword } from "@/lib/util";
 
-export default function Home() {
+export default async function Home() {
+  const password = await getPassword();
   return (
     <div className="flex-1">
-      <Suspense>
-        <RestrictedContent allowStudent>
-          <StorageSection />
-        </RestrictedContent>
-      </Suspense>
+      {
+        checkPassword(password, false, true) ? <StorageSection password={password} /> : ""
+      }
     </div>
   );
 }

@@ -1,15 +1,15 @@
 import EditNotificationSection from "@/components/layout/member/notification/EditNotificationSection";
-import RestrictedContent from "@/components/ui/global/RestrictedContent";
-import { Suspense } from "react";
+import { getPassword } from "@/lib/action";
+import { checkPassword } from "@/lib/util";
 
-export default async function Home({ searchParams }: { searchParams: { q: string } }) {
+export default async function Home() {
+    const password = await getPassword();
+
     return (
         <div className="flex-1 flex flex-col">
-            <Suspense>
-                <RestrictedContent>
-                    <EditNotificationSection q={(await searchParams).q} />
-                </RestrictedContent>
-            </Suspense>
+            {
+                checkPassword(password) ? <EditNotificationSection /> : ""
+            }
         </div>
     )
 }

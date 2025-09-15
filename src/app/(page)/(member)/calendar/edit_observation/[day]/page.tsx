@@ -1,15 +1,16 @@
-import { Suspense } from "react";
 import EditObservationSection from "@/components/layout/member/calendar/EditObservationSection";
-import RestrictedContent from "@/components/ui/global/RestrictedContent";
+import { getPassword } from "@/lib/action";
+import { checkPassword } from "@/lib/util";
 
-export default function Home({ params }: { params: { day: string } }) {
+export default async function Home({ params }: { params: { day: string } }) {
+    const password = await getPassword()
+
     return (
         <div className="flex-1 flex flex-col">
-            <Suspense>
-                <RestrictedContent allowStudent>
-                    <EditObservationSection day={Number(params.day)} />
-                </RestrictedContent>
-            </Suspense>
+            {
+                checkPassword(password, false, true) ? 
+                <EditObservationSection day={Number(params.day)} password={password} /> : ""
+            }
         </div>
     );
 }

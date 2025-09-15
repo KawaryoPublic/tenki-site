@@ -3,7 +3,7 @@
 import RedButton from "@/components/ui/global/button/RedButton";
 import { redirect } from "next/navigation";
 
-export default function DeleteInfoButton({ id, q }: { id: number, q: string }) {
+export default function DeleteInfoButton({ id }: { id: number }) {
     return (
         <RedButton
             onClick={async () => {
@@ -14,7 +14,7 @@ export default function DeleteInfoButton({ id, q }: { id: number, q: string }) {
                     body: JSON.stringify({ id: Number(id) }),
                 }).catch(err => console.log(err));
 
-                redirect(`/calendar?q=${q}`)
+                redirect(`/calendar`)
             }}
         >
             削除

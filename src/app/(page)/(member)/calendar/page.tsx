@@ -1,19 +1,22 @@
 import CalendarSection from "@/components/layout/member/calendar/CalendarSection";
-import RestrictedContent from "@/components/ui/global/RestrictedContent";
 import FilterObservation from "@/components/ui/member/calendar/FilterObservation";
-import { Suspense } from "react";
+import { getPassword } from "@/lib/action";
+import { checkPassword } from "@/lib/util";
 
-export default function Home() {
+export default async function Home() {
+    const password = await getPassword();
+
     return (
         <div className="flex-1 flex flex-col gap-4 min-h-full">
-            <Suspense>
-                <RestrictedContent allowStudent>
+            {
+                checkPassword(password, false, true) ? 
+                <>
                     <div className="flex justify-end">
                         <FilterObservation />
                     </div>
-                    <CalendarSection />
-                </RestrictedContent>
-            </Suspense>
+                    <CalendarSection password={password} />
+                </> : ""
+            }
         </div>
     )
 }

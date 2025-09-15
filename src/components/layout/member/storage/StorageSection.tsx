@@ -5,14 +5,14 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import BoxElement from "@/components/ui/member/storage/BoxElement";
 import BoxDetail from "@/components/ui/member/storage/BoxDetail";
-import RestrictedLink from "@/components/ui/global/RestrictedLink";
 import AddBoxButton from "@/components/ui/member/storage/AddBoxButton";
+import Link from "next/link";
+import { checkPassword } from "@/lib/util";
 
-export default function StorageSection() {
+export default function StorageSection({ password }: { password: string }) {
     const searchParams = useSearchParams();
     const box = searchParams.get("box");
     const floor = searchParams.get("floor");
-    const q = searchParams.get("q") ?? "";
     const [updateBox, setUpdateBox] = useState<Box>({id: -1, name: "", number: "", annotation: "", link: "", floor: 0, width: 0, height: 0, top: 0, left: 0});
     const [boxes, setBoxes] = useState<Box[]>([]);
     const [loading, setLoading] = useState(true);
@@ -46,16 +46,16 @@ export default function StorageSection() {
             <div className="flex flex-row justify-center gap-2 lg:gap-4 h-full min-h-full">
                 <div className="flex flex-col justify-center">
                     <div>
-                        <RestrictedLink href="/storage" otherParams="floor=3" className="font-bold">3</RestrictedLink>
+                        <Link href="/storage?floor=3" className="font-bold">3</Link>
                     </div>
                     <div>
-                        <RestrictedLink href="/storage" otherParams="floor=2" className="font-bold">2</RestrictedLink>
+                        <Link href="/storage?floor=2" className="font-bold">2</Link>
                     </div>
                     <div>
-                        <RestrictedLink href="/storage" otherParams="floor=1" className="font-bold">1</RestrictedLink>
+                        <Link href="/storage?floor=1" className="font-bold">1</Link>
                     </div>
                     <div>
-                        <RestrictedLink href="/storage" otherParams="floor=0" className="font-bold">0</RestrictedLink>
+                        <Link href="/storage?floor=0" className="font-bold">0</Link>
                     </div>
                 </div>
                 <div className="border aspect-[1/2] relative">
@@ -73,11 +73,14 @@ export default function StorageSection() {
             {
                 box ?
                 <div className="lg:min-w-[40%] lg:w-[40%]">
-                    <BoxDetail updateBox={updateBox} setUpdateBox={setUpdateBox} q={q} />
+                    <BoxDetail updateBox={updateBox} setUpdateBox={setUpdateBox} password={password} />
                 </div> : 
+                checkPassword(password) ? 
                 <div className="flex justify-center items-center">
-                    <span><AddBoxButton floor={Number(floor)} /></span>
-                </div>
+                    <div>
+                        <AddBoxButton floor={Number(floor)} />
+                    </div>
+                </div> : ""
             }
         </section>
     )

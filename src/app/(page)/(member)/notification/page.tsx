@@ -1,24 +1,25 @@
 import NotificationSection from "@/components/layout/member/notification/NotificationSection";
 import BlueButton from "@/components/ui/global/button/BlueButton";
-import RestrictedLink from "@/components/ui/global/RestrictedLink";
-import RestrictedContent from "@/components/ui/global/RestrictedContent";
-import { Suspense } from "react";
+import { getPassword } from "@/lib/action";
+import { checkPassword } from "@/lib/util";
+import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
+  const password = await getPassword();
+
   return (
     <div className="flex-1 flex flex-col">
-      <Suspense>
-        <RestrictedContent allowParent allowStudent>
-          <div className="flex justify-between items-center mb-4">
-            <RestrictedContent>
-              <BlueButton>
-                <RestrictedLink href="/notification/edit">追加</RestrictedLink>
-              </BlueButton>
-            </RestrictedContent>
-          </div>
-          <NotificationSection />
-        </RestrictedContent>
-      </Suspense>
+      <div className="flex flex-col items-center gap-4">
+        {
+          checkPassword(password) ? 
+          <div className="w-full">
+            <BlueButton>
+              <Link href="/notification/edit">追加</Link>
+            </BlueButton>
+          </div> : ""
+        }
+        <NotificationSection password={password} />
+      </div>
     </div>
   );
 }

@@ -5,7 +5,7 @@ import Form from "next/form";
 import { Dispatch, SetStateAction } from "react";
 import DefaultTextArea from "../../global/form/DefaultTextArea";
 import BlueButton from "../../global/button/BlueButton";
-import RestrictedLink from "../../global/RestrictedLink";
+import Link from "next/link";
 
 export default function EditBoxForm({ updateBox, setUpdateBox }: { updateBox: Box, setUpdateBox: Dispatch<SetStateAction<Box>>}) {
     return (
@@ -112,10 +112,12 @@ export default function EditBoxForm({ updateBox, setUpdateBox }: { updateBox: Bo
             />
             {
                 updateBox.link ? 
-                <RestrictedLink href={updateBox.link} className="underline">こちらから</RestrictedLink> : 
+                <Link href={updateBox.link} className="underline">こちらから</Link> : 
                 <p>なし</p>
             }
-            <BlueButton>保存</BlueButton>
+            <div className="pt-4">
+                <BlueButton>保存</BlueButton>
+            </div>
         </Form>
     )
 }

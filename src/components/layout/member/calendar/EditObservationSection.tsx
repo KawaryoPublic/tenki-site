@@ -5,13 +5,11 @@ import { Observation } from "@/lib/type";
 import EditObservationForm from "@/components/ui/member/calendar/edit_observation/EditObservationForm";
 import { DAYS, EXECUTIVE_PASSWORD } from "@/lib/const";
 import WhiteFrame from "@/components/ui/global/WhiteFrame";
-import RestrictedContent from "@/components/ui/global/RestrictedContent";
 import BlueButton from "@/components/ui/global/button/BlueButton";
-import RestrictedLink from "@/components/ui/global/RestrictedLink";
-import { useSearchParams } from "next/navigation";
+import { checkPassword } from "@/lib/util";
+import Link from "next/link";
 
-export default function EditObservationSection({ day }: { day: number }) {
-    const q = useSearchParams().get("q");
+export default function EditObservationSection({ day, password }: { day: number, password: string }) {
     const [observation, setObservation] = useState<Observation>({day: -1, morning: "", noon: "", afterSchool: ""});
     
     useEffect(() => {
@@ -41,36 +39,36 @@ export default function EditObservationSection({ day }: { day: number }) {
             <h1 className="text-2xl">{DAYS[Number(day)]}曜日の観測</h1>
             <div className="flex flex-col gap-4">
                 <div className="flex flex-1">
-                    {
-                        q !== EXECUTIVE_PASSWORD ? 
-                        <WhiteFrame className="flex flex-col gap-2">
-                            <h2 className="text-xl border-b">観測</h2>
-                            <div>
-                                <p className="font-bold">朝</p>
-                                <p className="whitespace-pre-wrap">{observation.morning ? observation.morning : "なし"}</p>
-                            </div>
-                            <div>
-                                <p className="font-bold">昼</p>
-                                <p className="whitespace-pre-wrap">{observation.noon ? observation.noon : "なし"}</p>
-                            </div>
-                            <div>
-                                <p className="font-bold">放課後</p>
-                                <p className="whitespace-pre-wrap">{observation.afterSchool ? observation.afterSchool : "なし"}</p>
-                            </div>
-                        </WhiteFrame> :
-                        <RestrictedContent>
-                            <WhiteFrame className="flex flex-col gap-2">
+                    <WhiteFrame className="flex flex-col gap-2">
+                        {
+                            checkPassword(password) ?
+                            <>
                                 <h2 className="text-xl border-b">編集</h2>
                                 <div>
                                     <EditObservationForm observation={observation} />
                                 </div>
-                            </WhiteFrame>
-                        </RestrictedContent>
-                    }
+                            </> :
+                            <>
+                                <h2 className="text-xl border-b">観測</h2>
+                                <div>
+                                    <p className="font-bold">朝</p>
+                                    <p className="whitespace-pre-wrap">{observation.morning ? observation.morning : "なし"}</p>
+                                </div>
+                                <div>
+                                    <p className="font-bold">昼</p>
+                                    <p className="whitespace-pre-wrap">{observation.noon ? observation.noon : "なし"}</p>
+                                </div>
+                                <div>
+                                    <p className="font-bold">放課後</p>
+                                    <p className="whitespace-pre-wrap">{observation.afterSchool ? observation.afterSchool : "なし"}</p>
+                                </div>
+                            </>
+                        }
+                    </WhiteFrame> :
                 </div>
                 <div>
                     <BlueButton>
-                        <RestrictedLink href="/calendar">日付一覧に戻る</RestrictedLink>
+                        <Link href="/calendar">日付一覧に戻る</Link>
                     </BlueButton>
                 </div>
             </div>

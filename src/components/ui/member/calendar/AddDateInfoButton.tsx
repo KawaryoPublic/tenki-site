@@ -1,16 +1,13 @@
 "use client";
 
-import { EXECUTIVE_PASSWORD } from "@/lib/const";
-import { useSearchParams } from "next/navigation";
+import { checkPassword } from "@/lib/util";
 
-export default function AddDateInfoButton({ date }: { date: Date }) {
-    const searchParams = useSearchParams();
-
+export default function AddDateInfoButton({ date, password }: { date: Date, password: string }) {
     return (
         <button
-            className="w-full h-full flex flex-col items-center justify-center"
+            className="w-full h-full flex flex-col items-center justify-center cursor-pointer"
             onClick={async () => {
-                if(searchParams.get("q") !== EXECUTIVE_PASSWORD) return;
+                if(!checkPassword(password)) return;
                 if(!confirm("予定を追加しますか？")) return;
 
                 await fetch("/api/dateInfo", {

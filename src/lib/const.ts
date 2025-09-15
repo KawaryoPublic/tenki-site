@@ -1,6 +1,6 @@
-const STUDENT_PASSWORD = "student";
-const PARENT_PASSWORD = "parent";
-const EXECUTIVE_PASSWORD = "executive";
+const STUDENT_PASSWORD: string = "student";
+const PARENT_PASSWORD: string = "parent";
+const EXECUTIVE_PASSWORD: string = "executive";
 
 const DAYS = ['日', '月', '火', '水', '木', '金', '土'];
 

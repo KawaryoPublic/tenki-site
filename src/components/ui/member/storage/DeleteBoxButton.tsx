@@ -1,10 +1,10 @@
 "use client";
 
-import { redirect, useSearchParams } from "next/navigation";
+import { redirect } from "next/navigation";
 import RedButton from "../../global/button/RedButton";
 import { Box } from "@/lib/type";
 
-export default function DeleteBoxButton({ q, updateBox }: { q: string, updateBox: Box }) {
+export default function DeleteBoxButton({ updateBox }: { updateBox: Box }) {
     return (
         <RedButton
             onClick={async () => {
@@ -16,7 +16,7 @@ export default function DeleteBoxButton({ q, updateBox }: { q: string, updateBox
                     })
                 }).catch(err => console.log(err));
 
-                redirect(`/storage?q=${q}&floor=${updateBox.floor}`);
+                redirect(`/storage?floor=${updateBox.floor}`);
             }}
         >
             削除

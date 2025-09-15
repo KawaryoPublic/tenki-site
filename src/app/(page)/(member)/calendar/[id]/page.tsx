@@ -1,15 +1,15 @@
 import DateInfoSection from "@/components/layout/member/calendar/DateInfoSection";
-import RestrictedContent from "@/components/ui/global/RestrictedContent";
-import { Suspense } from "react";
+import { getPassword } from "@/lib/action";
+import { checkPassword } from "@/lib/util";
 
-export default async function Home({ params, searchParams }: { params: { id: number }, searchParams: { q: string } }) {
+export default async function Home({ params }: { params: { id: number } }) {
+    const password = await getPassword();
+
     return (
         <div className="flex-1 flex flex-col">
-            <Suspense>
-                <RestrictedContent allowStudent>
-                    <DateInfoSection id={(await params).id} q={(await searchParams).q} />
-                </RestrictedContent>
-            </Suspense>
+            {
+                checkPassword(password, false, true) ? <DateInfoSection id={(await params).id} password={password} /> : ""
+            }
         </div>
     );
 }

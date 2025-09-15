@@ -45,7 +45,7 @@ export default function EditPlanForm({ observation }: { observation: Observation
                 defaultValue={observation.afterSchool}
                 label
             />
-            <div>
+            <div className="pt-4">
                 <BlueButton>保存</BlueButton>
             </div>
         </Form>

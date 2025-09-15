@@ -44,7 +44,7 @@ export default function EditPlanForm({ info }: { info: DateInfo }) {
                 rows={1} 
                 label
             />
-            <div>
+            <div className="pt-4">
                 <BlueButton>保存</BlueButton>
             </div>
         </Form>

@@ -1,10 +1,10 @@
 import { Box } from "@/lib/type";
-import RestrictedLink from "../../global/RestrictedLink";
+import Link from "next/link";
 
 export default function BoxElement({ box, floor }: { box: Box, floor: number }) {
     return (
         <div
-            className="border text-sm absolute flex justify-center items-center"
+            className="border text-sm absolute flex justify-center items-center bg-gray-200 hover:bg-gray-300"
             style={{
                 width: `${box.width}%`,
                 height: `${box.height}%`,
@@ -12,9 +12,9 @@ export default function BoxElement({ box, floor }: { box: Box, floor: number }) 
                 left: `${box.left}%`
             }}
         >
-            <RestrictedLink href="/storage" className="w-full h-full flex justify-center items-center whitespace-nowrap overflow-x-auto hide-scroll" otherParams={`floor=${floor}&box=${box.id}`}>
+            <Link href={`/storage?floor=${floor}&box=${box.id}`} className="w-full h-full flex justify-center items-center whitespace-nowrap overflow-x-auto hide-scroll">
                 {box.name}
-            </RestrictedLink>
+            </Link>
         </div>
     );
 }

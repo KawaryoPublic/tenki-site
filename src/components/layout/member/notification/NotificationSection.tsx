@@ -4,7 +4,7 @@ import Notification from "@/components/ui/member/notification/Notification";
 import { NotificationType } from "@/lib/type";
 import { useState, useEffect } from "react";
 
-export default function NotificationSection() {
+export default function NotificationSection({ password }: { password: string }) {
     const [ notifications, setNotifications ] = useState<NotificationType[]>([]);
     const [ loading, setLoading ] = useState<boolean>(true);
 
@@ -27,7 +27,7 @@ export default function NotificationSection() {
                 ) : 
                 notifications.map((notification, index) => (
                     <div key={index} className="mb-4">
-                        <Notification id={notification.id} title={notification.title} createdAt={notification.createdAt} content={notification.content} />
+                        <Notification id={notification.id} title={notification.title} createdAt={notification.createdAt} content={notification.content} password={password} />
                     </div>
                 ))
             }

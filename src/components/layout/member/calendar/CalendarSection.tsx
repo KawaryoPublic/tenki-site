@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Observation, DateInfo } from "@/lib/type";
 
-export default function CalendarSection() {
+export default function CalendarSection({ password }: { password: string }) {
     const searchParams = useSearchParams();
     const filter = searchParams.get("filter");
     const [ observationDays, setObservationDays ] = useState<Number[]>([]);
@@ -49,7 +49,7 @@ export default function CalendarSection() {
                     <div className="flex-1 flex flex-col min-h-[50%]" key={i}>
                         <h2 className="flex justify-center item-center font-bold text-xl">{new Date().getMonth() + i + 1}月</h2>
                         <Days observationDays={observationDays} />
-                        <Dates index={i} filter={filter} dateInfo={dateInfo} />
+                        <Dates index={i} filter={filter} dateInfo={dateInfo} password={password} />
                     </div>
                 ))
             }
