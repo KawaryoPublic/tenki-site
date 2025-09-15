@@ -11,7 +11,7 @@ export default async function Header() {
             <ul className="flex text-base lg:text-xl space-x-3 lg:space-x-4 p-2 lg:p-4">
                 <Suspense>
                     <li>
-                        <Link href="/">ホーム</Link>
+                        <Link href="/" className="hover:border-b-2">ホーム</Link>
                     </li>
                     <RestrictedContent allowParent allowStudent>
                         <li>
