@@ -8,6 +8,7 @@ import BoxDetail from "@/components/ui/member/storage/BoxDetail";
 import AddBoxButton from "@/components/ui/member/storage/AddBoxButton";
 import Link from "next/link";
 import { checkPassword } from "@/lib/util";
+import WhiteFrame from "@/components/ui/global/WhiteFrame";
 
 export default function StorageSection({ password }: { password: string }) {
     const searchParams = useSearchParams();
@@ -43,7 +44,7 @@ export default function StorageSection({ password }: { password: string }) {
     return (
         loading ? <div>Loading...</div> :
         <section className="flex flex-col lg:flex-row lg:justify-center gap-4 h-full">
-            <div className="flex flex-row justify-center gap-2 lg:gap-4 h-full min-h-full">
+            <WhiteFrame className="flex flex-row justify-center gap-2 lg:gap-4 h-full min-h-full">
                 <div className="flex flex-col justify-center">
                     <div>
                         <Link href="/storage?floor=3" className="font-bold">3</Link>
@@ -69,7 +70,7 @@ export default function StorageSection({ password }: { password: string }) {
                         })
                     }
                 </div>
-            </div>
+            </WhiteFrame>
             {
                 box ?
                 <div className="lg:min-w-[40%] lg:w-[40%]">

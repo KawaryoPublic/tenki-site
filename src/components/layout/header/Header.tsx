@@ -7,7 +7,7 @@ export default async function Header() {
   const password = await getPassword();
 
   return (
-    <header className="pt-4 pl-4 w-full flex items-center">
+    <header className="pt-4 pl-4 w-full flex items-center bg-gray-300">
         <h1 className="text-xl lg:text-3xl">天文気象部</h1>
         <nav className="flex text-base lg:text-xl space-x-3 lg:space-x-4 p-2 lg:p-4">
           <Nav href="/home" title="ホーム" password={password} allowAll />

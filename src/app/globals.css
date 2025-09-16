@@ -13,5 +13,6 @@
 
 body {
   background: var(--background);
+  background-color: transparent;
   color: var(--foreground);
 }
