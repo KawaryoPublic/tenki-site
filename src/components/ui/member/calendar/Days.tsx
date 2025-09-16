@@ -10,7 +10,7 @@ export default function Days({ observationDays }: { observationDays: Number[] })
                         index === 0 ?
                         <div 
                             key={index} 
-                            className="w-full h-full font-bold flex items-center justify-center bg-gray-300 text-gray-600 rounded"
+                            className="w-full h-full font-bold flex items-center justify-center bg-gray-500 text-gray-900 rounded"
                         >
                             {day}
                         </div> :
@@ -18,7 +18,7 @@ export default function Days({ observationDays }: { observationDays: Number[] })
                             key={index} 
                             className={`
                                 w-full h-full font-bold flex items-center justify-center rounded
-                                ${observationDays.includes(index) ? 'bg-yellow-200 hover:bg-yellow-300' : 'bg-gray-200 hover:bg-gray-300 opacity-90'}
+                                ${observationDays.includes(index) ? 'bg-yellow-200 hover:bg-yellow-300' : 'bg-gray-200 hover:bg-gray-300'}
                             `}
                             href={`/calendar/edit_observation/${index}`}
                         >

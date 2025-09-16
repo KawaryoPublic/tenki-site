@@ -25,7 +25,7 @@ export default function Dates({ index, filter, dateInfo, password }: { index: nu
                                 flex flex-col items-center justify-center rounded
                                 ${date.toDateString() === new Date().toDateString() ? 'border-2 border-blue-500 font-bold' : ''}
                                 ${filter && info?.holiday.includes(filter) ? 'bg-yellow-200 hover:bg-yellow-300' : 
-                                    date.getMonth() === firstDate.getMonth() ? 'bg-gray-200 hover:bg-gray-300' : 'bg-gray-300 text-gray-600 opacity-90'
+                                    date.getMonth() === firstDate.getMonth() ? 'bg-gray-200 hover:bg-gray-300' : 'bg-gray-500 text-gray-900'
                                 }
                             `}
                         >
