@@ -16,7 +16,7 @@ export default function DeleteBoxButton({ updateBox }: { updateBox: Box }) {
                     })
                 }).catch(err => console.log(err));
 
-                redirect(`/storage?floor=${updateBox.floor}`);
+                redirect(`/storage/${updateBox.tab}`);
             }}
         >
             削除

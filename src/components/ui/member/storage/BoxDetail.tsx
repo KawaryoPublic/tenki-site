@@ -28,20 +28,8 @@ export default function BoxDetail({ updateBox, setUpdateBox, password }: { updat
                                     <p className="whitespace-pre-wrap">{updateBox.name ? updateBox.name : "なし"}</p>
                                 </div>
                                 <div>
-                                    <p className="font-bold">個数</p>
-                                    <p className="whitespace-pre-wrap">{updateBox.number ? updateBox.number : "なし"}</p>
-                                </div>
-                                <div>
-                                    <p className="font-bold">注記</p>
-                                    <p className="whitespace-pre-wrap">{updateBox.annotation ? updateBox.annotation : "なし"}</p>
-                                </div>
-                                <div>
-                                    <p className="font-bold">リンク</p>
-                                    {
-                                        updateBox.link ? 
-                                        <Link href={updateBox.link} className="underline">こちらから</Link> : 
-                                        <p>なし</p>
-                                    }
+                                    <p className="font-bold">コンテンツ</p>
+                                    <p className="whitespace-pre-wrap">{updateBox.content ? updateBox.content : "なし"}</p>
                                 </div>
                             </>
                         }
@@ -57,7 +45,7 @@ export default function BoxDetail({ updateBox, setUpdateBox, password }: { updat
                 }
                 <div>
                     <BlueButton>
-                        <Link href={`/storage?floor=${updateBox.floor}`}>戻る</Link>
+                        <Link href={`/storage/${updateBox.tab}`}>戻る</Link>
                     </BlueButton>
                 </div>
             </div>

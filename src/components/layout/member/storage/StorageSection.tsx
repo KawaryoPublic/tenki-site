@@ -6,15 +6,14 @@ import { useSearchParams } from "next/navigation";
 import BoxElement from "@/components/ui/member/storage/BoxElement";
 import BoxDetail from "@/components/ui/member/storage/BoxDetail";
 import AddBoxButton from "@/components/ui/member/storage/AddBoxButton";
-import Link from "next/link";
 import { checkPassword } from "@/lib/util";
 import WhiteFrame from "@/components/ui/global/WhiteFrame";
+import Link from "next/link";
 
-export default function StorageSection({ password }: { password: string }) {
+export default function StorageSection({ password, tab }: { password: string, tab: number }) {
     const searchParams = useSearchParams();
     const box = searchParams.get("box");
-    const floor = searchParams.get("floor");
-    const [updateBox, setUpdateBox] = useState<Box>({id: -1, name: "", number: "", annotation: "", link: "", floor: 0, width: 0, height: 0, top: 0, left: 0});
+    const [updateBox, setUpdateBox] = useState<Box>({id: -1, name: "", content: "", imageLink: "", tab: 0, width: 0, height: 0, top: 0, left: 0});
     const [boxes, setBoxes] = useState<Box[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -24,10 +23,10 @@ export default function StorageSection({ password }: { password: string }) {
         fetch("/api/box")
             .then(res => res.json())
             .then(data => {
-                setBoxes(data.map((b: Box) => b.floor === Number(floor) ? b : []));
+                setBoxes(data.map((b: Box) => b.tab === Number(tab) ? b : []));
 
                 if(!box) {
-                    setUpdateBox({id: -1, name: "", number: "", annotation: "", link: "", floor: 0, width: 0, height: 0, top: 0, left: 0})
+                    setUpdateBox({id: -1, name: "", content: "", imageLink: "", tab: 0, width: 0, height: 0, top: 0, left: 0})
                     setLoading(false);
                     return;
                 }
@@ -43,34 +42,29 @@ export default function StorageSection({ password }: { password: string }) {
 
     return (
         loading ? <div>Loading...</div> :
-        <section className="flex flex-col lg:flex-row lg:justify-center gap-4 h-full">
-            <WhiteFrame className="flex flex-row justify-center gap-2 lg:gap-4 h-full min-h-full">
-                <div className="flex flex-col justify-center">
-                    <div>
-                        <Link href="/storage?floor=3" className="font-bold">3</Link>
+        <section className="flex flex-col lg:flex-row lg:justify-center gap-4 h-full pb-5">
+            <div className="flex flex-col h-full gap-4">
+                <WhiteFrame className="h-[10%]">
+                    <nav className="flex justify-around">
+                        <Link href="/storage/0" className={`text-lg hover:bg-gray-400 ${tab === 0 ? "border-b-3 font-bold" : ""}`}>倉庫</Link>
+                        <Link href="/storage/1" className={`text-lg hover:bg-gray-400 ${tab === 1 ? "border-b-3 font-bold" : ""}`}>部室</Link>
+                        <Link href="/storage/2" className={`text-lg hover:bg-gray-400 ${tab === 2 ? "border-b-3 font-bold" : ""}`}>地学</Link>
+                    </nav>
+                </WhiteFrame>
+                <WhiteFrame className="h-[90%]">
+                    <div className="border aspect-[1/2] relative h-full">
+                        {
+                            box ? 
+                            <BoxElement tab={tab} box={updateBox} /> : ""
+                        }
+                        {
+                            boxes.map((box, index) => {
+                                return box.id === updateBox.id ? "" : <BoxElement key={index} tab={tab} box={box} />
+                            })
+                        }
                     </div>
-                    <div>
-                        <Link href="/storage?floor=2" className="font-bold">2</Link>
-                    </div>
-                    <div>
-                        <Link href="/storage?floor=1" className="font-bold">1</Link>
-                    </div>
-                    <div>
-                        <Link href="/storage?floor=0" className="font-bold">0</Link>
-                    </div>
-                </div>
-                <div className="border aspect-[1/2] relative">
-                    {
-                        box ? 
-                        <BoxElement floor={Number(floor)} box={updateBox} /> : ""
-                    }
-                    {
-                        boxes.map((box, index) => {
-                            return box.id === updateBox.id ? "" : <BoxElement key={index} floor={Number(floor)} box={box} />
-                        })
-                    }
-                </div>
-            </WhiteFrame>
+                </WhiteFrame>
+            </div>
             {
                 box ?
                 <div className="lg:min-w-[40%] lg:w-[40%]">
@@ -79,7 +73,7 @@ export default function StorageSection({ password }: { password: string }) {
                 checkPassword(password) ? 
                 <div className="flex justify-center items-center">
                     <div>
-                        <AddBoxButton floor={Number(floor)} />
+                        <AddBoxButton tab={tab} />
                     </div>
                 </div> : ""
             }

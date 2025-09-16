@@ -14,7 +14,7 @@ export default async function Header() {
           <Nav href="/about" title="アバウト" password={password} allowAll />
           <Nav href="/notification" title="告知" password={password} allowAll />
           <Nav href="/calendar" title="カレンダー" password={password} allowStudent />
-          <Nav href="/storage?floor=1" title="倉庫" password={password} allowStudent />
+          <Nav href="/storage/0" title="倉庫" password={password} allowStudent />
           <Nav href="/file" title="ファイル" password={password} />
         </nav>
         <div className="ml-auto pr-4">

@@ -5,7 +5,6 @@ import Form from "next/form";
 import { Dispatch, SetStateAction } from "react";
 import DefaultTextArea from "../../global/form/DefaultTextArea";
 import BlueButton from "../../global/button/BlueButton";
-import Link from "next/link";
 
 export default function EditBoxForm({ updateBox, setUpdateBox }: { updateBox: Box, setUpdateBox: Dispatch<SetStateAction<Box>>}) {
     return (
@@ -16,10 +15,9 @@ export default function EditBoxForm({ updateBox, setUpdateBox }: { updateBox: Bo
                     body: JSON.stringify({
                         id: updateBox.id,
                         name: formData.get("name"),
-                        number: formData.get("number"),
-                        annotation: formData.get("annotation"),
-                        link: formData.get("link"),
-                        floor: updateBox.floor,
+                        content: formData.get("content"),
+                        imageLink: "formData.get('imageLink')",
+                        tab: updateBox.tab,
                         width: Number(formData.get("width")),
                         height: Number(formData.get("height")),
                         top: Number(formData.get("top")),
@@ -87,34 +85,13 @@ export default function EditBoxForm({ updateBox, setUpdateBox }: { updateBox: Bo
                 label
             />
             <DefaultTextArea
-                title="個数"
-                name="number"
-                rows={1}
-                value={updateBox.number}
-                onChange={e => setUpdateBox({...updateBox, number: e.target.value})}
+                title="コンテンツ"
+                name="content"
+                rows={3}
+                value={updateBox.content}
+                onChange={e => setUpdateBox({...updateBox, content: e.target.value})}
                 label
             />
-            <DefaultTextArea
-                title="注記"
-                name="annotation"
-                rows={2}
-                value={updateBox.annotation}
-                onChange={e => setUpdateBox({...updateBox, annotation: e.target.value})}
-                label
-            />
-            <DefaultTextArea
-                title="リンク"
-                name="link"
-                rows={1}
-                value={updateBox.link}
-                onChange={e => setUpdateBox({...updateBox, link: e.target.value})}
-                label
-            />
-            {
-                updateBox.link ? 
-                <Link href={updateBox.link} className="underline">こちらから</Link> : 
-                <p>なし</p>
-            }
             <div className="pt-4">
                 <BlueButton>保存</BlueButton>
             </div>

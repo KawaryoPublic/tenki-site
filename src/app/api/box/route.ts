@@ -14,19 +14,18 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
     try {
-        const { name, number, annotation, link, floor, width, height, top, left } = await req.json();
+        const { name, content, tab, imageLink, width, height, top, left } = await req.json();
 
-        if (name === undefined || floor === undefined) {
+        if (name === undefined || tab === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
         const newBox = await prisma.box.create({
             data: {
                 name: name,
-                number: number || "",
-                annotation: annotation || "",
-                link: link || "",
-                floor: floor,
+                content: content || "",
+                tab: tab,
+                imageLink: imageLink || "",
                 width: width || 20,
                 height: height || 20,
                 top: top || 0,
@@ -43,9 +42,9 @@ export async function POST(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
     try {
-        const { id, name, number, annotation, link, floor, width, height, top, left } = await req.json();
+        const { id, name, content, tab, imageLink, width, height, top, left } = await req.json();
 
-        if (!id || name === undefined || number === undefined || annotation === undefined || link === undefined || floor === undefined || width === undefined || height === undefined || top === undefined || left === undefined) {
+        if (!id || name === undefined || content === undefined || imageLink === undefined || tab === undefined || width === undefined || height === undefined || top === undefined || left === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -53,10 +52,9 @@ export async function PUT(req: NextRequest) {
             where: { id: id },
             data: {
                 name: name,
-                number: number,
-                annotation: annotation,
-                link: link,
-                floor: floor,
+                content: content,
+                tab: tab,
+                imageLink: imageLink,
                 width: width,
                 height: height,
                 top: top,

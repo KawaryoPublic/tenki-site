@@ -23,10 +23,9 @@ export interface NotificationType {
 export interface Box {
     id: number;
     name: string;
-    number: string;
-    annotation: string;
-    link: string;
-    floor: number;
+    content: string;
+    imageLink: string;
+    tab: number;
     top: number;
     left: number;
     width: number;

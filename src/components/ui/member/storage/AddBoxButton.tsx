@@ -1,6 +1,6 @@
 import BlueButton from "../../global/button/BlueButton";
 
-export default function AddBoxButton({ floor }: { floor: number }) {
+export default function AddBoxButton({ tab }: { tab: number }) {
     return (
         <BlueButton
             onClick={async () => {
@@ -8,7 +8,7 @@ export default function AddBoxButton({ floor }: { floor: number }) {
                     method: "POST",
                     body: JSON.stringify({
                         name: "",
-                        floor: floor
+                        tab: tab
                     })
                 }).then(() => window.location.reload())
                 .catch(err => console.log(err));

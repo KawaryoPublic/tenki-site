@@ -1,7 +1,7 @@
 import { Box } from "@/lib/type";
 import Link from "next/link";
 
-export default function BoxElement({ box, floor }: { box: Box, floor: number }) {
+export default function BoxElement({ box, tab }: { box: Box, tab: number }) {
     return (
         <div
             className="border text-sm absolute flex justify-center items-center bg-gray-200 hover:bg-gray-300"
@@ -12,7 +12,7 @@ export default function BoxElement({ box, floor }: { box: Box, floor: number }) 
                 left: `${box.left}%`
             }}
         >
-            <Link href={`/storage?floor=${floor}&box=${box.id}`} className="w-full h-full flex justify-center items-center whitespace-nowrap overflow-x-auto hide-scroll">
+            <Link href={`/storage/${tab}?box=${box.id}`} className="w-full h-full flex justify-center items-center whitespace-nowrap overflow-x-auto">
                 {box.name}
             </Link>
         </div>
