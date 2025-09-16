@@ -10,7 +10,7 @@ export default function Days({ observationDays }: { observationDays: Number[] })
                         index === 0 ?
                         <div 
                             key={index} 
-                            className="w-full h-full font-bold flex items-center justify-center bg-gray-500 text-gray-900 rounded"
+                            className="w-full h-full font-bold flex items-center justify-center bg-disabled-date text-gray-700 rounded"
                         >
                             {day}
                         </div> :
