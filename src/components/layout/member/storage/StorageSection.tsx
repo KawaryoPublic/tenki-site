@@ -41,7 +41,7 @@ export default function StorageSection({ password, tab }: { password: string, ta
     }, [searchParams]);
 
     return (
-        loading ? <div>Loading...</div> :
+        loading ? <div className="text-xl">Loading...</div> :
         <section className="flex flex-col lg:flex-row lg:justify-center gap-4 h-full pb-5">
             <div className="flex flex-col h-full gap-4">
                 <WhiteFrame className="h-[10%]">

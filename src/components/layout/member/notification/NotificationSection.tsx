@@ -19,7 +19,7 @@ export default function NotificationSection({ password }: { password: string }) 
     return (
         <section className="flex-1 flex flex-col min-h-[50%] w-full">
             {
-                loading ? <div>Loading...</div> :
+                loading ? <div className="text-xl">Loading...</div> :
                 notifications.length === 0 ? (
                     <div className="flex-1 flex flex-col justify-center items-center">
                         通知はありません

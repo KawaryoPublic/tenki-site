@@ -2,19 +2,16 @@
 
 
 :root {
-  --background: #ede0e0;
-  --foreground: #171717;
+  --foreground: #dfdfdf;
   --disabled-date: #b3b3b3;
 }
 
 @theme inline {
-  --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-disabled-date: var(--disabled-date)
 }
 
 body {
-  background: var(--background);
   background-color: transparent;
   color: var(--foreground);
 }

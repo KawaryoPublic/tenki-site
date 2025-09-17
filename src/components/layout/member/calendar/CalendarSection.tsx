@@ -42,7 +42,7 @@ export default function CalendarSection({ password }: { password: string }) {
 
 
     return (
-        loading ? <div>Loading...</div> :
+        loading ? <div className="text-lg">Loading...</div> :
         <section className="flex-1 flex flex-col lg:flex-row gap-4">
             {
                 Array.from({ length: 3 }).map((_, i) => (
