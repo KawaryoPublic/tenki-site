@@ -7,6 +7,9 @@ export default async function Home({ params }: { params: { tab: string }}) {
   const tab = Number((await params).tab);
   
   return (
-    checkTier(tier, false, true) && <StorageSection tab={tab} tier={tier} />
+    checkTier(tier, false, true) && 
+    <div className="w-full h-full">
+      <StorageSection tab={tab} tier={tier} />
+    </div>
   )
 }
