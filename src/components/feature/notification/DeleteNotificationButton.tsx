@@ -1,6 +1,6 @@
 "use client";
 
-import RedButton from "../../Button/RedButton";
+import RedButton from "@/components/ui/Button/RedButton";
 
 export default function DeleteNotificationButton({ id }: { id: number }) {
     return (

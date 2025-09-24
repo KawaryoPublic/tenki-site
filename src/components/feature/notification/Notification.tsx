@@ -1,5 +1,5 @@
 import DeleteNotificationButton from "./DeleteNotificationButton";
-import WhiteFrame from "../../all/WhiteFrame";
+import WhiteFrame from "@/components/ui/WhiteFrame";
 import { checkTier } from "@/lib/util";
 import { NotificationType, TIER } from "@/lib/type";
 

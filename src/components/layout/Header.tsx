@@ -1,5 +1,5 @@
 import { getTier } from "@/lib/action";
-import Nav from "../../ui/header/Nav";
+import Nav from "./Nav";
 import BlueButton from "@/components/ui/Button/BlueButton";
 import Link from "next/link";
 
