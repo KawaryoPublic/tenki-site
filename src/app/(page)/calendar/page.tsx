@@ -8,7 +8,7 @@ export default async function Home({ searchParams }: { searchParams: { filter?: 
     const tier = await getTier();
 
     return (
-        checkTier(tier) &&
+        checkTier(tier, false, true) &&
         <section className="flex-1 flex flex-col lg:flex-row gap-4">
             <div>
                 {

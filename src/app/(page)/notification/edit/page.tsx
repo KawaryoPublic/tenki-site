@@ -9,7 +9,7 @@ export default async function Home() {
     const tier = await getTier();
 
     return (
-        checkTier(tier) &&
+        checkTier(tier, true, true) &&
         <section className="flex flex-col gap-4">
             <WhiteFrame className="flex flex-col gap-2">
                 <h2 className="text-xl border-b">告知を追加</h2>
