@@ -38,7 +38,7 @@ export default async function Home() {
         ) : 
         notifications.map((notification, index) => (
           <div key={index} className="mb-4">
-            <Notification id={notification.id} notification={notification} tier={tier} />
+            <Notification notification={notification} tier={tier} />
           </div>
         ))
       }
