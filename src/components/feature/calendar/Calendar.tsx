@@ -7,7 +7,7 @@ import { DateInfo, TIER } from "@/lib/type";
 import { useEffect, useState } from "react";
 import { Observation } from "@/lib/type";
 
-export default function Calender({ index, tier, filter }: { index: number, tier: TIER, filter: string }) {
+export default function Calendar({ index, tier, filter }: { index: number, tier: TIER, filter: string }) {
     const firstDate = new Date(new Date().getFullYear(), new Date().getMonth() + index, 1);
     const [observationDays, setObservationDays] = useState<Number[]>([]);
     const [dateInfo, setDateInfo] = useState<DateInfo[]>([]);

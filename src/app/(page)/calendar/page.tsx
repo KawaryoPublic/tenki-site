@@ -1,4 +1,4 @@
-import Calender from "@/components/feature/calendar/Calender";
+import Calendar from "@/components/feature/calendar/Calendar";
 import FilterObservationForm from "@/components/feature/calendar/FilterObservationForm";
 import { getTier } from "@/lib/action";
 import { checkTier } from "@/lib/util";
@@ -12,7 +12,7 @@ export default async function Home({ searchParams }: { searchParams: { filter?: 
         <section className="flex-1 flex flex-col lg:flex-row gap-4">
             <div>
                 {
-                    Array.from({ length: 3 }).map((_, i) => <Calender key={i} index={i} tier={tier} filter={filter} />)
+                    Array.from({ length: 3 }).map((_, i) => <Calendar key={i} index={i} tier={tier} filter={filter} />)
                 }
             </div>
             <div>
