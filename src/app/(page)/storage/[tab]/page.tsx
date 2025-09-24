@@ -45,6 +45,7 @@ export default async function Home({ params }: { params: { tab: string }}) {
     }, [searchParams]);
 
   return (
+    checkTier(tier) &&
     loading ? <div className="text-xl">Loading...</div> :
     <section className="flex flex-col lg:flex-row lg:justify-center gap-4 h-full pb-5">
       <div className="flex flex-col h-full gap-4">
@@ -74,7 +75,7 @@ export default async function Home({ params }: { params: { tab: string }}) {
         <div className="lg:min-w-[40%] lg:w-[40%]">
           <BoxDetail updateBox={updateBox} setUpdateBox={setUpdateBox} tier={tier} />
         </div> : 
-        checkTier(password) &&
+        checkTier(tier) &&
         <div className="flex justify-center items-center">
           <div>
             <AddBoxButton tab={tab} />
