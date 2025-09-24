@@ -1,4 +1,4 @@
-import BlueButton from "../../Button/BlueButton";
+import BlueButton from "@/components/ui/Button/BlueButton";
 
 export default function AddBoxButton({ tab }: { tab: number }) {
     return (

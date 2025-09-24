@@ -1,7 +1,7 @@
 "use client";
 
 import { redirect } from "next/navigation";
-import RedButton from "../../Button/RedButton";
+import RedButton from "@/components/ui/Button/RedButton";
 import { Box } from "@/lib/type";
 
 export default function DeleteBoxButton({ updateBox }: { updateBox: Box }) {

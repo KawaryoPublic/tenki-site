@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "@/app/globals.css";
 import Image from "next/image";
-import Header from "@/components/layout/header/Header";
+import Header from "@/components/layout/Header";
 
 export const metadata: Metadata = {
   title: "天気サイト",

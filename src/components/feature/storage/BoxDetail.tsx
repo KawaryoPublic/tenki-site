@@ -1,6 +1,6 @@
 import { Box, TIER } from "@/lib/type";
-import BlueButton from "../../Button/BlueButton";
-import WhiteFrame from "../../all/WhiteFrame";
+import BlueButton from "@/components/ui/Button/BlueButton";
+import WhiteFrame from "@/components/ui/WhiteFrame";
 import EditBoxForm from "./EditBoxForm";
 import { Dispatch, SetStateAction } from "react";
 import DeleteBoxButton from "./DeleteBoxButton";

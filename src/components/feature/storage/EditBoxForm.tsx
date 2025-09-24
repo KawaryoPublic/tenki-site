@@ -3,8 +3,8 @@
 import { Box } from "@/lib/type";
 import Form from "next/form";
 import { Dispatch, SetStateAction } from "react";
-import DefaultTextArea from "../../Input/DefaultTextArea";
-import BlueButton from "../../Button/BlueButton";
+import DefaultTextArea from "@/components/ui/Input/DefaultTextArea";
+import BlueButton from "@/components/ui/Button/BlueButton";
 
 export default function EditBoxForm({ updateBox, setUpdateBox }: { updateBox: Box, setUpdateBox: Dispatch<SetStateAction<Box>>}) {
     return (

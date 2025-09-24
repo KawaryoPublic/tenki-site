@@ -4,7 +4,7 @@ import BlueButton from "@/components/ui/Button/BlueButton";
 import { getTier } from "@/lib/action";
 import { checkTier } from "@/lib/util";
 import Link from "next/link";
-import Notification from "@/components/ui/member/notification/Notification";
+import Notification from "@/components/feature/notification/Notification";
 import { NotificationType } from "@/lib/type";
 import { useState, useEffect } from "react";
 

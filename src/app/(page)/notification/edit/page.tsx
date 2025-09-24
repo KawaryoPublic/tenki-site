@@ -1,6 +1,6 @@
 import WhiteFrame from "@/components/ui/WhiteFrame";
 import BlueButton from "@/components/ui/Button/BlueButton";
-import NotificationEditForm from "@/components/ui/member/notification/edit/EditNotificationForm";
+import NotificationEditForm from "@/components/feature/notification/edit/EditNotificationForm";
 import { getTier } from "@/lib/action";
 import Link from "next/link";
 import { checkTier } from "@/lib/util";
