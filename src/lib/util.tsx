@@ -1,9 +1,9 @@
-import { EXECUTIVE_PASSWORD, PARENT_PASSWORD, STUDENT_PASSWORD } from "./const"
+import { TIER } from "./type";
 
-export const checkPassword = (password: string, allowParent: boolean = false, allowStudent: boolean = false) => {
-    if(password === EXECUTIVE_PASSWORD) return true;
-    if(allowParent) return password === PARENT_PASSWORD;
-    if(allowStudent) return password === STUDENT_PASSWORD;
+export const checkTier = (tier: TIER, allowParent: boolean = false, allowStudent: boolean = false) => {
+    if(tier === TIER.ADMIN) return true;
+    if(allowParent) return tier === TIER.PARENT;
+    if(allowStudent) return tier === TIER.STIDEMT;
     
     return false;
 }

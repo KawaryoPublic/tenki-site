@@ -1,3 +1,10 @@
+export enum TIER {
+    NONE = "none",
+    PARENT = "parent",
+    STIDEMT = "student",
+    ADMIN = "admin",
+}
+
 export interface Observation {
     day: number;
     morning: string;
@@ -6,7 +13,6 @@ export interface Observation {
 }
 
 export interface DateInfo {
-    id: number;
     date: string;
     plan: string;
     event: string;

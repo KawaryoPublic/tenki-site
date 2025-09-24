@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 
-export const getPassword = async () => {
+export const getTier = async () => {
     const cookieStore = await cookies();
-    return cookieStore.get("password")?.value ?? "";
+    return cookieStore.get("tier")?.value ?? "";
 }

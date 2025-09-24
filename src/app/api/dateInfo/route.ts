@@ -38,14 +38,14 @@ export async function POST(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
     try {
-        const { id, date, plan, event, holiday } = await req.json();
+        const { date, plan, event, holiday } = await req.json();
 
-        if (!id || !date || plan === undefined || event === undefined || holiday === undefined) {
+        if (!date || plan === undefined || event === undefined || holiday === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
         const updatedDateInfo = await prisma.dateInfo.update({
-            where: { id: id },
+            where: { date: date },
             data: {
                 date: date,
                 plan: plan,
@@ -62,12 +62,12 @@ export async function PUT(req: NextRequest) {
 
 export async function DELETE(req: NextRequest) {
     try {
-        const { id } = await req.json();
-        if (!id) {
+        const { date } = await req.json();
+        if (!date) {
             return NextResponse.json({ error: "Missing required field: id" }, { status: 400 });
         }
         await prisma.dateInfo.delete({
-            where: { id: id },
+            where: { date: date },
         });
         return NextResponse.json({ message: "Date info deleted successfully" }, { status: 200 });
     } catch (error) {

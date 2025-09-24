@@ -9,15 +9,12 @@ datasource db {
 
 model Observation {
   day         Int         @unique
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
   morning     String
   noon        String
   afterSchool String
 }
 
 model DateInfo {
-  id                   Int          @id @default(autoincrement())
   date                 String       @unique
   createdAt            DateTime     @default(now())
   updatedAt            DateTime     @updatedAt
@@ -44,6 +41,4 @@ model Box {
   height     Int
   top        Int
   left       Int
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
 }
