@@ -27,7 +27,7 @@ export default async function Home({ params }: { params: { day: string } }) {
                 fetch("/api/observation", {
                     method: "POST",
                     body: JSON.stringify({
-                        day: Number(day)
+                        day: Number(params.day),
                     }),
                 }).then(res => res.json())
                 .then(data => setObservation(data));

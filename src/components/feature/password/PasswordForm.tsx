@@ -20,7 +20,11 @@ export default function PasswordForm() {
                 }
 
                 const cookieStore = await cookies();
-                cookieStore.set("tier", tier, {secure: true, httpOnly: true});
+                cookieStore.set("tier", tier, {
+                    secure: true, 
+                    httpOnly: true,
+                    expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
+                });
                 
                 redirect(`/home`);
             }}
