@@ -18,7 +18,7 @@ export default async function Home({ params }: { params: { day: string } }) {
         fetch("/api/observation")
             .then(res => res.json())
             .then(data => {
-                const observation = data.find((obs: Observation) => obs.day === day);
+                const observation = data.find((obs: Observation) => obs.day === Number(params.day));
                 if (observation) {
                     setObservation(observation);
                     return;
