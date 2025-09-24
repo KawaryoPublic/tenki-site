@@ -21,7 +21,7 @@ export default function NotificationSection({ tier }: { tier: TIER }) {
 
   return (
     checkTier(tier) &&
-    <section className="flex-1 flex flex-col min-h-[50%] w-full">
+    <section className="flex-1 flex flex-col gap-3 w-full">
       <div className="w-full">
         <BlueButton>
           <Link href="/notification/edit">追加</Link>
@@ -34,11 +34,15 @@ export default function NotificationSection({ tier }: { tier: TIER }) {
             通知はありません
           </div>
         ) : 
-        notifications.map((notification, index) => (
-          <div key={index} className="mb-4">
-            <Notification notification={notification} tier={tier} />
-          </div>
-        ))
+        <div className="flex flex-col gap-4">
+          {
+            notifications.map((notification, index) => (
+              <div key={index}>
+                <Notification notification={notification} tier={tier} />
+              </div>
+            ))
+          }
+        </div>
       }
     </section>
   );
