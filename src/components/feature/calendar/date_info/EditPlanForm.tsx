@@ -12,7 +12,6 @@ export default function EditPlanForm({ info }: { info: DateInfo }) {
                 await fetch("/api/dateInfo", {
                     method: "PUT",
                     body: JSON.stringify({
-                        id: info.id,
                         date: info.date,
                         plan: formData.get("plan"),
                         event: formData.get("event"),
