@@ -8,7 +8,7 @@ export default async function Home({ params }: { params: { tab: string }}) {
   
   return (
     checkTier(tier, false, true) && 
-    <div className="w-full h-full">
+    <div className="flex-1 flex-col">
       <StorageSection tab={tab} tier={tier} />
     </div>
   )
