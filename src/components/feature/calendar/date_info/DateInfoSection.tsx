@@ -13,7 +13,7 @@ export default function DateInfoSection({ date, tier }: { date: string, tier: TI
     const [ info, setInfo ] = useState<DateInfo>({date: "", plan: "", event: "", holiday: ""});
     
     useEffect(() => {
-        fetch("/api/dateInfo")
+        fetch("/api/date_info")
             .then(res => res.json())
             .then(data => setInfo(data.find((info: DateInfo) => info.date === date)))
             .catch(err => console.error(err));
