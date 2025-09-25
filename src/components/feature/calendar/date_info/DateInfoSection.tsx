@@ -69,6 +69,6 @@ export default function DateInfoSection({ date, tier }: { date: string, tier: TI
                     </BlueButton>
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
