@@ -7,12 +7,11 @@ import { usePathname } from "next/navigation";
 
 export default function Nav({ href, title, tier, allowParent = false, allowStudent = false, allowAll = false}: { href: string, title: string, tier: TIER, allowParent?: boolean, allowStudent?: boolean, allowAll?: boolean }) {
     const pathname = usePathname();
-    console.log(pathname);
 
     return (
         allowAll ? 
         <div>
-            <Link href={href} className={`hover:bg-gray-400 ${(!pathname && href === "/") || (pathname && href.includes(pathname)) ? "border-b-3 font-bold" : ""}`}>{title}</Link>
+            <Link href={href} className={`hover:bg-gray-400 ${(pathname === "/" && pathname === href) || (pathname !== "/" && href.includes(pathname)) ? "border-b-3 font-bold" : ""}`}>{title}</Link>
         </div> :
         checkTier(tier, allowParent, allowStudent) ? 
         <Link href={href} className={`hover:bg-gray-400 ${(!pathname && href === "/") || (pathname && href.includes(pathname)) ? "border-b-3 font-bold" : ""}`}>{title}</Link> : ""
