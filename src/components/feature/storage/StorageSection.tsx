@@ -44,7 +44,7 @@ export default function StorageSection({ tab, tier }: { tab: number, tier: TIER 
   return (
     checkTier(tier) &&
     loading ? <div className="text-xl">Loading...</div> :
-    <section className="flex flex-col md:flex-row md:justify-center gap-4 md:w-full h-full pb-5">
+    <section className="flex flex-col md:flex-row md:justify-center gap-4 md:w-full max-h-full pb-5">
       <div className="flex flex-col h-full gap-4">
         <WhiteFrame>
           <nav className="flex justify-around">

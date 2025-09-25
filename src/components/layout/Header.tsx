@@ -8,9 +8,9 @@ export default async function Header() {
 
   return (
     <header className="text-gray-900 pt-4 pl-4 w-full flex items-center bg-gray-300 whitespace-nowrap">
-        <h1 className="text-xl lg:text-3xl">天文気象部</h1>
-        <nav className="flex text-base lg:text-xl space-x-3 lg:space-x-4 p-2 lg:p-4 overflow-x-auto">
-          <Nav href="/home" title="ホーム" tier={tier} allowAll />
+        <h1 className="text-xl md:text-3xl">天文気象部</h1>
+        <nav className="flex text-base md:text-xl space-x-3 lg:space-x-4 p-2 md:p-4 overflow-x-auto">
+          <Nav href="/" title="ホーム" tier={tier} allowAll />
           <Nav href="/about" title="アバウト" tier={tier} allowAll />
           <Nav href="/notification" title="告知" tier={tier} allowAll />
           <Nav href="/calendar" title="カレンダー" tier={tier} allowStudent />
@@ -19,7 +19,7 @@ export default async function Header() {
         </nav>
         <div className="ml-auto pr-4">
           <BlueButton>
-            <Link href="/password">部員はこちら</Link>
+            <Link href="/password">部</Link>
           </BlueButton>
         </div>
     </header>

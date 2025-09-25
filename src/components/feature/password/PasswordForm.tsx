@@ -26,7 +26,7 @@ export default function PasswordForm() {
                     expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
                 });
                 
-                redirect(`/home`);
+                redirect(`/`);
             }}
             className="ml-auto pr-4"
         >
