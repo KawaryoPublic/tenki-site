@@ -9,7 +9,7 @@ export default function EditPlanForm({ info }: { info: DateInfo }) {
     return (
         <Form 
             action={async (formData) => {
-                await fetch("/api/dateInfo", {
+                await fetch("/api/date_info", {
                     method: "PUT",
                     body: JSON.stringify({
                         date: info.date,

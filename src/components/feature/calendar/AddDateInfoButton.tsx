@@ -9,7 +9,7 @@ export default function AddDateInfoButton({ date, tier }: { date: Date, tier: TI
                 if(!checkTier(tier)) return;
                 if(!confirm("予定を追加しますか？")) return;
 
-                await fetch("/api/dateInfo", {
+                await fetch("/api/date_info", {
                     method: "POST",
                     body: JSON.stringify({
                         date: `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
