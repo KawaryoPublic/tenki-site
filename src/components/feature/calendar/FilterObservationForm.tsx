@@ -7,7 +7,7 @@ export default function FilterObservationForm() {
     return (
         <Form
             action={formData => redirect(`/calendar?filter=${formData.get('filter')}`)}
-            className="flex flex-row gap-2"
+            className="flex flex-row gap-1"
         >
             <DefaultTextArea
                 title="記号を入力"
