@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 
 export default function Nav({ href, title, tier, allowParent = false, allowStudent = false, allowAll = false}: { href: string, title: string, tier: TIER, allowParent?: boolean, allowStudent?: boolean, allowAll?: boolean }) {
     const pathname = usePathname();
+    console.log(pathname);
 
     return (
         allowAll ? 
