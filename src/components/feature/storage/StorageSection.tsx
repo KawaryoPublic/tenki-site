@@ -54,7 +54,12 @@ export default function StorageSection({ tab, tier }: { tab: number, tier: TIER 
           </nav>
         </WhiteFrame>
         <WhiteFrame className="h-[90%]">
-          <div className={`border aspect-[${tab === 0 ? "2/3" : tab === 1 ? "3/2" : "1/2"}] relative h-full`}>
+          <div 
+            className="border relative h-full"
+            style={{
+              aspectRatio: tab === 0 ? "2/3" : tab === 1 ? "3/2" : "1/2"
+            }}
+          >
             {
               box ? 
                 <BoxElement tab={tab} box={updateBox} /> : ""
