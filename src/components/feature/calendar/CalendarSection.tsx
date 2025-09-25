@@ -37,10 +37,10 @@ export default function CalendarSection({ filter, tier }: {filter: string, tier:
     return (
         loading ? <div className="text-lg">Loading...</div> :
         <section className="flex-1 flex flex-col gap-2">
-            <div className="w-full">
+            <div className="w-full flex justify-end">
                 <FilterObservationForm />
             </div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col lg:flex-row gap-4">
                 {
                     Array.from({ length: 3 }).map((_, i) => <Calendar key={i} index={i} tier={tier} filter={filter} dateInfo={dateInfo} observationDays={observationDays} />)
                 }
