@@ -36,42 +36,38 @@ export default function EditObservationSection({ day, tier }: { day: number, tie
     return (
         checkTier(tier) &&
         observation.day === -1 ? <div>Loading...</div> :
-        <section>
+        <section className="w-full flex flex-col gap-4">
             <h1 className="text-2xl">{DAYS[day]}曜日の観測</h1>
-            <div className="flex flex-col gap-4">
-                <div className="flex flex-1">
-                    <WhiteFrame className="flex flex-col gap-2">
-                        {
-                            checkTier(tier) ?
-                            <>
-                                <h2 className="text-xl border-b">編集</h2>
-                                <div>
-                                    <EditObservationForm observation={observation} />
-                                </div>
-                            </> :
-                            <>
-                                <h2 className="text-xl border-b">観測</h2>
-                                <div>
-                                    <p className="font-bold">朝</p>
-                                    <p className="whitespace-pre-wrap">{observation.morning ? observation.morning : "なし"}</p>
-                                </div>
-                                <div>
-                                    <p className="font-bold">昼</p>
-                                    <p className="whitespace-pre-wrap">{observation.noon ? observation.noon : "なし"}</p>
-                                </div>
-                                <div>
-                                    <p className="font-bold">放課後</p>
-                                    <p className="whitespace-pre-wrap">{observation.afterSchool ? observation.afterSchool : "なし"}</p>
-                                </div>
-                            </>
-                        }
-                    </WhiteFrame> :
-                </div>
-                <div>
-                    <BlueButton>
-                        <Link href="/calendar">日付一覧に戻る</Link>
-                    </BlueButton>
-                </div>
+            <WhiteFrame>
+                {
+                    checkTier(tier) ?
+                    <>
+                        <h2 className="text-xl border-b">編集</h2>
+                        <div>
+                            <EditObservationForm observation={observation} />
+                        </div>
+                    </> :
+                    <>
+                        <h2 className="text-xl border-b">観測</h2>
+                        <div>
+                            <p className="font-bold">朝</p>
+                            <p className="whitespace-pre-wrap">{observation.morning ? observation.morning : "なし"}</p>
+                        </div>
+                        <div>
+                            <p className="font-bold">昼</p>
+                            <p className="whitespace-pre-wrap">{observation.noon ? observation.noon : "なし"}</p>
+                        </div>
+                        <div>
+                            <p className="font-bold">放課後</p>
+                            <p className="whitespace-pre-wrap">{observation.afterSchool ? observation.afterSchool : "なし"}</p>
+                        </div>
+                    </>
+                }
+            </WhiteFrame>
+            <div>
+                <BlueButton>
+                    <Link href="/calendar">日付一覧に戻る</Link>
+                </BlueButton>
             </div>
         </section>
     );

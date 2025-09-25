@@ -28,7 +28,7 @@ export default function DateInfoSection({ date, tier }: { date: string, tier: TI
     return (
         checkTier(tier, false, true) &&
         info.date === "" ? <div className="text-lg">Loading...</div> :
-        <div className="flex flex-col gap-4">
+        <section className="w-full flex flex-col gap-4">
             <h1 className="text-2xl">{formatDate(info.date)}の詳細</h1>
             <WhiteFrame>
                 {
