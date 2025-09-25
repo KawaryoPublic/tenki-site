@@ -2,7 +2,7 @@ import { ChangeEvent } from "react";
 
 export default function DefaultTextArea({ title, name, rows, defaultValue, value, onChange, className, label = false }: { title: string, name: string, rows: number, defaultValue?: string, value?: string, onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void, className?: string, label?: boolean }) {
     return (
-        <div className="flex flex-col gap-1">
+        <div className="text-gray-900 flex flex-col gap-1">
             {
                 label ? 
                 <label htmlFor={name} className="font-bold">{title}</label> : ""
