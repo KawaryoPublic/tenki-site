@@ -44,9 +44,9 @@ export default function StorageSection({ tab, tier }: { tab: number, tier: TIER 
   return (
     checkTier(tier) &&
     loading ? <div className="text-xl">Loading...</div> :
-    <section className="flex flex-col lg:flex-row lg:justify-center gap-4 h-full pb-5">
+    <section className="flex flex-col md:flex-row md:justify-center gap-4 md:w-full h-full pb-5">
       <div className="flex flex-col h-full gap-4">
-        <WhiteFrame className="h-[10%]">
+        <WhiteFrame>
           <nav className="flex justify-around">
             <Link href="/storage/0" className={`text-lg hover:bg-gray-400 ${tab === 0 ? "border-b-3 font-bold" : ""}`}>倉庫</Link>
             <Link href="/storage/1" className={`text-lg hover:bg-gray-400 ${tab === 1 ? "border-b-3 font-bold" : ""}`}>部室</Link>
