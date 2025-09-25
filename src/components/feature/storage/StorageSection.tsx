@@ -54,7 +54,7 @@ export default function StorageSection({ tab, tier }: { tab: number, tier: TIER 
           </nav>
         </WhiteFrame>
         <WhiteFrame className="h-[90%]">
-          <div className="border aspect-[1/2] relative h-full">
+          <div className="border aspect-[1/1] relative h-full">
             {
               box ? 
                 <BoxElement tab={tab} box={updateBox} /> : ""
