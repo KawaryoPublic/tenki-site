@@ -2,6 +2,7 @@ import { getTier } from "@/lib/action";
 import Nav from "./Nav";
 import BlueButton from "@/components/ui/Button/BlueButton";
 import Link from "next/link";
+import Image from "next/image";
 
 export default async function Header() {
   const tier = await getTier();
@@ -19,7 +20,9 @@ export default async function Header() {
         </nav>
         <div className="ml-auto pr-4">
           <BlueButton>
-            <Link href="/password">部</Link>
+            <Link href="/password" className="w-full h-full">
+              <Image src="/image/sign_in.jpg" alt="部員はこちら" fill />
+            </Link>
           </BlueButton>
         </div>
     </header>
