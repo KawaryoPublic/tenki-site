@@ -21,7 +21,7 @@ export default async function Header() {
         <div className="ml-auto pr-4">
           <BlueButton>
             <Link href="/password" className="w-full h-full">
-              <Image src="/image/sign_in.jpg" alt="部員はこちら" fill />
+              <Image src="/image/sign_in.jpg" alt="部員はこちら" width={1000} height={1000} className="w-[10px] h-[10px]" />
             </Link>
           </BlueButton>
         </div>
