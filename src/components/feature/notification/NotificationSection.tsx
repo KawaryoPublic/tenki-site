@@ -1,7 +1,6 @@
 "use client";
 
 import BlueButton from "@/components/ui/Button/BlueButton";
-import { checkTier } from "@/lib/util";
 import Link from "next/link";
 import Notification from "@/components/feature/notification/Notification";
 import { NotificationType, TIER } from "@/lib/type";
@@ -20,7 +19,6 @@ export default function NotificationSection({ tier }: { tier: TIER }) {
     }, []);
 
   return (
-    checkTier(tier) &&
     <section className="flex-1 flex flex-col gap-3 w-full">
       <div className="w-full">
         <BlueButton>
