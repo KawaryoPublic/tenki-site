@@ -37,6 +37,7 @@ export default function NotificationSection({ tier }: { tier: TIER }) {
         <div className="flex flex-col gap-4">
           {
             notifications.map((notification, index) => (
+              (tier === TIER.ADMIN || notification.tier === tier) && 
               <div key={index}>
                 <Notification notification={notification} tier={tier} />
               </div>

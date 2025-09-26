@@ -1,10 +1,12 @@
 import PasswordForm from "@/components/feature/password/PasswordForm";
+import WhiteFrame from "@/components/ui/WhiteFrame";
 
 export default function Home() {
   return (
-    <main>
-      <div>パスワード</div>
-      <PasswordForm />
-    </main>
+    <div className="w-full">
+      <WhiteFrame>
+        <PasswordForm />
+      </WhiteFrame>
+    </div>
   );
 }

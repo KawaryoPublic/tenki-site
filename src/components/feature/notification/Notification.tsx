@@ -9,7 +9,7 @@ export default function Notification({ notification, tier }: { notification: Not
             <div className="flex justify-between items-center mb-2 border-b pb-2">
                 <span className="text-xl lg:text-3xl font-bold">{notification.title}</span>
                 <div className="flex items-center gap-4">
-                    <span className="text-gray-800 text-xs lg:text-sm">{`${new Date(notification.createdAt).getFullYear()}年${new Date(notification.createdAt).getMonth() + 1}月${new Date(notification.createdAt).getDate()}日`}</span>
+                    <span className="text-gray-800 text-xs lg:text-sm">{`${new Date(notification.updatedAt).getFullYear()}年${new Date(notification.createdAt).getMonth() + 1}月${new Date(notification.createdAt).getDate()}日`}</span>
                     {
                         checkTier(tier) ? <DeleteNotificationButton id={notification.id}/> : ""
                     }

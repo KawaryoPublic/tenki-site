@@ -4,6 +4,7 @@ import BlueButton from "@/components/ui/Button/BlueButton";
 import { EXECUTIVE_PASSWORD, PARENT_PASSWORD, STUDENT_PASSWORD } from "@/lib/const";
 import { cookies } from "next/headers";
 import { TIER } from "@/lib/type";
+import DefaultTextArea from "@/components/ui/Input/DefaultTextArea";
 
 export default function PasswordForm() {
     return (
@@ -28,14 +29,18 @@ export default function PasswordForm() {
                 
                 redirect(`/`);
             }}
-            className="ml-auto pr-4"
+            className="w-full flex flex-col gap-2"
         >
-            <input 
-                type="password"
+            <DefaultTextArea
+                title="パスワード" 
                 name="password" 
-                placeholder="パスワード" 
+                rows={1}
+                type="password"
+                label
             />
-            <BlueButton>決定</BlueButton>
+            <div className="pt-4">
+                <BlueButton>決定</BlueButton>
+            </div>
         </Form>
     );
 }

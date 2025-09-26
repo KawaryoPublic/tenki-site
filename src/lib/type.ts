@@ -23,7 +23,8 @@ export interface NotificationType {
     id: number;
     title: string;
     content: string;
-    createdAt: Date;
+    tier: string;
+    updatedAt: Date;
 }
 
 export interface Box {
