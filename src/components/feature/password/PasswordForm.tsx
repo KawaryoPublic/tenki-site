@@ -35,7 +35,6 @@ export default function PasswordForm() {
                 title="パスワード" 
                 name="password" 
                 rows={1}
-                type="password"
                 label
             />
             <div className="pt-4">
