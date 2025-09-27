@@ -1,6 +1,6 @@
 import { getTier } from "@/lib/action";
 import Nav from "./Nav";
-import BlueButton from "@/components/ui/Button/BlueButton";
+import Link from "next/link";
 import Image from "next/image";
 
 export default async function Header() {
