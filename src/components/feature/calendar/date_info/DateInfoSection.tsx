@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 import DeleteInfoButton from "./DeleteInfoButton";
 import EditPlanForm from "./EditPlanForm";
 import { checkTier } from "@/lib/util";
-import Link from "next/link";
 
 export default function DateInfoSection({ date, tier }: { date: string, tier: TIER }) {
     const [ info, setInfo ] = useState<DateInfo>({date: "", plan: "", event: "", holiday: ""});
@@ -64,9 +63,7 @@ export default function DateInfoSection({ date, tier }: { date: string, tier: TI
                     </div>
                 }
                 <div>
-                    <BlueButton>
-                        <Link href="/calendar" className="w-full h-full">日付一覧に戻る</Link>
-                    </BlueButton>
+                    <BlueButton href="/calendar">日付一覧に戻る</BlueButton>
                 </div>
             </div>
         </section>

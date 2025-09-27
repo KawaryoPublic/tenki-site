@@ -4,7 +4,6 @@ import WhiteFrame from "@/components/ui/WhiteFrame";
 import EditBoxForm from "./EditBoxForm";
 import { Dispatch, SetStateAction } from "react";
 import DeleteBoxButton from "./DeleteBoxButton";
-import Link from "next/link";
 import { checkTier } from "@/lib/util";
 
 export default function BoxDetail({ updateBox, setUpdateBox, tier }: { updateBox: Box, setUpdateBox: Dispatch<SetStateAction<Box>>, tier: TIER}) {
@@ -44,9 +43,7 @@ export default function BoxDetail({ updateBox, setUpdateBox, tier }: { updateBox
                     </div> : ""
                 }
                 <div>
-                    <BlueButton>
-                        <Link href={`/storage/${updateBox.tab}`} className="w-full h-full">戻る</Link>
-                    </BlueButton>
+                    <BlueButton href={`/storage/${updateBox.tab}`}>戻る</BlueButton>
                 </div>
             </div>
         </div>

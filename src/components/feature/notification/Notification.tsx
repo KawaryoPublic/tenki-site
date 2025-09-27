@@ -3,7 +3,6 @@ import WhiteFrame from "@/components/ui/WhiteFrame";
 import { checkTier } from "@/lib/util";
 import { NotificationType, TIER } from "@/lib/type";
 import BlueButton from "@/components/ui/Button/BlueButton";
-import Link from "next/link";
 
 export default function Notification({ notification, tier }: { notification: NotificationType, tier: TIER }) {
     return (
@@ -15,9 +14,7 @@ export default function Notification({ notification, tier }: { notification: Not
                     {
                         checkTier(tier) ? 
                         <>
-                            <BlueButton className="p-0">
-                                <Link href={`/notification/edit/${notification.id}`} className="w-full h-full">編集</Link>
-                            </BlueButton>
+                            <BlueButton href={`/notification/edit/${notification.id}`}>編集</BlueButton>
                             <DeleteNotificationButton id={notification.id}/>
                         </> : ""
                     }

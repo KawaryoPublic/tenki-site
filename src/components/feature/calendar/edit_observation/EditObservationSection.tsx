@@ -7,7 +7,6 @@ import EditObservationForm from "@/components/feature/calendar/edit_observation/
 import { DAYS} from "@/lib/const";
 import WhiteFrame from "@/components/ui/WhiteFrame";
 import BlueButton from "@/components/ui/Button/BlueButton";
-import Link from "next/link";
 
 export default function EditObservationSection({ day, tier }: { day: number, tier: TIER }) {
     const [observation, setObservation] = useState<Observation>({day: -1, morning: "", noon: "", afterSchool: ""});
@@ -65,9 +64,7 @@ export default function EditObservationSection({ day, tier }: { day: number, tie
                 }
             </WhiteFrame>
             <div>
-                <BlueButton>
-                    <Link href="/calendar" className="w-full h-full">日付一覧に戻る</Link>
-                </BlueButton>
+                <BlueButton href="/calendar">日付一覧に戻る</BlueButton>
             </div>
         </section>
     );

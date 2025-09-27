@@ -2,7 +2,6 @@ import WhiteFrame from "@/components/ui/WhiteFrame";
 import BlueButton from "@/components/ui/Button/BlueButton";
 import AddNotificationForm from "@/components/feature/notification/edit/AddNotificationForm";
 import { getTier } from "@/lib/action";
-import Link from "next/link";
 import { checkTier } from "@/lib/util";
 
 export default async function Home() {
@@ -16,9 +15,7 @@ export default async function Home() {
                 <AddNotificationForm />
             </WhiteFrame>
             <div>
-                <BlueButton>
-                    <Link href="/notification" className="w-full h-full">告知に戻る</Link>
-                </BlueButton>
+                <BlueButton href="/notification">告知に戻る</BlueButton>
             </div>
         </section>
     )

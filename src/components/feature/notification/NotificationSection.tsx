@@ -21,9 +21,7 @@ export default function NotificationSection({ tier }: { tier: TIER }) {
   return (
     <section className="flex-1 flex flex-col gap-3 w-full">
       <div className="w-full">
-        <BlueButton>
-          <Link href="/notification/edit" className="w-full h-full">追加</Link>
-        </BlueButton>
+        <BlueButton href="/notification/edit">追加</BlueButton>
       </div>
       {
         loading ? <div className="text-xl">Loading...</div> :
