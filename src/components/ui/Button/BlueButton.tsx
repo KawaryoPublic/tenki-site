@@ -4,7 +4,7 @@ export default function BlueButton({ children, onClick, href, className = "" }: 
     return (
         href ? 
         <Link href={href} className={`bg-blue-500 text-white text-sm md:text-base rounded hover:bg-blue-600 ${className}`}>
-            <soan className="px-2 md:px-3 py-1">{children}</soan>
+            <span className="px-2 md:px-3 py-1">{children}</span>
         </Link> :
         <button onClick={onClick} className={`bg-blue-500 text-white px-2 md:px-3 py-1 text-sm md:text-base rounded hover:bg-blue-600 ${className}`}>{children}</button>
     );
