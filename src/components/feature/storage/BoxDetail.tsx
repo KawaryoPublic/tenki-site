@@ -45,7 +45,7 @@ export default function BoxDetail({ updateBox, setUpdateBox, tier }: { updateBox
                 }
                 <div>
                     <BlueButton>
-                        <Link href={`/storage/${updateBox.tab}`}>戻る</Link>
+                        <Link href={`/storage/${updateBox.tab}`} className="w-full h-full">戻る</Link>
                     </BlueButton>
                 </div>
             </div>

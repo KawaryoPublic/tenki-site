@@ -20,8 +20,8 @@ export default async function Header() {
         </nav>
         <div className="flex-none ml-auto pr-2">
           <BlueButton className="h-full">
-            <Link href="/password">
-              <Image src="/image/sign_in.jpg" alt="部員はこちら" width={0} height={0} className="w-5 h-5 md:w-7 md:h-7" />
+            <Link href="/password" className="w-full h-full">
+              <Image src="/image/sign_in.jpg" alt="部員はこちら" width={980} height={980} className="w-5 h-5 md:w-7 md:h-7" />
             </Link>
           </BlueButton>
         </div>

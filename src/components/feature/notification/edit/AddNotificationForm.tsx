@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import DefaultTextArea from "@/components/ui/Input/DefaultTextArea";
 import { TIER } from "@/lib/type";
 
-export default function NotificationEditForm() {
+export default function AddNotificationForm() {
     return (
         <Form 
             action={async (data: FormData) => {

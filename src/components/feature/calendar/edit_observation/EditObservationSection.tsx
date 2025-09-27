@@ -66,7 +66,7 @@ export default function EditObservationSection({ day, tier }: { day: number, tie
             </WhiteFrame>
             <div>
                 <BlueButton>
-                    <Link href="/calendar">日付一覧に戻る</Link>
+                    <Link href="/calendar" className="w-full h-full">日付一覧に戻る</Link>
                 </BlueButton>
             </div>
         </section>

@@ -65,7 +65,7 @@ export default function DateInfoSection({ date, tier }: { date: string, tier: TI
                 }
                 <div>
                     <BlueButton>
-                        <Link href="/calendar">日付一覧に戻る</Link>
+                        <Link href="/calendar" className="w-full h-full">日付一覧に戻る</Link>
                     </BlueButton>
                 </div>
             </div>
