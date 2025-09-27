@@ -28,6 +28,7 @@ export default function CalendarSection({ filter, tier }: {filter: string, tier:
                                 .map((observation: Observation) => observation.day)
                         );
                     })
+                    .finally(() => setLoading(false))
                     .catch(err => console.error(err));
             })
             .finally(() => setLoading(false))

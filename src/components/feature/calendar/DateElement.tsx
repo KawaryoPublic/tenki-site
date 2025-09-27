@@ -10,7 +10,7 @@ export default function DateElement({ date, info, filter, firstDate, tier, index
                 flex flex-col items-center justify-center rounded
                 ${date.toDateString() === new Date().toDateString() ? 'border-2 border-blue-500 font-bold' : ''}
                 ${
-                    filter && info?.holiday.includes(filter) ? 'bg-yellow-200 hover:bg-yellow-300' : 
+                    filter && info?.holiday.includes(filter) ? 'bg-yellow-200 hover:bg-yellow-300 text-gray-900' : 
                     date.getMonth() === firstDate.getMonth() ? 'text-gray-900 bg-gray-200 hover:bg-gray-300' : 'bg-disabled-date text-gray-700'
                 }
             `}

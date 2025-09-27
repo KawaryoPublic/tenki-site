@@ -18,9 +18,7 @@ export default async function Header() {
           <Nav href="/file" title="ファイル" tier={tier} />
         </nav>
         <div className="flex-none ml-auto pr-2">
-          <BlueButton href="/password" className="h-full">
-            <Image src="/image/sign_in.jpg" alt="部員はこちら" width={980} height={980} className="w-5 h-5 md:w-7 md:h-7" />
-          </BlueButton>
+          <Image src="/image/sign_in.jpg" alt="部員はこちら" width={980} height={980} className="w-5 h-5 md:w-7 md:h-7" />
         </div>
     </header>
   );
