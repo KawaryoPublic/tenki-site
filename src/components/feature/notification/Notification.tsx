@@ -15,10 +15,10 @@ export default function Notification({ notification, tier }: { notification: Not
                     {
                         checkTier(tier) ? 
                         <>
-                            <DeleteNotificationButton id={notification.id}/>
-                            <BlueButton>
+                            <BlueButton className="p-0">
                                 <Link href={`/notification/edit/${notification.id}`} className="w-full h-full">編集</Link>
                             </BlueButton>
+                            <DeleteNotificationButton id={notification.id}/>
                         </> : ""
                     }
                 </div>
