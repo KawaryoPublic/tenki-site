@@ -1,7 +1,6 @@
 "use client";
 
 import BlueButton from "@/components/ui/Button/BlueButton";
-import Link from "next/link";
 import Notification from "@/components/feature/notification/Notification";
 import { NotificationType, TIER } from "@/lib/type";
 import { useState, useEffect } from "react";
@@ -20,7 +19,7 @@ export default function NotificationSection({ tier }: { tier: TIER }) {
 
   return (
     <section className="flex-1 flex flex-col gap-3 w-full">
-      <div className="w-full">
+      <div>
         <BlueButton href="/notification/edit">追加</BlueButton>
       </div>
       {
