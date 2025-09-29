@@ -7,13 +7,13 @@ import DefaultTextArea from "@/components/ui/Input/DefaultTextArea";
 import { NotificationType, TIER } from "@/lib/type";
 import { useState, useEffect } from "react";
 
-export default function EditNotificationForm({ id }: { id: string }) {
+export default function EditNotificationForm({ id }: { id: number }) {
     const [ notification, setNotification ] = useState<NotificationType>({id: -1, title: "", content: "", tier: "", updatedAt: new Date()});
 
     useEffect(() => {
         fetch("/api/notifications")
             .then(res => res.json())
-            .then(data => setNotification(data.find(notification => notification.id === Number(id))))
+            .then(data => setNotification(data.find(notification => notification.id === id)))
             .catch(err => console.error(err))
     }, []);
 
