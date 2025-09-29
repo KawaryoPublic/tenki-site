@@ -13,7 +13,7 @@ export default function EditNotificationForm({ id }: { id: number }) {
     useEffect(() => {
         fetch("/api/notifications")
             .then(res => res.json())
-            .then(data => setNotification(data.find(notification => notification.id === id)))
+            .then(data => setNotification(data.find((notification: NotificationType) => notification.id === id)))
             .catch(err => console.error(err))
     }, []);
 
