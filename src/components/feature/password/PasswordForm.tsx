@@ -14,7 +14,7 @@ export default function PasswordForm() {
                 let tier = TIER.NONE;
 
                 switch (password) {
-                    case STUDENT_PASSWORD: tier = TIER.STIDEMT; break;
+                    case STUDENT_PASSWORD: tier = TIER.STUDENT; break;
                     case PARENT_PASSWORD: tier = TIER.PARENT; break;
                     case EXECUTIVE_PASSWORD: tier = TIER.ADMIN; break;
                 }

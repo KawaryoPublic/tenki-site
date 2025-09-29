@@ -4,15 +4,27 @@ import Form from "next/form";
 import BlueButton from "@/components/ui/Button/BlueButton";
 import { redirect } from "next/navigation";
 import DefaultTextArea from "@/components/ui/Input/DefaultTextArea";
-import { TIER } from "@/lib/type";
+import { NotificationType, TIER } from "@/lib/type";
+import { useState, useEffect } from "react";
 
-export default function AddNotificationForm() {
+export default function EditNotificationForm({ id }: { id: string }) {
+    const [ notification, setNotification ] = useState<NotificationType>({id: -1, title: "", content: "", tier: "", updatedAt: new Date()});
+
+    useEffect(() => {
+        fetch("/api/notifications")
+            .then(res => res.json())
+            .then(data => setNotification(data.find(notification => notification.id === Number(id))))
+            .catch(err => console.error(err))
+    }, []);
+
     return (
+        notification.id === -1 ? <div>Loading...</div> :
         <Form 
             action={async (data: FormData) => {
                 await fetch('/api/notifications', {
-                    method: 'POST',
+                    method: 'PUT',
                     body: JSON.stringify({
+                        id: id,
                         title: data.get('title'),
                         content: data.get('content'),
                         tier: data.get('tier')
@@ -27,17 +39,19 @@ export default function AddNotificationForm() {
                 title="タイトル"
                 name="title"
                 rows={1}
+                defaultValue={notification.title}
                 label
             />
             <DefaultTextArea
                 title="内容"
                 name="content"
                 rows={3}
+                defaultValue={notification.content}
                 label
             />
             <div className="text-gray-900 flex flex-col gap-1">
                 <label htmlFor="tier" className="font-bold">対象</label>
-                <select name="tier" className="bg-gray-300 w-full border border-gray-600 rounded-md px-2 py-1 flex-1" >
+                <select name="tier" className="bg-gray-300 w-full border border-gray-600 rounded-md px-2 py-1 flex-1" defaultValue={notification.tier as TIER}>
                     <option value={TIER.NONE}>一般向け</option>
                     <option value={TIER.PARENT}>保護者向け</option>
                     <option value={TIER.STUDENT}>生徒向け</option>
@@ -45,7 +59,7 @@ export default function AddNotificationForm() {
                 </select>
             </div>
             <div className="pt-4">
-                <BlueButton>追加</BlueButton>
+                <BlueButton>変更</BlueButton>
             </div>
         </Form>
     )

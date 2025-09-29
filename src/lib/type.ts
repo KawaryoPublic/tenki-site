@@ -1,7 +1,7 @@
 export enum TIER {
     NONE = "none",
     PARENT = "parent",
-    STIDEMT = "student",
+    STUDENT = "student",
     ADMIN = "admin",
 }
 
