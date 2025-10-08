@@ -4,6 +4,7 @@ import BlueButton from "@/components/ui/Button/BlueButton";
 import Notification from "@/components/feature/notification/Notification";
 import { NotificationType, TIER } from "@/lib/type";
 import { useState, useEffect } from "react";
+import { checkTier } from "@/lib/util";
 
 export default function NotificationSection({ tier }: { tier: TIER }) {
   const [ notifications, setNotifications ] = useState<NotificationType[]>([]);
@@ -19,9 +20,12 @@ export default function NotificationSection({ tier }: { tier: TIER }) {
 
   return (
     <section className="flex-1 flex flex-col gap-3 w-full">
-      <div>
-        <BlueButton href="/notification/edit">追加</BlueButton>
-      </div>
+      {
+        checkTier(tier) && 
+        <div>
+          <BlueButton href="/notification/edit">追加</BlueButton>
+        </div>
+      }
       {
         loading ? <div className="text-xl">Loading...</div> :
         notifications.length === 0 ? (
