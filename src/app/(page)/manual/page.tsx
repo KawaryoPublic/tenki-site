@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export default function Home() {
     return (
-        <section>
-            <div className="flex flex-col gap-4">
+        <section className="w-full">
+            <div className="w-full flex flex-col gap-4">
                 <WhiteFrame className="flex flex-col gap-2">
                     <h2 className="text-xl md:text-2xl font-bold">いつもの観測</h2>
                     <nav className="pl-1 flex flex-col gap-1">
