@@ -5,10 +5,10 @@ import Link from "next/link";
 export default function Home() {
     return (
         <section className="w-full">
-            <BlueButton href="/manual/edit">追加</BlueButton>
+            <BlueButton href="/manual/edit" className="mb-3">追加</BlueButton>
             <div className="w-full flex flex-col gap-4">
                 <WhiteFrame className="flex flex-col gap-2">
-                    <div>
+                    <div className="flex items-center">
                         <h2 className="text-xl md:text-2xl font-bold">いつもの観測</h2>
                         <BlueButton href="/manual/edit" className="mr-auto">追加</BlueButton>
                     </div>
