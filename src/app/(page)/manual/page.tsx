@@ -17,24 +17,6 @@ export default function Home() {
                         <Link href="/manual">太陽観測</Link>
                     </nav>
                 </WhiteFrame>
-                <WhiteFrame className="flex flex-col gap-2">
-                    <h2 className="text-xl md:text-2xl font-bold">機材</h2>
-                    <nav className="pl-1 flex flex-col gap-1">
-                        
-                    </nav>
-                </WhiteFrame>
-                <WhiteFrame className="flex flex-col gap-2">
-                    <h2 className="text-xl md:text-2xl font-bold">合宿</h2>
-                    <nav className="pl-1 flex flex-col gap-1">
-                        
-                    </nav>
-                </WhiteFrame>
-                <WhiteFrame className="flex flex-col gap-2">
-                    <h2 className="text-xl md:text-2xl font-bold">文化祭</h2>
-                    <nav className="pl-1 flex flex-col gap-1">
-                
-                    </nav>
-                </WhiteFrame>
             </div>
         </section>
     )
