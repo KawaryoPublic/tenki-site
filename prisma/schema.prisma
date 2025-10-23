@@ -48,6 +48,7 @@ model File {
   id        Int      @id @default(autoincrement())
   title     String
   url       String
+  category  String
   tags      String[]
   tier      String
   createdAt DateTime @default(now())
