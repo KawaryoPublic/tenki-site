@@ -38,3 +38,19 @@ export interface Box {
     width: number;
     height: number;
 }
+
+enum FileCategory {
+    IMAGE = "image",
+    VIDEO = "video",
+    DOCUMENT = "document",
+    OTHER = "other",
+}
+
+export interface FileType {
+    id: number;
+    title: string;
+    url: string;
+    category: FileCategory;
+    tags: string[];
+    updatedAt: Date;
+}

@@ -1,0 +1,49 @@
+"use client";
+
+import BlueButton from "@/components/ui/Button/BlueButton";
+import { FileType, TIER } from "@/lib/type";
+import { useState, useEffect } from "react";
+import { checkTier } from "@/lib/util";
+import File from "./File";
+
+export default function FileSection({ tier }: { tier: TIER }) {
+  const [ files, setFiles ] = useState<FileType[]>([]);
+  const [ loading, setLoading ] = useState<boolean>(true);
+
+  useEffect(() => {
+    fetch("/api/files")
+      .then(res => res.json())
+      .then(data => setFiles(data))
+      .finally(() => setLoading(false))
+      .catch(err => console.error(err))
+    }, []);
+
+  return (
+    <section className="flex-1 flex flex-col gap-3 w-full">
+      {
+        checkTier(tier) && 
+        <div>
+          <BlueButton href="/notification/edit">追加</BlueButton>
+        </div>
+      }
+      {
+        loading ? <div className="text-xl">Loading...</div> :
+        notifications.length === 0 ? (
+          <div className="flex-1 flex flex-col justify-center items-center">
+            ファイルはありません
+          </div>
+        ) : 
+        <div className="flex flex-col gap-4">
+          {
+            files.map((file, index) => (
+              (!file.tier || tier === TIER.ADMIN || tier.tier === tier) && 
+              <div key={index}>
+                <File file={file} tier={tier} />
+              </div>
+            ))
+          }
+        </div>
+      }
+    </section>
+  );
+}
