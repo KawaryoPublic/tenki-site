@@ -15,6 +15,8 @@ export default async function Header() {
           <Nav href="/notification" title="告知" tier={tier} allowAll />
           <Nav href="/calendar" title="カレンダー" tier={tier} allowStudent />
           <Nav href="/storage/0" title="倉庫" tier={tier} allowStudent />
+          <Nav href="/manual" title="マニュアル" tier={tier} allowStudent />
+          <Nav href="/tool" title="便利ツール" tier={tier} allowStudent />
           <Nav href="/file" title="ファイル" tier={tier} />
         </nav>
         <div className="flex-none ml-auto pr-4">
