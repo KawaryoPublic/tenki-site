@@ -39,10 +39,11 @@ export interface Box {
     height: number;
 }
 
-enum FileCategory {
+export enum FILE_CATEGORY {
     IMAGE = "image",
     VIDEO = "video",
     DOCUMENT = "document",
+    LINK = "link",
     OTHER = "other",
 }
 
@@ -50,7 +51,7 @@ export interface FileType {
     id: number;
     title: string;
     url: string;
-    category: FileCategory;
+    category: FILE_CATEGORY;
     tags: string[];
     updatedAt: Date;
 }

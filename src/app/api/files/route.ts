@@ -16,9 +16,9 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
     try {
-        const { title, url, tags, tier } = await request.json();
+        const { title, url, category, tags, tier } = await request.json();
 
-        if (title === undefined || url === undefined || tags === undefined || tier === undefined) {
+        if (title === undefined || url === undefined || category === undefined || tags === undefined || tier === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -26,6 +26,7 @@ export async function POST(request: NextRequest) {
             data: {
                 title,
                 url,
+                category,
                 tags,
                 tier
             },
@@ -40,9 +41,9 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
     try {
-        const { id, title, url, tags, tier } = await request.json();
+        const { id, title, url, category, tags, tier } = await request.json();
 
-        if (!id || title === undefined || url === undefined || tags === undefined || tier === undefined) {
+        if (!id || title === undefined || url === undefined || category === undefined || tags === undefined || tier === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -51,6 +52,7 @@ export async function PUT(request: NextRequest) {
             data: {
                 title,
                 url,
+                category,
                 tags,
                 tier
             },

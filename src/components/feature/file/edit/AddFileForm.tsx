@@ -4,7 +4,7 @@ import Form from "next/form";
 import BlueButton from "@/components/ui/Button/BlueButton";
 import { redirect } from "next/navigation";
 import DefaultTextArea from "@/components/ui/Input/DefaultTextArea";
-import { TIER } from "@/lib/type";
+import { FILE_CATEGORY, TIER } from "@/lib/type";
 
 export default function AddFileForm() {
     return (
@@ -15,6 +15,7 @@ export default function AddFileForm() {
                     body: JSON.stringify({
                         title: data.get('title'),
                         url: data.get('url'),
+                        category: data.get('category'),
                         tags: data.get('tags'),
                         tier: data.get('tier')
                     }),
@@ -42,6 +43,16 @@ export default function AddFileForm() {
                 rows={1}
                 label
             />
+            <div className="text-gray-900 flex flex-col gap-1">
+                <label htmlFor="category" className="font-bold">カテゴリー</label>
+                <select name="category" className="bg-gray-300 w-full border border-gray-600 rounded-md px-2 py-1 flex-1" >
+                    <option value={FILE_CATEGORY.OTHER}>その他</option>
+                    <option value={FILE_CATEGORY.IMAGE}>画像</option>
+                    <option value={FILE_CATEGORY.VIDEO}>動画</option>
+                    <option value={FILE_CATEGORY.DOCUMENT}>	ドキュメント</option>
+                    <option value={FILE_CATEGORY.LINK}>リンク</option>
+                </select>
+            </div>
             <div className="text-gray-900 flex flex-col gap-1">
                 <label htmlFor="tier" className="font-bold">対象</label>
                 <select name="tier" className="bg-gray-300 w-full border border-gray-600 rounded-md px-2 py-1 flex-1" >

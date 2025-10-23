@@ -1,9 +1,9 @@
-import DeleteNotificationButton from "./DeleteNotificationButton";
 import WhiteFrame from "@/components/ui/WhiteFrame";
 import { checkTier } from "@/lib/util";
 import { FileType, TIER } from "@/lib/type";
 import BlueButton from "@/components/ui/Button/BlueButton";
 import Link from "next/link";
+import DeleteFileButton from "./DeleteFileButton";
 
 export default function File({ file, tier }: { file: FileType, tier: TIER }) {
     const updatedAt = new Date(file.updatedAt);
@@ -18,7 +18,7 @@ export default function File({ file, tier }: { file: FileType, tier: TIER }) {
                         checkTier(tier) ? 
                         <>
                             <BlueButton href={`/file/edit/${file.id}`}>編集</BlueButton>
-                            <DeleteNotificationButton id={file.id}/>
+                            <DeleteFileButton id={file.id}/>
                         </> : ""
                     }
                 </div>

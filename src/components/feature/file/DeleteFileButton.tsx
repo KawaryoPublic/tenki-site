@@ -2,7 +2,7 @@
 
 import RedButton from "@/components/ui/Button/RedButton";
 
-export default function DeleteNotificationButton({ id }: { id: number }) {
+export default function DeleteFileButton({ id }: { id: number }) {
     return (
         <RedButton
             onClick={async () => {
