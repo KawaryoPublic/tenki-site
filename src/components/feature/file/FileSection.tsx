@@ -23,12 +23,12 @@ export default function FileSection({ tier }: { tier: TIER }) {
       {
         checkTier(tier) && 
         <div>
-          <BlueButton href="/notification/edit">追加</BlueButton>
+          <BlueButton href="/file/edit">追加</BlueButton>
         </div>
       }
       {
         loading ? <div className="text-xl">Loading...</div> :
-        notifications.length === 0 ? (
+        files.length === 0 ? (
           <div className="flex-1 flex flex-col justify-center items-center">
             ファイルはありません
           </div>
