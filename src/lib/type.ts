@@ -23,7 +23,7 @@ export interface NotificationType {
     id: number;
     title: string;
     content: string;
-    tags: string[];
+    tags?: string[];
     tier: string;
     updatedAt: Date;
 }
@@ -53,7 +53,7 @@ export interface FileType {
     title: string;
     url: string;
     category: FILE_CATEGORY;
-    tags?: string[];
+    tags: string[];
     tier: TIER;
     updatedAt: Date;
 }
