@@ -28,19 +28,16 @@ export default function AddFileForm() {
             <DefaultTextArea
                 title="タイトル"
                 name="title"
-                rows={1}
                 label
             />
             <DefaultTextArea
                 title="URL"
                 name="url"
-                rows={1}
                 label
             />
             <DefaultTextArea
                 title="タグ"
                 name="tags"
-                rows={1}
                 label
             />
             <div className="text-gray-900 flex flex-col gap-1">

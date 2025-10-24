@@ -40,7 +40,6 @@ export default function EditPlanForm({ info }: { info: DateInfo }) {
                 title="休日観測" 
                 name="holiday" 
                 defaultValue={info.holiday ? info.holiday : ""} 
-                rows={1} 
                 label
             />
             <div className="pt-4">

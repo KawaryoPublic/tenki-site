@@ -79,7 +79,6 @@ export default function EditBoxForm({ updateBox, setUpdateBox }: { updateBox: Bo
             <DefaultTextArea
                 title="名前"
                 name="name"
-                rows={1}
                 value={updateBox.name}
                 onChange={e => setUpdateBox({...updateBox, name: e.target.value})}
                 label

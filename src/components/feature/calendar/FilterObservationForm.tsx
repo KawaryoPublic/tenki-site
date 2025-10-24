@@ -12,7 +12,6 @@ export default function FilterObservationForm() {
             <DefaultTextArea
                 title="記号を入力"
                 name="filter"
-                rows={1}
                 className="flex-1"
             />
             <BlueButton>検索</BlueButton>

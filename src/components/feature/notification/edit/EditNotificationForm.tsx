@@ -38,7 +38,6 @@ export default function EditNotificationForm({ id }: { id: number }) {
             <DefaultTextArea
                 title="タイトル"
                 name="title"
-                rows={1}
                 defaultValue={notification.title}
                 label
             />

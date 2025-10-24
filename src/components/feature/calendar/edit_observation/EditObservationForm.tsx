@@ -23,21 +23,18 @@ export default function EditPlanForm({ observation }: { observation: Observation
             <DefaultTextArea
                 title="朝"
                 name="morning"
-                rows={1}
                 defaultValue={observation.morning}
                 label
             />
             <DefaultTextArea
                 title="昼"
                 name="noon"
-                rows={1}
                 defaultValue={observation.noon}
                 label
             />
             <DefaultTextArea
                 title="放課後"
                 name="afterSchool"
-                rows={1}
                 defaultValue={observation.afterSchool}
                 label
             />

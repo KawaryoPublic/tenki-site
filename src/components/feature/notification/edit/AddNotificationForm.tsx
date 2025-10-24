@@ -26,7 +26,6 @@ export default function AddNotificationForm() {
             <DefaultTextArea
                 title="タイトル"
                 name="title"
-                rows={1}
                 label
             />
             <DefaultTextArea
