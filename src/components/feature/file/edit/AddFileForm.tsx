@@ -16,7 +16,7 @@ export default function AddFileForm() {
                         title: data.get('title'),
                         url: data.get('url'),
                         category: data.get('category'),
-                        tags: data.get('tags'),
+                        tags: [data.get('tags'), "仮タグ"],
                         tier: data.get('tier')
                     }),
                 }).catch(err => console.log(err));
