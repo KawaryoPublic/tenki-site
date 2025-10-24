@@ -36,7 +36,7 @@ export default function FileSection({ tier }: { tier: TIER }) {
         <div className="flex flex-col gap-4">
           {
             files.map((file, index) => (
-              (!file.tier || tier === TIER.ADMIN || tier.tier === tier) && 
+              (tier === TIER.ADMIN || file.tier === tier) && 
               <div key={index}>
                 <File file={file} tier={tier} />
               </div>

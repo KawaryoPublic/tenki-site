@@ -53,5 +53,6 @@ export interface FileType {
     url: string;
     category: FILE_CATEGORY;
     tags: string[];
+    tier: TIER;
     updatedAt: Date;
 }
