@@ -9,48 +9,48 @@ export default function DefaultTextArea({ title, name, rows = 1, defaultValue = 
             }
             {
                 type || rows === 1 ?
-                value !== undefined && onChange ? 
-                <input 
-                    name={name}
-                    type={type || "text"}
-                    placeholder={title}
-                    value={value}
-                    onChange={e => onChange(e)}
-                    className={`
-                        bg-gray-300 w-full border border-gray-600 rounded-md px-2 py-1 flex-1 ${className}
-                    `}
-                /> : 
-                <input 
-                    name={name}
-                    type={type || "text"}
-                    placeholder={title}
-                    defaultValue={defaultValue}
-                    className={`
-                        bg-gray-300 w-full border border-gray-600 rounded-md px-2 py-1 flex-1 ${className}
-                    `}
-                /> :
-                value !== undefined && onChange ? 
-                <textarea 
-                    name={name}
-                    rows={rows}
-                    cols={0}
-                    placeholder={title}
-                    value={value}
-                    onChange={e => onChange(e)}
-                    className={`
-                        bg-gray-300 w-full resize-none border border-gray-600 rounded-md px-2 py-1 flex-1 ${className}
-                    `}
-                /> : 
-                <textarea 
-                    name={name}
-                    rows={rows}
-                    cols={0}
-                    placeholder={title}
-                    defaultValue={defaultValue}
-                    className={`
-                        bg-gray-300 w-full resize-none border border-gray-600 rounded-md px-2 py-1 flex-1 ${className}
-                    `}
-                />
+                    value !== undefined && onChange ? 
+                        <input 
+                            name={name}
+                            type={type || "text"}
+                            placeholder={title}
+                            value={value}
+                            onChange={e => onChange(e)}
+                            className={`
+                                bg-gray-300 w-full border border-gray-600 rounded-md px-2 py-1 flex-1 ${className}
+                            `}
+                        /> : 
+                        <input 
+                            name={name}
+                            type={type || "text"}
+                            placeholder={title}
+                            defaultValue={defaultValue}
+                            className={`
+                                bg-gray-300 w-full border border-gray-600 rounded-md px-2 py-1 flex-1 ${className}
+                            `}
+                        /> :
+                    value !== undefined && onChange ? 
+                        <textarea 
+                            name={name}
+                            rows={rows}
+                            cols={0}
+                            placeholder={title}
+                            value={value}
+                            onChange={e => onChange(e)}
+                            className={`
+                                bg-gray-300 w-full resize-none border border-gray-600 rounded-md px-2 py-1 flex-1 ${className}
+                            `}
+                        /> : 
+                        <textarea 
+                            name={name}
+                            rows={rows}
+                            cols={0}
+                            placeholder={title}
+                            defaultValue={defaultValue}
+                            className={`
+                                bg-gray-300 w-full resize-none border border-gray-600 rounded-md px-2 py-1 flex-1 ${className}
+                            `}
+                        />
             }
             
         </div>

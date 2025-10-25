@@ -36,7 +36,7 @@ export default function EditBoxForm({ updateBox, setUpdateBox }: { updateBox: Bo
                     min={0} 
                     max={100 - updateBox.left} 
                     value={updateBox.width} 
-                    onChange={e => setUpdateBox({...updateBox, width: Number(e.target.value)})}
+                    onChange={e => setUpdateBox({...updateBox, width: Number(e.target.value || "")})}
                     className="flex-1"
                 />  
             </div>
@@ -48,7 +48,7 @@ export default function EditBoxForm({ updateBox, setUpdateBox }: { updateBox: Bo
                     min={0} 
                     max={100 - updateBox.top} 
                     value={updateBox.height} 
-                    onChange={e => setUpdateBox({...updateBox, height: Number(e.target.value)})}
+                    onChange={e => setUpdateBox({...updateBox, height: Number(e.target.value || "")})}
                     className="flex-1"
                 />  
             </div>
@@ -60,7 +60,7 @@ export default function EditBoxForm({ updateBox, setUpdateBox }: { updateBox: Bo
                     min={0} 
                     max={100 - updateBox.width} 
                     value={updateBox.left} 
-                    onChange={e => setUpdateBox({...updateBox, left: Number(e.target.value)})}
+                    onChange={e => setUpdateBox({...updateBox, left: Number(e.target.value || "")})}
                     className="flex-1"
                 />  
             </div>
@@ -72,7 +72,7 @@ export default function EditBoxForm({ updateBox, setUpdateBox }: { updateBox: Bo
                     min={0} 
                     max={100 - updateBox.height} 
                     value={updateBox.top} 
-                    onChange={e => setUpdateBox({...updateBox, top: Number(e.target.value)})}
+                    onChange={e => setUpdateBox({...updateBox, top: Number(e.target.value || "")})}
                     className="flex-1"
                 />  
             </div>
@@ -80,7 +80,7 @@ export default function EditBoxForm({ updateBox, setUpdateBox }: { updateBox: Bo
                 title="名前"
                 name="name"
                 value={updateBox.name}
-                onChange={e => setUpdateBox({...updateBox, name: e.target.value})}
+                onChange={e => setUpdateBox({...updateBox, name: e.target.value || ""})}
                 label
             />
             <DefaultTextArea
@@ -88,7 +88,7 @@ export default function EditBoxForm({ updateBox, setUpdateBox }: { updateBox: Bo
                 name="content"
                 rows={3}
                 value={updateBox.content}
-                onChange={e => setUpdateBox({...updateBox, content: e.target.value})}
+                onChange={e => setUpdateBox({...updateBox, content: e.target.value || ""})}
                 label
             />
             <div className="pt-4">
