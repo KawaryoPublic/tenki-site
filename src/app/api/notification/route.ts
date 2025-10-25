@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
     try {
         const searchParams = request.nextUrl.searchParams;
         const tier = searchParams.get("tier");
-        const id = searchParams.get("id");
+        const id = Number(searchParams.get("id"));
 
         let notifications;
 
