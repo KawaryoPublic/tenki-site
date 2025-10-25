@@ -14,11 +14,11 @@ export default function Notification({ notification, tier }: { notification: Not
                 <div className="flex items-center gap-4">
                     <span className="text-gray-800 text-xs lg:text-sm">{`${updatedAt.getFullYear() === (new Date()).getFullYear() ? "" : `${updatedAt.getFullYear()}年`}${updatedAt.getMonth() + 1}月${updatedAt.getDate()}日`}</span>
                     {
-                        checkTier(tier) ? 
+                        checkTier(tier) &&
                         <>
                             <BlueButton href={`/notification/edit/${notification.id}`}>編集</BlueButton>
                             <DeleteNotificationButton id={notification.id}/>
-                        </> : ""
+                        </>
                     }
                 </div>
             </div>

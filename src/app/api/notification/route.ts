@@ -1,11 +1,49 @@
 import { NextResponse, NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
+import { TIER } from "@/lib/type";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
     try {
-        const notifications = await prisma.notification.findMany({
-            orderBy: { createdAt: 'desc' },
-        });
+        const searchParams = request.nextUrl.searchParams;
+        const tier = searchParams.get("tier");
+        const id = searchParams.get("id");
+
+        let notifications;
+
+        if(tier) {
+            notifications = tier === TIER.ADMIN ? 
+                await prisma.notification.findMany({
+                    orderBy: { createdAt: 'desc' },
+                }) : 
+                await prisma.notification.findMany({
+                    where: {
+                        OR: [
+                            {
+                                tier: {
+                                    equals: tier
+                                }
+                            },
+                            {
+                                tier: {
+                                    equals: TIER.NONE
+                                }
+                            }
+                        ]
+                    },
+                    orderBy: { createdAt: 'desc' },
+                });
+        }
+        
+        if(id) {
+            notifications = await prisma.notification.findMany({
+                where: { id },
+                orderBy: { createdAt: 'desc' }
+            })
+        }   
+
+        if(!notifications) {
+            return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+        }
 
         return NextResponse.json(notifications, { status: 200 });
     } catch (error) {

@@ -10,7 +10,7 @@ export default function AddNotificationForm() {
     return (
         <Form 
             action={async (data: FormData) => {
-                await fetch('/api/notifications', {
+                await fetch('/api/notification', {
                     method: 'POST',
                     body: JSON.stringify({
                         title: data.get('title'),

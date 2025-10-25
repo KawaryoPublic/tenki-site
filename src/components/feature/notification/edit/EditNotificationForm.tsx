@@ -11,9 +11,9 @@ export default function EditNotificationForm({ id }: { id: number }) {
     const [ notification, setNotification ] = useState<NotificationType>({id: -1, title: "", content: "", tier: "", updatedAt: new Date()});
 
     useEffect(() => {
-        fetch("/api/notifications")
+        fetch("/api/notification?id=" + id)
             .then(res => res.json())
-            .then(data => setNotification(data.find((notification: NotificationType) => notification.id === id)))
+            .then(data => setNotification(data))
             .catch(err => console.error(err))
     }, []);
 
@@ -21,7 +21,7 @@ export default function EditNotificationForm({ id }: { id: number }) {
         notification.id === -1 ? <div>Loading...</div> :
         <Form 
             action={async (data: FormData) => {
-                await fetch('/api/notifications', {
+                await fetch('/api/notification', {
                     method: 'PUT',
                     body: JSON.stringify({
                         id: id,

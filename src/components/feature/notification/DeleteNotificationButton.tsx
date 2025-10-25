@@ -7,7 +7,7 @@ export default function DeleteNotificationButton({ id }: { id: number }) {
         <RedButton
             onClick={async () => {
                 confirm("本当に削除しますか？") &&
-                await fetch('/api/notifications', {
+                await fetch('/api/notification', {
                     method: 'DELETE',
                     body: JSON.stringify({
                         id: id,

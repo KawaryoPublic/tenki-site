@@ -11,7 +11,7 @@ export default function NotificationSection({ tier }: { tier: TIER }) {
   const [ loading, setLoading ] = useState<boolean>(true);
 
   useEffect(() => {
-    fetch("/api/notifications")
+    fetch("/api/notification?tier=" + tier)
       .then(res => res.json())
       .then(data => setNotifications(data))
       .finally(() => setLoading(false))
@@ -28,21 +28,19 @@ export default function NotificationSection({ tier }: { tier: TIER }) {
       }
       {
         loading ? <div className="text-xl">Loading...</div> :
-        notifications.length === 0 ? (
+        notifications.length === 0 ? 
           <div className="flex-1 flex flex-col justify-center items-center">
             通知はありません
+          </div> : 
+          <div className="flex flex-col gap-4">
+            {
+              notifications.map((notification, index) => (
+                <div key={index}>
+                  <Notification notification={notification} tier={tier} />
+                </div>
+              ))
+            }
           </div>
-        ) : 
-        <div className="flex flex-col gap-4">
-          {
-            notifications.map((notification, index) => (
-              (tier === TIER.ADMIN || notification.tier === tier) && 
-              <div key={index}>
-                <Notification notification={notification} tier={tier} />
-              </div>
-            ))
-          }
-        </div>
       }
     </section>
   );
