@@ -1,5 +1,5 @@
-import PasswordForm from "@/components/feature/password/PasswordForm";
-import WhiteFrame from "@/components/ui/WhiteFrame";
+import PasswordForm from "@/components/ui/password/Form/PasswordForm";
+import WhiteFrame from "@/components/ui/global/WhiteFrame";
 
 export default function Home() {
   return (

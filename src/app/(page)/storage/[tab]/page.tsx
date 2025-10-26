@@ -1,4 +1,4 @@
-import StorageSection from "@/components/feature/storage/StorageSection";
+import StorageSection from "@/components/section/storage/StorageSection";
 import { getTier } from "@/lib/action";
 import { checkTier } from "@/lib/util";
 

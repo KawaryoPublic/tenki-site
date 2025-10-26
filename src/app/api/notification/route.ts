@@ -77,9 +77,10 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
     try {
-        const { id, title, content, tier } = await request.json();
+        const id = Number(request.nextUrl.searchParams.get("id"));
+        const { title, content, tier } = await request.json();
 
-        if (!id || title === undefined || content === undefined || tier === undefined) {
+        if (isNaN(id) || title === undefined || content === undefined || tier === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 

@@ -1,4 +1,4 @@
-import NotificationSection from "@/components/feature/notification/NotificationSection";
+import NotificationSection from "@/components/section/notification/NotificationSection";
 import { getTier } from "@/lib/action";
 
 export default async function Home() {

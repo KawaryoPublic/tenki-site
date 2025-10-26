@@ -1,11 +1,11 @@
-
-import FileSection from "@/components/feature/file/FileSection";
+import FileSection from "@/components/section/file/FileSection";
 import { getTier } from "@/lib/action";
+import { checkTier } from "@/lib/util";
 
 export default async function Home() {
   const tier = await getTier();
 
   return (
-    <FileSection tier={tier} />
+    checkTier(tier) && <FileSection tier={tier} />
   );
 }
