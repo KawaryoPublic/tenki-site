@@ -26,6 +26,11 @@ export async function GET(request: NextRequest) {
                 },
             });
         }
+
+        if(!day && !filter) {
+            return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+        }
+
         return NextResponse.json(observations, { status: 200 });
     } catch (error) {
         console.error("Error fetching observation:", error);

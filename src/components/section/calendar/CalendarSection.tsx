@@ -20,11 +20,11 @@ export default function CalendarSection({ filter, tier }: {filter: string, tier:
             .then(() => {
                 if (!filter) return;
 
-                fetch("/api/observation")
+                fetch(`/api/observation?filter=${filter}`)
                     .then(res => res.json())
                     .then(data => {
                         setObservationDays(
-                            data.map(observation => observation.day)
+                            data.map((observation: Observation) => observation.day)
                         );
                     })
                     .finally(() => setLoading(false))
