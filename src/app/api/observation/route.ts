@@ -5,7 +5,7 @@ export async function GET(request: NextRequest) {
     try {
         const day = Number(await request.nextUrl.searchParams.get("day"));
 
-        const observation = day === undefined ? 
+        const observation = day ? 
             await prisma.observation.findMany() :
             await prisma.observation.findUnique({
                 where: { day: day },

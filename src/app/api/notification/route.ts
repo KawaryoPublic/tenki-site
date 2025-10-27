@@ -19,14 +19,10 @@ export async function GET(request: NextRequest) {
                     where: {
                         OR: [
                             {
-                                tier: {
-                                    equals: tier
-                                }
+                                tier: tier
                             },
                             {
-                                tier: {
-                                    equals: TIER.NONE
-                                }
+                                tier: TIER.NONE
                             }
                         ]
                     },
@@ -36,7 +32,7 @@ export async function GET(request: NextRequest) {
         
         if(id) {
             notifications = await prisma.notification.findUnique({
-                where: { id }
+                where: { id: id }
             })
         }   
 
@@ -83,7 +79,7 @@ export async function PUT(request: NextRequest) {
         }
 
         const updatedNotification = await prisma.notification.update({
-            where: { id },
+            where: { id: id },
             data: {
                 title,
                 content,
@@ -107,7 +103,7 @@ export async function DELETE(request: NextRequest) {
         }
 
         await prisma.notification.delete({
-            where: { id },
+            where: { id: id },
         });
 
         return NextResponse.json({ message: "Notification deleted" }, { status: 200 });
