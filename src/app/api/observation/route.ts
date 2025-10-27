@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
     try {
-        const day = await request.nextUrl.searchParams.get("day");
+        const day = Number(await request.nextUrl.searchParams.get("day"));
 
         const observation = day === undefined ? 
             await prisma.observation.findMany() :

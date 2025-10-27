@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
     try {
-        const { date } = request.nextUrl.searchParams.get("id");
+        const { date } = await request.nextUrl.searchParams.get("date");
 
         const dateInfo = date === undefined ? 
             await prisma.dateInfo.findMany() :
