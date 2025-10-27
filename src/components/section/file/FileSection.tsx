@@ -1,17 +1,17 @@
 "use client";
 
-import { FileType, TIER } from "@/lib/type";
+import { File, TIER } from "@/lib/type";
 import { useState, useEffect } from "react";
 import { checkTier } from "@/lib/util";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import FileUI from "@/components/ui/file/FileUI";
 
 export default function FileSection({ tier }: { tier: TIER }) {
-  const [ files, setFiles ] = useState<FileType[]>([]);
+  const [ files, setFiles ] = useState<File[]>([]);
   const [ loading, setLoading ] = useState<boolean>(true);
 
   useEffect(() => {
-    fetch("/api/files")
+    fetch(`/api/file?tier=${tier}`)
       .then(res => res.json())
       .then(data => setFiles(data))
       .finally(() => setLoading(false))
@@ -35,7 +35,6 @@ export default function FileSection({ tier }: { tier: TIER }) {
           <div className="flex flex-col gap-4">
             {
               files.map((file, index) => (
-                (tier === TIER.ADMIN || file.tier === tier) && 
                 <div key={index}>
                   <FileUI file={file} tier={tier} />
                 </div>

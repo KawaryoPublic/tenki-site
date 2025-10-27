@@ -2,7 +2,7 @@ import { DateInfo, TIER } from "@/lib/type"
 import Link from "next/link"
 import AddDateInfoButton from "./Button/AddDateInfoButton";
 
-export default function DateElement({ date, info, filter, firstDate, tier, index }: { date: Date, info?: DateInfo, filter: string, firstDate: Date, tier: TIER, index: number }) {
+export default function DateUI({ date, info, filter, firstDate, tier, index }: { date: Date, info?: DateInfo, filter: string, firstDate: Date, tier: TIER, index: number }) {
     return (
         <div 
             key={index}

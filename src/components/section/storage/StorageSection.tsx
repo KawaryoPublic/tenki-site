@@ -5,8 +5,8 @@ import { useSearchParams } from "next/navigation";
 import { Box, TIER } from "@/lib/type";
 import { checkTier } from "@/lib/util";
 import WhiteFrame from "@/components/ui/global/WhiteFrame";
-import BoxElement from "@/components/ui/storage/BoxUI";
-import BoxDetail from "@/components/ui/storage/BoxDetailUI";
+import BoxUI from "@/components/ui/storage/BoxUI";
+import BoxDetailUI from "@/components/ui/storage/BoxDetailUI";
 import AddBoxButton from "@/components/ui/storage/Button/AddBoxButton";
 import Link from "next/link";
 
@@ -61,11 +61,11 @@ export default function StorageSection({ tab, tier }: { tab: number, tier: TIER 
             }}
           >
             {
-              box && <BoxElement tab={tab} box={updateBox} />
+              box && <BoxUI tab={tab} box={updateBox} />
             }
             {
               boxes.map((box, index) => {
-                return box.id !== updateBox.id && <BoxElement key={index} tab={tab} box={box} />
+                return box.id !== updateBox.id && <BoxUI key={index} tab={tab} box={box} />
               })
             }
           </div>
@@ -74,7 +74,7 @@ export default function StorageSection({ tab, tier }: { tab: number, tier: TIER 
       {
         box ?
           <div className="lg:min-w-[40%] lg:w-[40%]">
-            <BoxDetail updateBox={updateBox} setUpdateBox={setUpdateBox} tier={tier} />
+            <BoxDetailUI updateBox={updateBox} setUpdateBox={setUpdateBox} tier={tier} />
           </div> : 
           checkTier(tier) &&
           <div className="flex justify-center items-center">

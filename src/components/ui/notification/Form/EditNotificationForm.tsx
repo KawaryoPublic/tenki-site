@@ -2,14 +2,14 @@
 
 import Form from "next/form";
 import { redirect } from "next/navigation";
-import { NotificationType, TIER } from "@/lib/type";
+import { Notification, TIER } from "@/lib/type";
 import { useState, useEffect } from "react";
 import BlueButton from "../../global/Button/BlueButton";
 import { DefaultInput } from "../../global/Input/DefaultInput";
 import { DefaultTextArea } from "../../global/Input/DefaultTextArea";
 
 export default function EditNotificationForm({ id }: { id: number }) {
-    const [ notification, setNotification ] = useState<NotificationType>({id: -1, title: "", content: "", tier: "", updatedAt: new Date()});
+    const [ notification, setNotification ] = useState<Notification>({id: -1, title: "", content: "", tier: "", updatedAt: new Date()});
 
     useEffect(() => {
         fetch(`/api/notification?id=${id}`)
@@ -22,9 +22,10 @@ export default function EditNotificationForm({ id }: { id: number }) {
         notification.id === -1 ? <div>Loading...</div> :
         <Form 
             action={async (data: FormData) => {
-                await fetch(`/api/notification?id=${id}`, {
+                await fetch("/api/notification", {
                     method: 'PUT',
                     body: JSON.stringify({
+                        id: id,
                         title: data.get("title"),
                         content: data.get("content"),
                         tier: data.get("tier"),

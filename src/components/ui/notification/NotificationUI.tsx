@@ -1,10 +1,10 @@
 import DeleteNotificationButton from "./Button/DeleteNotificationButton";
 import WhiteFrame from "@/components/ui/global/WhiteFrame";
 import { checkTier } from "@/lib/util";
-import { NotificationType, TIER } from "@/lib/type";
+import { Notification, TIER } from "@/lib/type";
 import BlueButton from "../global/Button/BlueButton";
 
-export default function Notification({ notification, tier }: { notification: NotificationType, tier: TIER }) {
+export default function NotificationUI({ notification, tier }: { notification: Notification, tier: TIER }) {
     const updatedAt = new Date(notification.updatedAt);
 
     return (

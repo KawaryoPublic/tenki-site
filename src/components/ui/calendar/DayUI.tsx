@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function DayElement({ index, day, isObservationDay }: { index: number, day: string, isObservationDay: boolean }) {
+export default function DayUI({ index, day, isObservationDay }: { index: number, day: string, isObservationDay: boolean }) {
     return (
         index === 0 ?
             <div 

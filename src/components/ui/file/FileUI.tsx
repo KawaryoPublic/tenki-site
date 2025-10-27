@@ -1,11 +1,11 @@
 import WhiteFrame from "@/components/ui/global/WhiteFrame";
 import { checkTier } from "@/lib/util";
-import { FileType, TIER } from "@/lib/type";
+import { File, TIER } from "@/lib/type";
 import Link from "next/link";
 import BlueButton from "../global/Button/BlueButton";
 import DeleteFileButton from "./Button/DeleteFileButton";
 
-export default function File({ file, tier }: { file: FileType, tier: TIER }) {
+export default function FileUI({ file, tier }: { file: File, tier: TIER }) {
     const updatedAt = new Date(file.updatedAt);
 
     return (

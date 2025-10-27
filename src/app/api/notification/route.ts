@@ -4,7 +4,7 @@ import { TIER } from "@/lib/type";
 
 export async function GET(request: NextRequest) {
     try {
-        const searchParams = request.nextUrl.searchParams;
+        const searchParams = await request.nextUrl.searchParams;
         const tier = searchParams.get("tier");
         const id = Number(searchParams.get("id"));
 
@@ -35,13 +35,12 @@ export async function GET(request: NextRequest) {
         }
         
         if(id) {
-            notifications = await prisma.notification.findMany({
-                where: { id },
-                orderBy: { createdAt: 'desc' }
+            notifications = await prisma.notification.findUnique({
+                where: { id }
             })
         }   
 
-        if(!notifications) {
+        if(!tier && !id) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -77,8 +76,7 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
     try {
-        const id = Number(request.nextUrl.searchParams.get("id"));
-        const { title, content, tier } = await request.json();
+        const { id, title, content, tier } = await request.json();
 
         if (isNaN(id) || title === undefined || content === undefined || tier === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });

@@ -4,7 +4,7 @@ import FilterObservationForm from "@/components/ui/calendar/Form/FilterObservati
 import { DateInfo, TIER } from "@/lib/type";
 import { useEffect, useState } from "react";
 import { Observation } from "@/lib/type";
-import Calendar from "@/components/ui/calendar/CalendarUI";
+import CalendarUI from "@/components/ui/calendar/CalendarUI";
 
 export default function CalendarSection({ filter, tier }: {filter: string, tier: TIER}) {
     const [observationDays, setObservationDays] = useState<Number[]>([]);
@@ -43,7 +43,7 @@ export default function CalendarSection({ filter, tier }: {filter: string, tier:
             </div>
             <div className="flex flex-col lg:flex-row gap-4 h-full">
                 {
-                    Array.from({ length: 3 }).map((_, i) => <Calendar key={i} index={i} tier={tier} filter={filter} dateInfo={dateInfo} observationDays={observationDays} />)
+                    Array.from({ length: 3 }).map((_, i) => <CalendarUI key={i} index={i} tier={tier} filter={filter} dateInfo={dateInfo} observationDays={observationDays} />)
                 }
             </div>
         </section>

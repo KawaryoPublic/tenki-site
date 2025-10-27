@@ -1,7 +1,7 @@
 import { Box } from "@/lib/type";
 import Link from "next/link";
 
-export default function BoxElement({ box, tab }: { box: Box, tab: number }) {
+export default function BoxUI({ box, tab }: { box: Box, tab: number }) {
     return (
         <div
             className="border text-sm absolute flex justify-center items-center bg-gray-200 hover:bg-gray-300"

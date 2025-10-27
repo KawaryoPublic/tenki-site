@@ -6,7 +6,7 @@ import DeleteBoxButton from "./Button/DeleteBoxButton";
 import { checkTier } from "@/lib/util";
 import BlueButton from "../global/Button/BlueButton";
 
-export default function BoxDetail({ updateBox, setUpdateBox, tier }: { updateBox: Box, setUpdateBox: Dispatch<SetStateAction<Box>>, tier: TIER}) {
+export default function BoxDetailUI({ updateBox, setUpdateBox, tier }: { updateBox: Box, setUpdateBox: Dispatch<SetStateAction<Box>>, tier: TIER}) {
     return (
         <div className="flex flex-col gap-4">
             <div className="flex flex-row">

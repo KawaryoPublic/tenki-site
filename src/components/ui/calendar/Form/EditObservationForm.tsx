@@ -3,7 +3,7 @@ import { Observation } from "@/lib/type";
 import BlueButton from "../../global/Button/BlueButton";
 import { DefaultInput } from "../../global/Input/DefaultInput";
 
-export default function EditPlanForm({ observation }: { observation: Observation }) {
+export default function EditObservationForm({ observation }: { observation: Observation }) {
     return (
         <Form 
             action={async (formData) => {

@@ -1,13 +1,13 @@
 "use client";
 
 import NotificationUI from "@/components/ui/notification/NotificationUI";
-import { NotificationType, TIER } from "@/lib/type";
+import { Notification, TIER } from "@/lib/type";
 import { useState, useEffect } from "react";
 import { checkTier } from "@/lib/util";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 
 export default function NotificationSection({ tier }: { tier: TIER }) {
-  const [ notifications, setNotifications ] = useState<NotificationType[]>([]);
+  const [ notifications, setNotifications ] = useState<Notification[]>([]);
   const [ loading, setLoading ] = useState<boolean>(true);
 
   useEffect(() => {

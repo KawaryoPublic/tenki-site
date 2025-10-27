@@ -19,7 +19,7 @@ export interface DateInfo {
     holiday: string;
 }
 
-export interface NotificationType {
+export interface Notification {
     id: number;
     title: string;
     content: string;
@@ -48,7 +48,7 @@ export enum FILE_CATEGORY {
     OTHER = "other",
 }
 
-export interface FileType {
+export interface File {
     id: number;
     title: string;
     url: string;

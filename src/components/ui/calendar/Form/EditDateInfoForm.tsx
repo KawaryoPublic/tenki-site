@@ -6,7 +6,7 @@ import { DefaultTextArea } from "../../global/Input/DefaultTextArea";
 import BlueButton from "../../global/Button/BlueButton";
 import { DefaultInput } from "../../global/Input/DefaultInput";
 
-export default function EditPlanForm({ info }: { info: DateInfo }) {
+export default function EditDateInfoForm({ info }: { info: DateInfo }) {
     return (
         <Form 
             action={async (formData) => {

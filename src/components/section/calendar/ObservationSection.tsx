@@ -13,12 +13,11 @@ export default function EditObservationSection({ day, tier }: { day: number, tie
     const [observation, setObservation] = useState<Observation>({day: -1, morning: "", noon: "", afterSchool: ""});
     
     useEffect(() => {
-        fetch("/api/observation")
+        fetch(`/api/observation?day=${day}`)
             .then(res => res.json())
             .then(data => {
-                const observation = data.find((obs: Observation) => obs.day === day);
-                if (observation) {
-                    setObservation(observation);
+                if (data) {
+                    setObservation(data);
                     return;
                 } 
 
