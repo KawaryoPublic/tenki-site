@@ -4,8 +4,8 @@ import { Box } from "@/lib/type";
 import Form from "next/form";
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import BlueButton from "../../global/Button/BlueButton";
-import { DefaultInput } from "../../global/Input/DefaultInput";
-import { DefaultTextArea } from "../../global/Input/DefaultTextArea";
+import DefaultInput from "../../global/Input/DefaultInputWithValueAndOnChange";
+import DefaultTextArea from "../../global/Input/DefaultTextAreaWithValueAndOnChange";
 
 export default function EditBoxForm({ updateBox, setUpdateBox }: { updateBox: Box, setUpdateBox: Dispatch<SetStateAction<Box>>}) {
     return (
@@ -80,14 +80,16 @@ export default function EditBoxForm({ updateBox, setUpdateBox }: { updateBox: Bo
             <DefaultInput
                 title="名前"
                 name="name"
-                valueAndOnChange={[updateBox.name, (e: ChangeEvent<HTMLInputElement>) => setUpdateBox({...updateBox, name: e.target.value})]}
+                value={updateBox.name}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setUpdateBox({...updateBox, name: e.target.value})}
                 label
             />
             <DefaultTextArea
                 title="コンテンツ"
                 name="content"
                 rows={3}
-                valueAndOnChange={[updateBox.content, (e: ChangeEvent<HTMLTextAreaElement>) => setUpdateBox({...updateBox, content: e.target.value})]}
+                value={updateBox.content}
+                onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setUpdateBox({...updateBox, content: e.target.value})}
                 label
             />
             <div className="pt-4">

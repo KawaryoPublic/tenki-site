@@ -2,9 +2,9 @@
 
 import { DateInfo } from "@/lib/type";
 import Form from "next/form";
-import { DefaultTextArea } from "../../global/Input/DefaultTextArea";
+import DefaultTextArea from "../../global/Input/DefaultTextAreaWithDefaultValue";
 import BlueButton from "../../global/Button/BlueButton";
-import { DefaultInput } from "../../global/Input/DefaultInput";
+import DefaultInput from "../../global/Input/DefaultInputWithDefaultValue";
 
 export default function EditDateInfoForm({ info }: { info: DateInfo }) {
     return (
@@ -26,21 +26,21 @@ export default function EditDateInfoForm({ info }: { info: DateInfo }) {
             <DefaultTextArea 
                 title="予定" 
                 name="plan" 
-                defaultValue={info.plan ?? ""} 
+                defaultValue={info.plan} 
                 rows={3} 
                 label
             />
             <DefaultTextArea 
                 title="イベント" 
                 name="event" 
-                defaultValue={info.event ?? ""} 
+                defaultValue={info.event} 
                 rows={3} 
                 label
             />
             <DefaultInput 
                 title="休日観測" 
                 name="holiday" 
-                defaultValue={info.holiday ?? ""} 
+                defaultValue={info.holiday} 
                 label
             />
             <div className="pt-4">

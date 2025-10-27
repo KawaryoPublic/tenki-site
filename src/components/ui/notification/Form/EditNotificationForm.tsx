@@ -5,8 +5,8 @@ import { redirect } from "next/navigation";
 import { Notification, TIER } from "@/lib/type";
 import { useState, useEffect } from "react";
 import BlueButton from "../../global/Button/BlueButton";
-import { DefaultInput } from "../../global/Input/DefaultInput";
-import { DefaultTextArea } from "../../global/Input/DefaultTextArea";
+import { DefaultInput } from "../../global/Input/DefaultInputWithDefaultValue";
+import { DefaultTextArea } from "../../global/Input/DefaultTextAreaWithDefaultValue";
 
 export default function EditNotificationForm({ id }: { id: number }) {
     const [ notification, setNotification ] = useState<Notification>({id: -1, title: "", content: "", tier: "", updatedAt: new Date()});

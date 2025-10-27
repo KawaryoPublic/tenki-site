@@ -1,7 +1,7 @@
 import Form from "next/form";
 import { Observation } from "@/lib/type";
 import BlueButton from "../../global/Button/BlueButton";
-import { DefaultInput } from "../../global/Input/DefaultInput";
+import DefaultInput from "../../global/Input/DefaultInputWithDefaultValue";
 
 export default function EditObservationForm({ observation }: { observation: Observation }) {
     return (

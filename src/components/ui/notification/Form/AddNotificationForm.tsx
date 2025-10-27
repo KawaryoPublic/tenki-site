@@ -4,8 +4,8 @@ import Form from "next/form";
 import { redirect } from "next/navigation";
 import { TIER } from "@/lib/type";
 import BlueButton from "../../global/Button/BlueButton";
-import { DefaultInput } from "../../global/Input/DefaultInput";
-import { DefaultTextArea } from "../../global/Input/DefaultTextArea";
+import DefaultInput from "../../global/Input/DefaultInputWithDefaultValue";
+import DefaultTextArea from "../../global/Input/DefaultTextAreaWithDefaultValue";
 
 export default function AddNotificationForm() {
     return (
