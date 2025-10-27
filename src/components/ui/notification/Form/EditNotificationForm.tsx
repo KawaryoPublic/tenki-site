@@ -46,7 +46,7 @@ export default function EditNotificationForm({ id }: { id: number }) {
                 title="内容"
                 name="content"
                 rows={3}
-                defaultValueOrValueAndOnChange={notification.content}
+                defaultValue={notification.content}
                 label
             />
             <div className="text-gray-900 flex flex-col gap-1">
