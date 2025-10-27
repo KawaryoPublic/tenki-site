@@ -10,7 +10,7 @@ export default function AddFileForm() {
     return (
         <Form 
             action={async (data: FormData) => {
-                await fetch('/api/files', {
+                await fetch('/api/file', {
                     method: 'POST',
                     body: JSON.stringify({
                         title: data.get('title'),

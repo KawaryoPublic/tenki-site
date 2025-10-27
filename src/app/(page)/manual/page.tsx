@@ -1,4 +1,4 @@
-import BlueButton from "@/components/ui/Button/BlueButton";
+import BlueButton from "@/components/ui/global/Button/BlueButton";
 import WhiteFrame from "@/components/ui/global/WhiteFrame";
 import Link from "next/link";
 

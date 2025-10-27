@@ -7,7 +7,7 @@ export default function DeleteFileButton({ id }: { id: number }) {
         <RedButton
             onClick={async () => {
                 confirm("本当に削除しますか？") &&
-                await fetch('/api/files', {
+                await fetch('/api/file', {
                     method: 'DELETE',
                     body: JSON.stringify({
                         id: id,
