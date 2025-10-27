@@ -3,14 +3,14 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
     try {
-        const date = await request.nextUrl.searchParams.get("date") || undefined;
+        const date = await request.nextUrl.searchParams.get("date");
 
         const dateInfo = date ? 
-            await prisma.dateInfo.findMany() :
             await prisma.dateInfo.findUnique({
                 where: { date: date },
-            });
-        
+            }) :
+            await prisma.dateInfo.findMany();
+            
         return NextResponse.json(dateInfo, { status: 200 });
     } catch (error) {
         console.error("Error fetching date info:", error);

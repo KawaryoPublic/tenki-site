@@ -24,8 +24,7 @@ export default function CalendarSection({ filter, tier }: {filter: string, tier:
                     .then(res => res.json())
                     .then(data => {
                         setObservationDays(
-                            data.filter((observation: Observation) => observation.morning.includes(filter) || observation.noon.includes(filter) || observation.afterSchool.includes(filter))
-                                .map((observation: Observation) => observation.day)
+                            data.map(observation => observation.day)
                         );
                     })
                     .finally(() => setLoading(false))
