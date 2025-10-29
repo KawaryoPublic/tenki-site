@@ -4,8 +4,8 @@ import { Box } from "@/lib/type";
 import Form from "next/form";
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import BlueButton from "../../global/Button/BlueButton";
-import DefaultInput from "../../global/Input/DefaultInputWithValueAndOnChange";
-import DefaultTextArea from "../../global/Input/DefaultTextAreaWithValueAndOnChange";
+import DefaultInput from "../../global/Form/DefaultInputWithValueAndOnChange";
+import DefaultTextArea from "../../global/Form/DefaultTextAreaWithValueAndOnChange";
 
 export default function EditBoxForm({ updateBox, setUpdateBox }: { updateBox: Box, setUpdateBox: Dispatch<SetStateAction<Box>>}) {
     return (

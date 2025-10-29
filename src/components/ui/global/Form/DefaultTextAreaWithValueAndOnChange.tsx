@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 
-export default function DefaultTextArea({ title, name, rows, value, onChange, className = "", label = false }: { title: string, name: string, rows: number, value: string, onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void, className?: string, label?: boolean }) {
+export default function DefaultTextArea({ title, name, rows, value, onChange, className = "", label = false, required = false }: { title: string, name: string, rows: number, value: string, onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void, className?: string, label?: boolean, required?: boolean }) {
     return (
         <div className="text-gray-900 flex flex-col gap-1">
             {
@@ -13,6 +13,7 @@ export default function DefaultTextArea({ title, name, rows, value, onChange, cl
                 placeholder={title}
                 value={value}
                 onChange={onChange}
+                required={required}
                 className={`
                     bg-gray-300 w-full resize-none border border-gray-600 rounded-md px-2 py-1 flex-1 ${className}
                 `}

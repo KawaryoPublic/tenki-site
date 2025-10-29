@@ -1,7 +1,7 @@
 import Form from "next/form";
 import { Observation } from "@/lib/type";
 import BlueButton from "../../global/Button/BlueButton";
-import DefaultInput from "../../global/Input/DefaultInputWithDefaultValue";
+import DefaultInput from "../../global/Form/DefaultInputWithDefaultValue";
 
 export default function EditObservationForm({ observation }: { observation: Observation }) {
     return (
@@ -24,12 +24,14 @@ export default function EditObservationForm({ observation }: { observation: Obse
                 title="朝"
                 name="morning"
                 defaultValue={observation.morning}
+                required
                 label
             />
             <DefaultInput
                 title="昼"
                 name="noon"
                 defaultValue={observation.noon}
+                required
                 label
             />
             <DefaultInput

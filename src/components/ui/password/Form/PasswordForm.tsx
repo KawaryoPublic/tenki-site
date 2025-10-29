@@ -4,7 +4,7 @@ import { EXECUTIVE_PASSWORD, PARENT_PASSWORD, STUDENT_PASSWORD } from "@/lib/con
 import { cookies } from "next/headers";
 import { TIER } from "@/lib/type";
 import BlueButton from "../../global/Button/BlueButton";
-import DefaultInput from "../../global/Input/DefaultInputWithDefaultValue";
+import DefaultInput from "../../global/Form/DefaultInputWithDefaultValue";
 
 export default function PasswordForm() {
     return (
@@ -35,6 +35,7 @@ export default function PasswordForm() {
                 name="password"
                 title="パスワード"
                 type="password"
+                required
             />
             <div className="pt-4">
                 <BlueButton>決定</BlueButton>

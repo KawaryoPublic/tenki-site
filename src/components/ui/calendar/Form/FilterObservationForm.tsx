@@ -1,7 +1,7 @@
 import Form from "next/form"
 import { redirect } from "next/navigation";
 import BlueButton from "../../global/Button/BlueButton";
-import DefaultInput from "../../global/Input/DefaultInputWithDefaultValue";
+import DefaultInput from "../../global/Form/DefaultInputWithDefaultValue";
 
 export default function FilterObservationForm() {
     return (

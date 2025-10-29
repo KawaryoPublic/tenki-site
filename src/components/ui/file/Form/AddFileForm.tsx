@@ -4,7 +4,7 @@ import Form from "next/form";
 import { redirect } from "next/navigation";
 import { FILE_CATEGORY, TIER } from "@/lib/type";
 import BlueButton from "../../global/Button/BlueButton";
-import DefaultInput from "../../global/Input/DefaultInputWithDefaultValue";
+import DefaultInput from "../../global/Form/DefaultInputWithDefaultValue";
 
 export default function AddFileForm() {
     return (
@@ -28,11 +28,13 @@ export default function AddFileForm() {
             <DefaultInput
                 title="タイトル"
                 name="title"
+                required
                 label
             />
             <DefaultInput
                 title="URL"
                 name="url"
+                required
                 label
             />
             <DefaultInput
@@ -40,16 +42,17 @@ export default function AddFileForm() {
                 name="tags"
                 label
             />
-            <div className="text-gray-900 flex flex-col gap-1">
-                <label htmlFor="category" className="font-bold">カテゴリー</label>
-                <select name="category" className="bg-gray-300 w-full border border-gray-600 rounded-md px-2 py-1 flex-1" >
-                    <option value={FILE_CATEGORY.OTHER}>その他</option>
-                    <option value={FILE_CATEGORY.IMAGE}>画像</option>
-                    <option value={FILE_CATEGORY.VIDEO}>動画</option>
-                    <option value={FILE_CATEGORY.DOCUMENT}>	ドキュメント</option>
-                    <option value={FILE_CATEGORY.LINK}>リンク</option>
-                </select>
-            </div>
+            <DefaultSelect
+                title="種類"
+                name="tier"
+                options={[
+                    { value: FILE_CATEGORY.OTHER, label: 'その他　' },
+                    { value: FILE_CATEGORY.DOCUMENT, label: 'ドキュメント  ' },
+                    { value: FILE_CATEGORY.IMAGE, label: '画像' },
+                    { value: FILE_CATEGORY.VIDEO, label: '動画' },
+                    { value: FILE_CATEGORY.LINK, label: 'リンク' },
+                ]}
+            />  
             <div className="text-gray-900 flex flex-col gap-1">
                 <label htmlFor="tier" className="font-bold">対象</label>
                 <select name="tier" className="bg-gray-300 w-full border border-gray-600 rounded-md px-2 py-1 flex-1" >
