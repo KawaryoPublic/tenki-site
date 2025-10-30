@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 挨拶? 概要？的な
+こんにちは。はい、開成学園天文気象部(=天気)のサイトです。
+そもそも作者はI ❤️ PC 的な変なパソコンやろーでもないし、そもそも全部ネットで集めた独学なので、後世の人はいい感じに解読して修正してください。
+てかREADMEファイルの書き方すら知らないので、こっちもいい感じに直して引き継いでください。
 
-## Getting Started
+# 個人的ルール?的な
+言語はtypescript、あとtailwind使ってます。ESLint?みたいなのはよくわからないけど、多分使ってない。使いたかったら勝手にどうぞ。
+GithubのURL: https://github.com/KawaryoPublic/tenki-site
+VercelのURL: https://vercel.com/kawaryos-projects/tenki-site
+サイトのURL: https://tenki-site.vercel.app/
 
-First, run the development server:
+// フォルダー系の説明
+prismaはプリズマです。つまりデータベースと会話するやつ。Vercelではneonみたいなデータベースを使ってる(あまり詳しくない)。
+publicは画像とか、動画とか、みんな見れるやつらを置いとく。
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+srcはソースコード。
+appはアプリ。
+apiはなんかサーバー系のやつら。
+pageは、まあわかるか。
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+componentsはコンポーネントを集めたやつです。
+layoutはheaderとかmain, footerとかのレイアウト(あまり使わない)。
+sectionはsection(そのまま)。
+uiはユーザーインターフェイス。globalは全部で使いそうなやつら。中でButtonとFormは個別にあります。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+libは便利になれ〜と思っておいたやつです。
+action.tsはサーバー系(2度目)。
+const.tsはコンスタント、定数です。
+prisma.tsは前述のprisma用。
+type.tsはタイプ、型。
+util.tsはユーティリティ、汎用的、困ったらとりあえずここ!
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+.gitignoreなんかGithubにプッシュしないファイルたちらしいです(つかったことない...)。パスワードとかはここなのかな。
+あとのやつらはもうほぼ使ったことないです。こやつらに詳しい人は上手く使ってやってください。
 
-## Learn More
+ああ、そういえばセクションなら-Section、ボタンなら-Button、フォームなら-Form、UIなら-UIて感じで、こやつが何なのかわかるように後ろにつけてます。
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+　　*'``・* 。
+　　|　　　　 `*。
+　,｡∩　　　　 　* 　　　もうどうにでもな～れ
++　(´･ω･`)　*｡+ﾟ
+`*｡ ヽ、　 つ *ﾟ*
+　`・+｡*・' ﾟ⊃ +ﾟ
+　☆　　 ∪~ ｡*ﾟ
+　　`・+｡*・ ﾟ

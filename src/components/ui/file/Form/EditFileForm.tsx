@@ -2,23 +2,38 @@
 
 import Form from "next/form";
 import { redirect } from "next/navigation";
-import { FILE_CATEGORY, TIER } from "@/lib/type";
+import { File, TIER } from "@/lib/type";
+import { useState, useEffect } from "react";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInputWithDefaultValue";
+import DefaultTextArea from "../../global/Form/DefaultTextAreaWithDefaultValue";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 
-export default function AddFileForm() {
+export default function EditFileForm({ id }: { id: number }) {
+    const [ file, setFile ] = useState<File | null>(null);
+    const [ loading, setLoading ] = useState(true);
+
+    useEffect(() => {
+        fetch(`/api/file?id=${id}`)
+            .then(res => res.json())
+            .then(data => setFile(data))
+            .finally(() => setLoading(false))
+            .catch(err => console.error(err))
+    }, []);
+
     return (
+        loading ? <div>Loading...</div> :
+        file ? <div>File not Found</div> :
         <Form 
             action={async (data: FormData) => {
-                await fetch('/api/file', {
-                    method: 'POST',
+                await fetch("/api/file", {
+                    method: 'PUT',
                     body: JSON.stringify({
-                        title: data.get('title'),
-                        url: data.get('url'),
-                        category: data.get('category'),
-                        tags: [data.get('tags'), "仮タグ"],
-                        tier: data.get('tier')
+                        id: id,
+                        title: data.get("title"),
+                        url: data.get("url"),
+                        tags: [data.get("tags"), "仮タグ"],
+                        tier: data.get("tier"),
                     }),
                 }).catch(err => console.log(err));
 
@@ -63,7 +78,7 @@ export default function AddFileForm() {
                 ]}
             />
             <div className="pt-4">
-                <BlueButton>追加</BlueButton>
+                <BlueButton>変更</BlueButton>
             </div>
         </Form>
     )
