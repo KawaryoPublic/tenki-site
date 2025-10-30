@@ -1,6 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
 import { TIER } from "@/lib/type";
+import { uploadFiles } from "@/lib/action";
 
 export async function GET(request: NextRequest) {
     try {
@@ -49,11 +50,14 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
     try {
-        const { title, content, tier } = await request.json();
+        const { title, content, files, tier } = await request.json();
+        console.log(files.map((file: any) => file.name));
 
-        if (title === undefined || content === undefined || tier === undefined) {
+        if (title === undefined || content === undefined || files === undefined || tier === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
+
+        const blobs = uploadFiles(files);
 
         const newNotification = await prisma.notification.create({
             data: {

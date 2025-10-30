@@ -17,6 +17,7 @@ export default function AddNotificationForm() {
                     body: JSON.stringify({
                         title: data.get('title'),
                         content: data.get('content'),
+                        files: data.get('files'),
                         tier: data.get('tier')
                     }),
                 }).catch(err => console.log(err));
@@ -35,6 +36,12 @@ export default function AddNotificationForm() {
                 title="内容"
                 name="content"
                 rows={3}
+                label
+            />
+            <DefaultInput
+                title="ファイル"
+                name="files"
+                type="file"
                 label
             />
             <DefaultSelect
