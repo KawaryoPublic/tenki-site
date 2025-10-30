@@ -13,7 +13,7 @@ export default function DayUI({ index, day, isObservationDay }: { index: number,
                     w-full h-full font-bold flex items-center justify-center rounded
                     ${isObservationDay ? 'bg-yellow-200 hover:bg-yellow-300 text-gray-900' : 'text-gray-900 bg-gray-200 hover:bg-gray-300'}
                 `}
-                    href={`/calendar/edit_observation/${index}`}
+                    href={`/calendar/observation/${index}`}
             >
                 {day}
             </Link>
