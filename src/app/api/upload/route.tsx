@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
 
         for (const file of files) {
             const blob = await put(file.name, file.data, {
-                access: 'public-read',
+                access: 'public',
             });
             blobs.push(blob);
         }
