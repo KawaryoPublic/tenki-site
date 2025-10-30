@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { Box, TIER } from "@/lib/type";
 import { checkTier } from "@/lib/util";
-import WhiteFrame from "@/components/ui/global/WhiteFrame";
+import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import BoxUI from "@/components/ui/storage/BoxUI";
 import BoxDetailUI from "@/components/ui/storage/BoxDetailUI";
 import AddBoxButton from "@/components/ui/storage/Button/AddBoxButton";
@@ -46,14 +46,14 @@ export default function StorageSection({ tab, tier }: { tab: number, tier: TIER 
     loading ? <div className="text-xl">Loading...</div> :
     <section className="flex flex-col md:flex-row md:justify-center gap-4 w-full max-h-full pb-5">
       <div className="flex flex-col h-full gap-4">
-        <WhiteFrame>
+        <WhiteFrameUI>
           <nav className="flex justify-around">
             <Link href="/storage/0" className={`text-lg hover:bg-gray-400 ${tab === 0 ? "border-b-3 font-bold" : ""}`}>倉庫</Link>
             <Link href="/storage/1" className={`text-lg hover:bg-gray-400 ${tab === 1 ? "border-b-3 font-bold" : ""}`}>部室</Link>
             <Link href="/storage/2" className={`text-lg hover:bg-gray-400 ${tab === 2 ? "border-b-3 font-bold" : ""}`}>地学</Link>
           </nav>
-        </WhiteFrame>
-        <WhiteFrame className="h-[90%]">
+        </WhiteFrameUI>
+        <WhiteFrameUI className="h-[90%]">
           <div 
             className="border relative h-full"
             style={{
@@ -69,7 +69,7 @@ export default function StorageSection({ tab, tier }: { tab: number, tier: TIER 
               })
             }
           </div>
-        </WhiteFrame>
+        </WhiteFrameUI>
       </div>
       {
         box ?

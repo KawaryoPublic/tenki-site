@@ -1,5 +1,5 @@
 import DeleteNotificationButton from "./Button/DeleteNotificationButton";
-import WhiteFrame from "@/components/ui/global/WhiteFrame";
+import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import { checkTier } from "@/lib/util";
 import { Notification, TIER } from "@/lib/type";
 import BlueButton from "../global/Button/BlueButton";
@@ -8,7 +8,7 @@ export default function NotificationUI({ notification, tier }: { notification: N
     const updatedAt = new Date(notification.updatedAt);
 
     return (
-        <WhiteFrame>
+        <WhiteFrameUI>
             <div className="flex justify-between items-center mb-2 border-b pb-2">
                 <span className="text-xl lg:text-3xl font-bold">{notification.title}</span>
                 <div className="flex items-center gap-4">
@@ -23,6 +23,6 @@ export default function NotificationUI({ notification, tier }: { notification: N
                 </div>
             </div>
             <p className="whitespace-pre-wrap text-sm lg:text-base">{notification.content}</p>
-        </WhiteFrame>
+        </WhiteFrameUI>
     );
 }

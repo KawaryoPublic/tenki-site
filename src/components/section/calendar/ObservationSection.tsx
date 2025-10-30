@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Observation, TIER } from "@/lib/type";
 import EditObservationForm from "@/components/ui/calendar/Form/EditObservationForm";
 import { DAYS } from "@/lib/const";
-import WhiteFrame from "@/components/ui/global/WhiteFrame";
+import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import ObservationDetailUI from "@/components/ui/calendar/ObservationDetailUI";
 
@@ -39,12 +39,12 @@ export default function EditObservationSection({ day, tier }: { day: number, tie
             <h1 className="text-2xl">{DAYS[day]}曜日の観測</h1>
             {
                 checkTier(tier) ? 
-                    <WhiteFrame>
+                    <WhiteFrameUI>
                         <h2 className="text-xl border-b">編集</h2>
                         <div>
                             <EditObservationForm observation={observation} />
                         </div>
-                    </WhiteFrame> :
+                    </WhiteFrameUI> :
                     <ObservationDetailUI observation={observation} />
             }
             <div>

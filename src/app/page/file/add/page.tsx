@@ -1,4 +1,4 @@
-import WhiteFrame from "@/components/ui/global/WhiteFrame";
+import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import { getTier } from "@/lib/action";
 import { checkTier } from "@/lib/util";
 import AddFileForm from "@/components/ui/file/Form/AddFileForm";
@@ -10,10 +10,10 @@ export default async function Home() {
     return (
         checkTier(tier) &&
         <section className="w-full flex flex-col gap-4">
-            <WhiteFrame className="flex flex-col gap-2">
-                <h2 className="text-xl border-b">ファイルを追加</h2>
+            <WhiteFrameUI className="flex flex-col gap-2">
+                <h2 className="text-xl border-b">ファイル情報を追加</h2>
                 <AddFileForm />
-            </WhiteFrame>
+            </WhiteFrameUI>
             <div>
                 <BlueButton href="/file">ファイルに戻る</BlueButton>
             </div>

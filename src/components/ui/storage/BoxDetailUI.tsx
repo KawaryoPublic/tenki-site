@@ -1,5 +1,5 @@
 import { Box, TIER } from "@/lib/type";
-import WhiteFrame from "@/components/ui/global/WhiteFrame";
+import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import EditBoxForm from "./Form/EditBoxForm";
 import { Dispatch, SetStateAction } from "react";
 import DeleteBoxButton from "./Button/DeleteBoxButton";
@@ -11,7 +11,7 @@ export default function BoxDetailUI({ updateBox, setUpdateBox, tier }: { updateB
         <div className="flex flex-col gap-4">
             <div className="flex flex-row">
                 <div className="flex-1">
-                    <WhiteFrame className="flex flex-col gap-2">
+                    <WhiteFrameUI className="flex flex-col gap-2">
                         {
                             checkTier(tier) ? 
                             <>
@@ -32,7 +32,7 @@ export default function BoxDetailUI({ updateBox, setUpdateBox, tier }: { updateB
                                 </div>
                             </>
                         }
-                    </WhiteFrame>
+                    </WhiteFrameUI>
                 </div>
             </div>
             <div className="flex flex-col gap-4">

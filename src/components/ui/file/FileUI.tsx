@@ -1,4 +1,4 @@
-import WhiteFrame from "@/components/ui/global/WhiteFrame";
+import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import { checkTier } from "@/lib/util";
 import { File, TIER } from "@/lib/type";
 import Link from "next/link";
@@ -9,7 +9,7 @@ export default function FileUI({ file, tier }: { file: File, tier: TIER }) {
     const updatedAt = new Date(file.updatedAt);
 
     return (
-        <WhiteFrame>
+        <WhiteFrameUI>
             <div className="flex justify-between items-center mb-2 border-b pb-2">
                 <Link className="text-xl lg:text-3xl font-bold" href={file.url}>{file.title}</Link>
                 <div className="flex items-center gap-4">
@@ -17,13 +17,13 @@ export default function FileUI({ file, tier }: { file: File, tier: TIER }) {
                     {
                         checkTier(tier) &&
                         <>
-                            <BlueButton href={`/file/edit/${file.id}`}>編集</BlueButton>
+                            <BlueButton href={`/file/${file.id}`}>編集</BlueButton>
                             <DeleteFileButton id={file.id}/>
                         </>
                     }
                 </div>
             </div>
             <div className="whitespace-pre-wrap text-sm lg:text-base">{file.category} {file.tags}</div>
-        </WhiteFrame>
+        </WhiteFrameUI>
     );
 }

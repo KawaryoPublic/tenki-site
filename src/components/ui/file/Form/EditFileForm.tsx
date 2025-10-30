@@ -6,7 +6,6 @@ import { File, FILE_CATEGORY, TIER } from "@/lib/type";
 import { useState, useEffect } from "react";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInputWithDefaultValue";
-import DefaultTextArea from "../../global/Form/DefaultTextAreaWithDefaultValue";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 
 export default function EditFileForm({ id }: { id: number }) {

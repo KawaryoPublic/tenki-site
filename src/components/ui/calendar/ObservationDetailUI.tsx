@@ -1,9 +1,9 @@
 import { Observation } from "@/lib/type";
-import WhiteFrame from "../global/WhiteFrame";
+import WhiteFrameUI from "../global/WhiteFrameUI";
 
 export default function ObservationDetailUI({ observation }: { observation: Observation }) {
     return (
-        <WhiteFrame>
+        <WhiteFrameUI>
             <h2 className="text-xl border-b">観測</h2>
             <div>
                 <p className="font-bold">朝</p>
@@ -17,6 +17,6 @@ export default function ObservationDetailUI({ observation }: { observation: Obse
                 <p className="font-bold">放課後</p>
                 <p className="whitespace-pre-wrap">{observation.afterSchool ? observation.afterSchool : "なし"}</p>
             </div>
-        </WhiteFrame>
+        </WhiteFrameUI>
     )
 }

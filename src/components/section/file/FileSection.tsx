@@ -23,7 +23,7 @@ export default function FileSection({ tier }: { tier: TIER }) {
       {
         checkTier(tier) && 
         <div>
-          <BlueButton href="/file/edit">追加</BlueButton>
+          <BlueButton href="/file/add">追加</BlueButton>
         </div>
       }
       {

@@ -1,9 +1,9 @@
 import { DateInfo } from "@/lib/type";
-import WhiteFrame from "../global/WhiteFrame";
+import WhiteFrameUI from "../global/WhiteFrameUI";
 
 export default function DateInfoDetailUI({ info }: { info: DateInfo }) {
     return (
-        <WhiteFrame>
+        <WhiteFrameUI>
             <h2 className="text-xl border-b">詳細</h2>
             <div>
                 <p className="font-bold">予定</p>
@@ -17,6 +17,6 @@ export default function DateInfoDetailUI({ info }: { info: DateInfo }) {
                 <p className="font-bold">休日観測</p>
                 <p className="whitespace-pre-wrap">{info.holiday ? info.holiday : "なし"}</p>
             </div>
-        </WhiteFrame>
+        </WhiteFrameUI>
     )
 }

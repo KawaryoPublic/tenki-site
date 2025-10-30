@@ -1,6 +1,6 @@
 "use client";
 
-import WhiteFrame from "@/components/ui/global/WhiteFrame";
+import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import { DateInfo, TIER } from "@/lib/type";
 import { useState, useEffect } from "react";
 import DeleteInfoButton from "../../ui/calendar/Button/DeleteInfoButton";
@@ -32,12 +32,12 @@ export default function DateInfoSection({ date, tier }: { date: string, tier: TI
             <h1 className="text-2xl">{formatDate(info.date)}の詳細</h1>
             {
                 checkTier(tier) ?
-                    <WhiteFrame>
+                    <WhiteFrameUI>
                         <h2 className="text-xl border-b">詳細</h2>
                         <div>
                             <EditDateInfoForm info={info} />
                         </div>
-                    </WhiteFrame> :
+                    </WhiteFrameUI> :
                     <DateInfoDetailUI info={info} />
             }
             <div className="flex flex-col gap-4">
