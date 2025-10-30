@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  api: {
+    responseLimit: false,
+  },
 };
 
 export default nextConfig;
