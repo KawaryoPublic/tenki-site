@@ -2,16 +2,21 @@ import { NextResponse, NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
 import { TIER } from "@/lib/type";
 import { uploadFiles } from "@/lib/action";
+import { checkTier } from "@/lib/util";
 
 export async function GET(request: NextRequest) {
     try {
+        const tier = request.cookies.get("tier")?.value || TIER.NONE;
         const searchParams = await request.nextUrl.searchParams;
-        const tier = searchParams.get("tier");
         const id = Number(searchParams.get("id"));
 
         let notifications;
-
-        if(tier) {
+        
+        if(id) {
+            notifications = await prisma.notification.findUnique({
+                where: { id: id }
+            })
+        } else {
             notifications = tier === TIER.ADMIN ? 
                 await prisma.notification.findMany({
                     orderBy: { createdAt: 'desc' },
@@ -30,16 +35,6 @@ export async function GET(request: NextRequest) {
                     orderBy: { createdAt: 'desc' },
                 });
         }
-        
-        if(id) {
-            notifications = await prisma.notification.findUnique({
-                where: { id: id }
-            })
-        }   
-
-        if(!tier && !id) {
-            return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
-        }
 
         return NextResponse.json(notifications, { status: 200 });
     } catch (error) {
@@ -50,6 +45,12 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
     try {
+        const currentTier = request.cookies.get("tier")?.value;
+
+        if(!checkTier(currentTier)) {
+            return NextResponse.json({ error: "Permission denied" }, { status: 403 });
+        }   
+        
         const data = await request.formData();
         const title = data.get("title") as string;
         const content = data.get("content") as string;
@@ -79,6 +80,12 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
     try {
+        const currentTier = request.cookies.get("tier")?.value;
+
+        if(!checkTier(currentTier)) {
+            return NextResponse.json({ error: "Permission denied" }, { status: 403 });
+        }
+
         const id = Number((await request.nextUrl.searchParams).get("id"));
         const data = await request.formData();
         const title = data.get("title") as string;
@@ -107,6 +114,12 @@ export async function PUT(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
     try {
+        const tier = request.cookies.get("tier")?.value;
+
+        if(!checkTier(tier)) {
+            return NextResponse.json({ error: "Permission denied" }, { status: 403 });
+        }
+
         const id = Number((await request.nextUrl.searchParams).get("id"));
 
         if (isNaN(id)) {

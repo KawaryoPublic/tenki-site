@@ -1,17 +1,27 @@
 import { NextResponse, NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
 import { TIER } from "@/lib/type";
+import { checkTier } from "@/lib/util";
 
 export async function GET(request: NextRequest) {
     try {
+        const tier = request.cookies.get("tier")?.value || TIER.NONE;
+
+        if(!checkTier(tier, false, true)) {
+            return NextResponse.json({ error: "Permission denied" }, { status: 403 });
+        }
+
         const searchParams = await request.nextUrl.searchParams;
-        const tier = searchParams.get("tier");
         const id = Number(searchParams.get("id"));
 
         let files;
         
-        if(tier) {
-            files = tier === TIER.ADMIN ? 
+        if(id) {
+            files = await prisma.file.findUnique({
+                where: { id: id }
+            })
+        } else {
+            files = checkTier(tier) ? 
                 await prisma.file.findMany({
                     orderBy: { createdAt: 'desc' },
                 }) : 
@@ -19,29 +29,15 @@ export async function GET(request: NextRequest) {
                     where: {
                         OR: [
                             {
-                                tier: {
-                                    equals: tier
-                                }
+                                tier: tier
                             },
                             {
-                                tier: {
-                                    equals: TIER.NONE
-                                }
+                                tier: TIER.NONE
                             }
                         ]
                     },
                     orderBy: { createdAt: 'desc' },
                 });
-        }
-        
-        if(id) {
-            files = await prisma.file.findUnique({
-                where: { id }
-            })
-        }   
-
-        if(!tier && !id) {
-            return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
         return NextResponse.json(files, { status: 200 });
@@ -53,6 +49,12 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
     try {
+        const currentTier = request.cookies.get("tier")?.value;
+
+        if(!checkTier(currentTier)) {
+            return NextResponse.json({ error: "Permission denied" }, { status: 403 });
+        }
+
         const data = await request.formData();
         const title = data.get("title") as string;
         const url = data.get("url") as string;
@@ -83,6 +85,12 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
     try {
+        const currentTier = request.cookies.get("tier")?.value;
+
+        if(!checkTier(currentTier)) {
+            return NextResponse.json({ error: "Permission denied" }, { status: 403 });
+        }
+
         const id = Number((await request.nextUrl.searchParams).get("id"));
         const data = await request.formData();
         const title = data.get("title") as string;
@@ -96,7 +104,7 @@ export async function PUT(request: NextRequest) {
         }
 
         const udpateFile = await prisma.file.update({
-            where: { id },
+            where: { id: id },
             data: {
                 title,
                 url,
@@ -115,6 +123,12 @@ export async function PUT(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
     try {
+        const tier = request.cookies.get("tier")?.value;
+
+        if(!checkTier(tier)) {
+            return NextResponse.json({ error: "Permission denied" }, { status: 403 });
+        }
+
         const id = Number((await request.nextUrl.searchParams).get("id"));
 
         if (!id) {
@@ -122,7 +136,7 @@ export async function DELETE(request: NextRequest) {
         }
 
         await prisma.file.delete({
-            where: { id },
+            where: { id: id },
         });
 
         return NextResponse.json({ message: "File deleted" }, { status: 200 });

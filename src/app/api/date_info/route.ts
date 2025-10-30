@@ -1,8 +1,15 @@
 import prisma from "@/lib/prisma";
+import { checkTier } from "@/lib/util";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
     try {
+        const tier = request.cookies.get("tier")?.value;
+
+        if(!checkTier(tier, false, true)) {
+            return NextResponse.json({ error: "Permission denied" }, { status: 403 });
+        }
+
         const date = await request.nextUrl.searchParams.get("date");
 
         const dateInfo = date ? 
@@ -18,9 +25,15 @@ export async function GET(request: NextRequest) {
     }
 }
 
-export async function POST(req: NextRequest) {
+export async function POST(request: NextRequest) {
     try {
-        const date = (await req.nextUrl.searchParams).get("date");
+        const tier = request.cookies.get("tier")?.value;
+
+        if(!checkTier(tier)) {
+            return NextResponse.json({ error: "Permission denied" }, { status: 403 });
+        }
+
+        const date = (await request.nextUrl.searchParams).get("date");
 
         if (!date) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -42,10 +55,16 @@ export async function POST(req: NextRequest) {
     }
 }
 
-export async function PUT(req: NextRequest) {
+export async function PUT(request: NextRequest) {
     try {
-        const date = (await req.nextUrl.searchParams).get("date");
-        const data = await req.formData();
+        const tier = request.cookies.get("tier")?.value;
+
+        if(!checkTier(tier)) {
+            return NextResponse.json({ error: "Permission denied" }, { status: 403 });
+        }
+
+        const date = (await request.nextUrl.searchParams).get("date");
+        const data = await request.formData();
         const plan = data.get("plan") as string;
         const event = data.get("event") as string;
         const holiday = data.get("holiday") as string;
@@ -70,9 +89,15 @@ export async function PUT(req: NextRequest) {
     }
 }
 
-export async function DELETE(req: NextRequest) {
+export async function DELETE(request: NextRequest) {
     try {
-        const date = (await req.nextUrl.searchParams).get("date");
+        const tier = request.cookies.get("tier")?.value;
+
+        if(!checkTier(tier)) {
+            return NextResponse.json({ error: "Permission denied" }, { status: 403 });
+        }
+
+        const date = (await request.nextUrl.searchParams).get("date");
         if (!date) {
             return NextResponse.json({ error: "Missing required field: id" }, { status: 400 });
         }

@@ -11,7 +11,7 @@ export default function FileSection({ tier }: { tier: TIER }) {
   const [ loading, setLoading ] = useState<boolean>(true);
 
   useEffect(() => {
-    fetch(`/api/file?tier=${tier}`)
+    fetch(`/api/file`)
       .then(res => res.json())
       .then(data => setFiles(data))
       .finally(() => setLoading(false))

@@ -6,7 +6,7 @@ import { TIER } from "./type";
 
 export const getTier = async () => {
     const cookieStore = await cookies();
-    return cookieStore.get("tier")?.value as TIER ?? "";
+    return cookieStore.get("tier")?.value as TIER ?? TIER.NONE;
 }
 
 export const uploadFiles = async (files: File[]) => {
