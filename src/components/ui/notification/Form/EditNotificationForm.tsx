@@ -10,27 +10,25 @@ import DefaultTextArea from "../../global/Form/DefaultTextAreaWithDefaultValue";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 
 export default function EditNotificationForm({ id }: { id: number }) {
-    const [ notification, setNotification ] = useState<Notification>({id: -1, title: "", content: "", tier: "", updatedAt: new Date()});
+    const [ notification, setNotification ] = useState<Notification | null>();
+    const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {
         fetch(`/api/notification?id=${id}`)
             .then(res => res.json())
             .then(data => setNotification(data))
+            .finally(() => setLoading(false))
             .catch(err => console.error(err))
     }, []);
 
     return (
-        notification.id === -1 ? <div>Loading...</div> :
+        loading ? <div className="text-xl flex-1 flex flex-col justify-center items-center">Loading...</div> :
+        !notification ? <div className="text-xl flex-1 flex flex-col justify-center items-center">通知が見つかりません</div> :
         <Form 
             action={async (data: FormData) => {
-                await fetch("/api/notification", {
+                await fetch(`/api/notification?id=${id}`, {
                     method: 'PUT',
-                    body: JSON.stringify({
-                        id: id,
-                        title: data.get("title"),
-                        content: data.get("content"),
-                        tier: data.get("tier"),
-                    }),
+                    body: data,
                 }).catch(err => console.log(err));
 
                 redirect(`/notification`)

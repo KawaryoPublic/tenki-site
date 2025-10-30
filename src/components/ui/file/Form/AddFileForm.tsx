@@ -13,13 +13,7 @@ export default function AddFileForm() {
             action={async (data: FormData) => {
                 await fetch('/api/file', {
                     method: 'POST',
-                    body: JSON.stringify({
-                        title: data.get('title'),
-                        url: data.get('url'),
-                        category: data.get('category'),
-                        tags: [data.get('tags'), "仮タグ"],
-                        tier: data.get('tier')
-                    }),
+                    body: data
                 }).catch(err => console.log(err));
 
                 redirect(`/file`)

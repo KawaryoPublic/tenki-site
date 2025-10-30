@@ -6,15 +6,10 @@ import DefaultInput from "../../global/Form/DefaultInputWithDefaultValue";
 export default function EditObservationForm({ observation }: { observation: Observation }) {
     return (
         <Form 
-            action={async (formData) => {
-                await fetch("/api/observation", {
+            action={async (data: FormData) => {
+                await fetch(`/api/observation?day=${observation.day}`, {
                     method: "PUT",
-                    body: JSON.stringify({
-                        day: observation.day,
-                        morning: formData.get("morning"),
-                        noon: formData.get("noon"),
-                        afterSchool: formData.get("afterSchool"),
-                    }),
+                    body: data,
                 }).then(() => window.location.reload())
                 .catch(err => console.log(err));
             }}

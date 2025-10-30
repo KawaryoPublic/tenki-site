@@ -50,8 +50,11 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
     try {
-        const { title, content, files, tier } = await request.json();
-        console.log(files.map((file: any) => file.name));
+        const data = await request.formData();
+        const title = data.get("title") as string;
+        const content = data.get("content") as string;
+        const files = data.getAll("files") as File[];
+        const tier = data.get("tier") as TIER;
 
         if (title === undefined || content === undefined || files === undefined || tier === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -76,7 +79,11 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
     try {
-        const { id, title, content, tier } = await request.json();
+        const id = Number((await request.nextUrl.searchParams).get("id"));
+        const data = await request.formData();
+        const title = data.get("title") as string;
+        const content = data.get("content") as string;
+        const tier = data.get("tier") as TIER;
 
         if (isNaN(id) || title === undefined || content === undefined || tier === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -100,9 +107,9 @@ export async function PUT(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
     try {
-        const { id } = await request.json();
+        const id = Number((await request.nextUrl.searchParams).get("id"));
 
-        if (!id) {
+        if (isNaN(id)) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 

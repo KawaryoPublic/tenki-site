@@ -38,33 +38,13 @@ export async function GET(request: NextRequest) {
     }
 }
 
-export async function POST(req: NextRequest) {
+export async function PUT(request: NextRequest) {
     try {
-        const { day, morning, noon, afterSchool } = await req.json();
-
-        if (!day) {
-            return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
-        }
-
-        const newObservation = await prisma.observation.create({
-            data: {
-                day: day,
-                morning: morning || "",
-                noon: noon || "",
-                afterSchool: afterSchool || "",
-            },
-        });
-
-        return NextResponse.json(newObservation, { status: 201 });
-    } catch (error) {
-        console.error("Error creating observation:", error);
-        return NextResponse.json({ error: "Failed to create observation" }, { status: 500 });
-    }
-}
-
-export async function PUT(req: NextRequest) {
-    try {
-        const { day, morning, noon, afterSchool } = await req.json();
+        const day = Number((await request.nextUrl.searchParams).get("day"));
+        const data = await request.formData();
+        const morning = data.get("morning") as string;
+        const noon = data.get("noon") as string;
+        const afterSchool = data.get("afterSchool") as string;
 
         if (!day || morning === undefined || noon === undefined || afterSchool === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -83,20 +63,4 @@ export async function PUT(req: NextRequest) {
         console.error("Error updating observation:", error);
         return NextResponse.json({ error: "Failed to update observation" }, { status: 500 });
     }
-}
-
-export async function DELETE(req: NextRequest) {
-    try {
-        const { day } = await req.json();
-        if (!day) {
-            return NextResponse.json({ error: "Missing required field: day" }, { status: 400 });
-        }
-        await prisma.observation.delete({
-            where: { day: day },
-        });
-        return NextResponse.json({ message: "Observation deleted successfully" }, { status: 200 });
-    } catch (error) {
-        console.error("Error deleting observation:", error);
-        return NextResponse.json({ error: "Failed to delete observation" }, { status: 500 });
-    }   
 }

@@ -10,12 +10,14 @@ import DateInfoDetailUI from "@/components/ui/calendar/DateInfoDetailUI";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 
 export default function DateInfoSection({ date, tier }: { date: string, tier: TIER }) {
-    const [ info, setInfo ] = useState<DateInfo>({date: "", plan: "", event: "", holiday: ""});
+    const [ info, setInfo ] = useState<DateInfo | null>();
+    const [ loading, setLoading ] = useState(true);
     
     useEffect(() => {
         fetch(`/api/date_info?date=${date}`)
             .then(res => res.json())
             .then(data => setInfo(data))
+            .finally(() => setLoading(false))
             .catch(err => console.error(err));
     }, []);
 
@@ -27,7 +29,8 @@ export default function DateInfoSection({ date, tier }: { date: string, tier: TI
 
     return (
         checkTier(tier, false, true) &&
-        info.date === "" ? <div className="text-lg">Loading...</div> :
+        loading ? <div className="text-xl flex-1 flex flex-col justify-center items-center">Loading...</div> :
+        !info ? <div className="text-xl flex-1 flex flex-col justify-center items-center">情報が見つかりません</div> :
         <section className="w-full flex flex-col gap-4">
             <h1 className="text-2xl">{formatDate(info.date)}の詳細</h1>
             {

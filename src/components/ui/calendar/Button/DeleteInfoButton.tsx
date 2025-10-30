@@ -7,9 +7,8 @@ export default function DeleteInfoButton({ date }: { date: string }) {
             onClick={async () => {
                 if(!confirm("本当に削除しますか？")) return;
 
-                await fetch("/api/date_info", {
+                await fetch(`/api/date_info?date=${date}`, {
                     method: "DELETE",
-                    body: JSON.stringify({ date: date }),
                 }).catch(err => console.log(err));
 
                 redirect(`/calendar`);

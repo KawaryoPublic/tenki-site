@@ -21,19 +21,13 @@ export default function EditFileForm({ id }: { id: number }) {
     }, []);
 
     return (
-        loading ? <div>Loading...</div> :
-        file ? <div>File not Found</div> :
+        loading ? <div className="text-xl flex-1 flex flex-col justify-center items-center">Loading...</div> :
+        !file ? <div className="text-xl flex-1 flex flex-col justify-center items-center">ファイル情報が見つかりませんでした。</div> :
         <Form 
             action={async (data: FormData) => {
-                await fetch("/api/file", {
+                await fetch(`/api/file?id=${id}`, {
                     method: 'PUT',
-                    body: JSON.stringify({
-                        id: id,
-                        title: data.get("title"),
-                        url: data.get("url"),
-                        tags: [data.get("tags"), "仮タグ"],
-                        tier: data.get("tier"),
-                    }),
+                    body: data,
                 }).catch(err => console.log(err));
 
                 redirect(`/file`)

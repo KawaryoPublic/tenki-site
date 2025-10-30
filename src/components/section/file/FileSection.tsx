@@ -28,19 +28,16 @@ export default function FileSection({ tier }: { tier: TIER }) {
       }
       {
         loading ? <div className="text-xl">Loading...</div> :
-        files.length === 0 ? 
-          <div className="flex-1 flex flex-col justify-center items-center">
-            ファイルはありません
-          </div> : 
-          <div className="flex flex-col gap-4">
-            {
-              files.map((file, index) => (
-                <div key={index}>
-                  <FileUI file={file} tier={tier} />
-                </div>
-              ))
-            }
-          </div>
+        files.length === 0 ? <div>ファイル情報はありません</div> : 
+        <div className="flex flex-col gap-4">
+          {
+            files.map((file, index) => (
+              <div key={index}>
+                <FileUI file={file} tier={tier} />
+              </div>
+            ))
+          }
+        </div>
       }
     </section>
   );

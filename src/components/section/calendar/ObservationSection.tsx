@@ -10,33 +10,23 @@ import BlueButton from "@/components/ui/global/Button/BlueButton";
 import ObservationDetailUI from "@/components/ui/calendar/ObservationDetailUI";
 
 export default function EditObservationSection({ day, tier }: { day: number, tier: TIER }) {
-    const [observation, setObservation] = useState<Observation>({day: -1, morning: "", noon: "", afterSchool: ""});
+    const [observation, setObservation] = useState<Observation | null>();
+    const [loading, setLoading] = useState(true);
     
     useEffect(() => {
         fetch(`/api/observation?day=${day}`)
             .then(res => res.json())
-            .then(data => {
-                if (data) {
-                    setObservation(data);
-                    return;
-                } 
-
-                fetch("/api/observation", {
-                    method: "POST",
-                    body: JSON.stringify({
-                        day: day,
-                    }),
-                }).then(res => res.json())
-                .then(data => setObservation(data));
-            })
+            .then(data => setObservation(data))
+            .finally(() => setLoading(false))
             .catch(err => console.log(err));
     }, []);
 
     return (
         checkTier(tier) &&
-        observation.day === -1 ? <div>Loading...</div> :
+        loading ? <div className="text-xl flex-1 flex flex-col justify-center items-center">Loading...</div> :
+        !observation ? <div className="text-xl flex-1 flex flex-col justify-center items-center">観測シフトが見つかりません</div> :
         <section className="w-full flex flex-col gap-4">
-            <h1 className="text-2xl">{DAYS[day]}曜日の観測</h1>
+            <h1 className="text-2xl">{DAYS[day]}曜日の観測シフト</h1>
             {
                 checkTier(tier) ? 
                     <WhiteFrameUI>

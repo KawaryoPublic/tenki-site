@@ -14,12 +14,7 @@ export default function AddNotificationForm() {
             action={async (data: FormData) => {
                 await fetch('/api/notification', {
                     method: 'POST',
-                    body: JSON.stringify({
-                        title: data.get('title'),
-                        content: data.get('content'),
-                        files: data.get('files'),
-                        tier: data.get('tier')
-                    }),
+                    body: data,
                 }).catch(err => console.log(err));
 
                 redirect(`/notification`)

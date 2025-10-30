@@ -9,15 +9,10 @@ import DefaultInput from "../../global/Form/DefaultInputWithDefaultValue";
 export default function EditDateInfoForm({ info }: { info: DateInfo }) {
     return (
         <Form 
-            action={async (formData) => {
-                await fetch("/api/date_info", {
+            action={async (data: FormData) => {
+                await fetch(`/api/date_info?date=${info.date}`, {
                     method: "PUT",
-                    body: JSON.stringify({
-                        date: info.date,
-                        plan: formData.get("plan"),
-                        event: formData.get("event"),
-                        holiday: formData.get("holiday"),
-                    }),
+                    body: data
                 }).then(() => window.location.reload())
                 .catch(err => console.log(err));
             }}

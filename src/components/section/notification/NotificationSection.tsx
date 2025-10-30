@@ -27,20 +27,17 @@ export default function NotificationSection({ tier }: { tier: TIER }) {
         </div>
       }
       {
-        loading ? <div className="text-xl">Loading...</div> :
-        notifications.length === 0 ? 
-          <div className="flex-1 flex flex-col justify-center items-center">
-            通知はありません
-          </div> : 
-          <div className="flex flex-col gap-4">
-            {
-              notifications.map((notification, index) => (
-                <div key={index}>
-                  <NotificationUI notification={notification} tier={tier} />
-                </div>
-              ))
-            }
-          </div>
+        loading ? <div className="text-xl flex-1 flex flex-col justify-center items-center">Loading...</div> :
+        notifications.length === 0 ? <div className="flex-1 flex flex-col justify-center items-center">通知はありません</div> : 
+        <div className="flex flex-col gap-4">
+          {
+            notifications.map((notification, index) => (
+              <div key={index}>
+                <NotificationUI notification={notification} tier={tier} />
+              </div>
+            ))
+          }
+        </div>
       }
     </section>
   );
