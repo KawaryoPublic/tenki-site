@@ -2,7 +2,7 @@
 
 import Form from "next/form";
 import { redirect } from "next/navigation";
-import { File, TIER } from "@/lib/type";
+import { File, FILE_CATEGORY, TIER } from "@/lib/type";
 import { useState, useEffect } from "react";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInputWithDefaultValue";
