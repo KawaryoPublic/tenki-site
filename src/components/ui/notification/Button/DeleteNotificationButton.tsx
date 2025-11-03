@@ -7,13 +7,12 @@ export default function DeleteNotificationButton({ id }: { id: number }) {
         <RedButton
             onClick={async () => {
                 confirm("本当に削除しますか？") &&
-                await fetch(`/api/notification?id=${id}`, {
+                (await fetch(`/api/notification?id=${id}`, {
                     method: 'DELETE',
                 }).then(() => window.location.reload())
-                .catch(err => console.log(err));
+                .catch(err => console.log(err)));
             }}
-        >
-            削除
-        </RedButton>
+        >削除
+                    </RedButton>
     );
 }
