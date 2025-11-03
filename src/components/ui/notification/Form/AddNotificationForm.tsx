@@ -11,17 +11,17 @@ import { uploadFiles } from "@/lib/util";
 import { useRef } from "react";
 
 export default function AddNotificationForm() {
-    const fileRef = useRef<HTMLInputElement>();
+    const fileRef = useRef<HTMLInputElement>(null);
 
     return (
         <Form 
-            action={async (data: FormData) => {
+            action={async data => {
                 await fetch('/api/notification', {
                     method: 'POST',
                     body: data,
                 }).catch(err => console.log(err));
 
-                uploadFiles(fileRef.current.files)
+                await uploadFiles(fileRef.current?.files || []);
 
                 redirect(`/notification`)
             }}

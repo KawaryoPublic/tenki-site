@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
 
-        const searchParams = await request.nextUrl.searchParams;
+        const searchParams = request.nextUrl.searchParams;
         const day = Number(searchParams.get("day"));
         const filter = searchParams.get("filter");
 
@@ -54,7 +54,7 @@ export async function PUT(request: NextRequest) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
 
-        const day = Number((await request.nextUrl.searchParams).get("day"));
+        const day = Number(request.nextUrl.searchParams.get("day"));
         const data = await request.formData();
         const morning = data.get("morning") as string;
         const noon = data.get("noon") as string;

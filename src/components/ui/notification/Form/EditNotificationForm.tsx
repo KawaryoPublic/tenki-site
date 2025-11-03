@@ -25,7 +25,7 @@ export default function EditNotificationForm({ id }: { id: number }) {
         loading ? <div className="text-xl flex-1 flex flex-col justify-center items-center">Loading...</div> :
         !notification ? <div className="text-xl flex-1 flex flex-col justify-center items-center">通知を読み込めませんでした</div> :
         <Form 
-            action={async (data: FormData) => {
+            action={async data => {
                 await fetch(`/api/notification?id=${id}`, {
                     method: 'PUT',
                     body: data,

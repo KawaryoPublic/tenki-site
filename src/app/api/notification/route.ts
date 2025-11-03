@@ -7,7 +7,7 @@ import { checkTier } from "@/lib/util";
 export async function GET(request: NextRequest) {
     try {
         const tier = await getTier(request);
-        const searchParams = await request.nextUrl.searchParams;
+        const searchParams = request.nextUrl.searchParams;
         const id = Number(searchParams.get("id"));
 
         let notifications;
@@ -84,7 +84,7 @@ export async function PUT(request: NextRequest) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
 
-        const id = Number((await request.nextUrl.searchParams).get("id"));
+        const id = Number(request.nextUrl.searchParams.get("id"));
         const data = await request.formData();
         const title = data.get("title") as string;
         const content = data.get("content") as string;
@@ -118,7 +118,7 @@ export async function DELETE(request: NextRequest) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
 
-        const id = Number((await request.nextUrl.searchParams).get("id"));
+        const id = Number(request.nextUrl.searchParams.get("id"));
 
         if (isNaN(id)) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });

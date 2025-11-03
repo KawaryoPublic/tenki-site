@@ -6,7 +6,7 @@ import DefaultInput from "../../global/Form/DefaultInput";
 export default function FilterObservationForm() {
     return (
         <Form
-            action={(formData: FormData) => redirect(`/calendar?filter=${formData.get('filter')}`)}
+            action={data => redirect(`/calendar?filter=${data.get('filter')}`)}
             className="flex flex-row gap-1"
         >
             <DefaultInput

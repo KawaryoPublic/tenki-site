@@ -6,7 +6,7 @@ import DefaultInput from "../../global/Form/DefaultInput";
 export default function EditObservationForm({ observation }: { observation: Observation }) {
     return (
         <Form 
-            action={async (data: FormData) => {
+            action={async data => {
                 await fetch(`/api/observation?day=${observation.day}`, {
                     method: "PUT",
                     body: data,

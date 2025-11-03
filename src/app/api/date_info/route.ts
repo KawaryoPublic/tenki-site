@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
 
-        const date = await request.nextUrl.searchParams.get("date");
+        const date = request.nextUrl.searchParams.get("date");
 
         const dateInfo = date ? 
             await prisma.dateInfo.findUnique({
@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
 
-        const date = (await request.nextUrl.searchParams).get("date");
+        const date = request.nextUrl.searchParams.get("date");
 
         if (!date) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -64,7 +64,7 @@ export async function PUT(request: NextRequest) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
 
-        const date = (await request.nextUrl.searchParams).get("date");
+        const date = request.nextUrl.searchParams.get("date");
         const data = await request.formData();
         const plan = data.get("plan") as string;
         const event = data.get("event") as string;
@@ -98,7 +98,7 @@ export async function DELETE(request: NextRequest) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
 
-        const date = (await request.nextUrl.searchParams).get("date");
+        const date = request.nextUrl.searchParams.get("date");
         if (!date) {
             return NextResponse.json({ error: "Missing required field: id" }, { status: 400 });
         }

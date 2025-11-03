@@ -24,7 +24,7 @@ export default function EditFileForm({ id }: { id: number }) {
         loading ? <div className="text-xl flex-1 flex flex-col justify-center items-center">Loading...</div> :
         !file ? <div className="text-xl flex-1 flex flex-col justify-center items-center">ファイルを読み込めませんでした</div> :
         <Form 
-            action={async (data: FormData) => {
+            action={async data => {
                 await fetch(`/api/file?id=${id}`, {
                     method: 'PUT',
                     body: data,

@@ -10,7 +10,7 @@ import DefaultSelect from "../../global/Form/DefaultSelect";
 export default function AddFileForm() {
     return (
         <Form 
-            action={async (data: FormData) => {
+            action={async data => {
                 await fetch('/api/file', {
                     method: 'POST',
                     body: data

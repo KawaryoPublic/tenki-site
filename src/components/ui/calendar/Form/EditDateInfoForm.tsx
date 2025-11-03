@@ -9,7 +9,7 @@ import DefaultInput from "../../global/Form/DefaultInput";
 export default function EditDateInfoForm({ info }: { info: DateInfo }) {
     return (
         <Form 
-            action={async (data: FormData) => {
+            action={async data => {
                 await fetch(`/api/date_info?date=${info.date}`, {
                     method: "PUT",
                     body: data

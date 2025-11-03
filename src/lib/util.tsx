@@ -9,7 +9,7 @@ export const checkTier = (tier: TIER, allowParent: boolean = false, allowStudent
     return false;
 }
 
-export const uploadFiles = async (files: File[]) => {
+export const uploadFiles = async (files: FileList | File[]) => {
     const blobs = [];
 
     for (const file of files) {
