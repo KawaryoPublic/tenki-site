@@ -1,10 +1,11 @@
+import { getTier } from "@/lib/action";
 import prisma from "@/lib/prisma";
 import { checkTier } from "@/lib/util";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
     try {
-        const tier = request.cookies.get("tier")?.value;
+        const tier = await getTier(request);
 
         if(!checkTier(tier, false, true)) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
@@ -47,7 +48,7 @@ export async function GET(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
     try {
-        const tier = request.cookies.get("tier")?.value;
+        const tier = await getTier(request);
 
         if(!checkTier(tier)) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });

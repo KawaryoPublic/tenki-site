@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { Notification, TIER } from "@/lib/type";
 import { useState, useEffect } from "react";
 import BlueButton from "../../global/Button/BlueButton";
-import DefaultInput from "../../global/Form/DefaultInputWithDefaultValue";
+import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultTextArea from "../../global/Form/DefaultTextAreaWithDefaultValue";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 
@@ -23,7 +23,7 @@ export default function EditNotificationForm({ id }: { id: number }) {
 
     return (
         loading ? <div className="text-xl flex-1 flex flex-col justify-center items-center">Loading...</div> :
-        !notification ? <div className="text-xl flex-1 flex flex-col justify-center items-center">通知が見つかりません</div> :
+        !notification ? <div className="text-xl flex-1 flex flex-col justify-center items-center">通知を読み込めませんでした</div> :
         <Form 
             action={async (data: FormData) => {
                 await fetch(`/api/notification?id=${id}`, {

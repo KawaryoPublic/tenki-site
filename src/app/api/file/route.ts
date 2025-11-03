@@ -2,10 +2,11 @@ import { NextResponse, NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
 import { TIER } from "@/lib/type";
 import { checkTier } from "@/lib/util";
+import { getTier } from "@/lib/action";
 
 export async function GET(request: NextRequest) {
     try {
-        const tier = request.cookies.get("tier")?.value || TIER.NONE;
+        const tier = await getTier(request);
 
         if(!checkTier(tier, false, true)) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
@@ -49,7 +50,7 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
     try {
-        const currentTier = request.cookies.get("tier")?.value;
+        const currentTier = await getTier(request);
 
         if(!checkTier(currentTier)) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
@@ -59,7 +60,7 @@ export async function POST(request: NextRequest) {
         const title = data.get("title") as string;
         const url = data.get("url") as string;
         const category = data.get("category") as string;
-        const tags = data.getAll("tags") as string[];
+        const tags = data.get("tags") as string[];
         const tier = data.get("tier") as string;
 
         if (title === undefined || url === undefined || category === undefined || tags === undefined || tier === undefined) {
@@ -85,7 +86,7 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
     try {
-        const currentTier = request.cookies.get("tier")?.value;
+        const currentTier = await getTier(request);
 
         if(!checkTier(currentTier)) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
@@ -96,7 +97,7 @@ export async function PUT(request: NextRequest) {
         const title = data.get("title") as string;
         const url = data.get("url") as string;
         const category = data.get("category") as string;
-        const tags = data.getAll("tags") as string[];
+        const tags = data.get("tags") as string[];
         const tier = data.get("tier") as string;
 
         if (!id || title === undefined || url === undefined || category === undefined || tags === undefined || tier === undefined) {
@@ -123,7 +124,7 @@ export async function PUT(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
     try {
-        const tier = request.cookies.get("tier")?.value;
+        const tier = await getTier(request);
 
         if(!checkTier(tier)) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });

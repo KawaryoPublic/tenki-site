@@ -1,12 +1,12 @@
 import { NextResponse, NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
 import { TIER } from "@/lib/type";
-import { uploadFiles } from "@/lib/action";
+import { getTier } from "@/lib/action";
 import { checkTier } from "@/lib/util";
 
 export async function GET(request: NextRequest) {
     try {
-        const tier = request.cookies.get("tier")?.value || TIER.NONE;
+        const tier = await getTier(request);
         const searchParams = await request.nextUrl.searchParams;
         const id = Number(searchParams.get("id"));
 
@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
     try {
-        const currentTier = request.cookies.get("tier")?.value;
+        const currentTier = await getTier(request);
 
         if(!checkTier(currentTier)) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
@@ -54,14 +54,12 @@ export async function POST(request: NextRequest) {
         const data = await request.formData();
         const title = data.get("title") as string;
         const content = data.get("content") as string;
-        const files = data.getAll("files") as File[];
+
         const tier = data.get("tier") as TIER;
 
-        if (title === undefined || content === undefined || files === undefined || tier === undefined) {
+        if (title === undefined || content === undefined || tier === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
-
-        const blobs = uploadFiles(files);
 
         const newNotification = await prisma.notification.create({
             data: {
@@ -80,7 +78,7 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
     try {
-        const currentTier = request.cookies.get("tier")?.value;
+        const currentTier =  await getTier(request);
 
         if(!checkTier(currentTier)) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
@@ -114,7 +112,7 @@ export async function PUT(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
     try {
-        const tier = request.cookies.get("tier")?.value;
+        const tier =  await getTier(request);
 
         if(!checkTier(tier)) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });

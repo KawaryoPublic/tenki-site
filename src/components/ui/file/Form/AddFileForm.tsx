@@ -4,7 +4,7 @@ import Form from "next/form";
 import { redirect } from "next/navigation";
 import { FILE_CATEGORY, TIER } from "@/lib/type";
 import BlueButton from "../../global/Button/BlueButton";
-import DefaultInput from "../../global/Form/DefaultInputWithDefaultValue";
+import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 
 export default function AddFileForm() {

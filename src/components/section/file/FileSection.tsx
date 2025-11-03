@@ -27,8 +27,9 @@ export default function FileSection({ tier }: { tier: TIER }) {
         </div>
       }
       {
-        loading ? <div className="text-xl">Loading...</div> :
-        files.length === 0 ? <div>ファイル情報はありません</div> : 
+        loading ? <div className="text-xl flex-1 flex flex-col justify-center items-center">Loading...</div> :
+        !files ? <div className="text-xl flex-1 flex flex-col justify-center items-center">ファイルを読み込めませんでした</div> :
+        files.length === 0 ? <div className="text-xl flex-1 flex flex-col justify-center items-center">ファイルはありません</div> : 
         <div className="flex flex-col gap-4">
           {
             files.map((file, index) => (

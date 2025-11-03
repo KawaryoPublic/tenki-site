@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { File, FILE_CATEGORY, TIER } from "@/lib/type";
 import { useState, useEffect } from "react";
 import BlueButton from "../../global/Button/BlueButton";
-import DefaultInput from "../../global/Form/DefaultInputWithDefaultValue";
+import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 
 export default function EditFileForm({ id }: { id: number }) {
@@ -22,7 +22,7 @@ export default function EditFileForm({ id }: { id: number }) {
 
     return (
         loading ? <div className="text-xl flex-1 flex flex-col justify-center items-center">Loading...</div> :
-        !file ? <div className="text-xl flex-1 flex flex-col justify-center items-center">ファイル情報が見つかりませんでした。</div> :
+        !file ? <div className="text-xl flex-1 flex flex-col justify-center items-center">ファイルを読み込めませんでした</div> :
         <Form 
             action={async (data: FormData) => {
                 await fetch(`/api/file?id=${id}`, {

@@ -1,12 +1,12 @@
 import Form from "next/form"
 import { redirect } from "next/navigation";
 import BlueButton from "../../global/Button/BlueButton";
-import DefaultInput from "../../global/Form/DefaultInputWithDefaultValue";
+import DefaultInput from "../../global/Form/DefaultInput";
 
 export default function FilterObservationForm() {
     return (
         <Form
-            action={formData => redirect(`/calendar?filter=${formData.get('filter')}`)}
+            action={(formData: FormData) => redirect(`/calendar?filter=${formData.get('filter')}`)}
             className="flex flex-row gap-1"
         >
             <DefaultInput

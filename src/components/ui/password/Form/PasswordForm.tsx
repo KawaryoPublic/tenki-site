@@ -4,7 +4,7 @@ import { EXECUTIVE_PASSWORD, PARENT_PASSWORD, STUDENT_PASSWORD } from "@/lib/con
 import { cookies } from "next/headers";
 import { TIER } from "@/lib/type";
 import BlueButton from "../../global/Button/BlueButton";
-import DefaultInput from "../../global/Form/DefaultInputWithDefaultValue";
+import DefaultInput from "../../global/Form/DefaultInput";
 
 export default function PasswordForm() {
     return (

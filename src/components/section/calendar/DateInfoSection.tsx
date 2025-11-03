@@ -30,7 +30,7 @@ export default function DateInfoSection({ date, tier }: { date: string, tier: TI
     return (
         checkTier(tier, false, true) &&
         loading ? <div className="text-xl flex-1 flex flex-col justify-center items-center">Loading...</div> :
-        !info ? <div className="text-xl flex-1 flex flex-col justify-center items-center">情報が見つかりません</div> :
+        !info ? <div className="text-xl flex-1 flex flex-col justify-center items-center">{formatDate(info.date)}の詳細を読み込めませんでした</div> :
         <section className="w-full flex flex-col gap-4">
             <h1 className="text-2xl">{formatDate(info.date)}の詳細</h1>
             {

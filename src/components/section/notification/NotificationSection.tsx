@@ -28,6 +28,7 @@ export default function NotificationSection({ tier }: { tier: TIER }) {
       }
       {
         loading ? <div className="text-xl flex-1 flex flex-col justify-center items-center">Loading...</div> :
+        !notifications ? <div className="flex-1 flex flex-col justify-center items-center">通知を読み込めませんでした</div> :
         notifications.length === 0 ? <div className="flex-1 flex flex-col justify-center items-center">通知はありません</div> : 
         <div className="flex flex-col gap-4">
           {

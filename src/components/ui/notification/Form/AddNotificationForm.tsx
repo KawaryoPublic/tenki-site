@@ -4,11 +4,15 @@ import Form from "next/form";
 import { redirect } from "next/navigation";
 import { TIER } from "@/lib/type";
 import BlueButton from "../../global/Button/BlueButton";
-import DefaultInput from "../../global/Form/DefaultInputWithDefaultValue";
+import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultTextArea from "../../global/Form/DefaultTextAreaWithDefaultValue";
 import DefaultSelect from "../../global/Form/DefaultSelect";
+import { uploadFiles } from "@/lib/util";
+import { useRef } from "react";
 
 export default function AddNotificationForm() {
+    const fileRef = useRef<HTMLInputElement>();
+
     return (
         <Form 
             action={async (data: FormData) => {
@@ -16,6 +20,8 @@ export default function AddNotificationForm() {
                     method: 'POST',
                     body: data,
                 }).catch(err => console.log(err));
+
+                uploadFiles(fileRef.current.files)
 
                 redirect(`/notification`)
             }}
@@ -37,7 +43,9 @@ export default function AddNotificationForm() {
                 title="ファイル"
                 name="files"
                 type="file"
+                ref={fileRef}
                 label
+                multiple
             />
             <DefaultSelect
                 title="対象"

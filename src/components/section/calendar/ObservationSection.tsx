@@ -24,7 +24,7 @@ export default function EditObservationSection({ day, tier }: { day: number, tie
     return (
         checkTier(tier) &&
         loading ? <div className="text-xl flex-1 flex flex-col justify-center items-center">Loading...</div> :
-        !observation ? <div className="text-xl flex-1 flex flex-col justify-center items-center">観測シフトが見つかりません</div> :
+        !observation ? <div className="text-xl flex-1 flex flex-col justify-center items-center">観測シフトを読み込めませんでした</div> :
         <section className="w-full flex flex-col gap-4">
             <h1 className="text-2xl">{DAYS[day]}曜日の観測シフト</h1>
             {

@@ -4,7 +4,7 @@ import { DateInfo } from "@/lib/type";
 import Form from "next/form";
 import DefaultTextArea from "../../global/Form/DefaultTextAreaWithDefaultValue";
 import BlueButton from "../../global/Button/BlueButton";
-import DefaultInput from "../../global/Form/DefaultInputWithDefaultValue";
+import DefaultInput from "../../global/Form/DefaultInput";
 
 export default function EditDateInfoForm({ info }: { info: DateInfo }) {
     return (

@@ -1,23 +1,10 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { put } from "@vercel/blob";
+import { NextRequest } from "next/server"; 
 import { TIER } from "./type";
 
-export const getTier = async () => {
-    const cookieStore = await cookies();
-    return cookieStore.get("tier")?.value as TIER ?? TIER.NONE;
-}
-
-export const uploadFiles = async (files: File[]) => {
-    const blobs = [];
-
-    for (const file of files) {
-        const blob = await put(file.name, file, {
-            access: 'public',
-        });
-        blobs.push(blob);
-    }
-
-    return blobs;
+export const getTier = async (request?: NextRequest) => {
+    const cookieStore = request ? (await request.cookies) : (await cookies());
+    return cookieStore.get("tier")?.value as TIER || TIER.NONE;
 }
