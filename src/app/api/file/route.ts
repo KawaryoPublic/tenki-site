@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
         const title = data.get("title") as string;
         const url = data.get("url") as string;
         const category = data.get("category") as string;
-        const tags = data.get("tags") as string[];
+        const tags = data.getAll("tags") as string[];
         const tier = data.get("tier") as string;
 
         if (title === undefined || url === undefined || category === undefined || tags === undefined || tier === undefined) {
@@ -97,7 +97,7 @@ export async function PUT(request: NextRequest) {
         const title = data.get("title") as string;
         const url = data.get("url") as string;
         const category = data.get("category") as string;
-        const tags = data.get("tags") as string[];
+        const tags = data.getAll("tags") as string[];
         const tier = data.get("tier") as string;
 
         if (!id || title === undefined || url === undefined || category === undefined || tags === undefined || tier === undefined) {

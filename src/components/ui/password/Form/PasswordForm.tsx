@@ -9,9 +9,9 @@ import DefaultInput from "../../global/Form/DefaultInput";
 export default function PasswordForm() {
     return (
         <Form
-            action={async (formData) => {
+            action={async data => {
                 "use server";
-                const password = formData.get("password");
+                const password = data.get("password");
                 let tier = TIER.NONE;
 
                 switch (password) {

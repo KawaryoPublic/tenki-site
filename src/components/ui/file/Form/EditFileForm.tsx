@@ -37,23 +37,27 @@ export default function EditFileForm({ id }: { id: number }) {
             <DefaultInput
                 title="タイトル"
                 name="title"
+                defaultValue={file.title}
                 required
                 label
             />
             <DefaultInput
                 title="URL"
                 name="url"
+                defaultValue={file.url}
                 required
                 label
             />
             <DefaultInput
                 title="タグ"
                 name="tags"
+                defaultValue={file.tags.join(',')}
                 label
             />
             <DefaultSelect
                 title="種類"
-                name="tier"
+                name="category"
+                defaultValue={file.category}
                 options={[
                     { value: FILE_CATEGORY.OTHER, label: 'その他' },
                     { value: FILE_CATEGORY.DOCUMENT, label: 'ドキュメント  ' },
@@ -65,6 +69,7 @@ export default function EditFileForm({ id }: { id: number }) {
             <DefaultSelect
                 title="対象"
                 name="tier"
+                defaultValue={file.tier}
                 options={[
                     { value: TIER.STUDENT, label: '生徒向け' },
                     { value: TIER.ADMIN, label: '執行部向け' },
