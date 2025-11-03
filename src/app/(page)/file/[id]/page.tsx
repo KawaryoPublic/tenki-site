@@ -4,7 +4,8 @@ import { checkTier } from "@/lib/util";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import EditFileForm from "@/components/ui/file/Form/EditFileForm";
 
-export default async function Home({ params }: { params: { id: string }}) {
+export default async function Home(props: { params: Promise<{ id: string }>}) {
+    const params = await props.params;
     const tier = await getTier();
 
     return (

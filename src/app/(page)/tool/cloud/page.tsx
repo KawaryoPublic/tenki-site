@@ -1,6 +1,7 @@
 import { getTier } from "@/lib/action";
 
-export default async function Home({ searchParams }: { searchParams: { height: string }}) {
+export default async function Home(props: { searchParams: Promise<{ height: string }>}) {
+    const searchParams = await props.searchParams;
     const tier = await getTier();
 
     return (
