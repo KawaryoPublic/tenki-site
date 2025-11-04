@@ -11,7 +11,7 @@ export default function DefaultTags({ tags }: { tags?: string[] }) {
             <label htmlFor="tag" className="font-bold">タグ</label>
             {
                 currentTags.map((tag, index) => (
-                    <div key={index} className="flex items-center gap-1">
+                    <div key={index} className="flex items-center gap-1 w-full">
                         <DefaultInput
                             key={index}
                             title="タグ"

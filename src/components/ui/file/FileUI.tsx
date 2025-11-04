@@ -23,7 +23,7 @@ export default function FileUI({ file, tier }: { file: File, tier: TIER }) {
                     }
                 </div>
             </div>
-            <div className="text-xl lg:text-sm text-blue-600 font-bold">
+            <div className="text-xs lg:text-sm text-blue-700 font-bold">
                 {
                     file.tags.map((tag, index) => 
                         <span key={index} className="mr-2">#{tag}</span>
