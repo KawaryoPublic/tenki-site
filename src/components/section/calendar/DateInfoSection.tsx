@@ -29,8 +29,8 @@ export default function DateInfoSection({ date, tier }: { date: string, tier: TI
 
     return (
         checkTier(tier, false, true) &&
-        loading ? <div className="text-xl flex-1 flex flex-col justify-center items-center">Loading...</div> :
-        !info ? <div className="text-xl flex-1 flex flex-col justify-center items-center">詳細を読み込めませんでした</div> :
+        loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
+        !info ? <div className="flex-1 flex flex-col items-center font-bold text-xl">詳細を読み込めませんでした</div> :
         <section className="w-full flex flex-col gap-4">
             {
                 checkTier(tier) ?

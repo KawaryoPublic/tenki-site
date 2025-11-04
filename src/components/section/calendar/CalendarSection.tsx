@@ -35,7 +35,8 @@ export default function CalendarSection({ filter, tier }: {filter: string, tier:
     }, [filter]);
 
     return (
-        loading ? <div className="text-xl flex-1 flex flex-col justify-center items-center">Loading...</div> :
+        loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
+        !dateInfo ? <div className="flex-1 flex flex-col items-center font-bold text-xl">カレンダーを読み込めませんでした</div> :
         <section className="flex-1 flex flex-col gap-2">
             <div className="w-full flex justify-end">
                 <FilterObservationForm filter={filter} />

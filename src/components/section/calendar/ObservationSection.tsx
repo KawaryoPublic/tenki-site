@@ -23,8 +23,8 @@ export default function EditObservationSection({ day, tier }: { day: number, tie
 
     return (
         checkTier(tier) &&
-        loading ? <div className="text-xl flex-1 flex flex-col justify-center items-center">Loading...</div> :
-        !observation ? <div className="text-xl flex-1 flex flex-col justify-center items-center">観測シフトを読み込めませんでした</div> :
+        loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
+        !observation ? <div className="flex-1 flex flex-col items-center font-bold text-xl">観測シフトを読み込めませんでした</div> :
         <section className="w-full flex flex-col gap-4">
             {
                 checkTier(tier) ? 

@@ -16,7 +16,12 @@ export default function DefaultTags({ tags }: { tags?: string[] }) {
                             key={index}
                             title="タグ"
                             name="tag"
-                            defaultValue={tag}
+                            value={tag}
+                            onChange={e => {
+                                const newTags = [...currentTags];
+                                newTags[index] = e.target.value;
+                                setCurrentTags(newTags);
+                            }}
                         />
                         <RedButton
                             onClick={() => {

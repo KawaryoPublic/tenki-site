@@ -1,6 +1,6 @@
 import { ChangeEvent, RefObject } from "react";
 
-export default function DefaultTextArea({ title, name, rows, defaultValue = "", value, onChange, ref, className = "", label = false, required = false }: { title: string, name: string, rows: number, defaultValue?: string, value?: string, onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void, ref?: RefObject<HTMLTextAreaElement | null>, className?: string, label?: boolean, required?: boolean }) {
+export default function DefaultTextArea({ title, name, rows, defaultValue, value, onChange, ref, className = "", label = false, required = false }: { title: string, name: string, rows: number, defaultValue?: string, value?: string, onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void, ref?: RefObject<HTMLTextAreaElement | null>, className?: string, label?: boolean, required?: boolean }) {
     return (
         <div className="text-gray-900 text-sm lg:text-base flex flex-col gap-1">
             {

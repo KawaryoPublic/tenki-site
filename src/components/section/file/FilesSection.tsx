@@ -2,18 +2,18 @@
 
 import { File, TIER } from "@/lib/type";
 import { useState, useEffect } from "react";
-import { checkTier } from "@/lib/util";
+import { checkTier, filterByTagsAndTitle } from "@/lib/util";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import FileUI from "@/components/ui/file/FileUI";
 
-export default function FilesSection({ tier }: { tier: TIER }) {
+export default function FilesSection({ tier, tags, title }: { tier: TIER, tags: string[], title: string }) {
   const [ files, setFiles ] = useState<File[]>([]);
   const [ loading, setLoading ] = useState<boolean>(true);
 
   useEffect(() => {
     fetch(`/api/file`)
       .then(res => res.json())
-      .then(data => setFiles(data))
+      .then(data => setFiles(filterByTagsAndTitle(data, tags, title)))
       .finally(() => setLoading(false))
       .catch(err => console.error(err))
     }, []);
@@ -27,9 +27,9 @@ export default function FilesSection({ tier }: { tier: TIER }) {
         </div>
       }
       {
-        loading ? <div className="text-xl flex-1 flex flex-col justify-center items-center">Loading...</div> :
-        !files ? <div className="text-xl flex-1 flex flex-col justify-center items-center">ファイルを読み込めませんでした</div> :
-        files.length === 0 ? <div className="text-xl flex-1 flex flex-col justify-center items-center">ファイルはありません</div> : 
+        loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
+        !files ? <div className="flex-1 flex flex-col items-center font-bold text-xl">ファイルを読み込めませんでした</div> :
+        files.length === 0 ? <div className="flex-1 flex flex-col items-center font-bold text-xl">ファイルはありません</div> : 
         <div className="flex flex-col gap-4">
           {
             files.map((file, index) => (

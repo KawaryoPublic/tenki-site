@@ -19,8 +19,8 @@ export default function EditNotificationSection({ id }: { id: number }) {
     }, []);
 
     return (
-        loading ? <div className="text-xl flex-1 flex flex-col justify-center items-center">Loading...</div> :
-        !notification ? <div className="text-xl flex-1 flex flex-col justify-center items-center">通知を読み込めませんでした</div> :
+        loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
+        !notification ? <div className="flex-1 flex flex-col items-center font-bold text-xl">通知を読み込めませんでした</div> :
         <section className="w-full flex flex-col gap-4">
             <WhiteFrameUI className="flex flex-col gap-2">
                 <h2 className="text-lg lg:text-xl border-b">告知を編集</h2>

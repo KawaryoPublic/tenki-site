@@ -9,6 +9,18 @@ export const checkTier = (tier: TIER, allowParent: boolean = false, allowStudent
     return false;
 }
 
+export const filterByTagsAndTitle = (list: any[], tags: string[], title: string) => {
+    const filteredList = tags.length === 0 ? 
+        [...list] :
+        list.filter(item => 
+            tags.every(tag => item.tags.includes(tag))
+        );
+
+    return title === "" ?
+        filteredList :
+        filteredList.filter(item => item.title.toLowerCase().includes(title.toLowerCase()));
+}
+
 export const uploadFiles = async (files: FileList | File[]) => {
     const blobs = [];
 

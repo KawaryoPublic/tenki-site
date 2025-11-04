@@ -3,6 +3,7 @@ import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import { checkTier } from "@/lib/util";
 import { Notification, TIER } from "@/lib/type";
 import BlueButton from "../global/Button/BlueButton";
+import Link from "next/link";
 
 export default function NotificationUI({ notification, tier }: { notification: Notification, tier: TIER }) {
     const updatedAt = new Date(notification.updatedAt);
@@ -23,10 +24,10 @@ export default function NotificationUI({ notification, tier }: { notification: N
                 </div>
             </div>
             <div className="whitespace-pre-wrap text-sm lg:text-base">{notification.content}</div>
-            <div className={`text-xs lg:text-sm text-blue-700 font-bold ${notification.tags.length !== 0 && "mt-1"}`}>
+            <div className={`text-xs lg:text-sm text-blue-700 font-bold ${notification.tags.length !== 0 && "mt-1 lg:mt-2"}`}>
                 {
                     notification.tags.map((tag, index) => 
-                        <span key={index} className="mr-2">#{tag}</span>
+                        <Link key={index} href={`/notification?tags=${tag}`} className="mr-2">#{tag}</Link>
                     )
                 }
             </div>
