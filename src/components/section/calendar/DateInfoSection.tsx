@@ -32,11 +32,10 @@ export default function DateInfoSection({ date, tier }: { date: string, tier: TI
         loading ? <div className="text-xl flex-1 flex flex-col justify-center items-center">Loading...</div> :
         !info ? <div className="text-xl flex-1 flex flex-col justify-center items-center">詳細を読み込めませんでした</div> :
         <section className="w-full flex flex-col gap-4">
-            <h1 className="text-2xl">{formatDate(info.date)}の詳細</h1>
             {
                 checkTier(tier) ?
-                    <WhiteFrameUI>
-                        <h2 className="text-xl border-b">詳細</h2>
+                    <WhiteFrameUI className="flex flex-col gap-2">
+                        <h2 className="text-lg lg:text-xl border-b">{formatDate(info.date)}の詳細</h2>
                         <div>
                             <EditDateInfoForm info={info} />
                         </div>

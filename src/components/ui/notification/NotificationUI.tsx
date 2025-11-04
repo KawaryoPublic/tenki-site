@@ -22,10 +22,10 @@ export default function NotificationUI({ notification, tier }: { notification: N
                     }
                 </div>
             </div>
-            <div className="whitespace-pre-wrap text-sm lg:text-base mb-1">{notification.content}</div>
-            <div className="text-xs lg:text-sm text-blue-700 font-bold">
+            <div className="whitespace-pre-wrap text-sm lg:text-base">{notification.content}</div>
+            <div className={`text-xs lg:text-sm text-blue-700 font-bold ${notification.tags.length !== 0 && "mt-1"}`}>
                 {
-                    file.tags.map((tag, index) => 
+                    notification.tags.map((tag, index) => 
                         <span key={index} className="mr-2">#{tag}</span>
                     )
                 }

@@ -6,7 +6,7 @@ export default function AddNotificationSection() {
     return (
         <section className="w-full flex flex-col gap-4">
             <WhiteFrameUI className="flex flex-col gap-2">
-                <h2 className="text-xl border-b">告知を追加</h2>
+                <h2 className="text-lg lg:text-xl border-b">告知を追加</h2>
                 <AddNotificationForm />
             </WhiteFrameUI>
             <div>

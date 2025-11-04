@@ -10,7 +10,7 @@ export default function FileUI({ file, tier }: { file: File, tier: TIER }) {
 
     return (
         <WhiteFrameUI>
-            <div className="flex justify-between items-center mb-2 border-b pb-2">
+            <div className={`flex justify-between items-center ${file.tags.length !== 0 && "border-b pb-2 mb-2"}`}>
                 <Link className="text-xl lg:text-3xl font-bold" href={file.url}>{file.title}</Link>
                 <div className="flex items-center gap-4">
                     <span className="text-gray-800 text-xs lg:text-sm">{`${updatedAt.getFullYear() === (new Date()).getFullYear() ? "" : `${updatedAt.getFullYear()}年`}${updatedAt.getMonth() + 1}月${updatedAt.getDate()}日`}</span>

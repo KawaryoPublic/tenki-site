@@ -23,7 +23,7 @@ export default function EditFileSection({ id }: { id: number }) {
         !file ? <div className="text-xl flex-1 flex flex-col justify-center items-center">ファイルを読み込めませんでした</div> :
         <section className="w-full flex flex-col gap-4">
             <WhiteFrameUI className="flex flex-col gap-2">
-                <h2 className="text-xl border-b">ファイル情報を編集</h2>
+                <h2 className="text-lg lg:text-xl border-b">ファイル情報を編集</h2>
                 <EditFileForm file={file} />
             </WhiteFrameUI>
             <div>

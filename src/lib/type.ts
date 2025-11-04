@@ -23,7 +23,7 @@ export interface Notification {
     id: number;
     title: string;
     content: string;
-    tags?: string[];
+    tags: string[];
     tier: string;
     updatedAt: Date;
 }

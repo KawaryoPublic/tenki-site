@@ -23,7 +23,7 @@ export default function EditNotificationSection({ id }: { id: number }) {
         !notification ? <div className="text-xl flex-1 flex flex-col justify-center items-center">通知を読み込めませんでした</div> :
         <section className="w-full flex flex-col gap-4">
             <WhiteFrameUI className="flex flex-col gap-2">
-                <h2 className="text-xl border-b">告知を編集</h2>
+                <h2 className="text-lg lg:text-xl border-b">告知を編集</h2>
                 <EditNotificationForm notification={notification} />
             </WhiteFrameUI>
             <div>
