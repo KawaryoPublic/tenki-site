@@ -7,8 +7,8 @@ import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import EditFileForm from "@/components/ui/file/Form/EditFileForm";
 
 export default function EditFileSection({ id }: { id: number }) {
-    const [ loading, setLoading ] = useState(false);
     const [ file, setFile ] = useState<File | null>(null);
+    const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {
         fetch(`/api/file?id=${id}`)
