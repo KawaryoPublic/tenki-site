@@ -2,7 +2,7 @@
 
 import { DateInfo } from "@/lib/type";
 import Form from "next/form";
-import DefaultTextArea from "../../global/Form/DefaultTextAreaWithDefaultValue";
+import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 

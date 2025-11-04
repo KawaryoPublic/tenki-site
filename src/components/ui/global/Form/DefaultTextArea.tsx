@@ -1,4 +1,6 @@
-export default function DefaultTextArea({ title, name, rows, defaultValue = "", className = "", label = false, required = false }: { title: string, name: string, rows: number, defaultValue?: string, className?: string, label?: boolean, required?: boolean }) {
+import { ChangeEvent, RefObject } from "react";
+
+export default function DefaultTextArea({ title, name, rows, defaultValue = "", value, onChange, ref, className = "", label = false, required = false }: { title: string, name: string, rows: number, defaultValue?: string, value?: string, onChange?: (e: ChangeEvent<HTMLInputElement>) => void, ref?: RefObject<HTMLInputElement | null>, className?: string, label?: boolean, required?: boolean }) {
     return (
         <div className="text-gray-900 flex flex-col gap-1">
             {
@@ -10,6 +12,9 @@ export default function DefaultTextArea({ title, name, rows, defaultValue = "", 
                 cols={0}
                 placeholder={title}
                 defaultValue={defaultValue}
+                value={value}
+                onChange={onChange}
+                ref={ref}
                 required={required}
                 className={`
                     bg-gray-300 w-full resize-none border border-gray-600 rounded-md px-2 py-1 flex-1 ${className}

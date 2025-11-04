@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { TIER } from "@/lib/type";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
-import DefaultTextArea from "../../global/Form/DefaultTextAreaWithDefaultValue";
+import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 import { uploadFiles } from "@/lib/util";
 import { useRef } from "react";

@@ -34,12 +34,7 @@ export default function EditFileForm({ file }: { file: File }) {
                 required
                 label
             />
-            <DefaultInput
-                title="タグ"
-                name="tags"
-                defaultValue={file.tags.join(',')}
-                label
-            />
+            
             <DefaultSelect
                 title="種類"
                 name="category"
