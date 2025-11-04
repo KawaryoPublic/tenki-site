@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { Notification } from "@/lib/type";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
