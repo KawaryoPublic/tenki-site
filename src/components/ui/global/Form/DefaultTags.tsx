@@ -8,15 +8,16 @@ export default function DefaultTags({ tags }: { tags?: string[] }) {
 
     return (
         <div className="flex flex-col gap-1">
+            <label htmlFor="tag" className="font-bold">タグ</label>
             {
                 currentTags.map((tag, index) => (
                     <div key={index} className="flex items-center gap-2">
                         <DefaultInput
                             key={index}
-                            title={`タグ`}
+                            title="タグ"
                             name="tag"
                             defaultValue={tag}
-                            label={index === 0}
+                            className="flex-1"
                         />
                         <RedButton
                             onClick={() => {
@@ -24,6 +25,7 @@ export default function DefaultTags({ tags }: { tags?: string[] }) {
                                 newTags.splice(index, 1);
                                 setCurrentTags(newTags);
                             }}
+                            type="button"
                         >
                             削除
                         </RedButton>
@@ -35,6 +37,7 @@ export default function DefaultTags({ tags }: { tags?: string[] }) {
                     onClick={() => {
                         setCurrentTags([...currentTags, ""]);
                     }}
+                    type="button"
                 >
                     追加
                 </BlueButton>
