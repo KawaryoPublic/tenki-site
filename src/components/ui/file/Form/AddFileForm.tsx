@@ -35,17 +35,6 @@ export default function AddFileForm() {
             />
             <DefaultTags />
             <DefaultSelect
-                title="種類"
-                name="tier"
-                options={[
-                    { value: FILE_CATEGORY.OTHER, label: 'その他' },
-                    { value: FILE_CATEGORY.DOCUMENT, label: 'ドキュメント  ' },
-                    { value: FILE_CATEGORY.IMAGE, label: '画像' },
-                    { value: FILE_CATEGORY.VIDEO, label: '動画' },
-                    { value: FILE_CATEGORY.LINK, label: 'リンク' },
-                ]}
-            />  
-            <DefaultSelect
                 title="対象"
                 name="tier"
                 options={[

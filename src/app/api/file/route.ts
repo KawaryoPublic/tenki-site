@@ -59,11 +59,10 @@ export async function POST(request: NextRequest) {
         const data = await request.formData();
         const title = data.get("title") as string;
         const url = data.get("url") as string;
-        const category = data.get("category") as string;
-        const tags = data.getAll("tags") as string[];
+        const tags = data.getAll("tag") as string[];
         const tier = data.get("tier") as string;
 
-        if (title === undefined || url === undefined || category === undefined || tags === undefined || tier === undefined) {
+        if (title === undefined || url === undefined || tags === undefined || tier === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -71,7 +70,6 @@ export async function POST(request: NextRequest) {
             data: {
                 title,
                 url,
-                category,
                 tags,
                 tier
             },
@@ -96,11 +94,10 @@ export async function PUT(request: NextRequest) {
         const data = await request.formData();
         const title = data.get("title") as string;
         const url = data.get("url") as string;
-        const category = data.get("category") as string;
-        const tags = data.getAll("tags") as string[];
+        const tags = data.getAll("tag") as string[];
         const tier = data.get("tier") as string;
 
-        if (!id || title === undefined || url === undefined || category === undefined || tags === undefined || tier === undefined) {
+        if (!id || title === undefined || url === undefined || tags === undefined || tier === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -109,7 +106,6 @@ export async function PUT(request: NextRequest) {
             data: {
                 title,
                 url,
-                category,
                 tags,
                 tier
             },

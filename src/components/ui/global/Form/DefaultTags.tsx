@@ -7,11 +7,11 @@ export default function DefaultTags({ tags }: { tags?: string[] }) {
     const [ currentTags, setCurrentTags ] = useState<string[]>(tags && tags.length > 0 ? tags : [""]);
 
     return (
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-2">
             <label htmlFor="tag" className="font-bold">タグ</label>
             {
                 currentTags.map((tag, index) => (
-                    <div key={index} className="flex items-center gap-2">
+                    <div key={index} className="flex items-center gap-1">
                         <DefaultInput
                             key={index}
                             title="タグ"
