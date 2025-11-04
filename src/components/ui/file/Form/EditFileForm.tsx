@@ -3,29 +3,15 @@
 import Form from "next/form";
 import { redirect } from "next/navigation";
 import { File, FILE_CATEGORY, TIER } from "@/lib/type";
-import { useState, useEffect } from "react";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 
-export default function EditFileForm({ id }: { id: number }) {
-    const [ file, setFile ] = useState<File | null>(null);
-    const [ loading, setLoading ] = useState(true);
-
-    useEffect(() => {
-        fetch(`/api/file?id=${id}`)
-            .then(res => res.json())
-            .then(data => setFile(data))
-            .finally(() => setLoading(false))
-            .catch(err => console.error(err))
-    }, []);
-
+export default function EditFileForm({ file }: { file: File }) {
     return (
-        loading ? <div className="text-xl flex-1 flex flex-col justify-center items-center">Loading...</div> :
-        !file ? <div className="text-xl flex-1 flex flex-col justify-center items-center">ファイルを読み込めませんでした</div> :
         <Form 
             action={async data => {
-                await fetch(`/api/file?id=${id}`, {
+                await fetch(`/api/file?id=${file.id}`, {
                     method: 'PUT',
                     body: data,
                 }).catch(err => console.log(err));

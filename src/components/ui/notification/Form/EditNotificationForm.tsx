@@ -3,30 +3,16 @@
 import Form from "next/form";
 import { redirect } from "next/navigation";
 import { Notification, TIER } from "@/lib/type";
-import { useState, useEffect } from "react";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultTextArea from "../../global/Form/DefaultTextAreaWithDefaultValue";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 
-export default function EditNotificationForm({ id }: { id: number }) {
-    const [ notification, setNotification ] = useState<Notification | null>();
-    const [ loading, setLoading ] = useState(true);
-
-    useEffect(() => {
-        fetch(`/api/notification?id=${id}`)
-            .then(res => res.json())
-            .then(data => setNotification(data))
-            .finally(() => setLoading(false))
-            .catch(err => console.error(err))
-    }, []);
-
+export default function EditNotificationForm({ notification }: { notification: Notification }) {
     return (
-        loading ? <div className="text-xl flex-1 flex flex-col justify-center items-center">Loading...</div> :
-        !notification ? <div className="text-xl flex-1 flex flex-col justify-center items-center">通知を読み込めませんでした</div> :
         <Form 
             action={async data => {
-                await fetch(`/api/notification?id=${id}`, {
+                await fetch(`/api/notification?id=${notification.id}`, {
                     method: 'PUT',
                     body: data,
                 }).catch(err => console.log(err));

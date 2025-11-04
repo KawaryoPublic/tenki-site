@@ -6,7 +6,7 @@ import { checkTier } from "@/lib/util";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import FileUI from "@/components/ui/file/FileUI";
 
-export default function FileSection({ tier }: { tier: TIER }) {
+export default function FilesSection({ tier }: { tier: TIER }) {
   const [ files, setFiles ] = useState<File[]>([]);
   const [ loading, setLoading ] = useState<boolean>(true);
 
