@@ -6,6 +6,7 @@ import { FILE_CATEGORY, TIER } from "@/lib/type";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultSelect from "../../global/Form/DefaultSelect";
+import DefaultTags from "../../global/Form/DefaultTags";
 
 export default function AddFileForm() {
     return (
@@ -32,11 +33,7 @@ export default function AddFileForm() {
                 required
                 label
             />
-            <DefaultInput
-                title="タグ"
-                name="tags"
-                label
-            />
+            <DefaultTags />
             <DefaultSelect
                 title="種類"
                 name="tier"
