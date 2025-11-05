@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className="min-h-screen overflow-x-hidden flex flex-col items-center absolute">
+      <body className="min-h-screen overflow-x-hidden flex flex-col items-center relative">
         <Image src="/image/bg_pc.jpg" alt="背景" fill className="fixed object-cover max-sm:hidden z-[-1]" />
         <Image src="/image/bg_phone.jpg" alt="背景" fill className="fixed object-cover sm:hidden z-[-1]" />
         <Header />
