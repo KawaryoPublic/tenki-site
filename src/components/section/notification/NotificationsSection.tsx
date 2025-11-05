@@ -3,10 +3,11 @@
 import NotificationUI from "@/components/ui/notification/NotificationUI";
 import { Notification, TIER } from "@/lib/type";
 import { useState, useEffect } from "react";
-import { checkTier, filterByTagsAndTitle } from "@/lib/util";
+import { checkTier, filterByTagsAndTitle, searchByTagsAndTitle } from "@/lib/util";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
+import SearchForm from "@/components/ui/global/Form/Search";
 
-export default function NotificationsSection({ tier, tags, title }: { tier: TIER, tags: string[], title: string }) {
+export default function NotificationsSection({ tier, tags, title }: { tier: TIER, tags: string[], title: string[] }) {
   const [ notifications, setNotifications ] = useState<Notification[]>([]);
   const [ loading, setLoading ] = useState<boolean>(true);
 
@@ -16,10 +17,11 @@ export default function NotificationsSection({ tier, tags, title }: { tier: TIER
       .then(data => setNotifications(filterByTagsAndTitle(data, tags, title)))
       .finally(() => setLoading(false))
       .catch(err => console.error(err))
-    }, []);
+    }, [tags, title]);
 
   return (
     <section className="flex-1 flex flex-col gap-3 w-full">
+      <SearchForm search={searchString => searchByTagsAndTitle("/file", searchString)}/>
       {
         checkTier(tier) && 
         <div>

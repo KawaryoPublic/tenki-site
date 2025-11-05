@@ -2,11 +2,12 @@
 
 import { File, TIER } from "@/lib/type";
 import { useState, useEffect } from "react";
-import { checkTier, filterByTagsAndTitle } from "@/lib/util";
+import { checkTier, filterByTagsAndTitle, searchByTagsAndTitle } from "@/lib/util";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import FileUI from "@/components/ui/file/FileUI";
+import SearchForm from "@/components/ui/global/Form/Search";
 
-export default function FilesSection({ tier, tags, title }: { tier: TIER, tags: string[], title: string }) {
+export default function FilesSection({ tier, tags, title }: { tier: TIER, tags: string[], title: string[] }) {
   const [ files, setFiles ] = useState<File[]>([]);
   const [ loading, setLoading ] = useState<boolean>(true);
 
@@ -16,10 +17,11 @@ export default function FilesSection({ tier, tags, title }: { tier: TIER, tags: 
       .then(data => setFiles(filterByTagsAndTitle(data, tags, title)))
       .finally(() => setLoading(false))
       .catch(err => console.error(err))
-    }, []);
+    }, [tags, title]);
 
   return (
     <section className="flex-1 flex flex-col gap-3 w-full">
+      <SearchForm search={searchString => searchByTagsAndTitle("/file", searchString)}/>
       {
         checkTier(tier) && 
         <div>

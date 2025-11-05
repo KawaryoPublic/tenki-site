@@ -40,19 +40,10 @@ export interface Box {
     height: number;
 }
 
-export enum FILE_CATEGORY {
-    IMAGE = "image",
-    VIDEO = "video",
-    DOCUMENT = "document",
-    LINK = "link",
-    OTHER = "other",
-}
-
 export interface File {
     id: number;
     title: string;
     url: string;
-    category: FILE_CATEGORY;
     tags: string[];
     tier: TIER;
     updatedAt: Date;

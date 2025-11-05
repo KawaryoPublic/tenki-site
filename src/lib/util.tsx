@@ -1,5 +1,6 @@
 import { TIER } from "./type";
 import { upload } from "@vercel/blob/client";
+import { redirect } from "next/navigation";
 
 export const checkTier = (tier: TIER, allowParent: boolean = false, allowStudent: boolean = false) => {
     if(tier === TIER.ADMIN) return true;
@@ -9,16 +10,30 @@ export const checkTier = (tier: TIER, allowParent: boolean = false, allowStudent
     return false;
 }
 
-export const filterByTagsAndTitle = (list: any[], tags: string[], title: string) => {
+export const filterByTagsAndTitle = (list: any[], tags: string[], title: string[]) => {
     const filteredList = tags.length === 0 ? 
         [...list] :
-        list.filter(item => 
-            tags.every(tag => item.tags.includes(tag))
-        );
+        list.filter(item => tags.every(tag => item.tags.includes(tag)));
 
-    return title === "" ?
+    return title.length === 0 ?
         filteredList :
-        filteredList.filter(item => item.title.toLowerCase().includes(title.toLowerCase()));
+        filteredList.filter(item => title.every(title => item.title.includes(title)));
+}
+
+export const searchByTagsAndTitle = (url: string, searchString: string) => {
+    const tags = [];
+    const title = [];
+
+    const parts = searchString.split(" ");
+    for (const part of parts) {
+        if (part.startsWith("#")) {
+            tags.push(part.substring(1));
+        } else {
+            title.push(part);
+        }
+    }
+
+    redirect(`${url}?tags=${tags.join(",")}&title=${title.join(",")}`);
 }
 
 export const uploadFiles = async (files: FileList | File[]) => {

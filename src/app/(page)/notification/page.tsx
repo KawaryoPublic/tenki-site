@@ -4,7 +4,7 @@ import { getTier } from "@/lib/action";
 export default async function Home(props: { searchParams: Promise<{ tags?: string, title?: string }> }) {
   const searchParams = await props.searchParams;
   const tags = searchParams.tags ? searchParams.tags.split(",") : [];
-  const title = searchParams.title || "";
+  const title = searchParams.title ? searchParams.title.split(",") : [];
   const tier = await getTier();
 
   return (
