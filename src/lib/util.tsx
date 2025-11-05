@@ -24,7 +24,7 @@ export const searchByTagsAndTitle = (url: string, searchString: string) => {
     const tags = [];
     const title = [];
 
-    const parts = searchString.split(" ");
+    const parts = searchString.split(/[\s　]/);
     for (const part of parts) {
         if (part.startsWith("#")) {
             tags.push(part.substring(1));
