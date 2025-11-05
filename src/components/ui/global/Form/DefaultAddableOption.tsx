@@ -22,6 +22,7 @@ export default function DefaultAddableOption({ title, name, defaultOptions }: { 
                                 newOptions[index] = e.target.value;
                                 setOptions(newOptions);
                             }}
+                            required
                         />
                         <RedButton
                             onClick={() => {

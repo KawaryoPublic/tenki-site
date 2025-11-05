@@ -5,7 +5,7 @@ import { Notification, TIER } from "@/lib/type";
 import { useState, useEffect } from "react";
 import { checkTier, filterByTagsAndTitle, searchByTagsAndTitle } from "@/lib/util";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
-import SearchForm from "@/components/ui/global/Form/Search";
+import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearch";
 
 export default function NotificationsSection({ tier, tags, title }: { tier: TIER, tags: string[], title: string[] }) {
   const [ notifications, setNotifications ] = useState<Notification[]>([]);
@@ -23,7 +23,7 @@ export default function NotificationsSection({ tier, tags, title }: { tier: TIER
 
   return (
     <section className="flex-1 flex flex-col gap-3 w-full">
-      <SearchForm title="検索(#をつけるとタグ)" search={searchString => searchByTagsAndTitle("/notification", searchString)} />
+      <DefaultSearchForm title="検索(#をつけるとタグ)" search={searchString => searchByTagsAndTitle("/notification", searchString)} />
       {
         checkTier(tier) && 
         <div>

@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { checkTier, filterByTagsAndTitle, searchByTagsAndTitle } from "@/lib/util";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import FileUI from "@/components/ui/file/FileUI";
-import SearchForm from "@/components/ui/global/Form/Search";
+import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearch";
 
 export default function FilesSection({ tier, tags, title }: { tier: TIER, tags: string[], title: string[] }) {
   const [ files, setFiles ] = useState<File[]>([]);
@@ -23,7 +23,7 @@ export default function FilesSection({ tier, tags, title }: { tier: TIER, tags: 
 
   return (
     <section className="flex-1 flex flex-col gap-3 w-full">
-      <SearchForm title="検索(#をつけるとタグ)" search={searchString => searchByTagsAndTitle("/file", searchString)}/>
+      <DefaultSearchForm title="検索(#をつけるとタグ)" search={searchString => searchByTagsAndTitle("/file", searchString)}/>
       {
         checkTier(tier) && 
         <div>

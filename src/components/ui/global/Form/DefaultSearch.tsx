@@ -4,7 +4,7 @@ import Form from "next/form";
 import BlueButton from "../Button/BlueButton";
 import DefaultInput from "./DefaultInput";
 
-export default function SearchForm({ title, search }: { title: string, search: (searchString: string) => void }) {
+export default function DefaultSearchForm({ title, defaultValue, search }: { title: string, defaultValue?: string, search: (searchString: string) => void }) {
     return (
         <Form 
             action={async data => {
@@ -15,8 +15,9 @@ export default function SearchForm({ title, search }: { title: string, search: (
             <DefaultInput
                 title={title}
                 name="search"
-                required
+                defaultValue={defaultValue}
                 className="flex-1"
+                required
             />
             <BlueButton>検索</BlueButton>
         </Form>
