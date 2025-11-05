@@ -17,7 +17,6 @@ export default function DefaultSearchForm({ title, defaultValue, search }: { tit
                 name="search"
                 defaultValue={defaultValue}
                 className="flex-1"
-                required
             />
             <BlueButton>検索</BlueButton>
         </Form>
