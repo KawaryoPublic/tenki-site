@@ -33,7 +33,17 @@ export const searchByTagsAndTitle = (url: string, searchString: string) => {
         }
     }
 
-    redirect(`${url}?tags=${tags.join(",")}&title=${title.join(",")}`);
+    let redirectUrl = url;
+
+    if(tags.length !== 0) {
+        redirectUrl += `?tags=${tags.join(",")}`;
+    }
+
+    if(title.length !== 0) {
+        redirectUrl += (tags.length !== 0 ? "&" : "?") + `title=${title.join(",")}`;
+    }
+
+    redirect(redirectUrl);
 }
 
 export const uploadFiles = async (files: FileList | File[]) => {
