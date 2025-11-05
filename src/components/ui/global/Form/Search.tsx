@@ -10,7 +10,7 @@ export default function SearchForm({ title, search }: { title: string, search: (
             action={async data => {
                 search(data.get("search") as string || "");
             }}
-            className={`flex flex-row gap-1 ${className}`}
+            className="flex flex-row gap-1"
         >   
             <DefaultInput
                 title={title}
