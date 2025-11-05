@@ -4,7 +4,7 @@ import Form from "next/form";
 import BlueButton from "../Button/BlueButton";
 import DefaultInput from "./DefaultInput";
 
-export default function SearchForm({ title, search }: { title: string, search: (searchString: string) => void }) {
+export default function SearchForm({ title = "検索", search }: { title?: string, search: (searchString: string) => void }) {
     return (
         <Form 
             action={async data => {
