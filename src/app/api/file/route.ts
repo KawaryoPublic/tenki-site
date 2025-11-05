@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
         const data = await request.formData();
         const title = data.get("title") as string;
         const url = data.get("url") as string;
-        const tags = data.getAll("tag") as string[];
+        const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
         const tier = data.get("tier") as string;
 
         if (title === undefined || url === undefined || tags === undefined || tier === undefined) {
@@ -94,7 +94,7 @@ export async function PUT(request: NextRequest) {
         const data = await request.formData();
         const title = data.get("title") as string;
         const url = data.get("url") as string;
-        const tags = data.getAll("tag") as string[];
+        const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
         const tier = data.get("tier") as string;
 
         if (!id || title === undefined || url === undefined || tags === undefined || tier === undefined) {
