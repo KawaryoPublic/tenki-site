@@ -23,7 +23,7 @@ export default function FilesSection({ tier, tags, title }: { tier: TIER, tags: 
 
   return (
     <section className="flex-1 flex flex-col gap-3 w-full">
-      <DefaultSearchForm title="検索(#をつけるとタグ)" defaultValue={`${title.join(" ")} ${tags.map(tag => `#${tag}`).join(" ")}`} search={searchString => searchByTagsAndTitle("/file", searchString)}/>
+      <DefaultSearchForm title="検索(#をつけるとタグ)" defaultValue={`${title.join(" ")}${(title.length !== 0 && tags.length !== 0) ? " " : ""}${tags.map(tag => `#${tag}`).join(" ")}`} search={searchString => searchByTagsAndTitle("/file", searchString)}/>
       {
         checkTier(tier) && 
         <div>

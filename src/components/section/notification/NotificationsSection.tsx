@@ -23,7 +23,7 @@ export default function NotificationsSection({ tier, tags, title }: { tier: TIER
 
   return (
     <section className="flex-1 flex flex-col gap-3 w-full">
-      <DefaultSearchForm title="検索(#をつけるとタグ)" defaultValue={`${title.join(" ")}${title.length !== 0 && tags.length !== 0 && " "}${tags.map(tag => `#${tag}`).join(" ")}`} search={searchString => searchByTagsAndTitle("/notification", searchString)} />
+      <DefaultSearchForm title="検索(#をつけるとタグ)" defaultValue={`${title.join(" ")}${(title.length !== 0 && tags.length !== 0) ? " " : ""}${tags.map(tag => `#${tag}`).join(" ")}`} search={searchString => searchByTagsAndTitle("/notification", searchString)} />
       {
         checkTier(tier) && 
         <div>
