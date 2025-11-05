@@ -21,7 +21,7 @@ export default function NotificationsSection({ tier, tags, title }: { tier: TIER
 
   return (
     <section className="flex-1 flex flex-col gap-3 w-full">
-      <SearchForm search={searchString => searchByTagsAndTitle("/notification", searchString)}/>
+      <SearchForm title="検索(#をつけるとタグ)" search={searchString => searchByTagsAndTitle("/notification", searchString)} />
       {
         checkTier(tier) && 
         <div>

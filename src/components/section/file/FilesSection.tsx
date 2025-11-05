@@ -21,7 +21,7 @@ export default function FilesSection({ tier, tags, title }: { tier: TIER, tags: 
 
   return (
     <section className="flex-1 flex flex-col gap-3 w-full">
-      <SearchForm search={searchString => searchByTagsAndTitle("/file", searchString)}/>
+      <SearchForm title="検索(#をつけるとタグ)" search={searchString => searchByTagsAndTitle("/file", searchString)}/>
       {
         checkTier(tier) && 
         <div>
