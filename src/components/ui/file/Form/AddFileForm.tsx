@@ -43,7 +43,7 @@ export default function AddFileForm() {
                 ]}
             />
             <div className="pt-4">
-                <BlueButton>追加</BlueButton>
+                <BlueButton>保存</BlueButton>
             </div>
         </Form>
     )

@@ -46,7 +46,7 @@ export default function EditFileForm({ file }: { file: File }) {
                 ]}
             />
             <div className="pt-4">
-                <BlueButton>変更</BlueButton>
+                <BlueButton>保存</BlueButton>
             </div>
         </Form>
     )

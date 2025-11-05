@@ -14,7 +14,7 @@ export default function NotificationsSection({ tier, tags, title }: { tier: TIER
   useEffect(() => {
     setLoading(true);
 
-    fetch(`/api/notification?tier=${tier}`)
+    fetch(`/api/notification`)
       .then(res => res.json())
       .then(data => setNotifications(filterByTagsAndTitle(data, tags, title)))
       .finally(() => setLoading(false))

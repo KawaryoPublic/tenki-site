@@ -90,7 +90,6 @@ export async function PUT(request: NextRequest) {
         const title = data.get("title") as string;
         const tags = data.getAll("tag") as string[];
         const content = data.get("content") as string;
-        
         const tier = data.get("tier") as TIER;
 
         if (isNaN(id) || title === undefined || content === undefined || tier === undefined) {

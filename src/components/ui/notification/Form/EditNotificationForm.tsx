@@ -40,6 +40,7 @@ export default function EditNotificationForm({ notification }: { notification: N
             <DefaultSelect
                 title="対象"
                 name="tier"
+                defaultValue={notification.tier}
                 options={[
                     { value: TIER.NONE, label: '一般向け' },
                     { value: TIER.PARENT, label: '保護者向け' },
@@ -48,7 +49,7 @@ export default function EditNotificationForm({ notification }: { notification: N
                 ]}
             />
             <div className="pt-4">
-                <BlueButton>変更</BlueButton>
+                <BlueButton>保存</BlueButton>
             </div>
         </Form>
     )

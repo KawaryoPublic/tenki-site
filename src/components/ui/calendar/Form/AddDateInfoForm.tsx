@@ -13,8 +13,7 @@ export default function AddDateInfoForm({ date }: { date: string }) {
                 await fetch(`/api/date_info?date=${date}`, {
                     method: "POST",
                     body: data
-                }).then(() => window.location.reload())
-                .catch(err => console.log(err));
+                }).catch(err => console.log(err));
 
                 redirect("/calendar");
             }}

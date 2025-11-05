@@ -60,7 +60,7 @@ export default function AddNotificationForm() {
                 ]}
             />
             <div className="pt-4">
-                <BlueButton>追加</BlueButton>
+                <BlueButton>保存</BlueButton>
             </div>
         </Form>
     )
