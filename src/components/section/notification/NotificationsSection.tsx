@@ -12,6 +12,8 @@ export default function NotificationsSection({ tier, tags, title }: { tier: TIER
   const [ loading, setLoading ] = useState<boolean>(true);
 
   useEffect(() => {
+    setLoading(true);
+
     fetch(`/api/notification?tier=${tier}`)
       .then(res => res.json())
       .then(data => setNotifications(filterByTagsAndTitle(data, tags, title)))

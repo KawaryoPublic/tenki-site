@@ -33,19 +33,23 @@ export async function POST(request: NextRequest) {
         if(!checkTier(tier)) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
-
+        
         const date = request.nextUrl.searchParams.get("date");
+        const data = await request.formData();
+        const plan = data.get("plan") as string;
+        const event = data.get("event") as string;
+        const holiday = data.get("holiday") as string;
 
-        if (!date) {
+        if (!date || plan === undefined || event === undefined || holiday === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
         const newDateInfo = await prisma.dateInfo.create({
             data: {
                 date: date,
-                plan: "",
-                event: "",
-                holiday: "",
+                plan: plan,
+                event: event,
+                holiday: holiday,
             },
         });
 

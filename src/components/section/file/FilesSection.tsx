@@ -12,6 +12,8 @@ export default function FilesSection({ tier, tags, title }: { tier: TIER, tags: 
   const [ loading, setLoading ] = useState<boolean>(true);
 
   useEffect(() => {
+    setLoading(true);
+
     fetch(`/api/file`)
       .then(res => res.json())
       .then(data => setFiles(filterByTagsAndTitle(data, tags, title)))

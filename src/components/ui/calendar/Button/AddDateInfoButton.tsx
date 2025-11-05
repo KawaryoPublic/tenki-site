@@ -1,5 +1,5 @@
 import { TIER } from "@/lib/type";
-import { checkTier } from "@/lib/util";
+import { checkTier, formatDate } from "@/lib/util";
 
 export default function AddDateInfoButton({ date, tier }: { date: Date, tier: TIER }) {
     return (
@@ -7,12 +7,9 @@ export default function AddDateInfoButton({ date, tier }: { date: Date, tier: TI
             className="w-full h-full flex flex-col items-center justify-center cursor-pointer"
             onClick={async () => {
                 if(!checkTier(tier)) return;
-                if(!confirm("予定を追加しますか？")) return;
+                if(!confirm(`${formatDate(date)}に予定を追加しますか？`)) return;
 
-                await fetch(`/api/date_info?date=${date}`, {
-                    method: "POST",
-                }).then(() => window.location.reload())
-                .catch(err => console.log(err));
+                redirect(`/calendar/add/${date}`);
             }}
         >
             {date.getDate()}

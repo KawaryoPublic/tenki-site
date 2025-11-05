@@ -10,6 +10,12 @@ export const checkTier = (tier: TIER, allowParent: boolean = false, allowStudent
     return false;
 }
 
+export const formatDate = (date: string) => {
+    const splitDate = date.split("-");
+
+    return `${splitDate[0]}年${Number(splitDate[1]) + 1}月${splitDate[2]}日`;
+}
+
 export const filterByTagsAndTitle = (list: any[], tags: string[], title: string[]) => {
     const filteredList = tags.length === 0 ? 
         [...list] :
@@ -24,7 +30,7 @@ export const searchByTagsAndTitle = (url: string, searchString: string) => {
     const tags = [];
     const title = [];
 
-    const parts = searchString.split(/[\s　]/);
+    const parts = searchString.trim().split(/[\s　]/);
     for (const part of parts) {
         if (part.startsWith("#")) {
             const tag = part.substring(1);
