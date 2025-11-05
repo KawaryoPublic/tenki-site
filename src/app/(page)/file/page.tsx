@@ -9,6 +9,6 @@ export default async function Home(props: { searchParams: Promise<{ tags?: strin
   const tier = await getTier();
 
   return (
-    checkTier(tier) && <FilesSection tier={tier} tags={tags} title={title} />
+    checkTier(tier, false, true) && <FilesSection tier={tier} tags={tags} title={title} />
   );
 }
