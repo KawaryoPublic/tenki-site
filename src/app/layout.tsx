@@ -15,9 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className="min-h-screen overflow-x-hidden flex flex-col items-center">
-        <Image src="/image/bg_pc.jpg" alt="背景" width={1196} height={798} quality={100} priority className="w-full h-full fixed object-cover max-sm:hidden z-[-1]" />
-        <Image src="/image/bg_phone.jpg" alt="背景" width={524} height={780} quality={100} priority className="w-full h-full fixed object-cover sm:hidden z-[-1]" />
+      <body className="min-h-screen overflow-x-hidden flex flex-col items-center absolute">
+        <Image src="/image/bg_pc.jpg" alt="背景" fill className="fixed object-cover max-sm:hidden z-[-1]" />
+        <Image src="/image/bg_phone.jpg" alt="背景" fill className="fixed object-cover sm:hidden z-[-1]" />
         <Header />
         <main className="p-5 container flex-1 flex">
           {children}
