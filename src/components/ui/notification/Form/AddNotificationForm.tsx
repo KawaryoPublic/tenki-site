@@ -9,7 +9,7 @@ import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 import { uploadFiles } from "@/lib/util";
 import { useRef } from "react";
-import DefaultTags from "../../global/Form/DefaultTags";
+import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 
 export default function AddNotificationForm() {
     const fileRef = useRef<HTMLInputElement>(null);
@@ -48,7 +48,7 @@ export default function AddNotificationForm() {
                 label
                 multiple
             />
-            <DefaultTags />
+            <DefaultAddableOption title="タグ" name="tag" />
             <DefaultSelect
                 title="対象"
                 name="tier"

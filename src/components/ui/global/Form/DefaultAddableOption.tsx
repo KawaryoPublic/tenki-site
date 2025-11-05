@@ -3,31 +3,31 @@ import BlueButton from "../Button/BlueButton";
 import DefaultInput from "./DefaultInput";
 import RedButton from "../Button/RedButton";
 
-export default function DefaultTags({ tags }: { tags?: string[] }) {
-    const [ currentTags, setCurrentTags ] = useState<string[]>(tags && tags.length !== 0 ? tags : []);
+export default function DefaultAddableOption({ title, name, options }: { title: string, name: string, options?: string[] }) {
+    const [ currentOptions, setCurrentOptions ] = useState<string[]>(options && options.length !== 0 ? options : []);
 
     return (
         <div className="flex flex-col gap-2">
-            <label htmlFor="tag" className="font-bold">タグ</label>
+            <label htmlFor="tag" className="font-bold">{title}</label>
             {
-                currentTags.map((tag, index) => (
+                currentOptions.map((option, index) => (
                     <div key={index} className="flex items-center gap-1">
                         <DefaultInput
                             key={index}
-                            title="タグ"
-                            name="tag"
-                            value={tag}
+                            title={title}
+                            name={name}
+                            value={option}
                             onChange={e => {
-                                const newTags = [...currentTags];
-                                newTags[index] = e.target.value;
-                                setCurrentTags(newTags);
+                                const newOptions = [...currentOptions];
+                                newOptions[index] = e.target.value;
+                                setCurrentOptions(newOptions);
                             }}
                         />
                         <RedButton
                             onClick={() => {
-                                const newTags = [...currentTags];
-                                newTags.splice(index, 1);
-                                setCurrentTags(newTags);
+                                const newOptions = [...currentOptions];
+                                newOptions.splice(index, 1);
+                                setCurrentOptions(newOptions);
                             }}
                             type="button"
                         >
@@ -39,7 +39,7 @@ export default function DefaultTags({ tags }: { tags?: string[] }) {
             <div>
                 <BlueButton
                     onClick={() => {
-                        setCurrentTags([...currentTags, ""]);
+                        setCurrentOptions([...currentOptions, ""]);
                     }}
                     type="button"
                 >

@@ -7,7 +7,7 @@ import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import DefaultSelect from "../../global/Form/DefaultSelect";
-import DefaultTags from "../../global/Form/DefaultTags";
+import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 
 export default function EditNotificationForm({ notification }: { notification: Notification }) {
     return (
@@ -36,7 +36,7 @@ export default function EditNotificationForm({ notification }: { notification: N
                 defaultValue={notification.content}
                 label
             />
-            <DefaultTags tags={notification.tags} />
+            <DefaultAddableOption title="タグ" name="tag" options={notification.tags} />
             <DefaultSelect
                 title="対象"
                 name="tier"
