@@ -8,7 +8,7 @@ export default function SearchForm({ title = "検索", search }: { title?: strin
     return (
         <Form 
             action={async data => {
-                search(data.get("search") as string);
+                search(data.get("search") as string || "");
             }}
             className="flex flex-row gap-1"
         >   
