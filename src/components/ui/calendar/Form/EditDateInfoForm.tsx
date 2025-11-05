@@ -4,8 +4,8 @@ import { DateInfo } from "@/lib/type";
 import Form from "next/form";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import BlueButton from "../../global/Button/BlueButton";
-import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
+import { redirect } from "next/navigation";
 
 export default function EditDateInfoForm({ info }: { info: DateInfo }) {
     return (
@@ -14,8 +14,9 @@ export default function EditDateInfoForm({ info }: { info: DateInfo }) {
                 await fetch(`/api/date_info?date=${info.date}`, {
                     method: "PUT",
                     body: data
-                }).then(() => window.location.reload())
-                .catch(err => console.log(err));
+                }).catch(err => console.log(err));
+
+                redirect("/calendar");
             }}
             className="flex flex-col gap-2"
         >
