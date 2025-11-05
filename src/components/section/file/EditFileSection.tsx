@@ -27,7 +27,7 @@ export default function EditFileSection({ id }: { id: number }) {
                 <EditFileForm file={file} />
             </WhiteFrameUI>
             <div>
-                <BlueButton href="/notification">告知に戻る</BlueButton>
+                <BlueButton href="/file">告知に戻る</BlueButton>
             </div>
         </section>
     )
