@@ -7,7 +7,7 @@ export default function AddDateInfoButton({ date, tier }: { date: Date, tier: TI
             className="w-full h-full flex flex-col items-center justify-center cursor-pointer"
             onClick={async () => {
                 if(!checkTier(tier)) return;
-                if(!confirm(`${formatDate(date)}に予定を追加しますか？`)) return;
+                if(!confirm(`予定を追加しますか？`)) return;
 
                 redirect(`/calendar/add/${date}`);
             }}
