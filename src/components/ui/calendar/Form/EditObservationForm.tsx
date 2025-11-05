@@ -1,7 +1,9 @@
+"use client";
+
 import Form from "next/form";
 import { Observation } from "@/lib/type";
 import BlueButton from "../../global/Button/BlueButton";
-import DefaultInput from "../../global/Form/DefaultInput";
+import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 
 export default function EditObservationForm({ observation }: { observation: Observation }) {
     return (
@@ -15,25 +17,20 @@ export default function EditObservationForm({ observation }: { observation: Obse
             }}
             className="flex flex-col gap-2"
         >
-            <DefaultInput
+            <DefaultAddableOption
                 title="朝"
                 name="morning"
-                defaultValue={observation.morning}
-                required
-                label
+                defaultOptions={observation.morning}
             />
-            <DefaultInput
+            <DefaultAddableOption
                 title="昼"
                 name="noon"
-                defaultValue={observation.noon}
-                required
-                label
+                defaultOptions={observation.noon}
             />
-            <DefaultInput
+            <DefaultAddableOption
                 title="放課後"
                 name="afterSchool"
-                defaultValue={observation.afterSchool}
-                label
+                defaultOptions={observation.afterSchool}
             />
             <div className="pt-4">
                 <BlueButton>保存</BlueButton>

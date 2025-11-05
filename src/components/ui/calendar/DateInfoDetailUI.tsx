@@ -15,7 +15,7 @@ export default function DateInfoDetailUI({ info }: { info: DateInfo }) {
             </div>
             <div>
                 <p className="font-bold">休日観測</p>
-                <p className="whitespace-pre-wrap">{info.holiday ? info.holiday : "なし"}</p>
+                <p className="whitespace-pre-wrap">{info.holiday.length === 0 ? "なし" : info.holiday.join(", ")}</p>
             </div>
         </WhiteFrameUI>
     )

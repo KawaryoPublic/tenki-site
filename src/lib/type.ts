@@ -7,16 +7,16 @@ export enum TIER {
 
 export interface Observation {
     day: number;
-    morning: string;
-    noon: string;
-    afterSchool: string;
+    morning: string[];
+    noon: string[];
+    afterSchool: string[];
 }
 
 export interface DateInfo {
     date: string;
     plan: string;
     event: string;
-    holiday: string;
+    holiday: string[];
 }
 
 export interface Notification {

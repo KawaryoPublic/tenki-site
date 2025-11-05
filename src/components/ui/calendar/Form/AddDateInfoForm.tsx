@@ -3,7 +3,8 @@
 import Form from "next/form";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import BlueButton from "../../global/Button/BlueButton";
-import DefaultInput from "../../global/Form/DefaultInput";
+import { redirect } from "next/navigation";
+import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 
 export default function AddDateInfoForm({ date }: { date: string }) {
     return (
@@ -14,6 +15,8 @@ export default function AddDateInfoForm({ date }: { date: string }) {
                     body: data
                 }).then(() => window.location.reload())
                 .catch(err => console.log(err));
+
+                redirect("/calendar");
             }}
             className="flex flex-col gap-2"
         >
@@ -29,10 +32,9 @@ export default function AddDateInfoForm({ date }: { date: string }) {
                 rows={3} 
                 label
             />
-            <DefaultInput 
+            <DefaultAddableOption 
                 title="休日観測" 
-                name="holiday" 
-                label
+                name="holiday"
             />
             <div className="pt-4">
                 <BlueButton>保存</BlueButton>

@@ -12,7 +12,8 @@ export default function DeleteNotificationButton({ id }: { id: number }) {
                 }).then(() => window.location.reload())
                 .catch(err => console.log(err)));
             }}
-        >削除
-                    </RedButton>
+        >
+            削除
+        </RedButton>
     );
 }

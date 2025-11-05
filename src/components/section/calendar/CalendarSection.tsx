@@ -7,7 +7,7 @@ import CalendarUI from "@/components/ui/calendar/CalendarUI";
 import SearchForm from "@/components/ui/global/Form/Search";
 import { redirect } from "next/navigation";
 
-export default function CalendarSection({ filter, tier }: {filter: string, tier: TIER}) {
+export default function CalendarSection({ filter, tier }: { filter: string, tier: TIER }) {
     const [observationDays, setObservationDays] = useState<Number[]>([]);
     const [dateInfo, setDateInfo] = useState<DateInfo[]>([]);
     const [loading, setLoading] = useState(true);
@@ -23,11 +23,9 @@ export default function CalendarSection({ filter, tier }: {filter: string, tier:
 
                 fetch(`/api/observation?filter=${filter}`)
                     .then(res => res.json())
-                    .then(data => {
-                        setObservationDays(
-                            data.map((observation: Observation) => observation.day)
-                        );
-                    })
+                    .then(data => setObservationDays(
+                        data.filter((observation: Observation) => observation.morning.includes(filter) || observation.noon.includes(filter) || observation.afterSchool.includes(filter))
+                            .map((observation: Observation) => observation.day)))
                     .finally(() => setLoading(false))
                     .catch(err => console.error(err));
             })

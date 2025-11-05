@@ -1,3 +1,5 @@
+"use client";
+
 import { TIER } from "@/lib/type";
 import { checkTier } from "@/lib/util";
 import { redirect } from "next/navigation";

@@ -36,7 +36,7 @@ export default function EditNotificationForm({ notification }: { notification: N
                 defaultValue={notification.content}
                 label
             />
-            <DefaultAddableOption title="タグ" name="tag" options={notification.tags} />
+            <DefaultAddableOption title="タグ" name="tag" defaultOptions={notification.tags} />
             <DefaultSelect
                 title="対象"
                 name="tier"

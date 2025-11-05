@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
         const data = await request.formData();
         const plan = data.get("plan") as string;
         const event = data.get("event") as string;
-        const holiday = data.get("holiday") as string;
+        const holiday = data.getAll("holiday") as string[];
 
         if (!date || plan === undefined || event === undefined || holiday === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -72,7 +72,7 @@ export async function PUT(request: NextRequest) {
         const data = await request.formData();
         const plan = data.get("plan") as string;
         const event = data.get("event") as string;
-        const holiday = data.get("holiday") as string;
+        const holiday = data.getAll("holiday") as string[];
 
         if (!date || plan === undefined || event === undefined || holiday === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });

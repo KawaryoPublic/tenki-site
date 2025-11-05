@@ -5,6 +5,7 @@ import Form from "next/form";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
+import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 
 export default function EditDateInfoForm({ info }: { info: DateInfo }) {
     return (
@@ -32,11 +33,10 @@ export default function EditDateInfoForm({ info }: { info: DateInfo }) {
                 rows={3} 
                 label
             />
-            <DefaultInput 
+            <DefaultAddableOption 
                 title="休日観測" 
                 name="holiday" 
-                defaultValue={info.holiday} 
-                label
+                defaultOptions={info.holiday} 
             />
             <div className="pt-4">
                 <BlueButton>保存</BlueButton>

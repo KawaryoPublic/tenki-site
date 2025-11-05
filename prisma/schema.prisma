@@ -9,9 +9,9 @@ datasource db {
 
 model Observation {
   day         Int         @unique
-  morning     String
-  noon        String
-  afterSchool String
+  morning     String[]
+  noon        String[]
+  afterSchool String[]
 }
 
 model DateInfo {
@@ -20,7 +20,7 @@ model DateInfo {
   updatedAt            DateTime     @updatedAt
   plan                 String
   event                String
-  holiday              String
+  holiday              String[]
 }
 
 model Notification {

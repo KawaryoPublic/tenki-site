@@ -13,31 +13,12 @@ export async function GET(request: NextRequest) {
 
         const searchParams = request.nextUrl.searchParams;
         const day = Number(searchParams.get("day"));
-        const filter = searchParams.get("filter");
 
-        let observations;
-
-        if(day) {
-            observations = await prisma.observation.findUnique({
+        const observations = day ? 
+            await prisma.observation.findUnique({
                 where: { day: day },
-            });
-        }
-
-        if(filter) {
-            observations = await prisma.observation.findMany({
-                where: {
-                    OR: [
-                        { morning: { contains: filter } },
-                        { noon: { contains: filter } },
-                        { afterSchool: { contains: filter } },
-                    ],
-                },
-            });
-        }
-
-        if(!day && !filter) {
-            return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
-        }
+            }) : 
+            await prisma.observation.findMany();
 
         return NextResponse.json(observations, { status: 200 });
     } catch (error) {
@@ -56,9 +37,9 @@ export async function PUT(request: NextRequest) {
 
         const day = Number(request.nextUrl.searchParams.get("day"));
         const data = await request.formData();
-        const morning = data.get("morning") as string;
-        const noon = data.get("noon") as string;
-        const afterSchool = data.get("afterSchool") as string;
+        const morning = data.getAll("morning") as string[];
+        const noon = data.getAll("noon") as string[];
+        const afterSchool = data.getAll("afterSchool") as string[];
 
         if (!day || morning === undefined || noon === undefined || afterSchool === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
