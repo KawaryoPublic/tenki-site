@@ -7,8 +7,8 @@ import DeleteDateInfoButton from "./Button/DeleteDateInfoButton";
 export default function DateInfoDetailUI({ info, tier }: { info: DateInfo, tier: TIER }) {
     return (
         <WhiteFrameUI className="flex flex-col gap-2">
-            <div className="flex justify-between items-center border-b">
-                <h2 className="text-lg lg:text-xl">{formatDate(info.date)}の詳細</h2>
+            <div className="flex justify-between items-center border-b pb-2">
+                <h2 className="text-xl lg:text-3xl font-bold">{formatDate(info.date)}の詳細</h2>
                 <div className="flex items-center gap-4">
                     {
                         checkTier(tier) && 

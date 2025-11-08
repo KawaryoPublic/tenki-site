@@ -9,8 +9,8 @@ export default function NotificationUI({ notification, tier }: { notification: N
     const updatedAt = new Date(notification.updatedAt);
 
     return (
-        <WhiteFrameUI>
-            <div className={`flex justify-between items-center ${notification.tags.length !== 0 && "border-b pb-2 mb-2"}`}>
+        <WhiteFrameUI className="flex flex-col gap-2">
+            <div className={`flex justify-between items-center ${notification.tags.length !== 0 && "border-b pb-2"}`}>
                 <Link className="text-xl lg:text-3xl font-bold" href={`notification/${notification.id}`}>{notification.title}</Link>
                 <div className="flex items-center gap-4">
                     <span className="text-gray-800 text-xs lg:text-sm">{`${updatedAt.getFullYear() === (new Date()).getFullYear() ? "" : `${updatedAt.getFullYear()}年`}${updatedAt.getMonth() + 1}月${updatedAt.getDate()}日`}</span>
@@ -18,7 +18,7 @@ export default function NotificationUI({ notification, tier }: { notification: N
                         checkTier(tier) &&
                         <>
                             <BlueButton href={`/notification/edit/${notification.id}`}>編集</BlueButton>
-                            <DeleteNotificationButton id={notification.id}/>
+                            <DeleteNotificationButton id={notification.id} />
                         </>
                     }
                 </div>

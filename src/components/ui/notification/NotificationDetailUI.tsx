@@ -7,8 +7,8 @@ import DeleteNotificationButton from "./Button/DeleteNotificationButton";
 export default function NotificationDetailUI({ notification, tier }: { notification: Notification, tier: TIER }) {
     return (
         <WhiteFrameUI className="flex flex-col gap-2">
-            <div className="flex justify-between items-center border-b">
-                <h2 className="text-lg lg:text-xl">{notification.title}</h2>
+            <div className="flex justify-between items-center border-b pb-2">
+                <h2 className="text-xl lg:text-3xl font-bold">{notification.title}</h2>
                 <div className="flex items-center gap-4">
                     {
                         checkTier(tier) && 
