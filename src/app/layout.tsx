@@ -17,8 +17,8 @@ export default function RootLayout({
     <html lang="ja">
       <body className="min-h-screen overflow-x-hidden flex flex-col items-center">
         <div className="fixed z-[-1] top-0 left-0 w-full h-screen">
-          <Image src="/image/bg_pc.jpg" alt="背景" fill preload className="object-cover max-sm:hidden" />
-          <Image src="/image/bg_phone.jpg" alt="背景" fill preload className="object-cover sm:hidden" />
+          <Image src="/image/bg_pc.jpg" alt="背景" fill priority className="object-cover max-sm:hidden" />
+          <Image src="/image/bg_phone.jpg" alt="背景" fill priority className="object-cover sm:hidden" />
           <div className="w-full h-full bg-black opacity-50" />
         </div>
         <Header />
