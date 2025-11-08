@@ -25,7 +25,7 @@ export default function EditObservationSection({ day, tier }: { day: number, tie
         !observation ? <div className="flex-1 flex flex-col items-center font-bold text-xl">観測シフトを読み込めませんでした</div> :
         <section className="w-full flex flex-col gap-4">
             <WhiteFrameUI>
-                <EditObservationForm observation={observation} tier={tier} />
+                <EditObservationForm observation={observation} />
             </WhiteFrameUI>
             <div>
                 <BlueButton href="/calendar">日付一覧に戻る</BlueButton>
