@@ -1,11 +1,13 @@
-import DateInfoSection from "@/components/section/calendar/DateInfoSection";
+import AddDateInfoSection from "@/components/section/calendar/date/AddDateInfoSection";
 import { getTier } from "@/lib/action";
 import { checkTier } from "@/lib/util";
 
 export default async function Home(props: { params: Promise<{ date: string }> }) {
     const params = await props.params;
     const tier = await getTier();
+
     return (
-        checkTier(tier, false, true) && <DateInfoSection date={params.date} tier={tier} />
+        checkTier(tier) && <AddDateInfoSection date={params.date} />
     );
+
 }

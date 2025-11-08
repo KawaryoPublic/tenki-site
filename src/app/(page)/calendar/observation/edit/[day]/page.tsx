@@ -1,4 +1,4 @@
-import ObservationDetailSection from "@/components/section/calendar/observation/ObservationDetailSection";
+import EditObservationSection from "@/components/section/calendar/observation/EditObservationSection";
 import { getTier } from "@/lib/action";
 import { checkTier } from "@/lib/util";
 
@@ -7,6 +7,6 @@ export default async function Home(props: { params: Promise<{ day: string }> }) 
     const tier = await getTier();
 
     return (
-        checkTier(tier, false, true) && <ObservationDetailSection day={Number(params.day)} tier={tier} />
+        checkTier(tier) && <EditObservationSection day={Number(params.day)} tier={tier} />
     )
 }

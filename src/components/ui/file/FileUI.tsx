@@ -17,7 +17,7 @@ export default function FileUI({ file, tier }: { file: File, tier: TIER }) {
                     {
                         checkTier(tier) &&
                         <>
-                            <BlueButton href={`/file/${file.id}`}>編集</BlueButton>
+                            <BlueButton href={`/file/edit/${file.id}`}>編集</BlueButton>
                             <DeleteFileButton id={file.id}/>
                         </>
                     }

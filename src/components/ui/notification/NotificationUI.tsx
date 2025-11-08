@@ -10,21 +10,20 @@ export default function NotificationUI({ notification, tier }: { notification: N
 
     return (
         <WhiteFrameUI>
-            <div className="flex justify-between items-center mb-2 border-b pb-2">
-                <span className="text-xl lg:text-3xl font-bold">{notification.title}</span>
+            <div className={`flex justify-between items-center ${file.tags.length !== 0 && "border-b pb-2 mb-2"}`}>
+                <Link className="text-xl lg:text-3xl font-bold" href={`notification/${notification.id}`}>{notification.title}</Link>
                 <div className="flex items-center gap-4">
                     <span className="text-gray-800 text-xs lg:text-sm">{`${updatedAt.getFullYear() === (new Date()).getFullYear() ? "" : `${updatedAt.getFullYear()}年`}${updatedAt.getMonth() + 1}月${updatedAt.getDate()}日`}</span>
                     {
                         checkTier(tier) &&
                         <>
-                            <BlueButton href={`/notification/${notification.id}`}>編集</BlueButton>
+                            <BlueButton href={`/notification/edit/${notification.id}`}>編集</BlueButton>
                             <DeleteNotificationButton id={notification.id}/>
                         </>
                     }
                 </div>
             </div>
-            <div className="whitespace-pre-wrap text-sm lg:text-base">{notification.content}</div>
-            <div className={`text-xs lg:text-sm text-blue-700 font-bold ${notification.tags.length !== 0 && "mt-1 lg:mt-2"}`}>
+            <div className="text-xs lg:text-sm text-blue-700 font-bold">
                 {
                     notification.tags.map((tag, index) => 
                         <Link key={index} href={`/notification?tags=${tag}`} className="mr-2">#{tag}</Link>

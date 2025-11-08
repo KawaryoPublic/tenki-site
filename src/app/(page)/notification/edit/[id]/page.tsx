@@ -1,9 +1,12 @@
+import { getTier } from "@/lib/action";
+import { checkTier } from "@/lib/util";
 import EditNotificationSection from "@/components/section/notification/EditNotificationSection";
 
 export default async function Home(props: { params: Promise<{ id: string }>}) {
     const params = await props.params;
+    const tier = await getTier();
 
     return (
-        <EditNotificationSection id={Number(params.id)} />
+        checkTier(tier, true, true) && <EditNotificationSection id={Number(params.id)} />
     )
 }

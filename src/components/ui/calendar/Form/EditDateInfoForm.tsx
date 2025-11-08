@@ -6,6 +6,7 @@ import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import { redirect } from "next/navigation";
+import { formatDate } from "@/lib/util";
 
 export default function EditDateInfoForm({ info }: { info: DateInfo }) {
     return (
@@ -20,6 +21,9 @@ export default function EditDateInfoForm({ info }: { info: DateInfo }) {
             }}
             className="flex flex-col gap-2"
         >
+            <div className="border-b">
+                <h2 className="text-lg lg:text-xl">{formatDate(info.date)}の詳細</h2>
+            </div>
             <DefaultTextArea 
                 title="予定" 
                 name="plan" 

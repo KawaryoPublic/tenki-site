@@ -11,7 +11,7 @@ export default function AddDateInfoSection({ date }: { date: string }) {
                 <AddDateInfoForm date={date} />
             </WhiteFrameUI>
             <div>
-                <BlueButton href="/file">カレンダーに戻る</BlueButton>
+                <BlueButton href="/calendar">カレンダーに戻る</BlueButton>
             </div>
         </section>
     );

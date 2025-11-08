@@ -3,10 +3,9 @@
 import { useEffect, useState } from "react";
 import { Notification } from "@/lib/type";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
-import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
-import EditNotificationForm from "@/components/ui/notification/Form/EditNotificationForm";
+import NotificationDetailUI from "@/components/ui/notification/NotificationDetailUI";
 
-export default function EditNotificationSection({ id }: { id: number }) {
+export default function NotificationDetailSection({ id }: { id: number }) {
     const [ notification, setNotification ] = useState<Notification | null>();
     const [ loading, setLoading ] = useState(true);
     
@@ -22,9 +21,7 @@ export default function EditNotificationSection({ id }: { id: number }) {
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
         !notification ? <div className="flex-1 flex flex-col items-center font-bold text-xl">通知を読み込めませんでした</div> :
         <section className="w-full flex flex-col gap-4">
-            <WhiteFrameUI>
-                <EditNotificationForm notification={notification} />
-            </WhiteFrameUI>
+            <NotificationDetailUI notification={notification} />
             <div>
                 <BlueButton href="/notification">告知に戻る</BlueButton>
             </div>
