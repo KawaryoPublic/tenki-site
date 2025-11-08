@@ -7,7 +7,7 @@ import { checkTier } from "@/lib/util";
 export default function ObservationDetailUI({ observation, tier }: { observation: Observation, tier: TIER }) {
     return (
         <WhiteFrameUI className="flex flex-col gap-2">
-            <div className="border-b">
+            <div className="flex justify-between items-center border-b">
                 <h2 className="text-lg lg:text-xl">{DAYS[observation.day]}曜日の観測シフト</h2>
                 <div>
                     {
