@@ -21,9 +21,7 @@ export default function EditDateInfoForm({ info }: { info: DateInfo }) {
             }}
             className="flex flex-col gap-2"
         >
-            <div className="border-b">
-                <h2 className="text-lg lg:text-xl">{formatDate(info.date)}の詳細</h2>
-            </div>
+            <h2 className="text-lg lg:text-xl border-b">{formatDate(info.date)}の詳細</h2>
             <DefaultTextArea 
                 title="予定" 
                 name="plan" 

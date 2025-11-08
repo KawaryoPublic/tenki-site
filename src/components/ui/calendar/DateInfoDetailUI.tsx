@@ -1,12 +1,18 @@
-import { DateInfo } from "@/lib/type";
+import { DateInfo, TIER } from "@/lib/type";
 import WhiteFrameUI from "../global/WhiteFrameUI";
-import { formatDate } from "@/lib/util";
+import { checkTier, formatDate } from "@/lib/util";
+import BlueButton from "../global/Button/BlueButton";
 
-export default function DateInfoDetailUI({ info }: { info: DateInfo }) {
+export default function DateInfoDetailUI({ info, tier }: { info: DateInfo, tier: TIER }) {
     return (
         <WhiteFrameUI className="flex flex-col gap-2">
             <div className="border-b">
                 <h2 className="text-lg lg:text-xl">{formatDate(info.date)}の詳細</h2>
+                <div>
+                    {
+                        checkTier(tier) && <BlueButton href={`/calendar/date/edit/${info.date}`}>編集</BlueButton>
+                    }
+                </div>
             </div>
             <div>
                 <p className="font-bold">予定</p>

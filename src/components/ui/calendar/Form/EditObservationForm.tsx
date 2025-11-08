@@ -1,7 +1,7 @@
 "use client";
 
 import Form from "next/form";
-import { Observation } from "@/lib/type";
+import { Observation, TIER } from "@/lib/type";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import { redirect } from "next/navigation";
@@ -20,9 +20,7 @@ export default function EditObservationForm({ observation }: { observation: Obse
             }}
             className="flex flex-col gap-2"
         >
-            <div className="border-b">
-                <h2 className="text-lg lg:text-xl">{DAYS[observation.day]}曜日の観測シフト</h2>
-            </div>
+            <h2 className="text-lg lg:text-xl border-b">{DAYS[observation.day]}曜日の観測シフト</h2>
             <DefaultAddableOption
                 title="朝"
                 name="morning"

@@ -23,7 +23,7 @@ export default function DateInfoDetailSection({ date, tier }: { date: string, ti
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
         !info ? <div className="flex-1 flex flex-col items-center font-bold text-xl">詳細を読み込めませんでした</div> :
         <section className="w-full flex flex-col gap-4">
-            <DateInfoDetailUI info={info} />
+            <DateInfoDetailUI info={info} tier={tier} />
             <div className="flex flex-col gap-4">
                 <div>
                     <BlueButton href="/calendar">日付一覧に戻る</BlueButton>

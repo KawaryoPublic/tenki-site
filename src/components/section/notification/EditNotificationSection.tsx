@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Notification } from "@/lib/type";
+import { Notification, TIER } from "@/lib/type";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import EditNotificationForm from "@/components/ui/notification/Form/EditNotificationForm";
+import { checkTier } from "@/lib/util";
 
-export default function EditNotificationSection({ id }: { id: number }) {
+export default function EditNotificationSection({ id, tier }: { id: number, tier: TIER }) {
     const [ notification, setNotification ] = useState<Notification | null>();
     const [ loading, setLoading ] = useState(true);
     
@@ -19,6 +20,7 @@ export default function EditNotificationSection({ id }: { id: number }) {
     }, []);
 
     return (
+        checkTier(tier) &&
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
         !notification ? <div className="flex-1 flex flex-col items-center font-bold text-xl">通知を読み込めませんでした</div> :
         <section className="w-full flex flex-col gap-4">

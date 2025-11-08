@@ -1,12 +1,19 @@
-import { Observation } from "@/lib/type";
+import { Observation, TIER } from "@/lib/type";
 import WhiteFrameUI from "../global/WhiteFrameUI";
 import { DAYS } from "@/lib/const";
+import BlueButton from "../global/Button/BlueButton";
+import { checkTier } from "@/lib/util";
 
-export default function ObservationDetailUI({ observation }: { observation: Observation }) {
+export default function ObservationDetailUI({ observation, tier }: { observation: Observation, tier: TIER }) {
     return (
         <WhiteFrameUI className="flex flex-col gap-2">
             <div className="border-b">
                 <h2 className="text-lg lg:text-xl">{DAYS[observation.day]}曜日の観測シフト</h2>
+                <div>
+                    {
+                        checkTier(tier) && <BlueButton href={`/calendar/observation/edit/${observation.day}`}>編集</BlueButton>
+                    }
+                </div>
             </div>
             <div>
                 <p className="font-bold">朝</p>

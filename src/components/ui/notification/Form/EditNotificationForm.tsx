@@ -22,9 +22,7 @@ export default function EditNotificationForm({ notification }: { notification: N
             }}
             className="flex flex-col gap-2"
         >   
-            <div className="border-b">
-                <h2 className="text-lg lg:text-xl">{notification.title}</h2>
-            </div>
+            <h2 className="text-lg lg:text-xl border-b">{notification.title}</h2>
             <DefaultInput
                 title="タイトル"
                 name="title"
