@@ -6,7 +6,7 @@ import { Notification, TIER } from "@/lib/type";
 export default function NotificationDetailUI({ notification, tier }: { notification: Notification, tier: TIER }) {
     return (
         <WhiteFrameUI className="flex flex-col gap-2">
-            <div className="border-b">
+            <div className="flex justify-center items-center border-b">
                 <h2 className="text-lg lg:text-xl">{notification.title}</h2>
                 <div>
                     {
