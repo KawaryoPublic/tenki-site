@@ -6,7 +6,7 @@ import BlueButton from "../global/Button/BlueButton";
 export default function DateInfoDetailUI({ info, tier }: { info: DateInfo, tier: TIER }) {
     return (
         <WhiteFrameUI className="flex flex-col gap-2">
-            <div className="border-b">
+            <div className="flex justify-between items-center border-b">
                 <h2 className="text-lg lg:text-xl">{formatDate(info.date)}の詳細</h2>
                 <div>
                     {
