@@ -13,6 +13,10 @@ export const checkTier = (tier: TIER, allowParent: boolean = false, allowStudent
 export const formatDate = (date: string) => {
     const splitDate = date.split("-");
 
+    if(splitDate[0] === new Date().getFullYear().toString()) {
+        return `${Number(splitDate[1]) + 1}月${splitDate[2]}日`;
+    }
+    
     return `${splitDate[0]}年${Number(splitDate[1]) + 1}月${splitDate[2]}日`;
 }
 

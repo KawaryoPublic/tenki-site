@@ -12,7 +12,7 @@ export default function NotificationUI({ notification, tier }: { notification: N
         <WhiteFrameUI className="flex flex-col gap-2">
             <div className={`flex justify-between items-center ${notification.tags.length !== 0 && "border-b pb-2"}`}>
                 <Link className="text-xl lg:text-3xl font-bold" href={`notification/${notification.id}`}>{notification.title}</Link>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 lg:gap-4">
                     <span className="text-gray-800 text-xs lg:text-sm">{`${updatedAt.getFullYear() === (new Date()).getFullYear() ? "" : `${updatedAt.getFullYear()}年`}${updatedAt.getMonth() + 1}月${updatedAt.getDate()}日`}</span>
                     {
                         checkTier(tier) &&

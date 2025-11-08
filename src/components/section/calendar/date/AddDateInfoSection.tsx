@@ -6,8 +6,7 @@ import { formatDate } from "@/lib/util";
 export default function AddDateInfoSection({ date }: { date: string }) {
     return (
         <section className="w-full flex flex-col gap-4">
-            <WhiteFrameUI className="flex flex-col gap-2">
-                <h2 className="text-lg lg:text-xl border-b">{formatDate(date)}の詳細を追加</h2>
+            <WhiteFrameUI>
                 <AddDateInfoForm date={date} />
             </WhiteFrameUI>
             <div>

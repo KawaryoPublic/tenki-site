@@ -9,7 +9,7 @@ export default function NotificationDetailUI({ notification, tier }: { notificat
         <WhiteFrameUI className="flex flex-col gap-2">
             <div className="flex justify-between items-center border-b pb-2">
                 <h2 className="text-xl lg:text-3xl font-bold">{notification.title}</h2>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 lg:gap-4">
                     {
                         checkTier(tier) && 
                         <>
