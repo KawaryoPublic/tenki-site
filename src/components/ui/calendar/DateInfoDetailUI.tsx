@@ -2,15 +2,20 @@ import { DateInfo, TIER } from "@/lib/type";
 import WhiteFrameUI from "../global/WhiteFrameUI";
 import { checkTier, formatDate } from "@/lib/util";
 import BlueButton from "../global/Button/BlueButton";
+import DeleteDateInfoButton from "./Button/DeleteDateInfoButton";
 
 export default function DateInfoDetailUI({ info, tier }: { info: DateInfo, tier: TIER }) {
     return (
         <WhiteFrameUI className="flex flex-col gap-2">
             <div className="flex justify-between items-center border-b">
                 <h2 className="text-lg lg:text-xl">{formatDate(info.date)}の詳細</h2>
-                <div>
+                <div className="flex items-center gap-4">
                     {
-                        checkTier(tier) && <BlueButton href={`/calendar/date/edit/${info.date}`}>編集</BlueButton>
+                        checkTier(tier) && 
+                        <>
+                            <BlueButton href={`/calendar/date/edit/${info.date}`}>編集</BlueButton>
+                            <DeleteDateInfoButton date={info.date} />
+                        </>
                     }
                 </div>
             </div>

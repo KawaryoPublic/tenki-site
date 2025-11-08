@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 import RedButton from "../../global/Button/RedButton";
 
-export default function DeleteInfoButton({ date }: { date: string }) {
+export default function DeleteDateInfoButton({ date }: { date: string }) {
     return (
         <RedButton
             onClick={async () => {
