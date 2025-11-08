@@ -7,6 +7,6 @@ export default async function Home(props: { params: Promise<{ id: string }>}) {
     const tier = await getTier();
 
     return (
-        checkTier(tier, true, true) && <EditNotificationSection id={Number(params.id)} />
+        checkTier(tier) && <EditNotificationSection id={Number(params.id)} />
     )
 }

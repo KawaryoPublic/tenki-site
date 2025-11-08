@@ -1,9 +1,9 @@
-import EditNotificationSection from "@/components/section/notification/EditNotificationSection";
+import NotificationDetailSection from "@/components/section/notification/NotificationDetailSection";
 
 export default async function Home(props: { params: Promise<{ id: string }>}) {
     const params = await props.params;
 
     return (
-        <EditNotificationSection id={Number(params.id)} />
+        <NotificationDetailSection id={Number(params.id)} />
     )
 }
