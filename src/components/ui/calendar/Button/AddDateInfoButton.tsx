@@ -12,7 +12,7 @@ export default function AddDateInfoButton({ date, tier }: { date: Date, tier: TI
                 if(!checkTier(tier)) return;
                 if(!confirm("予定を追加しますか？")) return;
 
-                redirect(`/calendar/add/${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`);
+                redirect(`/calendar/date/add/${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`);
             }}
         >
             {date.getDate()}
