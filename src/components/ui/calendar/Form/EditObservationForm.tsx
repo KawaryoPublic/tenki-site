@@ -5,7 +5,6 @@ import { Observation, TIER } from "@/lib/type";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import { redirect } from "next/navigation";
-import { DAYS } from "@/lib/const";
 
 export default function EditObservationForm({ observation }: { observation: Observation }) {
     return (
