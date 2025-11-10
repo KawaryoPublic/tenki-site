@@ -57,16 +57,15 @@ export const searchByTagsAndTitle = (url: string, searchString: string) => {
     redirect(redirectUrl);
 }
 
-export const uploadFiles = async (files: FileList | File[]) => {
-    const blobs = [];
-
+export const uploadFiles = async (files: FileList | File[], formData: FormData) => {
     for (const file of files) {
         const blob = await upload(file.name, file, {
             access: 'public',
             handleUploadUrl: "/api/upload",
         });
-        blobs.push(blob);
+        
+        formData.append('url', blob.url);
     }
 
-    return blobs;
+    return formData;
 }

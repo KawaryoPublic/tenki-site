@@ -55,6 +55,7 @@ export async function POST(request: NextRequest) {
         const title = data.get("title") as string;
         const content = data.get("content") as string;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
+        const urls = data.getAll("url") as string[];
         const tier = data.get("tier") as TIER;
 
         if (title === undefined || content === undefined || tier === undefined) {
@@ -66,6 +67,7 @@ export async function POST(request: NextRequest) {
                 title,
                 content,
                 tags,
+                urls,
                 tier
             },
         });

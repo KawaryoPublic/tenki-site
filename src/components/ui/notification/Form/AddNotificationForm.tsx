@@ -17,12 +17,13 @@ export default function AddNotificationForm() {
     return (
         <Form 
             action={async data => {
+                data = await uploadFiles(fileRef.current?.files || [], data);
+
                 await fetch('/api/notification', {
                     method: 'POST',
                     body: data,
                 }).catch(err => console.log(err));
 
-                await uploadFiles(fileRef.current?.files || []);
 
                 redirect(`/notification`)
             }}
@@ -47,7 +48,6 @@ export default function AddNotificationForm() {
                 type="file"
                 ref={fileRef}
                 label
-                multiple
             />
             <DefaultAddableOption title="タグ" name="tag" />
             <DefaultSelect

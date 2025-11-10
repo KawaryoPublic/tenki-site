@@ -3,6 +3,7 @@ import BlueButton from "../global/Button/BlueButton";
 import WhiteFrameUI from "../global/WhiteFrameUI";
 import { Notification, TIER } from "@/lib/type";
 import DeleteNotificationButton from "./Button/DeleteNotificationButton";
+import Image from "next/image";
 
 export default function NotificationDetailUI({ notification, tier }: { notification: Notification, tier: TIER }) {
     return (
@@ -21,6 +22,13 @@ export default function NotificationDetailUI({ notification, tier }: { notificat
             </div>
             <div>
                 <p>{notification.content}</p>
+            </div>
+            <div>
+                {
+                    notification.urls.map((url, index) => (
+                        <Image key={index} src={url} alt={`${url}`} className="my-2 max-w-full h-auto" />
+                    ))
+                }
             </div>
         </WhiteFrameUI>
     )

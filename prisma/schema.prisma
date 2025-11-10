@@ -28,6 +28,7 @@ model Notification {
   title     String
   content   String
   tags      String[]
+  urls      String[]
   tier      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
