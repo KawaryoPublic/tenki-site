@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
                 await prisma.file.findMany({
                     orderBy: { createdAt: 'desc' },
                 }) : 
-                await prisma.notification.findMany({
+                await prisma.file.findMany({
                     where: {
                         OR: [
                             {
