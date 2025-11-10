@@ -24,12 +24,11 @@ export default function NotificationsSection({ tier, tags, title }: { tier: TIER
   return (
     <section className="flex-1 flex flex-col gap-3 w-full">
       <div className="flex justify-between items-center">
-        {
-          checkTier(tier) && 
-          <div>
-            <BlueButton href="/notification/add">追加</BlueButton>
-          </div>
-        }
+        <div>
+          {
+            checkTier(tier) && <BlueButton href="/notification/add">追加</BlueButton>
+          }
+        </div>
         <DefaultSearchForm title="検索(#をつけるとタグ)" defaultValue={`${title.join(" ")}${(title.length !== 0 && tags.length !== 0) ? " " : ""}${tags.map(tag => `#${tag}`).join(" ")}`} search={searchString => searchByTagsAndTitle("/notification", searchString)} />
       </div>
       {
