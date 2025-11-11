@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 import { TIER } from "@/lib/type";
 import { getTier } from "@/lib/action";
 import { checkTier } from "@/lib/util";
-import { del } from "vercel/blob";
+import { del } from "@vercel/blob";
 
 export async function GET(request: NextRequest) {
     try {
