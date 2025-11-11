@@ -9,8 +9,8 @@ export default function NotificationDetailUI({ notification, tier }: { notificat
     return (
         <WhiteFrameUI className="flex flex-col gap-2">
             <div className="flex justify-between items-center border-b pb-2">
-                <h2 className="text-xl lg:text-3xl font-bold">{notification.title}</h2>
-                <div className="flex items-center gap-2 lg:gap-4">
+                <h2 className="text-xl md:text-3xl font-bold">{notification.title}</h2>
+                <div className="flex items-center gap-2 md:gap-4">
                     {
                         checkTier(tier) && 
                         <>
@@ -20,13 +20,13 @@ export default function NotificationDetailUI({ notification, tier }: { notificat
                     }
                 </div>
             </div>
-            <div>
+            <div className="whitespace-pre-wrap text-sm md:text-base">
                 <p>{notification.content}</p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 text-sm md:text-base">
                 {
                     notification.urls.map((url, index) => (
-                        <Link key={index} href={url} target="_blank" className="border rounded-md text-xs lg:text-sm">{notification.filenames[index]}</Link>
+                        <Link key={index} href={url} target="_blank" className="border rounded-md px-2 py-2 md:py-4 overflow-hidden whitespace-nowrap">{notification.filenames[index]}</Link>
                     ))
                 }
             </div>
