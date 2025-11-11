@@ -37,7 +37,7 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                             name={name}
                             onChange={e => {
                                 const newFiles = [...files];
-                                newFiles[index] = e.target.files[0];
+                                newFiles[index] = e.target.files ? e.target.files[0] : null;
                                 setFiles(newFiles);
                             }}
                             required
