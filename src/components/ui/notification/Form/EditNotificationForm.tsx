@@ -19,8 +19,6 @@ export default function EditNotificationForm({ notification }: { notification: N
     return (
         <Form 
             action={async data => {
-                data = await uploadFiles(data);
-
                 for(const file of initialFiles) {
                     if(!files.find(f => f.url === file.url)) {
                         data.append("deleteFileUrl", file.url);
@@ -29,6 +27,8 @@ export default function EditNotificationForm({ notification }: { notification: N
                         data.append("filename", file.filename);
                     }
                 }
+
+                data = await uploadFiles(data);
 
                 await fetch(`/api/notification?id=${notification.id}`, {
                     method: 'PUT',
