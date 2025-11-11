@@ -6,7 +6,7 @@ import FileLinkUI from "../FileLinkUI";
 import { Dispatch, SetStateAction } from "react";
 
 export default function DefaultFile({ title, name, defaultFiles = [], setDefaultFiles }: { title: string, name: string, defaultFiles?: { url: string, filename: string }[], setDefaultFiles?: Dispatch<SetStateAction<{ url: string, filename: string }[]>> }) {
-    const [ files, setFiles ] = useState<File[]>([]);
+    const [ files, setFiles ] = useState<(File | undefined)[]>([]);
 
     return (
         <div className="flex flex-col gap-2">
@@ -35,7 +35,6 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                             key={index}
                             title={title}
                             name={name}
-                            value={file}
                             onChange={e => {
                                 const newFiles = [...files];
                                 newFiles[index] = e.target.files[0];
