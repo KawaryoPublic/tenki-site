@@ -18,7 +18,7 @@ export default function NotificationUI({ notification, tier }: { notification: N
                         checkTier(tier) &&
                         <>
                             <BlueButton href={`/notification/edit/${notification.id}`}>編集</BlueButton>
-                            <DeleteNotificationButton id={notification.id} />
+                            <DeleteNotificationButton id={notification.id} urls={notification.urls} />
                         </>
                     }
                 </div>

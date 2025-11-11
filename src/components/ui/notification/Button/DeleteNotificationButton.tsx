@@ -1,16 +1,22 @@
 "use client";
 
 import RedButton from "../../global/Button/RedButton";
+import { redirect } from "next/navigation";
 
-export default function DeleteNotificationButton({ id }: { id: number }) {
+export default function DeleteNotificationButton({ id, urls }: { id: number, urls: string[] }) {
     return (
         <RedButton
             onClick={async () => {
-                confirm("本当に削除しますか？") &&
-                (await fetch(`/api/notification?id=${id}`, {
+                if(!confirm("本当に削除しますか？")) {
+                    return;
+                }
+
+                await fetch(`/api/notification?id=${id}`, {
                     method: 'DELETE',
-                }).then(() => window.location.reload())
-                .catch(err => console.log(err)));
+                    body: JSON.stringify({ urls: urls }),
+                }).catch(err => console.log(err));
+
+                redirect('/notification');
             }}
         >
             削除

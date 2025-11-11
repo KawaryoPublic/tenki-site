@@ -117,6 +117,7 @@ export async function PUT(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
     try {
+        // const { urls } = await request.json();
         const tier =  await getTier(request);
 
         if(!checkTier(tier)) {
@@ -128,6 +129,8 @@ export async function DELETE(request: NextRequest) {
         if (isNaN(id)) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
+
+        // await del(urls);
 
         await prisma.notification.delete({
             where: { id: id },

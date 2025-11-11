@@ -62,9 +62,11 @@ export const uploadFiles = async (files: FileList | File[], formData: FormData) 
         const blob = await upload(file.name, file, {
             access: 'public',
             handleUploadUrl: "/api/upload",
+            multipart: true,
         });
         
         formData.append('url', blob.url);
+        formData.delete('file');
     }
 
     return formData;
