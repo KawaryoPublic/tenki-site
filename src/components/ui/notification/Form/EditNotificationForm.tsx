@@ -8,11 +8,23 @@ import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
+import DefaultFile from "../../global/Form/DefaultFile";
+import { useState } from "react";
+import { uploadFiles } from "@/lib/util";
 
 export default function EditNotificationForm({ notification }: { notification: Notification }) {
+    const initialFiles = notification.urls.map((url, index) => ({ url: url, filename: notification.filenames[index] }));
+    const [ files, setFiles ] = useState<{ url: string, filename: string }[]>(initialFiles);
+
     return (
         <Form 
             action={async data => {
+                data = await uploadFiles(data);
+
+                for(const deleteFile of initialFiles.filter(file => !files.some(f => f.url === file.url))) {
+                    data.append('deleteFileUrl', deleteFile.url);
+                }
+
                 await fetch(`/api/notification?id=${notification.id}`, {
                     method: 'PUT',
                     body: data,
@@ -22,7 +34,7 @@ export default function EditNotificationForm({ notification }: { notification: N
             }}
             className="flex flex-col gap-2"
         >   
-            <h2 className="text-xl lg:text-3xl font-bold border-b pb-2">告知を編集</h2>
+            <h2 className="text-xl md:text-3xl font-bold border-b pb-2">告知を編集</h2>
             <DefaultInput
                 title="タイトル"
                 name="title"
@@ -37,6 +49,7 @@ export default function EditNotificationForm({ notification }: { notification: N
                 defaultValue={notification.content}
                 label
             />
+            <DefaultFile title="添付ファイル" name="file" defaultFiles={files} setDefaultFiles={setFiles} />
             <DefaultAddableOption title="タグ" name="tag" defaultOptions={notification.tags} />
             <DefaultSelect
                 title="対象"

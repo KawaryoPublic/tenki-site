@@ -3,6 +3,7 @@ import prisma from "@/lib/prisma";
 import { TIER } from "@/lib/type";
 import { getTier } from "@/lib/action";
 import { checkTier } from "@/lib/util";
+import { del } from "vercel/blob";
 
 export async function GET(request: NextRequest) {
     try {
@@ -94,10 +95,17 @@ export async function PUT(request: NextRequest) {
         const title = data.get("title") as string;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
         const content = data.get("content") as string;
+        const urls = data.getAll("url") as string[];
+        const filenames = data.getAll("filename") as string[];
+        const deleteFileUrls = data.getAll("deleteFileUrl") as string[];
         const tier = data.get("tier") as TIER;
 
         if (isNaN(id) || title === undefined || content === undefined || tier === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+        }
+
+        for (const url of deleteFileUrls) {
+            await del(url);
         }
 
         const updatedNotification = await prisma.notification.update({
@@ -106,6 +114,8 @@ export async function PUT(request: NextRequest) {
                 title,
                 content,
                 tags,
+                urls,
+                filenames,
                 tier
             },
         });
@@ -119,7 +129,7 @@ export async function PUT(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
     try {
-        // const { urls } = await request.json();
+        const { urls } = await request.json();
         const tier =  await getTier(request);
 
         if(!checkTier(tier)) {
@@ -132,7 +142,9 @@ export async function DELETE(request: NextRequest) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
-        // await del(urls);
+        for (const url of urls) {
+            await del(url);
+        }
 
         await prisma.notification.delete({
             where: { id: id },

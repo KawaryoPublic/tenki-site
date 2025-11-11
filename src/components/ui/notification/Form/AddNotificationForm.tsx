@@ -9,6 +9,7 @@ import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 import { uploadFiles } from "@/lib/util";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
+import DefaultFile from "../../global/Form/DefaultFile";
 
 export default function AddNotificationForm() {
     return (
@@ -26,7 +27,7 @@ export default function AddNotificationForm() {
             }}
             className="flex flex-col gap-2"
         >   
-            <h2 className="text-xl lg:text-3xl font-bold border-b pb-2">告知を追加</h2>
+            <h2 className="text-xl md:text-3xl font-bold border-b pb-2">告知を追加</h2>
             <DefaultInput
                 title="タイトル"
                 name="title"
@@ -39,11 +40,7 @@ export default function AddNotificationForm() {
                 rows={3}
                 label
             />
-            <DefaultAddableOption
-                title="添付ファイル"
-                name="file"
-                type="file"
-            />
+            <DefaultFile title="添付ファイル" name="file" />
             <DefaultAddableOption title="タグ" name="tag" />
             <DefaultSelect
                 title="対象"

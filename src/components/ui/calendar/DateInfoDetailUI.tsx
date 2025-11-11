@@ -8,8 +8,8 @@ export default function DateInfoDetailUI({ info, tier }: { info: DateInfo, tier:
     return (
         <WhiteFrameUI className="flex flex-col gap-2">
             <div className="flex justify-between items-center border-b pb-2">
-                <h2 className="text-xl lg:text-3xl font-bold">{formatDate(info.date)}の詳細</h2>
-                <div className="flex items-center gap-2 lg:gap-4">
+                <h2 className="text-xl md:text-3xl font-bold">{formatDate(info.date)}の詳細</h2>
+                <div className="flex items-center gap-2 md:gap-4">
                     {
                         checkTier(tier) && 
                         <>
