@@ -38,7 +38,7 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                             value={file}
                             onChange={e => {
                                 const newFiles = [...files];
-                                newFiles[index] = e.target.value;
+                                newFiles[index] = e.target.files[0];
                                 setFiles(newFiles);
                             }}
                             required
@@ -59,7 +59,7 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
             <div>
                 <BlueButton
                     onClick={() => {
-                        setFiles([...files, ""]);
+                        setFiles([...files, undefined]);
                     }}
                     type="button"
                 >
