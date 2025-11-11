@@ -19,7 +19,7 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                             onClick={() => {
                                 const newFiles = [...defaultFiles];
                                 newFiles.splice(index, 1);
-                                setDefaultFiles(newFiles);
+                                setDefaultFiles && setDefaultFiles(newFiles);
                             }}
                             type="button"
                         >
