@@ -3,8 +3,8 @@ import BlueButton from "../Button/BlueButton";
 import DefaultInput from "./DefaultInput";
 import RedButton from "../Button/RedButton";
 
-export default function DefaultAddableOption({ title, name, defaultOptions }: { title: string, name: string, defaultOptions?: string[] }) {
-    const [ options, setOptions ] = useState<string[]>(defaultOptions && defaultOptions.length !== 0 ? defaultOptions : []);
+export default function DefaultFile({ title, name, defaultOptions }: { title: string, name: string, defaultOptions?: string[] }) {
+    const [ options, setOptions ] = useState<File[]>(defaultOptions && defaultOptions.length !== 0 ? defaultOptions : []);
 
     return (
         <div className="flex flex-col gap-2">

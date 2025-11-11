@@ -15,7 +15,6 @@ export default function DefaultInput({ title, name, type = "text", defaultValue,
                 onChange={onChange}
                 ref={ref}
                 required={required}
-                multiple
                 accept="image/*,application/pdf"
                 className={`
                     bg-gray-300 w-full resize-none border border-gray-600 rounded-md px-2 py-1 flex-1 ${className}
