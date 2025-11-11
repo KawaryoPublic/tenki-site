@@ -6,7 +6,7 @@ import FileLinkUI from "../FileLinkUI";
 import { Dispatch, SetStateAction } from "react";
 
 export default function DefaultFile({ title, name, defaultFiles = [], setDefaultFiles }: { title: string, name: string, defaultFiles?: { url: string, filename: string }[], setDefaultFiles?: Dispatch<SetStateAction<{ url: string, filename: string }[]>> }) {
-    const [ files, setFiles ] = useState<(File | undefined)[]>([]);
+    const [ files, setFiles ] = useState<(File | null)[]>([]);
 
     return (
         <div className="flex flex-col gap-2">
@@ -58,7 +58,7 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
             <div>
                 <BlueButton
                     onClick={() => {
-                        setFiles([...files, undefined]);
+                        setFiles([...files, null]);
                     }}
                     type="button"
                 >
