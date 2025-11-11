@@ -35,7 +35,7 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                             title={title}
                             name={name}
                             type="file"
-                            value={file ? file.name : "選択されていません"}
+                            value={file?.name}
                             onChange={e => {
                                 const newFiles = [...files];
                                 newFiles[index] = e.target.files ? e.target.files[0] : null;
