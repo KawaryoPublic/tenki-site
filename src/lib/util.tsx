@@ -66,7 +66,8 @@ export const uploadFiles = async (files: FileList | File[], formData: FormData) 
         });
         
         formData.append('url', blob.url);
-        formData.delete('file');
+        formData.append('filename', file.name);
+        formData.delete('files');
     }
 
     return formData;

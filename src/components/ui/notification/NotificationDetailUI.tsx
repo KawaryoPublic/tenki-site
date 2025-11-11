@@ -23,10 +23,10 @@ export default function NotificationDetailUI({ notification, tier }: { notificat
             <div>
                 <p>{notification.content}</p>
             </div>
-            <div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-4">
                 {
                     notification.urls.map((url, index) => (
-                        <Link key={index} href={url} target="_blank" className="text-blue-500 underline block">{url}</Link>
+                        <Link key={index} href={url} target="_blank" className="border rounded-md text-xs lg:text-sm">{url}</Link>
                     ))
                 }
             </div>

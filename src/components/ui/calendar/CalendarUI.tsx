@@ -1,7 +1,7 @@
 import { DAYS } from "@/lib/const";
 import DayUI from "./DayUI";
 import DateUI from "./DateUI";
-import { DateInfo, Observation, TIER } from "@/lib/type";
+import { DateInfo, TIER } from "@/lib/type";
 
 export default function CalendarUI({ index, tier, filter, dateInfo, observationDays }: { index: number, tier: TIER, filter: string, dateInfo: DateInfo[], observationDays: Number[] }) {
     const firstDate = new Date(new Date().getFullYear(), new Date().getMonth() + index, 1);

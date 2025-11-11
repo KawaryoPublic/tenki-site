@@ -44,7 +44,7 @@ export default function AddNotificationForm() {
             />
             <DefaultInput
                 title="ファイル"
-                name="file"
+                name="files"
                 type="file"
                 ref={fileRef}
                 label

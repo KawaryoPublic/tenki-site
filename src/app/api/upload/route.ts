@@ -1,10 +1,18 @@
+import { getTier } from '@/lib/action';
+import { checkTier } from '@/lib/util';
 import { handleUpload, HandleUploadBody } from '@vercel/blob/client';
 import { NextRequest, NextResponse } from 'next/server';
  
 export async function POST(request: NextRequest): Promise<NextResponse> {
-  const body = (await request.json()) as HandleUploadBody;
- 
   try {
+    const tier = await getTier(request);
+    
+    if(!checkTier(tier)) {
+      return NextResponse.json({ error: "Permission denied" }, { status: 403 });
+    }   
+
+    const body = (await request.json()) as HandleUploadBody;
+
     const response = await handleUpload({
       body,
       request,
