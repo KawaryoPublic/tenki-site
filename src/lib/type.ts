@@ -25,6 +25,7 @@ export interface Notification {
     content: string;
     tags: string[];
     urls: string[];
+    filenames: string[];
     tier: string;
     updatedAt: Date;
 }
