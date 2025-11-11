@@ -6,7 +6,7 @@ import { Dispatch, SetStateAction, useState, useRef } from "react";
 
 export default function DefaultFile({ title, name, defaultFiles = [], setDefaultFiles }: { title: string, name: string, defaultFiles?: { url: string, filename: string }[], setDefaultFiles?: Dispatch<SetStateAction<{ url: string, filename: string }[]>> }) {
     const [ ids, setIds ] = useState<{id: number}[]>([]);
-    const fileRefs = useRef<HTMLInputElement[]>([]);
+    const fileRef = useRef([]);
 
     return (
         <div className="flex flex-col gap-2">
@@ -36,7 +36,7 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                             title={title}
                             name={name}
                             type="file"
-                            ref={(element: HTMLInputElement | null) => fileRefs.current[id] = element}
+                            ref={element => fileRef.current[id] = element}
                             required
                         />
                         <RedButton
