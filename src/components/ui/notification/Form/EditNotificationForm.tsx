@@ -21,8 +21,13 @@ export default function EditNotificationForm({ notification }: { notification: N
             action={async data => {
                 data = await uploadFiles(data);
 
-                for(const deleteFile of initialFiles.filter(file => !files.some(f => f.url === file.url))) {
-                    data.append('deleteFileUrl', deleteFile.url);
+                for(const file of initialFiles) {
+                    if(!files.find(f => f.url === file.url)) {
+                        data.append("deleteFileUrl", file.url);
+                    } else {
+                        data.append("url", file.url);
+                        data.append("filename", file.filename);
+                    }
                 }
 
                 await fetch(`/api/notification?id=${notification.id}`, {

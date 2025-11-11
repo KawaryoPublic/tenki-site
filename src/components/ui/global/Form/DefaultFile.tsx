@@ -1,9 +1,8 @@
-import { useState } from "react";
 import BlueButton from "../Button/BlueButton";
 import DefaultInput from "./DefaultInput";
 import RedButton from "../Button/RedButton";
 import FileLinkUI from "../FileLinkUI";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 export default function DefaultFile({ title, name, defaultFiles = [], setDefaultFiles }: { title: string, name: string, defaultFiles?: { url: string, filename: string }[], setDefaultFiles?: Dispatch<SetStateAction<{ url: string, filename: string }[]>> }) {
     const [ files, setFiles ] = useState<(File | null)[]>([]);
@@ -45,9 +44,11 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                         />
                         <RedButton
                             onClick={() => {
+                                console.log(files.map(f => f?.name));
                                 const newFiles = [...files];
                                 newFiles.splice(index, 1);
                                 setFiles(newFiles);
+                                console.log(files.map(f => f?.name));
                             }}
                             type="button"
                         >
