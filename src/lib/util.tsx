@@ -57,8 +57,8 @@ export const searchByTagsAndTitle = (url: string, searchString: string) => {
     redirect(redirectUrl);
 }
 
-export const uploadFiles = async (files: FileList | File[], formData: FormData) => {
-    for (const file of files) {
+export const uploadFiles = async (formData: FormData) => {
+    for (const file of formData.getAll('file') as File[]) {
         const blob = await upload(file.name, file, {
             access: 'public',
             handleUploadUrl: "/api/upload",
@@ -67,8 +67,9 @@ export const uploadFiles = async (files: FileList | File[], formData: FormData) 
         
         formData.append('url', blob.url);
         formData.append('filename', file.name);
-        formData.delete('files');
     }
+    
+    formData.delete('file');
 
     return formData;
 }

@@ -8,16 +8,13 @@ import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 import { uploadFiles } from "@/lib/util";
-import { useRef } from "react";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 
 export default function AddNotificationForm() {
-    const fileRef = useRef<HTMLInputElement>(null);
-
     return (
         <Form 
             action={async data => {
-                data = await uploadFiles(fileRef.current?.files || [], data);
+                data = await uploadFiles(data);
 
                 await fetch('/api/notification', {
                     method: 'POST',
@@ -42,12 +39,10 @@ export default function AddNotificationForm() {
                 rows={3}
                 label
             />
-            <DefaultInput
-                title="ファイル"
-                name="files"
+            <DefaultAddableOption
+                title="添付ファイル"
+                name="file"
                 type="file"
-                ref={fileRef}
-                label
             />
             <DefaultAddableOption title="タグ" name="tag" />
             <DefaultSelect

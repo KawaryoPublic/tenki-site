@@ -3,7 +3,7 @@ import BlueButton from "../Button/BlueButton";
 import DefaultInput from "./DefaultInput";
 import RedButton from "../Button/RedButton";
 
-export default function DefaultAddableOption({ title, name, defaultOptions }: { title: string, name: string, defaultOptions?: string[] }) {
+export default function DefaultAddableOption({ title, name, type = "text", defaultOptions }: { title: string, name: string, type?: string, defaultOptions?: string[] }) {
     const [ options, setOptions ] = useState<string[]>(defaultOptions && defaultOptions.length !== 0 ? defaultOptions : []);
 
     return (
@@ -16,6 +16,7 @@ export default function DefaultAddableOption({ title, name, defaultOptions }: { 
                             key={index}
                             title={title}
                             name={name}
+                            type={type}
                             value={option}
                             onChange={e => {
                                 const newOptions = [...options];
