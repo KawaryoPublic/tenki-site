@@ -2,10 +2,11 @@ import BlueButton from "../Button/BlueButton";
 import DefaultInput from "./DefaultInput";
 import RedButton from "../Button/RedButton";
 import FileLinkUI from "../FileLinkUI";
-import { Dispatch, SetStateAction, useState, useRef, RefObject } from "react";
+import { Dispatch, SetStateAction, useState, useRef } from "react";
 
 export default function DefaultFile({ title, name, defaultFiles = [], setDefaultFiles }: { title: string, name: string, defaultFiles?: { url: string, filename: string }[], setDefaultFiles?: Dispatch<SetStateAction<{ url: string, filename: string }[]>> }) {
-    const [ refs, setRefs ] = useState<RefObject<HTMLInputElement | null>[]>([]);
+    const [ ids, setIds ] = useState<{id: number}>([]);
+    const fileRefs = useRef<(HTMLInputElement | null)>({});
 
     return (
         <div className="flex flex-col gap-2">
@@ -28,19 +29,20 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                 ))
             }
             {
-                refs.map((ref, index) => (
+                ids.map((id, index) => (
                     <div key={index} className="flex items-center gap-1">
                         <DefaultInput
                             key={index}
                             title={title}
                             name={name}
                             type="file"
-                            ref={ref}
+                            ref={element => fileRefs.current[id] = element}
                             required
                         />
                         <RedButton
                             onClick={() => {
-                                
+                                const newIds = ids.filter(i => i !== id);
+                                setIds(newIds);
                             }}
                             type="button"
                         >
@@ -52,7 +54,8 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
             <div>
                 <BlueButton
                     onClick={() => {
-                        setRefs([...refs, useRef(null)]);
+                        const newId = ids.length > 0 ? ids[ids.length - 1].id + 1 : 0;
+                        setIds([...ids, { id: newId }]);
                     }}
                     type="button"
                 >
