@@ -5,7 +5,7 @@ import FileLinkUI from "../FileLinkUI";
 import { Dispatch, SetStateAction, useState, useRef } from "react";
 
 export default function DefaultFile({ title, name, defaultFiles = [], setDefaultFiles }: { title: string, name: string, defaultFiles?: { url: string, filename: string }[], setDefaultFiles?: Dispatch<SetStateAction<{ url: string, filename: string }[]>> }) {
-    const [ ids, setIds ] = useState<{id: number}[]>([]);
+    const [ ids, setIds ] = useState<number[]>([]);
     const fileRef = useRef([]);
 
     return (
@@ -54,7 +54,7 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                 <BlueButton
                     onClick={() => {
                         const newId = ids.length > 0 ? ids[ids.length - 1].id + 1 : 0;
-                        setIds([...ids, { id: newId }]);
+                        setIds([...ids, newId]);
                     }}
                     type="button"
                 >
