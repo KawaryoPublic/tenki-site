@@ -2,10 +2,10 @@ import BlueButton from "../Button/BlueButton";
 import DefaultInput from "./DefaultInput";
 import RedButton from "../Button/RedButton";
 import FileLinkUI from "../FileLinkUI";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useState, RefObject } from "react";
 
 export default function DefaultFile({ title, name, defaultFiles = [], setDefaultFiles }: { title: string, name: string, defaultFiles?: { url: string, filename: string }[], setDefaultFiles?: Dispatch<SetStateAction<{ url: string, filename: string }[]>> }) {
-    const [ files, setFiles ] = useState<(File | null)[]>([]);
+    const [ refs, setRefs ] = useState<RefObject<HTMLInputElement>[]>([]);
 
     return (
         <div className="flex flex-col gap-2">
@@ -28,28 +28,19 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                 ))
             }
             {
-                files.map((file, index) => (
+                refs.map((ref, index) => (
                     <div key={index} className="flex items-center gap-1">
                         <DefaultInput
                             key={index}
                             title={title}
                             name={name}
                             type="file"
-                            value={file?.name}
-                            onChange={e => {
-                                const newFiles = [...files];
-                                newFiles[index] = e.target.files ? e.target.files[0] : null;
-                                setFiles(newFiles);
-                            }}
+                            ref={ref}
                             required
                         />
                         <RedButton
                             onClick={() => {
-                                console.log(files.map(f => f?.name));
-                                const newFiles = [...files];
-                                newFiles.splice(index, 1);
-                                setFiles(newFiles);
-                                console.log(files.map(f => f?.name));
+                                
                             }}
                             type="button"
                         >
@@ -61,7 +52,7 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
             <div>
                 <BlueButton
                     onClick={() => {
-                        setFiles([...files, null]);
+                        setRefs([...refs, useRef(null)]);
                     }}
                     type="button"
                 >
