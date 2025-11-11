@@ -36,7 +36,7 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                             title={title}
                             name={name}
                             type="file"
-                            ref={element => fileRefs.current[id] = element}
+                            ref={(element: HTMLInputElement) => fileRefs.current[id] = element}
                             required
                         />
                         <RedButton
