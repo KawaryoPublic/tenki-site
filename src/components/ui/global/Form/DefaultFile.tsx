@@ -5,8 +5,8 @@ import FileLinkUI from "../FileLinkUI";
 import { Dispatch, SetStateAction, useState, useRef } from "react";
 
 export default function DefaultFile({ title, name, defaultFiles = [], setDefaultFiles }: { title: string, name: string, defaultFiles?: { url: string, filename: string }[], setDefaultFiles?: Dispatch<SetStateAction<{ url: string, filename: string }[]>> }) {
-    const [ ids, setIds ] = useState<number[]>([]);
     const fileRef = useRef<(HTMLInputElement | null)[]>([]);
+    const [fileNumber, setFileNumber] = useState(0);
 
     return (
         <div className="flex flex-col gap-2">
@@ -29,33 +29,35 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                 ))
             }
             {
-                ids.map((id, index) => (
+                Array.from({length: fileNumber}).map((_, index) => (
                     <div key={index} className="flex items-center gap-1">
                         <DefaultInput
                             key={index}
                             title={title}
                             name={name}
                             type="file"
-                            ref={(element: HTMLInputElement) => fileRef.current[id] = element}
+                            ref={(element: HTMLInputElement) => fileRef.current[index] = element}
                             required
                         />
                         <RedButton
                             onClick={() => {
-                                setIds(ids.filter(i => i !== id));
+                                for(let i = index; i < fileNumber - 1; i++) {
+                                    fileRef.current[i] = fileRef.current[i + 1];
+                                }
+                                fileRef.current.pop();
+                                setFileNumber(n => n - 1);
                             }}
                             type="button"
                         >
                             削除
                         </RedButton>
-                        {id}
                     </div>
                 ))
             }
             <div>
                 <BlueButton
                     onClick={() => {
-                        const newId = ids.length > 0 ? ids[ids.length - 1] + 1 : 0;
-                        setIds([...ids, newId]);
+                        setFileNumber(n => n + 1);
                     }}
                     type="button"
                 >
