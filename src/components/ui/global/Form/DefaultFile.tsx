@@ -36,7 +36,7 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                             title={title}
                             name={name}
                             type="file"
-                            ref={(ref: HTMLInputElement) => fileRef.current[id] = ref}
+                            ref={(element: HTMLInputElement) => fileRef.current[id] = element}
                             required
                         />
                         <RedButton
@@ -63,6 +63,21 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                     追加
                 </BlueButton>
             </div>
+            <BlueButton
+                onClick={() => {
+                    fileRef.current.forEach(fileInput => {
+                        if (fileInput && fileInput.files && fileInput.files.length > 0) {
+                            console.log(`File name: ${fileInput.files[0].name}`);
+                        } else {
+                            console.log("No file selected");
+                        }
+                    });
+                    console.log(ids);
+                }}
+                type="button"
+            >
+                アップロード確認(コンソール確認)
+            </BlueButton>
         </div>
     )
 }
