@@ -14,14 +14,12 @@ export default function AddDateInfoForm({ date }: { date: string }) {
         <Form 
             action={async data => {
                 setSaving(true);
-                console.log(saving);
 
                 await fetch(`/api/date_info?date=${date}`, {
                     method: "POST",
                     body: data
-                }).catch(err => console.log(err));
-
-                setSaving(false);
+                }).finally(() => setSaving(false))
+                .catch(err => console.log(err));
 
                 redirect("/calendar");
             }}

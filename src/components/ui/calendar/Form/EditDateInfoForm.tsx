@@ -19,9 +19,8 @@ export default function EditDateInfoForm({ info }: { info: DateInfo }) {
                 await fetch(`/api/date_info?date=${info.date}`, {
                     method: "PUT",
                     body: data
-                }).catch(err => console.log(err));
-
-                setSaving(false);
+                }).finally(() => setSaving(false))
+                .catch(err => console.log(err));
 
                 redirect("/calendar");
             }}

@@ -20,9 +20,8 @@ export default function EditFileForm({ file }: { file: File }) {
                 await fetch(`/api/file?id=${file.id}`, {
                     method: 'PUT',
                     body: data,
-                }).catch(err => console.log(err));
-
-                setSaving(false);
+                }).finally(() => setSaving(false))
+                .catch(err => console.log(err));
 
                 redirect(`/file`)
             }}

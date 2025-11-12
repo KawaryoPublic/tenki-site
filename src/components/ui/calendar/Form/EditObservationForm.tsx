@@ -13,10 +13,13 @@ export default function EditObservationForm({ observation }: { observation: Obse
     return (
         <Form 
             action={async data => {
+                setSaving(true);
+
                 await fetch(`/api/observation?day=${observation.day}`, {
                     method: "PUT",
                     body: data,
-                }).catch(err => console.log(err));
+                }).finally(() => setSaving(false))
+                .catch(err => console.log(err));
 
                 redirect("/calendar");
             }}

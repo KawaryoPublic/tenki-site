@@ -20,9 +20,8 @@ export default function AddFileForm() {
                 await fetch('/api/file', {
                     method: 'POST',
                     body: data
-                }).catch(err => console.log(err));
-
-                setSaving(false);
+                }).finally(() => setSaving(false))
+                .catch(err => console.log(err));
 
                 redirect(`/file`)
             }}

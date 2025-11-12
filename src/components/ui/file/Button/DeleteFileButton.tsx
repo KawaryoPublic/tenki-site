@@ -18,9 +18,8 @@ export default function DeleteFileButton({ id }: { id: number }) {
                 
                 await fetch(`/api/file?id=${id}`, {
                     method: 'DELETE',
-                }).catch(err => console.log(err));
-
-                setDeleting(false);
+                }).finally(() => setDeleting(false))
+                .catch(err => console.log(err));
 
                 redirect("/file");
             }}

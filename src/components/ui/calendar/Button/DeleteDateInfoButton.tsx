@@ -16,10 +16,9 @@ export default function DeleteDateInfoButton({ date }: { date: string }) {
 
                 await fetch(`/api/date_info?date=${date}`, {
                     method: "DELETE",
-                }).catch(err => console.log(err));
-
-                setDeleting(false);
-
+                }).finally(() => setDeleting(false))
+                .catch(err => console.log(err));
+                
                 redirect(`/calendar`);
             }}
             disabled={deleting}

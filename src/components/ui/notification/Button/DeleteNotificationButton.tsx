@@ -19,10 +19,9 @@ export default function DeleteNotificationButton({ id, urls }: { id: number, url
                 await fetch(`/api/notification?id=${id}`, {
                     method: 'DELETE',
                     body: JSON.stringify({ urls: urls }),
-                }).catch(err => console.log(err));
-
-                setDeleting(false);
-
+                }).finally(() => setDeleting(false))
+                .catch(err => console.log(err));
+                
                 redirect('/notification');
             }}
         >

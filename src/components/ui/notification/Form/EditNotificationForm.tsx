@@ -36,9 +36,8 @@ export default function EditNotificationForm({ notification }: { notification: N
                 await fetch(`/api/notification?id=${notification.id}`, {
                     method: 'PUT',
                     body: data,
-                }).catch(err => console.log(err));
-
-                setSaving(false);
+                }).finally(() => setSaving(false))
+                .catch(err => console.log(err));
 
                 redirect(`/notification`)
             }}

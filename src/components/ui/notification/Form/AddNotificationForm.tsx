@@ -25,9 +25,8 @@ export default function AddNotificationForm() {
                 await fetch('/api/notification', {
                     method: 'POST',
                     body: data,
-                }).catch(err => console.log(err));
-
-                setSaving(false);
+                }).finally(() => setSaving(false))
+                .catch(err => console.log(err));
 
                 redirect(`/notification`)
             }}
