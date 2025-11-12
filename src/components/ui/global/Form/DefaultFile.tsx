@@ -43,8 +43,10 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                             onClick={() => {
                                 for(let i = index; i < fileNumber - 1; i++) {
                                     const dataTransfer = new DataTransfer();
+
+                                    if(!fileRef || !fileRef.current) return;
                                     
-                                    if(fileRef.current[i + 1] && fileRef.current[i + 1].files) {
+                                    if(fileRef.current[i + 1].files) {
                                         dataTransfer.items.add(fileRef.current[i + 1].files[0]);
                                     }
 
