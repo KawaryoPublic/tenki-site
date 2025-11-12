@@ -53,7 +53,7 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
             <div>
                 <BlueButton
                     onClick={() => {
-                        const newId = ids.length > 0 ? ids[ids.length - 1].id + 1 : 0;
+                        const newId = ids.length > 0 ? ids[ids.length - 1] + 1 : 0;
                         setIds([...ids, newId]);
                     }}
                     type="button"
