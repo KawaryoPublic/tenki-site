@@ -42,7 +42,6 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                         <RedButton
                             onClick={() => {
                                 setIds(ids.filter(i => i !== id));
-                                console.log(fileRef.current);
                             }}
                             type="button"
                         >
@@ -56,7 +55,6 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                     onClick={() => {
                         const newId = ids.length > 0 ? ids[ids.length - 1] + 1 : 0;
                         setIds([...ids, newId]);
-                        console.log(fileRef.current);
                     }}
                     type="button"
                 >
