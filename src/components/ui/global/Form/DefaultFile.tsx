@@ -46,10 +46,10 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
 
                                     const file = fileRef.current[i + 1].files?.[0];
                                     if (file) {
-                                        //dataTransfer.items.add(file);
+                                        dataTransfer.items.add(file);
                                     }
 
-                                    //fileRef.current[i].files = dataTransfer.files;
+                                    fileRef.current[i].files = dataTransfer.files;
                                 }
 
                                 setFileNumber(n => n - 1);
