@@ -47,6 +47,7 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                         >
                             削除
                         </RedButton>
+                        {id}
                     </div>
                 ))
             }
@@ -63,6 +64,7 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
             </div>
             <BlueButton
                 onClick={() => {
+                    console.log(fileRef.current);
                     fileRef.current.forEach(fileInput => {
                         if (fileInput && fileInput.files && fileInput.files.length > 0) {
                             console.log(`File name: ${fileInput.files[0].name}`);
@@ -70,7 +72,6 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                             console.log("No file selected");
                         }
                     });
-                    console.log(ids);
                 }}
                 type="button"
             >
