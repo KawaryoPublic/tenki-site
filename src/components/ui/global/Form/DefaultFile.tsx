@@ -14,7 +14,7 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
             {
                 defaultFiles.map((file, index) => (
                     <div key={index} className="flex items-center gap-1">
-                        <FileLinkUI url={file.url} filename={file.filename} />
+                        <FileLinkUI url={file.url} filename={file.filename} className="flex-1" />
                         <RedButton
                             onClick={() => {
                                 const newFiles = [...defaultFiles];
@@ -38,6 +38,7 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                             type="file"
                             ref={(element: HTMLInputElement) => fileRef.current[index] = element}
                             required
+                            className="flex-1"
                         />
                         <RedButton
                             onClick={() => {

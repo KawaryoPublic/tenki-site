@@ -2,7 +2,7 @@ import { ChangeEvent, RefObject } from "react";
 
 export default function DefaultTextArea({ title, name, rows, defaultValue, value, onChange, ref, className = "", label = false, required = false }: { title: string, name: string, rows: number, defaultValue?: string, value?: string, onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void, ref?: RefObject<HTMLTextAreaElement | null>, className?: string, label?: boolean, required?: boolean }) {
     return (
-        <div className="text-gray-900 text-sm md:text-base flex flex-col gap-1">
+        <div className={`text-gray-900 text-sm md:text-base flex flex-col gap-1 ${className}`}>
             {
                 label && <label htmlFor={name} className="font-bold">{title}</label>
             }
@@ -16,9 +16,7 @@ export default function DefaultTextArea({ title, name, rows, defaultValue, value
                 onChange={onChange}
                 ref={ref}
                 required={required}
-                className={`
-                    bg-gray-300 w-full resize-none border border-gray-600 rounded-md px-2 py-1 flex-1 ${className}
-                `}
+                className="bg-gray-300 w-full resize-none border border-gray-600 rounded-md px-2 py-1 flex-1"
             />
         </div>
     );

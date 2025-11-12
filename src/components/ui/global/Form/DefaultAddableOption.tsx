@@ -23,6 +23,7 @@ export default function DefaultAddableOption({ title, name, defaultOptions }: { 
                                 setOptions(newOptions);
                             }}
                             required
+                            className="flex-1"
                         />
                         <RedButton
                             onClick={() => {
