@@ -1,0 +1,10 @@
+name: Cron Job
+on: 
+  schedule:
+    - cron: '* * * * *'
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Curl scheduled endpoint
+        run: echo Hello! from cron job.
