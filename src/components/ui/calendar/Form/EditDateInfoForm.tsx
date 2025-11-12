@@ -28,13 +28,6 @@ export default function EditDateInfoForm({ info }: { info: DateInfo }) {
                 rows={3} 
                 label
             />
-            <DefaultTextArea 
-                title="イベント" 
-                name="event" 
-                defaultValue={info.event} 
-                rows={3} 
-                label
-            />
             <DefaultAddableOption 
                 title="休日観測" 
                 name="holiday" 

@@ -24,10 +24,6 @@ export default function DateInfoDetailUI({ info, tier }: { info: DateInfo, tier:
                 <p className="whitespace-pre-wrap">{info.plan ? info.plan : "なし"}</p>
             </div>
             <div>
-                <p className="font-bold">イベント</p>
-                <p className="whitespace-pre-wrap">{info.event ? info.event : "なし"}</p>
-            </div>
-            <div>
                 <p className="font-bold">休日観測</p>
                 <p className="whitespace-pre-wrap">{info.holiday.length === 0 ? "なし" : info.holiday.join(", ")}</p>
             </div>

@@ -20,7 +20,6 @@ export default function DateUI({ date, info, filter, firstDate, tier, index }: {
                     <Link href={`/calendar/date/${info.date}`} className="w-full h-full flex flex-col items-center justify-center">
                         <div className="w-full h-full flex-1 flex flex-row items-center justify-around border-b border-gray-600">
                             <span className={`border rounded-full ${info?.plan && "bg-blue-400"} w-2 h-2`} />
-                            <span className={`border rounded-full ${info?.event && "bg-blue-400"} w-2 h-2`} />
                             <span className={`border rounded-full ${info?.holiday.length !== 0 && "bg-blue-400"} w-2 h-2`} />
                         </div>
                         <div className="w-full h-full flex-1 flex items-center justify-center">

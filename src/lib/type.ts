@@ -15,7 +15,6 @@ export interface Observation {
 export interface DateInfo {
     date: string;
     plan: string;
-    event: string;
     holiday: string[];
 }
 
