@@ -42,9 +42,15 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                         <RedButton
                             onClick={() => {
                                 for(let i = index; i < fileNumber - 1; i++) {
-                                    fileRef.current[i] = fileRef.current[i + 1];
+                                    const dataTransfer = new DataTransfer();
+                                    
+                                    if(fileRef.current[i + 1].files) {
+                                        dataTransfer.items.add(fileRef.current[i + 1].files[0]);
+                                    }
+
+                                    fileRef.current[i].files = dataTransfer.files;
                                 }
-                                fileRef.current.pop();
+
                                 setFileNumber(n => n - 1);
                             }}
                             type="button"
