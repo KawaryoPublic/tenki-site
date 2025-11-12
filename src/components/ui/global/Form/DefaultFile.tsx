@@ -2,7 +2,7 @@ import BlueButton from "../Button/BlueButton";
 import DefaultInput from "./DefaultInput";
 import RedButton from "../Button/RedButton";
 import FileLinkUI from "../FileLinkUI";
-import { Dispatch, SetStateAction, useState, useRef } from "react";
+import { Dispatch, SetStateAction, useState, useRef, RefObject } from "react";
 
 export default function DefaultFile({ title, name, defaultFiles = [], setDefaultFiles }: { title: string, name: string, defaultFiles?: { url: string, filename: string }[], setDefaultFiles?: Dispatch<SetStateAction<{ url: string, filename: string }[]>> }) {
     const [ ids, setIds ] = useState<number[]>([]);
@@ -36,7 +36,7 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                             title={title}
                             name={name}
                             type="file"
-                            ref={ref => fileRef.current[id] = ref}
+                            ref={(ref: RefObject<HTMLInputElement | null>) => fileRef.current[id] = ref}
                             required
                         />
                         <RedButton
