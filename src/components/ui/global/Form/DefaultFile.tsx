@@ -5,7 +5,7 @@ import FileLinkUI from "../FileLinkUI";
 import { Dispatch, SetStateAction, useState, useRef } from "react";
 
 export default function DefaultFile({ title, name, defaultFiles = [], setDefaultFiles }: { title: string, name: string, defaultFiles?: { url: string, filename: string }[], setDefaultFiles?: Dispatch<SetStateAction<{ url: string, filename: string }[]>> }) {
-    const fileRef = useRef<(HTMLInputElement | null)[]>([]);
+    const fileRef = useRef<(HTMLInputElement)[]>([]);
     const [fileNumber, setFileNumber] = useState(0);
 
     return (
@@ -44,8 +44,8 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                                 for(let i = index; i < fileNumber - 1; i++) {
                                     const dataTransfer = new DataTransfer();
                                     
-                                    if(fileRef?.current[i + 1]?.files) {
-                                        dataTransfer.items.add(fileRef!.current[i + 1]!.files[0]);
+                                    if(fileRef.current[i + 1].files) {
+                                        dataTransfer.items.add(fileRef.current[i + 1].files[0]);
                                     }
 
                                     fileRef.current[i].files = dataTransfer.files;
