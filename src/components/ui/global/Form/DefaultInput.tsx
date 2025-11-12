@@ -13,7 +13,7 @@ export default function DefaultInput({ title, name, type = "text", defaultValue,
                 defaultValue={defaultValue}
                 value={value}
                 onChange={onChange}
-                ref={ref}
+                ref={ref => console.log(ref)}
                 required={required}
                 accept="image/*,application/pdf"
                 className={`
