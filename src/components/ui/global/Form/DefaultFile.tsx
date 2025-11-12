@@ -13,7 +13,7 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
             <label htmlFor={name} className="font-bold">{title}</label>
             {
                 defaultFiles.map((file, index) => (
-                    <div key={index} className="flex items-center gap-1">
+                    <div key={index} className="flex items-center gap-2 md:gap-4">
                         <FileLinkUI url={file.url} filename={file.filename} className="flex-1" />
                         <RedButton
                             onClick={() => {
@@ -30,7 +30,7 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
             }
             {
                 Array.from({length: fileNumber}).map((_, index) => (
-                    <div key={index} className="flex items-center gap-1">
+                    <div key={index} className="flex items-center gap-2 md:gap-4">
                         <DefaultInput
                             key={index}
                             title={title}
@@ -72,21 +72,6 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                     追加
                 </BlueButton>
             </div>
-            <BlueButton
-                onClick={() => {
-                    console.log(fileRef.current);
-                    fileRef.current.forEach(fileInput => {
-                        if (fileInput && fileInput.files && fileInput.files.length > 0) {
-                            console.log(`File name: ${fileInput.files[0].name}`);
-                        } else {
-                            console.log("No file selected");
-                        }
-                    });
-                }}
-                type="button"
-            >
-                アップロード確認(コンソール確認)
-            </BlueButton>
         </div>
     )
 }

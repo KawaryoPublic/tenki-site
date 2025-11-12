@@ -10,11 +10,16 @@ import DefaultSelect from "../../global/Form/DefaultSelect";
 import { uploadFiles } from "@/lib/util";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
+import { useState } from "react";
 
 export default function AddNotificationForm() {
+    const [ saving, setSaving ] = useState(false);
+
     return (
         <Form 
             action={async data => {
+                setSaving(true);
+
                 data = await uploadFiles(data);
 
                 await fetch('/api/notification', {
@@ -22,6 +27,7 @@ export default function AddNotificationForm() {
                     body: data,
                 }).catch(err => console.log(err));
 
+                setSaving(false);
 
                 redirect(`/notification`)
             }}
@@ -53,7 +59,7 @@ export default function AddNotificationForm() {
                 ]}
             />
             <div className="pt-4">
-                <BlueButton>保存</BlueButton>
+                <BlueButton disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
             </div>
         </Form>
     )

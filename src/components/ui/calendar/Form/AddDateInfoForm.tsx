@@ -3,17 +3,24 @@
 import Form from "next/form";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import BlueButton from "../../global/Button/BlueButton";
+import { useState } from "react";
 import { redirect } from "next/navigation";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 
 export default function AddDateInfoForm({ date }: { date: string }) {
+    const [ saving, setSaving ] = useState(false);
+
     return (
         <Form 
             action={async data => {
+                setSaving(true);
+
                 await fetch(`/api/date_info?date=${date}`, {
                     method: "POST",
                     body: data
                 }).catch(err => console.log(err));
+
+                setSaving(false);
 
                 redirect("/calendar");
             }}
@@ -37,7 +44,7 @@ export default function AddDateInfoForm({ date }: { date: string }) {
                 name="holiday"
             />
             <div className="pt-4">
-                <BlueButton>保存</BlueButton>
+                <BlueButton disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
             </div>
         </Form>
     );

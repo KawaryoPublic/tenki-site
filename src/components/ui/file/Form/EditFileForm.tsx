@@ -7,15 +7,22 @@ import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
+import { useState } from "react";
 
 export default function EditFileForm({ file }: { file: File }) {
+    const [ saving, setSaving ] = useState(false);
+
     return (
         <Form 
             action={async data => {
+                setSaving(true);
+
                 await fetch(`/api/file?id=${file.id}`, {
                     method: 'PUT',
                     body: data,
                 }).catch(err => console.log(err));
+
+                setSaving(false);
 
                 redirect(`/file`)
             }}
@@ -47,7 +54,7 @@ export default function EditFileForm({ file }: { file: File }) {
                 ]}
             />
             <div className="pt-4">
-                <BlueButton>保存</BlueButton>
+                <BlueButton disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
             </div>
         </Form>
     )

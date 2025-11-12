@@ -11,7 +11,7 @@ export default function DefaultAddableOption({ title, name, defaultOptions }: { 
             <label htmlFor={name} className="font-bold">{title}</label>
             {
                 options.map((option, index) => (
-                    <div key={index} className="flex items-center gap-1">
+                    <div key={index} className="flex items-center gap-2 md:gap-4">
                         <DefaultInput
                             key={index}
                             title={title}

@@ -1,19 +1,32 @@
 "use client";
 
 import RedButton from "../../global/Button/RedButton";
+import { useState } from "react";
+import { redirect } from "next/navigation";
 
 export default function DeleteFileButton({ id }: { id: number }) {
+    const [ deleting, setDeleting ] = useState(false);
+
     return (
         <RedButton
             onClick={async () => {
-                confirm("本当に削除しますか？") &&
-                (await fetch(`/api/file?id=${id}`, {
-                    method: 'DELETE',
-                }).then(() => window.location.reload())
-                .catch(err => console.log(err)));
-            }}
+                if(!confirm("本当に削除しますか？")) {
+                    return;
+                }
 
-        >削除
-                    </RedButton>
+                setDeleting(true);
+                
+                await fetch(`/api/file?id=${id}`, {
+                    method: 'DELETE',
+                }).catch(err => console.log(err));
+
+                setDeleting(false);
+
+                redirect("/file");
+            }}
+            disabled={deleting}
+        >
+            {deleting ? "削除中..." : "削除"}
+        </RedButton>
     );
 }

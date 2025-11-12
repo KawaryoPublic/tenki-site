@@ -5,8 +5,11 @@ import { Observation, TIER } from "@/lib/type";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import { redirect } from "next/navigation";
+import { useState } from "react";
 
 export default function EditObservationForm({ observation }: { observation: Observation }) {
+    const [ saving, setSaving ] = useState(false);
+
     return (
         <Form 
             action={async data => {
@@ -36,7 +39,7 @@ export default function EditObservationForm({ observation }: { observation: Obse
                 defaultOptions={observation.afterSchool}
             />
             <div className="pt-4">
-                <BlueButton>保存</BlueButton>
+                <BlueButton disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
             </div>
         </Form>
     );

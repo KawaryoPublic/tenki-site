@@ -6,15 +6,22 @@ import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import { redirect } from "next/navigation";
+import { useState } from "react";
 
 export default function EditDateInfoForm({ info }: { info: DateInfo }) {
+    const [ saving, setSaving ] = useState(false);
+
     return (
         <Form 
             action={async data => {
+                setSaving(true);
+
                 await fetch(`/api/date_info?date=${info.date}`, {
                     method: "PUT",
                     body: data
                 }).catch(err => console.log(err));
+
+                setSaving(false);
 
                 redirect("/calendar");
             }}
@@ -34,7 +41,7 @@ export default function EditDateInfoForm({ info }: { info: DateInfo }) {
                 defaultOptions={info.holiday} 
             />
             <div className="pt-4">
-                <BlueButton>保存</BlueButton>
+                <BlueButton disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
             </div>
         </Form>
     );

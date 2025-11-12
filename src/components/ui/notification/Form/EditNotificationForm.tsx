@@ -15,10 +15,13 @@ import { uploadFiles } from "@/lib/util";
 export default function EditNotificationForm({ notification }: { notification: Notification }) {
     const initialFiles = notification.urls.map((url, index) => ({ url: url, filename: notification.filenames[index] }));
     const [ files, setFiles ] = useState<{ url: string, filename: string }[]>(initialFiles);
+    const [ saving, setSaving ] = useState(false);
 
     return (
         <Form 
             action={async data => {
+                setSaving(true);
+
                 for(const file of initialFiles) {
                     if(!files.find(f => f.url === file.url)) {
                         data.append("deleteFileUrl", file.url);
@@ -34,6 +37,8 @@ export default function EditNotificationForm({ notification }: { notification: N
                     method: 'PUT',
                     body: data,
                 }).catch(err => console.log(err));
+
+                setSaving(false);
 
                 redirect(`/notification`)
             }}
@@ -68,7 +73,7 @@ export default function EditNotificationForm({ notification }: { notification: N
                 ]}
             />
             <div className="pt-4">
-                <BlueButton>保存</BlueButton>
+                <BlueButton disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
             </div>
         </Form>
     )
