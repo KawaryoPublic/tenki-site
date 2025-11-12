@@ -1,6 +1,6 @@
 import { ChangeEvent, RefObject } from "react";
 
-export default function DefaultInput({ title, name, type = "text", defaultValue, value, onChange, ref, className = "", label = false, required = false }: { title: string, name: string, type?: string, defaultValue?: string, value?: string, onChange?: (e: ChangeEvent<HTMLInputElement>) => void, ref?: any, className?: string, label?: boolean, required?: boolean }) {
+export default function DefaultInput({ title, name, type = "text", defaultValue, value, onChange, ref, className = "", label = false, required = false }: { title: string, name: string, type?: string, defaultValue?: string, value?: string, onChange?: (e: ChangeEvent<HTMLInputElement>) => void, ref?: RefObject<HTMLInputElement | null> | ((element: HTMLInputElement) => void), className?: string, label?: boolean, required?: boolean }) {
     return (
         <div className="text-gray-900 text-sm md:text-base flex flex-col gap-1">
             {
@@ -13,7 +13,7 @@ export default function DefaultInput({ title, name, type = "text", defaultValue,
                 defaultValue={defaultValue}
                 value={value}
                 onChange={onChange}
-                ref={ref => console.log(ref)}
+                ref={ref}
                 required={required}
                 accept="image/*,application/pdf"
                 className={`
