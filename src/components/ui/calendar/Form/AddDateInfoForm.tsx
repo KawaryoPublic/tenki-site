@@ -14,6 +14,7 @@ export default function AddDateInfoForm({ date }: { date: string }) {
         <Form 
             action={async data => {
                 setSaving(true);
+                console.log(saving);
 
                 await fetch(`/api/date_info?date=${date}`, {
                     method: "POST",
@@ -30,12 +31,6 @@ export default function AddDateInfoForm({ date }: { date: string }) {
             <DefaultTextArea 
                 title="予定" 
                 name="plan" 
-                rows={3} 
-                label
-            />
-            <DefaultTextArea 
-                title="イベント" 
-                name="event" 
                 rows={3} 
                 label
             />
