@@ -7,21 +7,24 @@ import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
-import { useState } from "react";
+import { useActionState } from 'react';
 
 export default function EditFileForm({ file }: { file: File }) {
-    const [ saving, setSaving ] = useState(false);
+    const [state, formAction, pending] = useActionState(async (initState, formData) => {
+        "use server";
+
+        await fetch(`/api/file?id=${file.id}`, {
+            method: 'PUT',
+            body: formData,
+        }).catch(err => console.log(err));
+
+        redirect(`/file`)
+    });
 
     return (
         <Form 
             action={async data => {
-                await fetch(`/api/file?id=${file.id}`, {
-                    method: 'PUT',
-                    body: data,
-                }).finally(() => setSaving(false))
-                .catch(err => console.log(err));
-
-                redirect(`/file`)
+                
             }}
             className="flex flex-col gap-2"
         >   
