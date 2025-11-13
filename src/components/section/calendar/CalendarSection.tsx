@@ -1,8 +1,7 @@
 "use client";
 
-import { DateInfo, TIER } from "@/lib/types";
+import { DateInfo, TIER, Observation } from "@/lib/types";
 import { useEffect, useState } from "react";
-import { Observation } from "@/lib/type";
 import CalendarUI from "@/components/ui/calendar/CalendarUI";
 import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearch";
 import { redirect } from "next/navigation";
