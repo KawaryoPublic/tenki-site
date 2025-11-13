@@ -18,14 +18,12 @@ export default function EditFileForm({ file }: { file: File }) {
             body: formData,
         }).catch(err => console.log(err));
 
-        redirect(`/file`)
+        redirect(`/file`);
     });
 
     return (
         <Form 
-            action={async data => {
-                
-            }}
+            action={formAction}
             className="flex flex-col gap-2"
         >   
             <h2 className="text-xl md:text-3xl font-bold border-b pb-2">ファイルを編集</h2>
