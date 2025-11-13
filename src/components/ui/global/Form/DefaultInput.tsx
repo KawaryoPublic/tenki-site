@@ -16,7 +16,7 @@ export default function DefaultInput({ title, name, type = "text", defaultValue,
                 ref={ref}
                 required={required}
                 accept="image/*,application/pdf"
-                className="bg-gray-300 w-full resize-none border border-gray-600 rounded-md px-2 py-1 flex-1"
+                className="bg-gray-300 invalid:text-pink-600 border border-gray-600 invalid:border-pink-500 focus:border-sky-500 focus:invalid:border-pink-500 focus:outline focus:outline-sky-500 focus:invalid:outline-pink-500 rounded-md px-2 py-1 flex-1"
             />
         </div>
     );

@@ -51,7 +51,6 @@ export default function AddFileForm() {
             />
             <div className="pt-4">
                 <BlueButton disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
-                <BlueButton onClick={() => console.log(saving)}>Check</BlueButton>
             </div>
         </Form>
     )
