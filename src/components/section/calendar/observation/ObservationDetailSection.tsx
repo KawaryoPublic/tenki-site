@@ -1,6 +1,6 @@
 "use client";
 
-import { checkTier } from "@/lib/util";
+import { checkTier } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { Observation, TIER } from "@/lib/type";
 import BlueButton from "@/components/ui/global/Button/BlueButton";

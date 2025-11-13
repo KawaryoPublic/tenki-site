@@ -1,6 +1,6 @@
 import { DateInfo, TIER } from "@/lib/type";
 import WhiteFrameUI from "../global/WhiteFrameUI";
-import { checkTier, formatDate } from "@/lib/util";
+import { checkTier, formatDate } from "@/lib/utils";
 import BlueButton from "../global/Button/BlueButton";
 import DeleteDateInfoButton from "./Button/DeleteDateInfoButton";
 

@@ -2,7 +2,7 @@ import { Observation, TIER } from "@/lib/type";
 import WhiteFrameUI from "../global/WhiteFrameUI";
 import { DAYS } from "@/lib/const";
 import BlueButton from "../global/Button/BlueButton";
-import { checkTier } from "@/lib/util";
+import { checkTier } from "@/lib/utils";
 
 export default function ObservationDetailUI({ observation, tier }: { observation: Observation, tier: TIER }) {
     return (

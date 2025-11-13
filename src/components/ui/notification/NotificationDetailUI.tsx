@@ -1,4 +1,4 @@
-import { checkTier } from "@/lib/util";
+import { checkTier } from "@/lib/utils";
 import BlueButton from "../global/Button/BlueButton";
 import WhiteFrameUI from "../global/WhiteFrameUI";
 import { Notification, TIER } from "@/lib/type";

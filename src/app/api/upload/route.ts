@@ -1,5 +1,5 @@
-import { getTier } from '@/lib/action';
-import { checkTier } from '@/lib/util';
+import { getTier } from '@/lib/actions';
+import { checkTier } from '@/lib/utils';
 import { handleUpload, HandleUploadBody } from '@vercel/blob/client';
 import { NextRequest, NextResponse } from 'next/server';
  

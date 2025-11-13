@@ -2,7 +2,7 @@
 
 import { File, TIER } from "@/lib/type";
 import { useState, useEffect } from "react";
-import { checkTier, filterByTagsAndTitle, searchByTagsAndTitle } from "@/lib/util";
+import { checkTier, filterByTagsAndTitle, searchByTagsAndTitle } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import FileUI from "@/components/ui/file/FileUI";
 import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearch";

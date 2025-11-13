@@ -3,7 +3,7 @@
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import { DateInfo, TIER } from "@/lib/type";
 import { useState, useEffect } from "react";
-import { checkTier, formatDate } from "@/lib/util";
+import { checkTier, formatDate } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import EditDateInfoForm from "@/components/ui/calendar/Form/EditDateInfoForm";
 

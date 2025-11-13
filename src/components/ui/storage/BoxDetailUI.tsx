@@ -3,7 +3,7 @@ import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import EditBoxForm from "./Form/EditBoxForm";
 import { Dispatch, SetStateAction } from "react";
 import DeleteBoxButton from "./Button/DeleteBoxButton";
-import { checkTier } from "@/lib/util";
+import { checkTier } from "@/lib/utils";
 import BlueButton from "../global/Button/BlueButton";
 
 export default function BoxDetailUI({ updateBox, setUpdateBox, tier }: { updateBox: Box, setUpdateBox: Dispatch<SetStateAction<Box>>, tier: TIER}) {

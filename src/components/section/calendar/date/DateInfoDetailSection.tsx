@@ -2,7 +2,7 @@
 
 import { DateInfo, TIER } from "@/lib/type";
 import { useState, useEffect } from "react";
-import { checkTier, formatDate } from "@/lib/util";
+import { checkTier, formatDate } from "@/lib/utils";
 import DateInfoDetailUI from "@/components/ui/calendar/DateInfoDetailUI";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 

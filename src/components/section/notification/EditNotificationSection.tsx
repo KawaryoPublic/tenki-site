@@ -5,7 +5,7 @@ import { Notification, TIER } from "@/lib/type";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import EditNotificationForm from "@/components/ui/notification/Form/EditNotificationForm";
-import { checkTier } from "@/lib/util";
+import { checkTier } from "@/lib/utils";
 
 export default function EditNotificationSection({ id, tier }: { id: number, tier: TIER }) {
     const [ notification, setNotification ] = useState<Notification | null>();

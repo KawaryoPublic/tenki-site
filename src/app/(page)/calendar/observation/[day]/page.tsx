@@ -1,6 +1,6 @@
 import ObservationDetailSection from "@/components/section/calendar/observation/ObservationDetailSection";
-import { getTier } from "@/lib/action";
-import { checkTier } from "@/lib/util";
+import { getTier } from "@/lib/actions";
+import { checkTier } from "@/lib/utils";
 
 export default async function Home(props: { params: Promise<{ day: string }> }) {
     const params = await props.params;

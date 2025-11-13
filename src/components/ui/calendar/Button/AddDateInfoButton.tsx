@@ -1,7 +1,7 @@
 "use client";
 
 import { TIER } from "@/lib/type";
-import { checkTier } from "@/lib/util";
+import { checkTier } from "@/lib/utils";
 import { redirect } from "next/navigation";
 
 export default function AddDateInfoButton({ date, tier }: { date: Date, tier: TIER }) {

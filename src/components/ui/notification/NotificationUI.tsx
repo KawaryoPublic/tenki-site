@@ -1,6 +1,6 @@
 import DeleteNotificationButton from "./Button/DeleteNotificationButton";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
-import { checkTier } from "@/lib/util";
+import { checkTier } from "@/lib/utils";
 import { Notification, TIER } from "@/lib/type";
 import BlueButton from "../global/Button/BlueButton";
 import Link from "next/link";

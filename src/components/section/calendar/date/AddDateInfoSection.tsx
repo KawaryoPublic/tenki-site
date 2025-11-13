@@ -1,7 +1,7 @@
 import AddDateInfoForm from "@/components/ui/calendar/Form/AddDateInfoForm";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
-import { formatDate } from "@/lib/util";
+import { formatDate } from "@/lib/utils";
 
 export default function AddDateInfoSection({ date }: { date: string }) {
     return (

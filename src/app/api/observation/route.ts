@@ -1,6 +1,6 @@
-import { getTier } from "@/lib/action";
+import { getTier } from "@/lib/actions";
 import prisma from "@/lib/prisma";
-import { checkTier } from "@/lib/util";
+import { checkTier } from "@/lib/utils";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {

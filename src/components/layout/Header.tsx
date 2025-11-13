@@ -1,4 +1,4 @@
-import { getTier } from "@/lib/action";
+import { getTier } from "@/lib/actions";
 import Nav from "./Nav";
 import Link from "next/link";
 import Image from "next/image";

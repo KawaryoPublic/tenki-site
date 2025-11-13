@@ -1,6 +1,6 @@
 import EditDateInfoSection from "@/components/section/calendar/date/EditDateInfoSection";
-import { getTier } from "@/lib/action";
-import { checkTier } from "@/lib/util";
+import { getTier } from "@/lib/actions";
+import { checkTier } from "@/lib/utils";
 
 export default async function Home(props: { params: Promise<{ date: string }> }) {
     const params = await props.params;

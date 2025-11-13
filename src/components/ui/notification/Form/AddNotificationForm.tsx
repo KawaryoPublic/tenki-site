@@ -7,7 +7,7 @@ import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import DefaultSelect from "../../global/Form/DefaultSelect";
-import { uploadFiles } from "@/lib/util";
+import { uploadFiles } from "@/lib/utils";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
 import { useState } from "react";

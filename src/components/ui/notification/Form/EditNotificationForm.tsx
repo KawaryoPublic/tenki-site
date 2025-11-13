@@ -10,7 +10,7 @@ import DefaultSelect from "../../global/Form/DefaultSelect";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
 import { useState } from "react";
-import { uploadFiles } from "@/lib/util";
+import { uploadFiles } from "@/lib/utils";
 
 export default function EditNotificationForm({ notification }: { notification: Notification }) {
     const initialFiles = notification.urls.map((url, index) => ({ url: url, filename: notification.filenames[index] }));

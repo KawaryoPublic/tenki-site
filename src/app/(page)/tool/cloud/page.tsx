@@ -1,4 +1,4 @@
-import { getTier } from "@/lib/action";
+import { getTier } from "@/lib/actions";
 
 export default async function Home(props: { searchParams: Promise<{ height: string }>}) {
     const searchParams = await props.searchParams;

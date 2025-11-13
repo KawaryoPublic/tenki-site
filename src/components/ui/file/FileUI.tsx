@@ -1,5 +1,5 @@
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
-import { checkTier } from "@/lib/util";
+import { checkTier } from "@/lib/utils";
 import { File, TIER } from "@/lib/type";
 import Link from "next/link";
 import BlueButton from "../global/Button/BlueButton";

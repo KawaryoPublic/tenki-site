@@ -3,7 +3,7 @@
 import NotificationUI from "@/components/ui/notification/NotificationUI";
 import { Notification, TIER } from "@/lib/type";
 import { useState, useEffect } from "react";
-import { checkTier, filterByTagsAndTitle, searchByTagsAndTitle } from "@/lib/util";
+import { checkTier, filterByTagsAndTitle, searchByTagsAndTitle } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearch";
 

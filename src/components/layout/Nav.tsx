@@ -1,7 +1,7 @@
 "use client";
 
 import { TIER } from "@/lib/type";
-import { checkTier } from "@/lib/util";
+import { checkTier } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 

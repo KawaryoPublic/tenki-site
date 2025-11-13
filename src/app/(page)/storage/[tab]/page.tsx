@@ -1,6 +1,6 @@
 import StorageSection from "@/components/section/storage/StorageSection";
-import { getTier } from "@/lib/action";
-import { checkTier } from "@/lib/util";
+import { getTier } from "@/lib/actions";
+import { checkTier } from "@/lib/utils";
 
 export default async function Home({ params }: { params: { tab: string }}) {
   const tier = await getTier();

@@ -1,5 +1,5 @@
-import { getTier } from "@/lib/action";
-import { checkTier } from "@/lib/util";
+import { getTier } from "@/lib/actions";
+import { checkTier } from "@/lib/utils";
 import AddFileSection from "@/components/section/file/AddFileSection";
 
 export default async function Home() {
