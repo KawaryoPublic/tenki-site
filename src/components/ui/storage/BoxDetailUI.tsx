@@ -1,4 +1,4 @@
-import { Box, TIER } from "@/lib/type";
+import { Box, TIER } from "@/lib/types";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import EditBoxForm from "./Form/EditBoxForm";
 import { Dispatch, SetStateAction } from "react";

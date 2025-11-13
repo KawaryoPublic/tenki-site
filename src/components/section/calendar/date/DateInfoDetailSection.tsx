@@ -1,6 +1,6 @@
 "use client";
 
-import { DateInfo, TIER } from "@/lib/type";
+import { DateInfo, TIER } from "@/lib/types";
 import { useState, useEffect } from "react";
 import { checkTier, formatDate } from "@/lib/utils";
 import DateInfoDetailUI from "@/components/ui/calendar/DateInfoDetailUI";

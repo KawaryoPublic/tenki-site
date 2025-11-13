@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { File } from "@/lib/type";
+import { File } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import EditFileForm from "@/components/ui/file/Form/EditFileForm";

@@ -1,4 +1,4 @@
-import { Box } from "@/lib/type";
+import { Box } from "@/lib/types";
 import Link from "next/link";
 
 export default function BoxUI({ box, tab }: { box: Box, tab: number }) {

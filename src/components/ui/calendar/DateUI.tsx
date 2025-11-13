@@ -1,4 +1,4 @@
-import { DateInfo, TIER } from "@/lib/type"
+import { DateInfo, TIER } from "@/lib/types"
 import Link from "next/link"
 import AddDateInfoButton from "./Button/AddDateInfoButton";
 

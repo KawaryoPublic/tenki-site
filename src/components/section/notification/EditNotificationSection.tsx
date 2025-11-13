@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Notification, TIER } from "@/lib/type";
+import { Notification, TIER } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import EditNotificationForm from "@/components/ui/notification/Form/EditNotificationForm";

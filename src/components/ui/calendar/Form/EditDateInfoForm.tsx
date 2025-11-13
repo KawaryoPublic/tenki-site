@@ -1,6 +1,6 @@
 "use client";
 
-import { DateInfo } from "@/lib/type";
+import { DateInfo } from "@/lib/types";
 import Form from "next/form";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import BlueButton from "../../global/Button/BlueButton";

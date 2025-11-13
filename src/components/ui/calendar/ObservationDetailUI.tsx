@@ -1,4 +1,4 @@
-import { Observation, TIER } from "@/lib/type";
+import { Observation, TIER } from "@/lib/types";
 import WhiteFrameUI from "../global/WhiteFrameUI";
 import { DAYS } from "@/lib/const";
 import BlueButton from "../global/Button/BlueButton";

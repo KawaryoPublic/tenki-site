@@ -1,7 +1,7 @@
 "use client";
 
 import NotificationUI from "@/components/ui/notification/NotificationUI";
-import { Notification, TIER } from "@/lib/type";
+import { Notification, TIER } from "@/lib/types";
 import { useState, useEffect } from "react";
 import { checkTier, filterByTagsAndTitle, searchByTagsAndTitle } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";

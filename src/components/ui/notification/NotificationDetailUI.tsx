@@ -1,7 +1,7 @@
 import { checkTier } from "@/lib/utils";
 import BlueButton from "../global/Button/BlueButton";
 import WhiteFrameUI from "../global/WhiteFrameUI";
-import { Notification, TIER } from "@/lib/type";
+import { Notification, TIER } from "@/lib/types";
 import DeleteNotificationButton from "./Button/DeleteNotificationButton";
 import FileLinkUI from "../global/FileLinkUI";
 

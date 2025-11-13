@@ -1,6 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
-import { TIER } from "@/lib/type";
+import { TIER } from "@/lib/types";
 import { getTier } from "@/lib/actions";
 import { checkTier } from "@/lib/utils";
 import { del } from "@vercel/blob";

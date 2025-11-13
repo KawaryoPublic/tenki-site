@@ -2,7 +2,7 @@ import Form from "next/form";
 import { redirect } from "next/navigation";
 import { EXECUTIVE_PASSWORD, PARENT_PASSWORD, STUDENT_PASSWORD } from "@/lib/const";
 import { cookies } from "next/headers";
-import { TIER } from "@/lib/type";
+import { TIER } from "@/lib/types";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 

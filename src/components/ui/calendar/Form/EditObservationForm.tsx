@@ -1,7 +1,7 @@
 "use client";
 
 import Form from "next/form";
-import { Observation, TIER } from "@/lib/type";
+import { Observation, TIER } from "@/lib/types";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import { redirect } from "next/navigation";

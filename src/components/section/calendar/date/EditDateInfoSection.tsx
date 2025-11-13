@@ -1,7 +1,7 @@
 "use client";
 
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
-import { DateInfo, TIER } from "@/lib/type";
+import { DateInfo, TIER } from "@/lib/types";
 import { useState, useEffect } from "react";
 import { checkTier, formatDate } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { Box, TIER } from "@/lib/type";
+import { Box, TIER } from "@/lib/types";
 import { checkTier } from "@/lib/utils";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import BoxUI from "@/components/ui/storage/BoxUI";

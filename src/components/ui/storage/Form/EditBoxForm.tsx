@@ -1,6 +1,6 @@
 "use client";
 
-import { Box } from "@/lib/type";
+import { Box } from "@/lib/types";
 import Form from "next/form";
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import BlueButton from "../../global/Button/BlueButton";

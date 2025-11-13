@@ -2,7 +2,7 @@
 
 import { checkTier } from "@/lib/utils";
 import { useEffect, useState } from "react";
-import { Observation, TIER } from "@/lib/type";
+import { Observation, TIER } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import ObservationDetailUI from "@/components/ui/calendar/ObservationDetailUI";
 
