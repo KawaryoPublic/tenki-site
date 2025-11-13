@@ -14,10 +14,12 @@ export default function EditFileForm({ file }: { file: File }) {
         await fetch(`/api/file?id=${file.id}`, {
             method: 'PUT',
             body: formData,
-        }).finally(() => alert('ファイルを編集しました。'))
-        .catch(err => console.log(err));
+        }).catch(err => {
+            console.log(err);
+            alert('保存に失敗しました。');
+        });
 
-        redirect(`/file`);
+        redirect("/file");
     }, null);
 
     return (

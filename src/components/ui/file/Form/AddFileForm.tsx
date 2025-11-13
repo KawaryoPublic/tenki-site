@@ -7,24 +7,24 @@ import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
-import { useState } from "react";
+import { useActionState } from 'react';
 
 export default function AddFileForm() {
-    const [ saving, setSaving ] = useState(false);
+    const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
+        await fetch('/api/file', {
+            method: 'POST',
+            body: formData,
+        }).catch(err => {
+            console.log(err);
+            alert('保存に失敗しました。');
+        });
+
+        redirect("/file");
+    }, null);
 
     return (
         <Form 
-            action={async data => {
-                setSaving(true);
-
-                await fetch('/api/file', {
-                    method: 'POST',
-                    body: data
-                }).finally(() => setSaving(false))
-                .catch(err => console.log(err));
-
-                redirect(`/file`)
-            }}
+            action={formAction}
             className="flex flex-col gap-2"
         >   
             <h2 className="text-xl md:text-3xl font-bold border-b pb-2">ファイルを編集</h2>
@@ -50,7 +50,7 @@ export default function AddFileForm() {
                 ]}
             />
             <div className="pt-4">
-                <BlueButton disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
+                <BlueButton disabled={pending}>{pending ? "保存中..." : "保存"}</BlueButton>
             </div>
         </Form>
     )

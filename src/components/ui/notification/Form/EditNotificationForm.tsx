@@ -9,36 +9,38 @@ import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
-import { useState } from "react";
+import { useState, useActionState } from "react";
 import { uploadFiles } from "@/lib/utils";
 
 export default function EditNotificationForm({ notification }: { notification: Notification }) {
     const initialFiles = notification.urls.map((url, index) => ({ url: url, filename: notification.filenames[index] }));
     const [ files, setFiles ] = useState<{ url: string, filename: string }[]>(initialFiles);
-    const [ saving, setSaving ] = useState(false);
+    const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
+        for(const file of initialFiles) {
+            if(!files.find(f => f.url === file.url)) {
+                formData.append("deleteFileUrl", file.url);
+            } else {
+                formData.append("url", file.url);
+                formData.append("filename", file.filename);
+            }
+        }
+
+        formData = await uploadFiles(formData);
+
+        await fetch(`/api/notification?id=${notification.id}`, {
+            method: 'PUT',
+            body: formData,
+        }).catch(err => {
+            console.log(err);
+            alert('保存に失敗しました。');
+        });
+
+        redirect("/notification");
+    }, null);
 
     return (
         <Form 
-            action={async data => {
-                for(const file of initialFiles) {
-                    if(!files.find(f => f.url === file.url)) {
-                        data.append("deleteFileUrl", file.url);
-                    } else {
-                        data.append("url", file.url);
-                        data.append("filename", file.filename);
-                    }
-                }
-
-                data = await uploadFiles(data);
-
-                await fetch(`/api/notification?id=${notification.id}`, {
-                    method: 'PUT',
-                    body: data,
-                }).finally(() => setSaving(false))
-                .catch(err => console.log(err));
-
-                redirect(`/notification`)
-            }}
+            action={formAction}
             className="flex flex-col gap-2"
         >   
             <h2 className="text-xl md:text-3xl font-bold border-b pb-2">告知を編集</h2>
@@ -70,7 +72,7 @@ export default function EditNotificationForm({ notification }: { notification: N
                 ]}
             />
             <div className="pt-4">
-                <BlueButton onClick={() => setSaving(true)} disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
+                <BlueButton disabled={pending}>{pending ? "保存中..." : "保存"}</BlueButton>
             </div>
         </Form>
     )

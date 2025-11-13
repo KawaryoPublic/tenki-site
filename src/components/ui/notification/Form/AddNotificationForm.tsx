@@ -10,24 +10,24 @@ import DefaultSelect from "../../global/Form/DefaultSelect";
 import { uploadFiles } from "@/lib/utils";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
-import { useState } from "react";
+import { useActionState } from 'react';
 
 export default function AddNotificationForm() {
-    const [ saving, setSaving ] = useState(false);
+    const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
+        await fetch("/api/notification", {
+            method: 'POST',
+            body: formData,
+        }).catch(err => {
+            console.log(err);
+            alert('保存に失敗しました。');
+        });
+
+        redirect("//notification");
+    }, null);
 
     return (
         <Form 
-            action={async data => {
-                data = await uploadFiles(data);
-
-                await fetch('/api/notification', {
-                    method: 'POST',
-                    body: data,
-                }).finally(() => setSaving(false))
-                .catch(err => console.log(err));
-
-                redirect(`/notification`)
-            }}
+            action={formAction}
             className="flex flex-col gap-2"
         >   
             <h2 className="text-xl md:text-3xl font-bold border-b pb-2">告知を追加</h2>
@@ -56,7 +56,7 @@ export default function AddNotificationForm() {
                 ]}
             />
             <div className="pt-4">
-                <BlueButton onClick={() => setSaving(true)} disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
+                <BlueButton disabled={pending}>{pending ? "保存中..." : "保存"}</BlueButton>
             </div>
         </Form>
     )

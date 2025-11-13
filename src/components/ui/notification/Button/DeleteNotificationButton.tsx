@@ -19,8 +19,10 @@ export default function DeleteNotificationButton({ id, urls }: { id: number, url
                 await fetch(`/api/notification?id=${id}`, {
                     method: 'DELETE',
                     body: JSON.stringify({ urls: urls }),
-                }).finally(() => setDeleting(false))
-                .catch(err => console.log(err));
+                }).catch(err => {
+                    console.log(err);
+                    alert('削除に失敗しました。');
+                });
                 
                 redirect('/notification');
             }}

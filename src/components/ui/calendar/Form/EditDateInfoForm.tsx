@@ -6,22 +6,24 @@ import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import { redirect } from "next/navigation";
-import { useState } from "react";
+import { useActionState } from 'react';
 
 export default function EditDateInfoForm({ info }: { info: DateInfo }) {
-    const [ saving, setSaving ] = useState(false);
+    const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
+        await fetch(`/api/date_info?date=${info.date}`, {
+            method: 'PUT',
+            body: formData,
+        }).catch(err => {
+            console.log(err);
+            alert('保存に失敗しました。');
+        });
+
+        redirect("/calendar");
+    }, null);
 
     return (
         <Form 
-            action={async data => {
-                await fetch(`/api/date_info?date=${info.date}`, {
-                    method: "PUT",
-                    body: data
-                }).finally(() => setSaving(false))
-                .catch(err => console.log(err));
-
-                redirect("/calendar");
-            }}
+            action={formAction}
             className="flex flex-col gap-2"
         >
             <h2 className="text-xl lg:text-3xl font-bold border-b pb-2">詳細を編集</h2>
@@ -38,7 +40,7 @@ export default function EditDateInfoForm({ info }: { info: DateInfo }) {
                 defaultOptions={info.holiday} 
             />
             <div className="pt-4">
-                <BlueButton onClick={() => setSaving(true)} disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
+                <BlueButton disabled={pending}>{pending ? "保存中..." : "保存"}</BlueButton>
             </div>
         </Form>
     );
