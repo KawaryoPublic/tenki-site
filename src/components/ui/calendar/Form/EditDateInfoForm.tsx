@@ -34,11 +34,7 @@ export default function EditDateInfoForm({ info }: { info: DateInfo }) {
                 rows={3} 
                 label
             />
-            <DefaultAddableOption 
-                title="休日観測" 
-                name="holiday" 
-                defaultOptions={info.holiday} 
-            />
+            <DefaultAddableOption title="休日観測" name="holiday" defaultOptions={info.holiday} />
             <div className="pt-4">
                 <BlueButton disabled={pending}>{pending ? "保存中..." : "保存"}</BlueButton>
             </div>

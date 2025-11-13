@@ -23,7 +23,7 @@ export default function NotificationsSection({ tier, tags, title }: { tier: TIER
 
   return (
     <section className="flex-1 flex flex-col gap-3 w-full">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center gap-10">
         <div>
           {
             checkTier(tier) && <BlueButton href="/notification/add">追加</BlueButton>

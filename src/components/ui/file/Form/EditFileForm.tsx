@@ -42,9 +42,7 @@ export default function EditFileForm({ file }: { file: File }) {
                 required
                 label
             />
-            <div>
-                <DefaultAddableOption title="タグ" name="tag" defaultOptions={file.tags} />
-            </div>
+            <DefaultAddableOption title="タグ" name="tag" defaultOptions={file.tags} />
             <DefaultSelect
                 title="対象"
                 name="tier"

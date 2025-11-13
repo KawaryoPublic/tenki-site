@@ -59,9 +59,7 @@ export default function EditNotificationForm({ notification }: { notification: N
                 label
             />
             <DefaultFile title="添付ファイル" name="file" defaultFiles={files} setDefaultFiles={setFiles} />
-            <div>
-                <DefaultAddableOption title="タグ" name="tag" defaultOptions={notification.tags} />
-            </div>
+            <DefaultAddableOption title="タグ" name="tag" defaultOptions={notification.tags} />
             <DefaultSelect
                 title="対象"
                 name="tier"

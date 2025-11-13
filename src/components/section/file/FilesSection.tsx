@@ -23,7 +23,7 @@ export default function FilesSection({ tier, tags, title }: { tier: TIER, tags: 
 
   return (
     <section className="flex-1 flex flex-col gap-3 w-full">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center gap-10">
         <div>
           {
             checkTier(tier) && <BlueButton href="/file/add">追加</BlueButton>
