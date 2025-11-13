@@ -16,7 +16,7 @@ export default function DefaultTextArea({ title, name, rows, defaultValue, value
                 onChange={onChange}
                 ref={ref}
                 required={required}
-                className="bg-gray-300 invalid:text-pink-600 border border-gray-600 invalid:border-pink-500 focus:border-sky-500 focus:invalid:border-pink-500 focus:outline focus:outline-sky-500 focus:invalid:outline-pink-500 rounded-md px-2 py-1 flex-1"
+                className="bg-gray-300 user-invalid:text-pink-600 border border-gray-600 user-invalid:border-pink-500 focus:border-blue-500 focus:user-invalid:border-pink-500 focus:outline focus:outline-blue-500 focus:user-invalid:outline-pink-500 rounded-md px-2 py-1 flex-1"
             />
         </div>
     );
