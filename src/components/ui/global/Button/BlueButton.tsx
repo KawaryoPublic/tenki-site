@@ -5,6 +5,6 @@ export default function BlueButton({ children, onClick, href, type, disabled = f
     return (
         href ? 
         <Link href={href} className={`bg-blue-500 hover:bg-blue-600 focus:outline-2 focus:outline-offset-2 focus:outline-blue-600 text-white px-2 md:px-3 py-1 text-sm md:text-base rounded ${className}`}>{children}</Link> :
-        <button onClick={onClick} type={type} disabled={disabled} className={`bg-blue-500 hover:bg-blue-600 focus:outline-2 focus:outline-offset-2 focus:outline-blue-600 disabled:bg-blue-600 text-white disabled:text-gray-200 px-2 md:px-3 py-1 text-sm md:text-base rounded hover:bg-blue-600 ${className}`}>{children}</button>
+        <button onClick={onClick} type={type} disabled={disabled} className={`bg-blue-500 hover:bg-blue-600 focus:outline-2 focus:outline-offset-2 focus:outline-blue-600 disabled:bg-blue-600 text-white disabled:text-gray-400 px-2 md:px-3 py-1 text-sm md:text-base rounded hover:bg-blue-600 ${className}`}>{children}</button>
     );
 }
