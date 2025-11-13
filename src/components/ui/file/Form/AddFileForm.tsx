@@ -15,6 +15,8 @@ export default function AddFileForm() {
     return (
         <Form 
             action={async data => {
+                setSaving(true);
+
                 await fetch('/api/file', {
                     method: 'POST',
                     body: data
@@ -48,7 +50,8 @@ export default function AddFileForm() {
                 ]}
             />
             <div className="pt-4">
-                <BlueButton type="submit" onClick={() => setSaving(true)} disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
+                <BlueButton disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
+                <BlueButton onClick={() => console.log(saving)}>Check</BlueButton>
             </div>
         </Form>
     )
