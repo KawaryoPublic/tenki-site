@@ -10,7 +10,7 @@ import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import { useActionState } from 'react';
 
 export default function EditFileForm({ file }: { file: File }) {
-    const [state, formAction, pending] = useActionState(async (initState, formData) => {
+    const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
         await fetch(`/api/file?id=${file.id}`, {
             method: 'PUT',
             body: formData,
