@@ -20,8 +20,6 @@ export default function EditNotificationForm({ notification }: { notification: N
     return (
         <Form 
             action={async data => {
-                setSaving(true);
-
                 for(const file of initialFiles) {
                     if(!files.find(f => f.url === file.url)) {
                         data.append("deleteFileUrl", file.url);
@@ -72,7 +70,7 @@ export default function EditNotificationForm({ notification }: { notification: N
                 ]}
             />
             <div className="pt-4">
-                <BlueButton disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
+                <BlueButton onClick={() => setSaving(true)} disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
             </div>
         </Form>
     )

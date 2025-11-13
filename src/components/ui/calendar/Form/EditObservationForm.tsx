@@ -13,8 +13,6 @@ export default function EditObservationForm({ observation }: { observation: Obse
     return (
         <Form 
             action={async data => {
-                setSaving(true);
-
                 await fetch(`/api/observation?day=${observation.day}`, {
                     method: "PUT",
                     body: data,
@@ -42,7 +40,7 @@ export default function EditObservationForm({ observation }: { observation: Obse
                 defaultOptions={observation.afterSchool}
             />
             <div className="pt-4">
-                <BlueButton disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
+                <BlueButton onClick={() => setSaving(true)} disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
             </div>
         </Form>
     );

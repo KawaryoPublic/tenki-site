@@ -15,8 +15,6 @@ export default function EditFileForm({ file }: { file: File }) {
     return (
         <Form 
             action={async data => {
-                setSaving(true);
-
                 await fetch(`/api/file?id=${file.id}`, {
                     method: 'PUT',
                     body: data,
@@ -53,9 +51,7 @@ export default function EditFileForm({ file }: { file: File }) {
                 ]}
             />
             <div className="pt-4">
-                <BlueButton disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
-                <BlueButton onClick={() => {console.log(saving)}} type="button">Saving?</BlueButton>
-                <BlueButton onClick={() => {setSaving(true)}} type="button">Save</BlueButton>
+                <BlueButton onClick={() => setSaving(true)} disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
             </div>
         </Form>
     )

@@ -13,8 +13,6 @@ export default function AddDateInfoForm({ date }: { date: string }) {
     return (
         <Form 
             action={async data => {
-                setSaving(true);
-
                 await fetch(`/api/date_info?date=${date}`, {
                     method: "POST",
                     body: data
@@ -37,7 +35,7 @@ export default function AddDateInfoForm({ date }: { date: string }) {
                 name="holiday"
             />
             <div className="pt-4">
-                <BlueButton disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
+                <BlueButton onClick={() => setSaving(true)} disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
             </div>
         </Form>
     );

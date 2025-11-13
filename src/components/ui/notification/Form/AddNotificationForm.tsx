@@ -18,8 +18,6 @@ export default function AddNotificationForm() {
     return (
         <Form 
             action={async data => {
-                setSaving(true);
-
                 data = await uploadFiles(data);
 
                 await fetch('/api/notification', {
@@ -58,7 +56,7 @@ export default function AddNotificationForm() {
                 ]}
             />
             <div className="pt-4">
-                <BlueButton disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
+                <BlueButton onClick={() => setSaving(true)} disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
             </div>
         </Form>
     )
