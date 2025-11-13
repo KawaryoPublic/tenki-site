@@ -54,6 +54,8 @@ export default function EditFileForm({ file }: { file: File }) {
             />
             <div className="pt-4">
                 <BlueButton disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
+                <BlueButton onClick={() => {console.log(saving)}} type="button">Saving?</BlueButton>
+                <BlueButton onClick={() => {setSaving(true)}} type="button">Save</BlueButton>
             </div>
         </Form>
     )
