@@ -5,6 +5,6 @@ export default function RedButton({ children, onClick, href, type, disabled = fa
     return (
         href ? 
         <Link href={href} className={`bg-red-500 hover:bg-red-600 focus:outline-2 focus:outline-offset-2 focus:outline-red-600 text-white px-2 md:px-3 py-[1.5px] text-sm md:text-base rounded hover:bg-red-600 ${className}`}>{children}</Link> :
-        <button onClick={onClick} type={type} disabled={disabled} className={`bg-red-500 hover:bg-red-600 focus:outline-2 focus:outline-offset-2 focus:outline-red-600 disabled:bg-red-600 text-white disabled:text-gray-400 px-2 md:px-3 py-1 text-sm md:text-base rounded hover:bg-red-600 ${className}`}>{children}</button>
+        <button onClick={onClick} type={type} disabled={disabled} className={`bg-red-500 hover:bg-red-600 focus:outline-2 focus:outline-offset-2 focus:outline-red-600 disabled:bg-red-600 text-white disabled:text-gray-300 px-2 md:px-3 py-1 text-sm md:text-base rounded hover:bg-red-600 ${className}`}>{children}</button>
     );
 }

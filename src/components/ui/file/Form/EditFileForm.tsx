@@ -14,7 +14,8 @@ export default function EditFileForm({ file }: { file: File }) {
         await fetch(`/api/file?id=${file.id}`, {
             method: 'PUT',
             body: formData,
-        }).catch(err => console.log(err));
+        }).finally(() => alert('ファイルを編集しました。'))
+        .catch(err => console.log(err));
 
         redirect(`/file`);
     }, null);
