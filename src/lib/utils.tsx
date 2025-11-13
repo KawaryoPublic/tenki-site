@@ -1,4 +1,4 @@
-import { TIER } from "./type";
+import { TIER } from "./types";
 import { upload } from "@vercel/blob/client";
 import { redirect } from "next/navigation";
 

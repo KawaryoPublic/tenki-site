@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 import { NextRequest } from "next/server"; 
-import { TIER } from "./type";
+import { TIER } from "./types";
 
 export const getTier = async (request?: NextRequest) => {
     const cookieStore = request ? (await request.cookies) : (await cookies());
