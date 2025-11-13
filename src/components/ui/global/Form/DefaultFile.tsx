@@ -38,7 +38,7 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
                             type="file"
                             ref={(element: HTMLInputElement) => fileRef.current[index] = element}
                             required
-                            className="flex-1"
+                            className="flex-1 file:hidden"
                         />
                         <RedButton
                             onClick={() => {
