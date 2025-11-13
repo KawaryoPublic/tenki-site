@@ -48,7 +48,7 @@ export default function AddFileForm() {
                 ]}
             />
             <div className="pt-4">
-                <BlueButton onClick={() => setSaving(true)} disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
+                <BlueButton type="submit" onClick={() => setSaving(true)} disabled={saving}>{saving ? "保存中..." : "保存"}</BlueButton>
             </div>
         </Form>
     )
