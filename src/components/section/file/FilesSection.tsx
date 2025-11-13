@@ -23,13 +23,13 @@ export default function FilesSection({ tier, tags, title }: { tier: TIER, tags: 
 
   return (
     <section className="flex-1 flex flex-col gap-3 w-full">
-      <div className="flex justify-between items-center gap-10">
+      <div className="flex justify-between items-center">
         <div>
           {
             checkTier(tier) && <BlueButton href="/file/add">追加</BlueButton>
           }
         </div>
-        <DefaultSearchForm title="検索(#をつけるとタグ)" className="flex-1" defaultValue={`${title.join(" ")}${(title.length !== 0 && tags.length !== 0) ? " " : ""}${tags.map(tag => `#${tag}`).join(" ")}`} search={searchString => searchByTagsAndTitle("/file", searchString)}/>
+        <DefaultSearchForm title="検索(#をつけるとタグ)" className="w-[30%]" defaultValue={`${title.join(" ")}${(title.length !== 0 && tags.length !== 0) ? " " : ""}${tags.map(tag => `#${tag}`).join(" ")}`} search={searchString => searchByTagsAndTitle("/file", searchString)}/>
       </div>
       {
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
