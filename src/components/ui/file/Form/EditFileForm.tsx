@@ -19,7 +19,7 @@ export default function EditFileForm({ file }: { file: File }) {
         }).catch(err => console.log(err));
 
         redirect(`/file`);
-    });
+    }, null);
 
     return (
         <Form 
