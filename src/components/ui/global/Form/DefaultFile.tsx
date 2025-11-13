@@ -13,7 +13,7 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
             <label htmlFor={name} className="font-bold">{title}</label>
             {
                 defaultFiles.map((file, index) => (
-                    <div key={index} className="flex items-center gap-2 md:gap-4">
+                    <div key={index} className="flex items-center gap-2">
                         <FileLinkUI url={file.url} filename={file.filename} className="flex-1" />
                         <RedButton
                             onClick={() => {
@@ -30,7 +30,7 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
             }
             {
                 Array.from({length: fileNumber}).map((_, index) => (
-                    <div key={index} className="flex items-center gap-2 md:gap-4">
+                    <div key={index} className="flex items-center gap-2">
                         <DefaultInput
                             key={index}
                             title={title}

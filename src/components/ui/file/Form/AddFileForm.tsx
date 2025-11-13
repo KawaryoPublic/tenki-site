@@ -40,7 +40,9 @@ export default function AddFileForm() {
                 required
                 label
             />
-            <DefaultAddableOption title="タグ" name="tag" />
+            <div>
+                <DefaultAddableOption title="タグ" name="tag" />
+            </div>
             <DefaultSelect
                 title="対象"
                 name="tier"

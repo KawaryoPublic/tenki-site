@@ -26,7 +26,7 @@ export default function NotificationDetailUI({ notification, tier }: { notificat
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 text-sm md:text-base">
                 {
                     notification.urls.map((url, index) => (
-                        <FileLinkUI key={index} url={url} filename={notification.filenames[index]} />
+                        <FileLinkUI key={index} url={url} filename={notification.filenames[index]} className="py-2" />
                     ))
                 }
             </div>

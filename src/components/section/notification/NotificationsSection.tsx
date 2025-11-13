@@ -29,7 +29,7 @@ export default function NotificationsSection({ tier, tags, title }: { tier: TIER
             checkTier(tier) && <BlueButton href="/notification/add">追加</BlueButton>
           }
         </div>
-        <DefaultSearchForm title="検索(#をつけるとタグ)" defaultValue={`${title.join(" ")}${(title.length !== 0 && tags.length !== 0) ? " " : ""}${tags.map(tag => `#${tag}`).join(" ")}`} search={searchString => searchByTagsAndTitle("/notification", searchString)} />
+        <DefaultSearchForm title="検索(#をつけるとタグ)" className="flex-1" defaultValue={`${title.join(" ")}${(title.length !== 0 && tags.length !== 0) ? " " : ""}${tags.map(tag => `#${tag}`).join(" ")}`} search={searchString => searchByTagsAndTitle("/notification", searchString)} />
       </div>
       {
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :

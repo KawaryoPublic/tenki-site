@@ -3,11 +3,11 @@ import BlueButton from "../Button/BlueButton";
 import DefaultInput from "./DefaultInput";
 import RedButton from "../Button/RedButton";
 
-export default function DefaultAddableOption({ title, name, defaultOptions }: { title: string, name: string, defaultOptions?: string[] }) {
+export default function DefaultAddableOption({ title, name, defaultOptions, className = "" }: { title: string, name: string, defaultOptions?: string[], className?: string }) {
     const [ options, setOptions ] = useState<string[]>(defaultOptions && defaultOptions.length !== 0 ? defaultOptions : []);
 
     return (
-        <div className="flex flex-col gap-2">
+        <div className={`flex flex-col gap-2 ${className}`}>
             <label htmlFor={name} className="font-bold">{title}</label>
             {
                 options.map((option, index) => (

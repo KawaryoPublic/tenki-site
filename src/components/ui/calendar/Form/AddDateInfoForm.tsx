@@ -32,10 +32,9 @@ export default function AddDateInfoForm({ date }: { date: string }) {
                 rows={3} 
                 label
             />
-            <DefaultAddableOption 
-                title="休日観測" 
-                name="holiday"
-            />
+            <div>
+                <DefaultAddableOption title="休日観測" name="holiday"/>
+            </div>
             <div className="pt-4">
                 <BlueButton disabled={pending}>{pending ? "保存中..." : "保存"}</BlueButton>
             </div>

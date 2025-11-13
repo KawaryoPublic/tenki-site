@@ -44,7 +44,9 @@ export default function AddNotificationForm() {
                 label
             />
             <DefaultFile title="添付ファイル" name="file" />
-            <DefaultAddableOption title="タグ" name="tag" />
+            <div>
+                <DefaultAddableOption title="タグ" name="tag" />
+            </div>
             <DefaultSelect
                 title="対象"
                 name="tier"
