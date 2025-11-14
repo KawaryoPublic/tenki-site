@@ -11,18 +11,18 @@ export async function GET(request: NextRequest) {
         const searchParams = request.nextUrl.searchParams;
         const id = Number(searchParams.get("id"));
 
-        let notifications;
+        let manuals;
         
         if(id) {
-            notifications = await prisma.notification.findUnique({
+            manuals = await prisma.manual.findUnique({
                 where: { id: id }
             })
         } else {
-            notifications = tier === TIER.ADMIN ? 
-                await prisma.notification.findMany({
+            manuals = tier === TIER.ADMIN ? 
+                await prisma.manual.findMany({
                     orderBy: { createdAt: 'desc' },
                 }) : 
-                await prisma.notification.findMany({
+                await prisma.manual.findMany({
                     where: {
                         OR: [
                             {
@@ -37,10 +37,10 @@ export async function GET(request: NextRequest) {
                 });
         }
 
-        return NextResponse.json(notifications, { status: 200 });
+        return NextResponse.json(manuals, { status: 200 });
     } catch (error) {
-        console.error("Error fetching notifications:", error);
-        return NextResponse.json({ error: "Failed to fetch notifications" }, { status: 500 });
+        console.error("Error fetching manuals:", error);
+        return NextResponse.json({ error: "Failed to fetch manuals" }, { status: 500 });
     }
 }
 
@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
-        const newNotification = await prisma.notification.create({
+        const newManual = await prisma.manual.create({
             data: {
                 title,
                 content,
@@ -75,10 +75,10 @@ export async function POST(request: NextRequest) {
             },
         });
 
-        return NextResponse.json(newNotification, { status: 201 });
+        return NextResponse.json(newManual, { status: 201 });
     } catch (error) {
-        console.error("Error creating a notification:", error);
-        return NextResponse.json({ error: "Failed to create a notification" }, { status: 500 });
+        console.error("Error creating a manual:", error);
+        return NextResponse.json({ error: "Failed to create a manual" }, { status: 500 });
     }
 }
 
@@ -108,7 +108,7 @@ export async function PUT(request: NextRequest) {
             await del(url);
         }
 
-        const updatedNotification = await prisma.notification.update({
+        const updatedManual = await prisma.manual.update({
             where: { id: id },
             data: {
                 title,
@@ -120,10 +120,10 @@ export async function PUT(request: NextRequest) {
             },
         });
 
-        return NextResponse.json(updatedNotification, { status: 200 });
+        return NextResponse.json(updatedManual, { status: 200 });
     } catch (error) {
-        console.error("Error updating a notification:", error);
-        return NextResponse.json({ error: "Failed to update a notification" }, { status: 500 });
+        console.error("Error updating a manual:", error);
+        return NextResponse.json({ error: "Failed to update a manual" }, { status: 500 });
     }
 }
 
@@ -146,13 +146,13 @@ export async function DELETE(request: NextRequest) {
             await del(url);
         }
 
-        await prisma.notification.delete({
+        await prisma.manual.delete({
             where: { id: id },
         });
 
-        return NextResponse.json({ message: "Notification deleted" }, { status: 200 });
+        return NextResponse.json({ message: "Manual deleted" }, { status: 200 });
     } catch (error) {
-        console.error("Error deleting a notification:", error);
-        return NextResponse.json({ error: "Failed to delete a notification" }, { status: 500 });
+        console.error("Error deleting a manual:", error);
+        return NextResponse.json({ error: "Failed to delete a manual" }, { status: 500 });
     }
 }

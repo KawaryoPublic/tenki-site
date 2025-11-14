@@ -19,11 +19,11 @@ export default function NotificationDetailSection({ id, tier }: { id: number, ti
 
     return (
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !notification ? <div className="flex-1 flex flex-col items-center font-bold text-xl">通知を読み込めませんでした</div> :
+        !notification ? <div className="flex-1 flex flex-col items-center font-bold text-xl">告知を読み込めませんでした</div> :
         <section className="w-full flex flex-col gap-4">
             <NotificationDetailUI notification={notification} tier={tier} />
             <div>
-                <BlueButton href="/notification">告知に戻る</BlueButton>
+                <BlueButton href="/notification">告知一覧に戻る</BlueButton>
             </div>
         </section>
     )

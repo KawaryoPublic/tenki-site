@@ -55,3 +55,15 @@ model File {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Manual {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  tags      String[]
+  urls      String[]
+  filenames String[]
+  tier      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

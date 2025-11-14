@@ -9,7 +9,7 @@ export default function AddFileSection() {
                 <AddFileForm />
             </WhiteFrameUI>
             <div>
-                <BlueButton href="/file">ファイルに戻る</BlueButton>
+                <BlueButton href="/file">ファイル一覧に戻る</BlueButton>
             </div>
         </section>
     );

@@ -49,3 +49,14 @@ export interface File {
     tier: TIER;
     updatedAt: Date;
 }
+
+export interface Manual {
+    id: number;
+    title: string;
+    content: string;
+    tags: string[];
+    urls: string[];
+    filenames: string[];
+    tier: string;
+    updatedAt: Date;
+}

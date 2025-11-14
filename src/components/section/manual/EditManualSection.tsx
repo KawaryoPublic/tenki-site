@@ -1,20 +1,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Notification, TIER } from "@/lib/types";
+import { Manual, TIER } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
-import EditNotificationForm from "@/components/ui/notification/Form/EditNotificationForm";
 import { checkTier } from "@/lib/utils";
+import EditManualForm from "@/components/ui/manual/Form/EditManualForm";
 
-export default function EditNotificationSection({ id, tier }: { id: number, tier: TIER }) {
-    const [ notification, setNotification ] = useState<Notification | null>();
+export default function EditManualSection({ id, tier }: { id: number, tier: TIER }) {
+    const [ manual, setManual ] = useState<Manual | null>();
     const [ loading, setLoading ] = useState(true);
     
     useEffect(() => {
-        fetch(`/api/notification?id=${id}`)
+        fetch(`/api/manual?id=${id}`)
             .then(res => res.json())
-            .then(data => setNotification(data))
+            .then(data => setManual(data))
             .finally(() => setLoading(false))
             .catch(err => console.error(err))
     }, []);
@@ -22,13 +22,13 @@ export default function EditNotificationSection({ id, tier }: { id: number, tier
     return (
         checkTier(tier) &&
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !notification ? <div className="flex-1 flex flex-col items-center font-bold text-xl">告知を読み込めませんでした</div> :
+        !manual ? <div className="flex-1 flex flex-col items-center font-bold text-xl">マニュアルを読み込めませんでした</div> :
         <section className="w-full flex flex-col gap-4">
             <WhiteFrameUI>
-                <EditNotificationForm notification={notification} />
+                <EditManualForm manual={manual} />
             </WhiteFrameUI>
             <div>
-                <BlueButton href="/notification">告知一覧に戻る</BlueButton>
+                <BlueButton href="/manual">マニュアル一覧に戻る</BlueButton>
             </div>
         </section>
     )

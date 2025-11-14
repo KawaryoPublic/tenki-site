@@ -2,7 +2,7 @@
 
 import Form from "next/form";
 import { redirect } from "next/navigation";
-import { Notification, TIER } from "@/lib/types";
+import { Manual, TIER } from "@/lib/types";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
@@ -12,8 +12,8 @@ import DefaultFile from "../../global/Form/DefaultFile";
 import { useState, useActionState } from "react";
 import { uploadFiles } from "@/lib/utils";
 
-export default function EditNotificationForm({ notification }: { notification: Notification }) {
-    const initialFiles = notification.urls.map((url, index) => ({ url: url, filename: notification.filenames[index] }));
+export default function EditManualForm({ manual }: { manual: Manual }) {
+    const initialFiles = manual.urls.map((url, index) => ({ url: url, filename: manual.filenames[index] }));
     const [ files, setFiles ] = useState<{ url: string, filename: string }[]>(initialFiles);
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
         for(const file of initialFiles) {
@@ -27,7 +27,7 @@ export default function EditNotificationForm({ notification }: { notification: N
 
         formData = await uploadFiles(formData);
 
-        await fetch(`/api/notification?id=${notification.id}`, {
+        await fetch(`/api/manual?id=${manual.id}`, {
             method: 'PUT',
             body: formData,
         }).catch(err => {
@@ -35,7 +35,7 @@ export default function EditNotificationForm({ notification }: { notification: N
             alert('保存に失敗しました。');
         });
 
-        redirect("/notification");
+        redirect("/manual");
     }, null);
 
     return (
@@ -47,7 +47,7 @@ export default function EditNotificationForm({ notification }: { notification: N
             <DefaultInput
                 title="タイトル"
                 name="title"
-                defaultValue={notification.title}
+                defaultValue={manual.title}
                 required
                 label
             />
@@ -55,15 +55,15 @@ export default function EditNotificationForm({ notification }: { notification: N
                 title="内容"
                 name="content"
                 rows={3}
-                defaultValue={notification.content}
+                defaultValue={manual.content}
                 label
             />
             <DefaultFile title="添付ファイル" name="file" defaultFiles={files} setDefaultFiles={setFiles} />
-            <DefaultAddableOption title="タグ" name="tag" defaultOptions={notification.tags} />
+            <DefaultAddableOption title="タグ" name="tag" defaultOptions={manual.tags} />
             <DefaultSelect
                 title="対象"
                 name="tier"
-                defaultValue={notification.tier}
+                defaultValue={manual.tier}
                 options={[
                     { value: TIER.NONE, label: '一般向け' },
                     { value: TIER.PARENT, label: '保護者向け' },

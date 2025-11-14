@@ -33,8 +33,8 @@ export default function NotificationsSection({ tier, tags, title }: { tier: TIER
       </div>
       {
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !notifications ? <div className="flex-1 flex flex-col items-center font-bold text-xl">通知を読み込めませんでした</div> :
-        notifications.length === 0 ? <div className="flex-1 flex flex-col items-center font-bold text-xl">通知はありません</div> : 
+        !notifications ? <div className="flex-1 flex flex-col items-center font-bold text-xl">告知一覧を読み込めませんでした</div> :
+        notifications.length === 0 ? <div className="flex-1 flex flex-col items-center font-bold text-xl">告知はありません</div> : 
         <div className="flex flex-col gap-4">
           {
             notifications.map((notification, index) => (

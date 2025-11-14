@@ -1,15 +1,15 @@
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
-import AddNotificationForm from "@/components/ui/notification/Form/AddNotificationForm";
+import AddManualForm from "@/components/ui/manual/Form/AddManualForm";
 
-export default function AddNotificationSection() {
+export default function AddManualSection() {
     return (
         <section className="w-full flex flex-col gap-4">
             <WhiteFrameUI>
-                <AddNotificationForm />
+                <AddManualForm />
             </WhiteFrameUI>
             <div>
-                <BlueButton href="/notification">告知一覧に戻る</BlueButton>
+                <BlueButton href="/manual">マニュアル一覧に戻る</BlueButton>
             </div>
         </section>
     )

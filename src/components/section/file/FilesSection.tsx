@@ -33,7 +33,7 @@ export default function FilesSection({ tier, tags, title }: { tier: TIER, tags: 
       </div>
       {
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !files ? <div className="flex-1 flex flex-col items-center font-bold text-xl">ファイルを読み込めませんでした</div> :
+        !files ? <div className="flex-1 flex flex-col items-center font-bold text-xl">ファイル一覧を読み込めませんでした</div> :
         files.length === 0 ? <div className="flex-1 flex flex-col items-center font-bold text-xl">ファイルはありません</div> : 
         <div className="flex flex-col gap-4">
           {

@@ -12,11 +12,11 @@ import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
 import { useActionState } from 'react';
 
-export default function AddNotificationForm() {
+export default function AddManualForm() {
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
         formData = await uploadFiles(formData);
 
-        await fetch("/api/notification", {
+        await fetch("/api/manual", {
             method: 'POST',
             body: formData,
         }).catch(err => {
@@ -24,7 +24,7 @@ export default function AddNotificationForm() {
             alert('保存に失敗しました。');
         });
 
-        redirect("/notification");
+        redirect("/manual");
     }, null);
 
     return (
@@ -32,7 +32,7 @@ export default function AddNotificationForm() {
             action={formAction}
             className="flex flex-col gap-2"
         >   
-            <h2 className="text-xl md:text-3xl font-bold border-b pb-2">告知を追加</h2>
+            <h2 className="text-xl md:text-3xl font-bold border-b pb-2">マニュアルを追加</h2>
             <DefaultInput
                 title="タイトル"
                 name="title"
@@ -51,8 +51,6 @@ export default function AddNotificationForm() {
                 title="対象"
                 name="tier"
                 options={[
-                    { value: TIER.NONE, label: '一般向け' },
-                    { value: TIER.PARENT, label: '保護者向け' },
                     { value: TIER.STUDENT, label: '生徒向け' },
                     { value: TIER.ADMIN, label: '執行部向け' },
                 ]}
