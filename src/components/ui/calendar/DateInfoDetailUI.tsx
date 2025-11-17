@@ -1,8 +1,9 @@
 import { DateInfo, TIER } from "@/lib/types";
 import WhiteFrameUI from "../global/WhiteFrameUI";
-import { checkTier, formatDate } from "@/lib/utils";
+import { checkTier, formatDate, splitLinks } from "@/lib/utils";
 import BlueButton from "../global/Button/BlueButton";
 import DeleteDateInfoButton from "./Button/DeleteDateInfoButton";
+import Link from "next/link";
 
 export default function DateInfoDetailUI({ info, tier }: { info: DateInfo, tier: TIER }) {
     return (
@@ -21,11 +22,19 @@ export default function DateInfoDetailUI({ info, tier }: { info: DateInfo, tier:
             </div>
             <div>
                 <p className="font-bold">予定</p>
-                <p className="whitespace-pre-wrap">{info.plan ? info.plan : "なし"}</p>
+                <div className="whitespace-pre-wrap text-sm md:text-base">
+                    {
+                        info.plan ? "なし" : splitLinks(info.plan).map((part, index) => (
+                            part.type === "text" ? 
+                                <span key={index}>{part.content}</span> :
+                                <Link key={index} href={part.content} className="text-blue-500 underline" target="_blank" rel="noopener noreferrer">{part.content}</Link>
+                        ))
+                    }
+                </div>
             </div>
             <div>
                 <p className="font-bold">休日観測</p>
-                <p className="whitespace-pre-wrap">{info.holiday.length === 0 ? "なし" : info.holiday.join(", ")}</p>
+                <div className="whitespace-pre-wrap text-sm md:text-base">{info.holiday.length === 0 ? "なし" : info.holiday.join(", ")}</div>
             </div>
         </WhiteFrameUI>
     )
