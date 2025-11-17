@@ -1,9 +1,10 @@
-import { checkTier } from "@/lib/utils";
+import { checkTier, splitLinks } from "@/lib/utils";
 import BlueButton from "../global/Button/BlueButton";
 import WhiteFrameUI from "../global/WhiteFrameUI";
 import { Notification, TIER } from "@/lib/types";
 import DeleteNotificationButton from "./Button/DeleteNotificationButton";
 import FileLinkUI from "../global/FileLinkUI";
+import Link from "next/link";
 
 export default function NotificationDetailUI({ notification, tier }: { notification: Notification, tier: TIER }) {
     return (
@@ -21,7 +22,13 @@ export default function NotificationDetailUI({ notification, tier }: { notificat
                 </div>
             </div>
             <div className="whitespace-pre-wrap text-sm md:text-base">
-                <p>{notification.content}</p>
+                {
+                    splitLinks(notification.content).map((part, index) => (
+                        part.type === "text" ? 
+                            <span key={index}>{part.content}</span> :
+                            <Link key={index} href={part.content} className="text-blue-500 underline" target="_blank" rel="noopener noreferrer">{part.content}</Link>
+                    ))
+                }
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 text-sm md:text-base">
                 {
