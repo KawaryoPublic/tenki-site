@@ -24,7 +24,7 @@ export default function DateInfoDetailUI({ info, tier }: { info: DateInfo, tier:
                 <p className="font-bold">予定</p>
                 <div className="whitespace-pre-wrap text-sm md:text-base">
                     {
-                        info.plan ? "なし" : splitLinks(info.plan).map((part, index) => (
+                        !info.plan ? "なし" : splitLinks(info.plan).map((part, index) => (
                             part.type === "text" ? 
                                 <span key={index}>{part.content}</span> :
                                 <Link key={index} href={part.content} className="text-blue-500 underline" target="_blank" rel="noopener noreferrer">{part.content}</Link>
