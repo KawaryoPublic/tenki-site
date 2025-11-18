@@ -42,7 +42,6 @@ export default function AddNotificationForm() {
             <DefaultTextArea
                 title="内容"
                 name="content"
-                rows={3}
                 label
             />
             <DefaultFile title="添付ファイル" name="file" />

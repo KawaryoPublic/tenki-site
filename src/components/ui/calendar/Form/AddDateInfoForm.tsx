@@ -29,7 +29,6 @@ export default function AddDateInfoForm({ date }: { date: string }) {
             <DefaultTextArea 
                 title="予定" 
                 name="plan" 
-                rows={3} 
                 label
             />
             <DefaultAddableOption title="休日観測" name="holiday"/>

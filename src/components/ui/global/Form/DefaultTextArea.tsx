@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, RefObject } from "react";
 
-export default function DefaultTextArea({ title, name, rows, defaultValue, value, onChange, ref, className = "", label = false, required = false }: { title: string, name: string, rows: number, defaultValue?: string, value?: string, onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void, ref?: RefObject<HTMLTextAreaElement | null>, className?: string, label?: boolean, required?: boolean }) {
+export default function DefaultTextArea({ title, name, defaultValue, value, onChange, ref, className = "", label = false, required = false }: { title: string, name: string, defaultValue?: string, value?: string, onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void, ref?: RefObject<HTMLTextAreaElement | null>, className?: string, label?: boolean, required?: boolean }) {
     const temp = useState<string>(defaultValue || "");
     [ value, onChange ] = value && onChange ? [value, onChange] : [temp[0], (e: ChangeEvent<HTMLTextAreaElement>) => temp[1](e.target.value)];
 
@@ -11,7 +11,7 @@ export default function DefaultTextArea({ title, name, rows, defaultValue, value
             }
             <textarea 
                 name={name}
-                rows={value?.split("\n").length + 1}
+                rows={value?.split("\n").length}
                 cols={0}
                 placeholder={title}
                 defaultValue={defaultValue}

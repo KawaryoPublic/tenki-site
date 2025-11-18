@@ -54,7 +54,6 @@ export default function EditManualForm({ manual }: { manual: Manual }) {
             <DefaultTextArea
                 title="内容"
                 name="content"
-                rows={3}
                 defaultValue={manual.content}
                 label
             />

@@ -54,7 +54,6 @@ export default function EditNotificationForm({ notification }: { notification: N
             <DefaultTextArea
                 title="内容"
                 name="content"
-                rows={3}
                 defaultValue={notification.content}
                 label
             />

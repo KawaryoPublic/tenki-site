@@ -31,7 +31,6 @@ export default function EditDateInfoForm({ info }: { info: DateInfo }) {
                 title="予定" 
                 name="plan" 
                 defaultValue={info.plan} 
-                rows={3} 
                 label
             />
             <DefaultAddableOption title="休日観測" name="holiday" defaultOptions={info.holiday} />
