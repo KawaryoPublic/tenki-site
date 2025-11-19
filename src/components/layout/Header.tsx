@@ -19,8 +19,8 @@ export default async function Header() {
           <Nav href="/file" title="ファイル" tier={tier} allowStudent/>
           <Nav href="/manual" title="マニュアル" tier={tier} allowStudent />
         </nav>
-        <div className="ml-auto pr-4">
-          <BlueButton href="/password" className="relative w-5 h-5 md:w-7 md:h-7">
+        <div className="pr-4">
+          <BlueButton href="/password" className="absolute w-5 h-5 md:w-7 md:h-7">
             <Image src="/image/sign_in.jpg" alt="部員はこちら" fill />
           </BlueButton>
         </div>
