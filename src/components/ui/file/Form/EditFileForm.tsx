@@ -8,6 +8,7 @@ import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import { useActionState } from 'react';
+import { TIER_LABELS } from "@/lib/const";
 
 export default function EditFileForm({ file }: { file: File }) {
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
@@ -48,8 +49,8 @@ export default function EditFileForm({ file }: { file: File }) {
                 name="tier"
                 defaultValue={file.tier}
                 options={[
-                    { value: TIER.STUDENT, label: '生徒向け' },
-                    { value: TIER.ADMIN, label: '執行部向け' },
+                    { value: TIER.STUDENT, label: `${TIER_LABELS[TIER.STUDENT]}向け` },
+                    { value: TIER.ADMIN, label: `${TIER_LABELS[TIER.ADMIN]}向け` },
                 ]}
             />
             <div className="pt-4">

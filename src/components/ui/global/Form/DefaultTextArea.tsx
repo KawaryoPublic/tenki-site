@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, ChangeEvent, RefObject } from "react";
 
 export default function DefaultTextArea({ title, name, defaultValue, value, onChange, ref, className = "", label = false, required = false }: { title: string, name: string, defaultValue?: string, value?: string, onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void, ref?: RefObject<HTMLTextAreaElement | null>, className?: string, label?: boolean, required?: boolean }) {

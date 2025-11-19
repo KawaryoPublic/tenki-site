@@ -11,6 +11,7 @@ import { uploadFiles } from "@/lib/utils";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
 import { useActionState } from 'react';
+import { TIER_LABELS } from "@/lib/const";
 
 export default function AddNotificationForm() {
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
@@ -50,10 +51,10 @@ export default function AddNotificationForm() {
                 title="対象"
                 name="tier"
                 options={[
-                    { value: TIER.NONE, label: '一般向け' },
-                    { value: TIER.PARENT, label: '保護者向け' },
-                    { value: TIER.STUDENT, label: '生徒向け' },
-                    { value: TIER.ADMIN, label: '執行部向け' },
+                    { value: TIER.NONE, label: `${TIER_LABELS[TIER.NONE]}向け` },
+                    { value: TIER.PARENT, label: `${TIER_LABELS[TIER.PARENT]}向け` },
+                    { value: TIER.STUDENT, label: `${TIER_LABELS[TIER.STUDENT]}向け` },
+                    { value: TIER.ADMIN, label: `${TIER_LABELS[TIER.ADMIN]}向け` },
                 ]}
             />
             <div className="pt-4">
