@@ -65,8 +65,6 @@ export default function EditManualForm({ manual }: { manual: Manual }) {
                 name="tier"
                 defaultValue={manual.tier}
                 options={[
-                    { value: TIER.NONE, label: `${TIER_LABELS[TIER.NONE]}向け` },
-                    { value: TIER.PARENT, label: `${TIER_LABELS[TIER.PARENT]}向け` },
                     { value: TIER.STUDENT, label: `${TIER_LABELS[TIER.STUDENT]}向け` },
                     { value: TIER.ADMIN, label: `${TIER_LABELS[TIER.ADMIN]}向け` },
                 ]}

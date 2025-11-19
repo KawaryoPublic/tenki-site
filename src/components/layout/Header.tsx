@@ -2,6 +2,7 @@ import { getTier } from "@/lib/actions";
 import Nav from "./Nav";
 import Link from "next/link";
 import Image from "next/image";
+import BlueButton from "../ui/global/Button/BlueButton";
 
 export default async function Header() {
   const tier = await getTier();
@@ -18,11 +19,9 @@ export default async function Header() {
           <Nav href="/file" title="ファイル" tier={tier} allowStudent/>
           <Nav href="/manual" title="マニュアル" tier={tier} allowStudent />
         </nav>
-        <div className="flex-none ml-auto pr-4">
-          <Link href="/password" className="relative">
-            <Image src="/image/sign_in.jpg" alt="部員はこちら" fill className="w-5 h-5 md:w-7 md:h-7" />
-          </Link>
-        </div>
+       <BlueButton href="/password" className="relative ml-auto pr-4 w-5 h-5 md:w-7 md:h-7">
+            <Image src="/image/sign_in.jpg" alt="部員はこちら" fill />
+          </BlueButton>
     </header>
   );
 }
