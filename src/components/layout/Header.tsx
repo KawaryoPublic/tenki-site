@@ -20,7 +20,7 @@ export default async function Header() {
           <Nav href="/manual" title="マニュアル" tier={tier} allowStudent />
         </nav>
         <div className="aspect-square">
-          <BlueButton href="/password" className="relative w-full h-full">
+          <BlueButton href="/password" className="relative w-full h-full aspect-square">
             <Image src="/image/sign_in.jpg" alt="部員はこちら" fill />
           </BlueButton>
         </div>
