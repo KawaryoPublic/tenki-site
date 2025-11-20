@@ -81,12 +81,13 @@ export const splitLinksAndHeaders = (text: string) => {
     text.split(urlRegex).map(part => {
         if(urlRegex.test(part)) {
             parts.push({ type: "link", content: part });
+            return;
         } 
 
         part.split(/(\n)/).map(part => {
             if(part.trim().startsWith("$h")) {
                 parts.push({ type: "header", content: part.trim().slice(2) });
-            } else {
+            } else if(part !== "\n") {
                 parts.push({ type: "text", content: part });
             }
         })
