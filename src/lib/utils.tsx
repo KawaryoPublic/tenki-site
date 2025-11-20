@@ -87,7 +87,7 @@ export const splitLinksAndHeaders = (text: string) => {
         part.split(/(\n)/).map(part => {
             if(part.trim().startsWith("$h")) {
                 parts.push({ type: "header", content: part.trim().slice(2) });
-            } else if(part !== "\n") {
+            } else if(parts[parts.length -1].type !== "header" || part !== "\n") {
                 parts.push({ type: "text", content: part });
             }
         })
