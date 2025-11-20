@@ -34,7 +34,7 @@ export const searchByTagsAndTitle = (url: string, searchString: string) => {
     const tags = [];
     const title = [];
 
-    const parts = searchString.trim().split(/\s+/);
+    const parts = searchString.trim().split(/\s+/g);
     for (const part of parts) {
         if (part.startsWith("#")) {
             const tag = part.substring(1);
@@ -74,11 +74,15 @@ export const uploadFiles = async (formData: FormData) => {
     return formData;
 }
 
-export const splitLinks = (text: string) => {
-    const urlRegex = /(https?:\/\/[^\s　]+)/g;
+export const splitContents = (text: string) => {
+    const urlRegex = /(https?:\/\/[^\s+]+)/g;
+    const headerRegex = /\$h;/g;
+
     return text.split(urlRegex).map(part => {
         if(urlRegex.test(part)) {
             return { type: "link", content: part };
+        } else if(headerRegex.test(part)) {
+            return { type: "header", content: part.replace(headerRegex, "") };
         } else {
             return { type: "text", content: part };
         }

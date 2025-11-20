@@ -1,4 +1,4 @@
-import { checkTier, splitLinks } from "@/lib/utils";
+import { checkTier, splitContents } from "@/lib/utils";
 import BlueButton from "../global/Button/BlueButton";
 import WhiteFrameUI from "../global/WhiteFrameUI";
 import { Notification, TIER } from "@/lib/types";
@@ -23,10 +23,12 @@ export default function NotificationDetailUI({ notification, tier }: { notificat
             </div>
             <div className="whitespace-pre-wrap text-sm md:text-base">
                 {
-                    splitLinks(notification.content).map((part, index) => (
-                        part.type === "text" ? 
-                            <span key={index}>{part.content}</span> :
-                            <Link key={index} href={part.content} className="text-blue-500 underline" target="_blank" rel="noopener noreferrer">{part.content}</Link>
+                    splitContents(notification.content).map((part, index) => (
+                        part.type === "link" ? 
+                            <Link key={index} href={part.content} className="text-blue-500 underline" target="_blank" rel="noopener noreferrer">{part.content}</Link> :
+                            part.type === "header" ?
+                                <h3 key={index} className="text-lg md:text-xl font-bold mb-2">{part.content}</h3> :
+                                <span key={index}>{part.content}</span>
                     ))
                 }
             </div>
