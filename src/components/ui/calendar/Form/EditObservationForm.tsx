@@ -17,7 +17,7 @@ export default function EditObservationForm({ observation }: { observation: Obse
             alert('保存に失敗しました。');
         });
 
-        redirect("/calendar");
+        redirect(`/calendar/observation/${observation.day}`);
     }, null);
 
     return (

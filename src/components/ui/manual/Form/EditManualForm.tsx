@@ -36,7 +36,7 @@ export default function EditManualForm({ manual }: { manual: Manual }) {
             alert('保存に失敗しました。');
         });
 
-        redirect("/manual");
+        redirect(`/manual/${manual.id}`);
     }, null);
 
     return (

@@ -27,7 +27,7 @@ export default function ManualDetailUI({ manual, tier }: { manual: Manual, tier:
                         part.type === "link" ? 
                             <Link key={index} href={part.content} className="text-blue-500 underline" target="_blank" rel="noopener noreferrer">{part.content}</Link> :
                             part.type === "header" ?
-                                <h3 key={index} className="text-lg md:text-xl font-bold mb-2">{part.content}</h3> :
+                                <h3 key={index} className="text-lg md:text-xl font-bold mb-1">{part.content}</h3> :
                                 <span key={index}>{part.content}</span>
                     ))
                 }

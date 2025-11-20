@@ -36,7 +36,7 @@ export default function EditNotificationForm({ notification }: { notification: N
             alert('保存に失敗しました。');
         });
 
-        redirect("/notification");
+        redirect(`/notification/${notification.id}`);
     }, null);
 
     return (

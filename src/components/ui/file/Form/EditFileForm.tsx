@@ -20,7 +20,7 @@ export default function EditFileForm({ file }: { file: File }) {
             alert('保存に失敗しました。');
         });
 
-        redirect("/file");
+        redirect(`/file/${file.id}`);
     }, null);
 
     return (
