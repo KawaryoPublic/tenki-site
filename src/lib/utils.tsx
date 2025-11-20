@@ -74,9 +74,9 @@ export const uploadFiles = async (formData: FormData) => {
     return formData;
 }
 
-export const splitContents = (text: string) => {
+export const splitLinksAndHeaders = (text: string) => {
     const urlRegex = /(https?:\/\/[^\s+]+)/g;
-    const headerRegex = /\$h;/g;
+    const headerRegex = /\$h/g;
 
     return text.split(urlRegex).map(part => {
         if(urlRegex.test(part)) {

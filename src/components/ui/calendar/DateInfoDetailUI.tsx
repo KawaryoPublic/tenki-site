@@ -1,6 +1,6 @@
 import { DateInfo, TIER } from "@/lib/types";
 import WhiteFrameUI from "../global/WhiteFrameUI";
-import { checkTier, formatDate, splitContents } from "@/lib/utils";
+import { checkTier, formatDate, splitLinksAndHeaders } from "@/lib/utils";
 import BlueButton from "../global/Button/BlueButton";
 import DeleteDateInfoButton from "./Button/DeleteDateInfoButton";
 import Link from "next/link";
@@ -25,7 +25,7 @@ export default function DateInfoDetailUI({ info, tier }: { info: DateInfo, tier:
                 <div className="whitespace-pre-wrap text-sm md:text-base">
                     {
                         !info.plan ? "なし" : 
-                        splitContents(info.plan).map((part, index) => (
+                        splitLinksAndHeaders(info.plan).map((part, index) => (
                             part.type === "link" ? 
                                 <Link key={index} href={part.content} className="text-blue-500 underline" target="_blank" rel="noopener noreferrer">{part.content}</Link> :
                                 part.type === "header" ?
