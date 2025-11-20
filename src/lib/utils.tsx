@@ -76,18 +76,21 @@ export const uploadFiles = async (formData: FormData) => {
 
 export const splitLinksAndHeaders = (text: string) => {
     const urlRegex = /(https?:\/\/[^\s+]+)/g;
+    const parts: { type: "link" | "header" | "text", content: string }[] = [];
 
-    return text.split(urlRegex).map(part => {
+    text.split(urlRegex).map(part => {
         if(urlRegex.test(part)) {
-            return { type: "link", content: part };
+            parts.push({ type: "link", content: part });
         } 
 
         part.split(/(\n)/).map(part => {
             if(part.trim().startsWith("$h")) {
-                return { type: "header", content: part.trim().slice(2) };
+                parts.push({ type: "header", content: part.trim().slice(2) });
             }
 
-            return { type: "text", content: part };
+            parts.push({ type: "text", content: part });
         })
     });
+
+    return parts;
 }
