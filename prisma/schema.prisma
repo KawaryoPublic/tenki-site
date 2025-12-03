@@ -71,7 +71,7 @@ model Manual {
 model Equipment {
   id          Int      @id @default(autoincrement())
   name        String
-  description String
+  content     String[]
   location    String
   tags        String[]
   urls        String[]

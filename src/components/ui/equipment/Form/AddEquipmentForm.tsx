@@ -41,15 +41,11 @@ export default function AddEquipmentForm() {
                 label
             />
             <DefaultTextArea
-                title="説明"
-                name="description"
-                label
-            />
-            <DefaultTextArea
                 title="場所"
                 name="loocation"
                 label
             />
+            <DefaultAddableOption title="内容" name="content" />
             <DefaultFile title="添付ファイル" name="file" />
             <DefaultAddableOption title="タグ" name="tag" />
             <DefaultSelect

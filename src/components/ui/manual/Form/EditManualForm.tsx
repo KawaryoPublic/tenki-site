@@ -58,8 +58,17 @@ export default function EditManualForm({ manual }: { manual: Manual }) {
                 defaultValue={manual.content}
                 label
             />
-            <DefaultFile title="添付ファイル" name="file" defaultFiles={files} setDefaultFiles={setFiles} />
-            <DefaultAddableOption title="タグ" name="tag" defaultOptions={manual.tags} />
+            <DefaultFile 
+                title="添付ファイル" 
+                name="file" 
+                defaultFiles={files} 
+                setDefaultFiles={setFiles} 
+            />
+            <DefaultAddableOption 
+                title="タグ" 
+                name="tag" 
+                defaultOptions={manual.tags} 
+            />
             <DefaultSelect
                 title="対象"
                 name="tier"

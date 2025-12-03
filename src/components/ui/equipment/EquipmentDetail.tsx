@@ -28,7 +28,7 @@ export default function EquipmentDetailUI({ equipment, tier }: { equipment: Equi
             <div className="whitespace-pre-wrap text-sm md:text-base">
                 <h2 className="font-bold">説明</h2>
                 {
-                    splitLinksAndHeaders(equipment.description).map((part, index) => (
+                    splitLinksAndHeaders(equipment.content).map((part, index) => (
                         part.type === "link" ? 
                             <Link key={index} href={part.content} className="text-blue-500 underline" target="_blank" rel="noopener noreferrer">{part.content}</Link> :
                             part.type === "header" ?

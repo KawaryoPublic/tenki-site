@@ -64,7 +64,7 @@ export interface Manual {
 export interface Equipment {
     id: number;
     name: string;
-    description: string;
+    content: string[];
     location: string;
     tags: string[];
     urls: string[];

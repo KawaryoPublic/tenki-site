@@ -54,21 +54,21 @@ export async function POST(request: NextRequest) {
         
         const data = await request.formData();
         const name = data.get("name") as string;
-        const description = data.get("description") as string;
+        const content = data.get("content") as string[];
         const location = data.get("location") as string;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
         const urls = data.getAll("url") as string[];
         const filenames = data.getAll("filename") as string[];
         const tier = data.get("tier") as TIER;
 
-        if (name === undefined || description === undefined || tier === undefined) {
+        if (name === undefined || content === undefined || tier === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
         const newEquipment = await prisma.equipment.create({
             data: {
                 name,
-                description,
+                content,
                 location,
                 tags,
                 urls,
@@ -95,7 +95,7 @@ export async function PUT(request: NextRequest) {
         const id = Number(request.nextUrl.searchParams.get("id"));
         const data = await request.formData();
         const name = data.get("name") as string;
-        const description = data.get("description") as string;
+        const content = data.get("content") as string[];
         const location = data.get("location") as string;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
         const urls = data.getAll("url") as string[];
@@ -103,7 +103,7 @@ export async function PUT(request: NextRequest) {
         const deleteFileUrls = data.getAll("deleteFileUrl") as string[];
         const tier = data.get("tier") as TIER;
 
-        if (isNaN(id) || name === undefined || description === undefined || tier === undefined) {
+        if (isNaN(id) || name === undefined || content === undefined || tier === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -115,7 +115,7 @@ export async function PUT(request: NextRequest) {
             where: { id: id },
             data: {
                 name,
-                description,
+                content,
                 location,
                 tags,
                 urls,

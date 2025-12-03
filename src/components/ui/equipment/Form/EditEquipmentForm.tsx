@@ -53,19 +53,27 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
                 label
             />
             <DefaultTextArea
-                title="説明"
-                name="description"
-                defaultValue={equipment.description}
-                label
-            />
-            <DefaultTextArea
                 title="場所"
                 name="location"
                 defaultValue={equipment.location}
                 label
             />
-            <DefaultFile title="添付ファイル" name="file" defaultFiles={files} setDefaultFiles={setFiles} />
-            <DefaultAddableOption title="タグ" name="tag" defaultOptions={equipment.tags} />
+            <DefaultAddableOption
+                title="内容"
+                name="content"
+                defaultOptions={equipment.content}
+            />
+            <DefaultFile 
+                title="添付ファイル" 
+                name="file" 
+                defaultFiles={files} 
+                setDefaultFiles={setFiles} 
+            />
+            <DefaultAddableOption 
+                title="タグ" 
+                name="tag" 
+                defaultOptions={equipment.tags} 
+            />
             <DefaultSelect
                 title="対象"
                 name="tier"
