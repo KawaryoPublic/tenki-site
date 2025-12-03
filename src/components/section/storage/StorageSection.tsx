@@ -5,6 +5,7 @@ import { Storage, TIER } from "@/lib/types";
 import { checkTier } from "@/lib/utils";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function StorageSection({ id, tier }: { id: number, tier: TIER }) {
   const [ storages, setStorages ] = useState<Storage[]>([]);
