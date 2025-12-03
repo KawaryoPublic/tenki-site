@@ -51,7 +51,7 @@ export default function StorageSection({ id, tier }: { id: number, tier: TIER })
           <div>
             <ul>
               {
-                storage.locations.map((location, index) => (
+                storage!.locations.map((location, index) => (
                   <li key={index}>
                     <Link href={`/storage/location/${location}`}>・{location}</Link>
                   </li>
