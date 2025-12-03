@@ -22,20 +22,18 @@ export default function EquipmentDetailUI({ equipment, tier }: { equipment: Equi
                 </div>
             </div>
             <div className="whitespace-pre-wrap text-sm md:text-base">
-                <h2 className="font-bold">場所</h2>
+                <p className="font-bold">場所</p>
                 <span>{equipment.location}</span>
             </div>
             <div className="whitespace-pre-wrap text-sm md:text-base">
-                <h2 className="font-bold">説明</h2>
-                {
-                    splitLinksAndHeaders(equipment.content).map((part, index) => (
-                        part.type === "link" ? 
-                            <Link key={index} href={part.content} className="text-blue-500 underline" target="_blank" rel="noopener noreferrer">{part.content}</Link> :
-                            part.type === "header" ?
-                                <h3 key={index} className="text-lg md:text-xl font-bold mb-1">{part.content}</h3> :
-                                <span key={index}>{part.content}</span>
-                    ))
-                }
+                <p className="font-bold">説明</p>
+                <ul>
+                    {
+                        equipment.content.map((content, i) => {
+                            <span>・{content}</span>
+                        }
+                    )}
+                </ul>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 text-sm md:text-base">
                 {
