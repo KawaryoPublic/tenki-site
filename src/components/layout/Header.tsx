@@ -1,6 +1,5 @@
 import { getTier } from "@/lib/actions";
 import Nav from "./Nav";
-import Link from "next/link";
 import Image from "next/image";
 import BlueButton from "../ui/global/Button/BlueButton";
 
@@ -15,6 +14,7 @@ export default async function Header() {
           <Nav href="/about" title="アバウト" tier={tier} allowAll />
           <Nav href="/notification" title="告知" tier={tier} allowAll />
           <Nav href="/calendar" title="カレンダー" tier={tier} allowStudent />
+          <Nav href="/equipment" title="機材" tier={tier} allowStudent />
           <Nav href="/storage/0" title="倉庫" tier={tier} allowStudent />
           <Nav href="/file" title="ファイル" tier={tier} allowStudent/>
           <Nav href="/manual" title="マニュアル" tier={tier} allowStudent />

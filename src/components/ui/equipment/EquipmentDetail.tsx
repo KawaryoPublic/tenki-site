@@ -3,7 +3,6 @@ import BlueButton from "../global/Button/BlueButton";
 import WhiteFrameUI from "../global/WhiteFrameUI";
 import { Equipment, TIER } from "@/lib/types";
 import FileLinkUI from "../global/FileLinkUI";
-import Link from "next/link";
 import DeleteEquipmentButton from "./Button/DeleteEquipmentButton";
 
 export default function EquipmentDetailUI({ equipment, tier }: { equipment: Equipment, tier: TIER }) {

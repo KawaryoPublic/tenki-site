@@ -29,18 +29,6 @@ export interface Notification {
     updatedAt: Date;
 }
 
-export interface Box {
-    id: number;
-    name: string;
-    content: string;
-    imageLink: string;
-    tab: number;
-    top: number;
-    left: number;
-    width: number;
-    height: number;
-}
-
 export interface File {
     id: number;
     title: string;
@@ -59,6 +47,13 @@ export interface Manual {
     filenames: string[];
     tier: string;
     updatedAt: Date;
+}
+
+export interface Storage {
+    id: number;
+    name: string;
+    locations: string[];
+    url: string;
 }
 
 export interface Equipment {
