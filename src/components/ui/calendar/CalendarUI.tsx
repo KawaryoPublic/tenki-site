@@ -8,7 +8,7 @@ export default function CalendarUI({ index, tier, filter, dateInfo, observationD
 
     return (
         <div className="flex-1 flex flex-col min-h-[50%]" key={index}>
-            <h2 className="flex justify-center item-center font-bold text-xl">{new Date().getMonth() + index + 1}月</h2>
+            <h2 className="flex justify-center item-center font-bold text-xl">{firstDate.getMonth() + 1}月</h2>
             <div className="pt-3 pb-3 flex gap-2">
                 {
                     DAYS.map((day, index) => <DayUI day={day} index={index} isObservationDay={observationDays.includes(index)} key={index} />)

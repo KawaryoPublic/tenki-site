@@ -11,18 +11,18 @@ export async function GET(request: NextRequest) {
         const searchParams = request.nextUrl.searchParams;
         const id = Number(searchParams.get("id"));
 
-        let manuals;
+        let equipment;
         
         if(id) {
-            manuals = await prisma.manual.findUnique({
+            equipment = await prisma.equipment.findUnique({
                 where: { id: id }
             })
         } else {
-            manuals = tier === TIER.ADMIN ? 
-                await prisma.manual.findMany({
+            equipment = tier === TIER.ADMIN ? 
+                await prisma.equipment.findMany({
                     orderBy: { createdAt: 'desc' },
                 }) : 
-                await prisma.manual.findMany({
+                await prisma.equipment.findMany({
                     where: {
                         OR: [
                             {
@@ -37,10 +37,10 @@ export async function GET(request: NextRequest) {
                 });
         }
 
-        return NextResponse.json(manuals, { status: 200 });
+        return NextResponse.json(equipment, { status: 200 });
     } catch (error) {
-        console.error("Error fetching manuals:", error);
-        return NextResponse.json({ error: "Failed to fetch manuals" }, { status: 500 });
+        console.error("Error fetching equipment:", error);
+        return NextResponse.json({ error: "Failed to fetch equipment" }, { status: 500 });
     }
 }
 
@@ -53,21 +53,23 @@ export async function POST(request: NextRequest) {
         }   
         
         const data = await request.formData();
-        const title = data.get("title") as string;
-        const content = data.get("content") as string;
+        const name = data.get("name") as string;
+        const description = data.get("description") as string;
+        const location = data.get("location") as string;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
         const urls = data.getAll("url") as string[];
         const filenames = data.getAll("filename") as string[];
         const tier = data.get("tier") as TIER;
 
-        if (title === undefined || content === undefined || tier === undefined) {
+        if (name === undefined || description === undefined || tier === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
-        const newManual = await prisma.manual.create({
+        const newEquipment = await prisma.equipment.create({
             data: {
-                title,
-                content,
+                name,
+                description,
+                location,
                 tags,
                 urls,
                 filenames,
@@ -75,10 +77,10 @@ export async function POST(request: NextRequest) {
             },
         });
 
-        return NextResponse.json(newManual, { status: 201 });
+        return NextResponse.json(newEquipment, { status: 201 });
     } catch (error) {
-        console.error("Error creating a manual:", error);
-        return NextResponse.json({ error: "Failed to create a manual" }, { status: 500 });
+        console.error("Error creating equipment:", error);
+        return NextResponse.json({ error: "Failed to create equipment" }, { status: 500 });
     }
 }
 
@@ -92,15 +94,16 @@ export async function PUT(request: NextRequest) {
 
         const id = Number(request.nextUrl.searchParams.get("id"));
         const data = await request.formData();
-        const title = data.get("title") as string;
-        const content = data.get("content") as string;
+        const name = data.get("name") as string;
+        const description = data.get("description") as string;
+        const location = data.get("location") as string;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
         const urls = data.getAll("url") as string[];
         const filenames = data.getAll("filename") as string[];
         const deleteFileUrls = data.getAll("deleteFileUrl") as string[];
         const tier = data.get("tier") as TIER;
 
-        if (isNaN(id) || title === undefined || content === undefined || tier === undefined) {
+        if (isNaN(id) || name === undefined || description === undefined || tier === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -108,11 +111,12 @@ export async function PUT(request: NextRequest) {
             await del(url);
         }
 
-        const updatedManual = await prisma.manual.update({
+        const updatedEquipment = await prisma.equipment.update({
             where: { id: id },
             data: {
-                title,
-                content,
+                name,
+                description,
+                location,
                 tags,
                 urls,
                 filenames,
@@ -120,10 +124,10 @@ export async function PUT(request: NextRequest) {
             },
         });
 
-        return NextResponse.json(updatedManual, { status: 200 });
+        return NextResponse.json(updatedEquipment, { status: 200 });
     } catch (error) {
-        console.error("Error updating a manual:", error);
-        return NextResponse.json({ error: "Failed to update a manual" }, { status: 500 });
+        console.error("Error updating equipment:", error);
+        return NextResponse.json({ error: "Failed to update equipment" }, { status: 500 });
     }
 }
 
@@ -146,13 +150,13 @@ export async function DELETE(request: NextRequest) {
             await del(url);
         }
 
-        await prisma.manual.delete({
+        await prisma.equipment.delete({
             where: { id: id },
         });
 
-        return NextResponse.json({ message: "Manual deleted" }, { status: 200 });
+        return NextResponse.json({ message: "Equipment deleted" }, { status: 200 });
     } catch (error) {
-        console.error("Error deleting a manual:", error);
-        return NextResponse.json({ error: "Failed to delete a manual" }, { status: 500 });
+        console.error("Error deleting equipment:", error);
+        return NextResponse.json({ error: "Failed to delete equipment" }, { status: 500 });
     }
 }

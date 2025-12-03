@@ -2,7 +2,7 @@
 
 import Form from "next/form";
 import { redirect } from "next/navigation";
-import { Manual, TIER } from "@/lib/types";
+import { Equipment, TIER } from "@/lib/types";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
@@ -13,8 +13,8 @@ import { useState, useActionState } from "react";
 import { uploadFiles } from "@/lib/utils";
 import { TIER_LABELS } from "@/lib/const";
 
-export default function EditManualForm({ manual }: { manual: Manual }) {
-    const initialFiles = manual.urls.map((url, index) => ({ url: url, filename: manual.filenames[index] }));
+export default function EditEquipmentForm({ equipment }: { equipment: Equipment }) {
+    const initialFiles = equipment.urls.map((url, index) => ({ url: url, filename: equipment.filenames[index] }));
     const [ files, setFiles ] = useState<{ url: string, filename: string }[]>(initialFiles);
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
         for(const file of initialFiles) {
@@ -28,7 +28,7 @@ export default function EditManualForm({ manual }: { manual: Manual }) {
 
         formData = await uploadFiles(formData);
 
-        await fetch(`/api/manual?id=${manual.id}`, {
+        await fetch(`/api/equipment?id=${equipment.id}`, {
             method: 'PUT',
             body: formData,
         }).catch(err => {
@@ -36,7 +36,7 @@ export default function EditManualForm({ manual }: { manual: Manual }) {
             alert('保存に失敗しました。');
         });
 
-        redirect(`/manual/${manual.id}`);
+        redirect(`/equipment/${equipment.id}`);
     }, null);
 
     return (
@@ -44,26 +44,32 @@ export default function EditManualForm({ manual }: { manual: Manual }) {
             action={formAction}
             className="flex flex-col gap-2"
         >   
-            <h2 className="text-xl md:text-3xl font-bold border-b pb-2">マニュアルを編集</h2>
+            <h2 className="text-xl md:text-3xl font-bold border-b pb-2">機材を編集</h2>
             <DefaultInput
-                title="タイトル"
-                name="title"
-                defaultValue={manual.title}
+                title="名前"
+                name="name"
+                defaultValue={equipment.name}
                 required
                 label
             />
             <DefaultTextArea
-                title="内容"
-                name="content"
-                defaultValue={manual.content}
+                title="説明"
+                name="description"
+                defaultValue={equipment.description}
+                label
+            />
+            <DefaultTextArea
+                title="場所"
+                name="location"
+                defaultValue={equipment.location}
                 label
             />
             <DefaultFile title="添付ファイル" name="file" defaultFiles={files} setDefaultFiles={setFiles} />
-            <DefaultAddableOption title="タグ" name="tag" defaultOptions={manual.tags} />
+            <DefaultAddableOption title="タグ" name="tag" defaultOptions={equipment.tags} />
             <DefaultSelect
                 title="対象"
                 name="tier"
-                defaultValue={manual.tier}
+                defaultValue={equipment.tier}
                 options={[
                     { value: TIER.STUDENT, label: `${TIER_LABELS[TIER.STUDENT]}向け` },
                     { value: TIER.ADMIN, label: `${TIER_LABELS[TIER.ADMIN]}向け` },

@@ -60,3 +60,15 @@ export interface Manual {
     tier: string;
     updatedAt: Date;
 }
+
+export interface Equipment {
+    id: number;
+    name: string;
+    description: string;
+    location: string;
+    tags: string[];
+    urls: string[];
+    filenames: string[];
+    tier: string;
+    updatedAt: Date;
+}
