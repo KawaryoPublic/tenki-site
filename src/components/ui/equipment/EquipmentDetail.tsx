@@ -29,10 +29,10 @@ export default function EquipmentDetailUI({ equipment, tier }: { equipment: Equi
                 <p className="font-bold">説明</p>
                 <ul>
                     {
-                        equipment.content.map((content, i) => {
+                        equipment.content.map((content, i) => (
                             <span>・{content}</span>
-                        }
-                    )}
+                        ))
+                    }
                 </ul>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 text-sm md:text-base">
