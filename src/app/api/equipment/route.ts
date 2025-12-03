@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
         
         const data = await request.formData();
         const name = data.get("name") as string;
-        const content = data.get("content") as string[];
+        const content = data.getAll("content") as string[];
         const location = data.get("location") as string;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
         const urls = data.getAll("url") as string[];
@@ -95,7 +95,7 @@ export async function PUT(request: NextRequest) {
         const id = Number(request.nextUrl.searchParams.get("id"));
         const data = await request.formData();
         const name = data.get("name") as string;
-        const content = data.get("content") as string[];
+        const content = data.getAll("content") as string[];
         const location = data.get("location") as string;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
         const urls = data.getAll("url") as string[];
