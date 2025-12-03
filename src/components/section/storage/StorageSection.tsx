@@ -28,7 +28,8 @@ export default function StorageSection({ id, tier }: { id: number, tier: TIER })
     <section className="flex-1 flex flex-row gap-4 w-full">
       {
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !storages ? <div className="flex-1 flex flex-col items-center font-bold text-xl">倉庫一覧を読み込めませんでした</div> : (
+        !storages ? <div className="flex-1 flex flex-col items-center font-bold text-xl">倉庫一覧を読み込めませんでした</div> : 
+        <>
           <div className="flex flex-col h-full gap-4">
             <WhiteFrameUI>
               {
@@ -60,7 +61,7 @@ export default function StorageSection({ id, tier }: { id: number, tier: TIER })
               Button here.
             </div>
           </div>
-        )
+        </>
       }
     </section>
   );
