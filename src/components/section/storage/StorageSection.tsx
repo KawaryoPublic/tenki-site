@@ -42,7 +42,7 @@ export default function StorageSection({ id, tier }: { id: number, tier: TIER })
               }
             </WhiteFrameUI>
             <div className="flex-1">
-              <Image src={storage.url} alt={storage.name} className="w-full h-full object-contain" />
+              <Image src={storage!.url} alt={storage!.name} className="w-full h-full object-contain" />
             </div>
             <div>
               Form here.
