@@ -34,7 +34,7 @@ export default function StorageSection({ id, tier }: { id: number, tier: TIER })
             <nav className="flex justify-around">
               {
                 storages.map((storage, index) => (
-                  <Link href={`/storage/${storage.id}`} className={`hover:bg-gray-400 ${storage.id === id ? "border-b-3 font-bold" : ""}`}>{storage.name}</Link>
+                  <Link href={`/storage/${storage.id}`} className={`md:text-lg hover:bg-gray-400 ${storage.id === id ? "border-b-3 font-bold" : ""}`}>{storage.name}</Link>
                 ))
               }
             </nav>
