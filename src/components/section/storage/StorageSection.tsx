@@ -39,7 +39,7 @@ export default function StorageSection({ id, tier }: { id: number, tier: TIER })
               }
             </nav>
           </WhiteFrameUI>
-          <div className="flex gap-4">
+          <div className="flex-1 flex gap-4">
             <div className="flex-2 flex gap-2">
               <div className="flex-1">
                 <Image src={storage!.url} alt={storage!.name} className="w-full h-full object-contain" />
@@ -48,7 +48,7 @@ export default function StorageSection({ id, tier }: { id: number, tier: TIER })
                 Form here.
               </div>
             </div>
-            <div className="flex flex-col gap-4 flex-1">
+            <div className="flex-1 flex flex-col gap-4">
               <ul>
                 {
                   storage!.locations.map((location, index) => (
