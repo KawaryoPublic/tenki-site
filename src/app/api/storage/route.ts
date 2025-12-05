@@ -11,7 +11,9 @@ export async function GET(request: NextRequest) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
 
-        const storages = await prisma.storage.findMany();
+        const storages = await prisma.storage.findMany({
+            orderBy: { id: 'asc' },
+        });
 
         return NextResponse.json(storages, { status: 200 });
     } catch (error) {
