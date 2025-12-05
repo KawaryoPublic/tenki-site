@@ -30,8 +30,8 @@ export default function StorageSection({ id, tier }: { id: number, tier: TIER })
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
         !storages ? <div className="flex-1 flex flex-col items-center font-bold text-xl">倉庫を読み込めませんでした</div> : 
         <>
-          <WhiteFrameUI className="flex-none">
-            <nav className="flex justify-around">
+          <WhiteFrameUI>
+            <nav className="flex justify-center gap-4">
               {
                 storages.map((storage) => (
                   <Link href={`/storage/${storage.id}`} className={`lg:text-lg hover:bg-gray-400 ${storage.id === id ? "border-b-3 font-bold" : ""}`}>{storage.name}</Link>
