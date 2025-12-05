@@ -25,42 +25,45 @@ export default function StorageSection({ id, tier }: { id: number, tier: TIER })
     }, [id]);
 
   return (
-    <section className="flex-1 flex gap-4 w-full">
+    <section className="flex-1 flex flex-col gap-2 w-full">
       {
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
         !storages ? <div className="flex-1 flex flex-col items-center font-bold text-xl">倉庫を読み込めませんでした</div> : 
         <>
-          <div className="flex flex-col gap-4 flex-2">
-            <WhiteFrameUI>
-              <nav className="flex justify-around">
-                {
-                  storages.map((storage, index) => (
-                    <Link href={`/storage/${storage.id}`} className={`text-lg hover:bg-gray-400 ${storage.id === id ? "border-b-3 font-bold" : ""}`}>{storage.name}</Link>
-                  ))
-                }
-              </nav>
-            </WhiteFrameUI>
-            <div className="flex-1">
-              <Image src={storage!.url} alt={storage!.name} className="w-full h-full object-contain" />
-            </div>
-            <div>
-              Form here.
-            </div>
-          </div>
-          <div className="flex flex-col gap-4 flex-1">
-            <ul>
+          <WhiteFrameUI>
+            <nav className="flex justify-around">
               {
-                storage!.locations.map((location, index) => (
-                  <li key={index}>
-                    <Link href={`/storage/location/${location}`}>・{location}</Link>
-                  </li>
+                storages.map((storage, index) => (
+                  <Link href={`/storage/${storage.id}`} className={`hover:bg-gray-400 ${storage.id === id ? "border-b-3 font-bold" : ""}`}>{storage.name}</Link>
                 ))
               }
-            </ul>
-            <div>
-              Button here.
+            </nav>
+          </WhiteFrameUI>
+          <div className="flex gap-4">
+            <div className="flex-2 flex gap-2">
+              <div className="flex-1">
+                <Image src={storage!.url} alt={storage!.name} className="w-full h-full object-contain" />
+              </div>
+              <div>
+                Form here.
+              </div>
+            </div>
+            <div className="flex flex-col gap-4 flex-1">
+              <ul>
+                {
+                  storage!.locations.map((location, index) => (
+                    <li key={index}>
+                      <Link href={`/storage/location/${location}`}>・{location}</Link>
+                    </li>
+                  ))
+                }
+              </ul>
+              <div>
+                Button here.
+              </div>
             </div>
           </div>
+          
         </>
       }
     </section>
