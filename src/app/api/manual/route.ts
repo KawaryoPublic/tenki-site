@@ -8,6 +8,11 @@ import { del } from "@vercel/blob";
 export async function GET(request: NextRequest) {
     try {
         const tier = await getTier(request);
+
+        if(!checkTier(tier, false, true)) {
+            return NextResponse.json({ error: "Permission denied" }, { status: 403 });
+        }
+        
         const searchParams = request.nextUrl.searchParams;
         const id = Number(searchParams.get("id"));
 
