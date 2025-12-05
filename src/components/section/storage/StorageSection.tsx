@@ -22,7 +22,7 @@ export default function StorageSection({ id, tier }: { id: number, tier: TIER })
       })
       .finally(() => setLoading(false))
       .catch(err => console.log(err));
-    }, [id]);
+    });
 
   return (
     <section className="flex-1 flex flex-col gap-2 w-full">
