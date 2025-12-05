@@ -1,9 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
-import { TIER } from "@/lib/types";
 import { getTier } from "@/lib/actions";
 import { checkTier } from "@/lib/utils";
-import { del } from "@vercel/blob";
 
 export async function GET(request: NextRequest) {
     try {
@@ -33,7 +31,7 @@ export async function PUT(request: NextRequest) {
         const id = Number(request.nextUrl.searchParams.get("id"));
         const data = await request.formData();
         const locations = data.getAll("locations") as string[];
-        const url = data.get("url") as string[];
+        const url = data.get("url") as string;
 
         if (isNaN(id) || locations === undefined || url === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });

@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { Storage, TIER } from "@/lib/types";
-import { checkTier } from "@/lib/utils";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import Link from "next/link";
 import Image from "next/image";
