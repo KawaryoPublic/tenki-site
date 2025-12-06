@@ -5,6 +5,8 @@ import { Storage, TIER } from "@/lib/types";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import Link from "next/link";
 import Image from "next/image";
+import BlueButton from "@/components/ui/global/Button/BlueButton";
+import { checkTier } from "@/lib/utils";
 
 export default function StorageSection({ id, tier }: { id: number, tier: TIER }) {
   const [ storages, setStorages ] = useState<Storage[]>([]);
@@ -22,7 +24,7 @@ export default function StorageSection({ id, tier }: { id: number, tier: TIER })
       })
       .finally(() => setLoading(false))
       .catch(err => console.log(err));
-    });
+    }, []);
 
   return (
     <section className="flex-1 flex flex-col gap-2 w-full">
@@ -30,7 +32,7 @@ export default function StorageSection({ id, tier }: { id: number, tier: TIER })
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
         !storages ? <div className="flex-1 flex flex-col items-center font-bold text-xl">倉庫を読み込めませんでした</div> : 
         <>
-          <div>
+          <div className="flex gap-4 items-center">
             <WhiteFrameUI>
               <nav className="flex justify-center gap-8">
                 {
@@ -40,14 +42,14 @@ export default function StorageSection({ id, tier }: { id: number, tier: TIER })
                 }
               </nav>
             </WhiteFrameUI>
+            {
+              checkTier(tier) && <BlueButton href={`/storage/edit?id=${id}`}>{storage.name}を編集</BlueButton>
+            }
           </div>
           <div className="flex-1 flex gap-4">
             <div className="flex-2 flex flex-col gap-2">
               <div className="flex-1">
                 <Image src={storage!.url} alt={storage!.name} className="w-full h-full object-contain" />
-              </div>
-              <div>
-                Form here.
               </div>
             </div>
             <div className="flex-1 flex flex-col gap-4">
@@ -60,9 +62,6 @@ export default function StorageSection({ id, tier }: { id: number, tier: TIER })
                   ))
                 }
               </ul>
-              <div>
-                Button here.
-              </div>
             </div>
           </div>
           
