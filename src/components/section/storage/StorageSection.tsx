@@ -37,13 +37,13 @@ export default function StorageSection({ id, tier }: { id: number, tier: TIER })
               <nav className="flex justify-center gap-8">
                 {
                   storages.map((storage) => (
-                    <Link href={`/storage/${storage.id}`} className={`lg:text-lg hover:bg-gray-400 ${storage.id === id ? "border-b-3 font-bold" : ""}`}>{storage.name}</Link>
+                    <Link href={`/storage/${storage!.id}`} className={`lg:text-lg hover:bg-gray-400 ${storage!.id === id ? "border-b-3 font-bold" : ""}`}>{storage!.name}</Link>
                   ))
                 }
               </nav>
             </WhiteFrameUI>
             {
-              checkTier(tier) && <BlueButton href={`/storage/edit/${id}`}>{storage.name}を編集</BlueButton>
+              checkTier(tier) && <BlueButton href={`/storage/edit/${id}`}>{storage!.name}を編集</BlueButton>
             }
           </div>
           <div className="flex-1 flex gap-4">
