@@ -42,7 +42,7 @@ export default function AddEquipmentForm() {
             />
             <DefaultSelect
                 title="場所"
-                name="loocation"
+                name="location"
                 options={[
                     { value: "storage", label: "倉庫" },
                     { value: "clubroom", label: "部室" },

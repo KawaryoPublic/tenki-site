@@ -54,7 +54,7 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
             />
             <DefaultSelect
                 title="場所"
-                name="loocation"
+                name="location"
                 defaultValue={equipment.location}
                 options={[
                     ...LOCATIONS
