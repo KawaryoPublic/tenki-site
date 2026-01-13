@@ -44,8 +44,8 @@ export async function POST(request: NextRequest) {
         const data = await request.formData();
         const name = data.get("name") as string;
         const location = data.get("location") as string;
-        const number = data.get("number") as number;
-        const size = data.getAll("size") as number[];
+        const number = Number(data.get("number"));
+        const size = (data.getAll("size") as string[]).map(s => Number(s));
         const contents = data.getAll("content") as string[];
         const description = data.get("description") as string;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
