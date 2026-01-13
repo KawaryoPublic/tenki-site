@@ -44,13 +44,15 @@ export async function POST(request: NextRequest) {
         const data = await request.formData();
         const name = data.get("name") as string;
         const location = data.get("location") as string;
+        const number = data.get("number") as number;
+        const size = data.getAll("size") as number[];
         const contents = data.getAll("content") as string[];
         const description = data.get("description") as string;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
         const urls = data.getAll("url") as string[];
         const filenames = data.getAll("filename") as string[];
 
-        if (name === undefined || location === undefined || contents === undefined || description === undefined) {
+        if (name === undefined || location === undefined || number === undefined || size === undefined || contents === undefined || description === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -58,6 +60,8 @@ export async function POST(request: NextRequest) {
             data: {
                 name,
                 location,
+                number,
+                size,
                 contents,
                 description,
                 tags,
@@ -85,6 +89,8 @@ export async function PUT(request: NextRequest) {
         const data = await request.formData();
         const name = data.get("name") as string;
         const location = data.get("location") as string;
+        const number = data.get("number") as number;
+        const size = data.getAll("size") as number[];
         const contents = data.getAll("content") as string[];
         const description = data.get("description") as string;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
@@ -92,7 +98,7 @@ export async function PUT(request: NextRequest) {
         const filenames = data.getAll("filename") as string[];
         const deleteFileUrls = data.getAll("deleteFileUrl") as string[];
 
-        if (isNaN(id) || name === undefined || location === undefined || contents === undefined || description === undefined ) {
+        if (isNaN(id) || name === undefined || location === undefined || number === undefined || size === undefined || contents === undefined || description === undefined ) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -105,6 +111,8 @@ export async function PUT(request: NextRequest) {
             data: {
                 name,
                 location,
+                number,
+                size,
                 contents,
                 description,
                 tags,
