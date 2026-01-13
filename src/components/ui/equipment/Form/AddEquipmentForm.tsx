@@ -48,36 +48,40 @@ export default function AddEquipmentForm() {
                 title="個数"
                 name="number"
                 type="number"
+                defaultValue="1"
                 required
                 label
             />
-            <div className="flex justify-between items-center">
-                <div className="flex gap-2 items-center">
-                    <label className="font-bold">縦</label>
-                    <DefaultInput
-                        title="縦"
-                        name="size"
-                        type="number"
-                        required
-                    />
-                </div>
-                <div className="flex gap-2 items-center">
-                    <label className="font-bold">横</label>
-                    <DefaultInput
-                        title="横"
-                        name="size"
-                        type="number"
-                        required
-                    />
-                </div>
-                <div className="flex gap-2 items-center">
-                    <label className="font-bold">高さ</label>
-                    <DefaultInput
-                        title="高さ"
-                        name="size"
-                        type="number"
-                        required
-                    />
+            <div>
+                <label className="text-gray-900 text-sm md:text-base flex flex-col gap-1">サイズ[cm]</label>
+                <div className="flex justify-between items-center">
+                    <div className="flex gap-2 items-center">
+                        <label className="font-bold">縦</label>
+                        <DefaultInput
+                            title="縦"
+                            name="size"
+                            type="number"
+                            required
+                        />
+                    </div>
+                    <div className="flex gap-2 items-center">
+                        <label className="font-bold">横</label>
+                        <DefaultInput
+                            title="横"
+                            name="size"
+                            type="number"
+                            required
+                        />
+                    </div>
+                    <div className="flex gap-2 items-center">
+                        <label className="font-bold">高さ</label>
+                        <DefaultInput
+                            title="高さ"
+                            name="size"
+                            type="number"
+                            required
+                        />
+                    </div>
                 </div>
             </div>
             <DefaultAddableOption title="内容物" name="content" />

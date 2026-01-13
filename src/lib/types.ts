@@ -60,6 +60,8 @@ export interface Equipment {
     id: number;
     name: string;
     location: string;
+    number: number;
+    size: number[];
     contents: string[];
     description: string;
     tags: string[];

@@ -58,6 +58,49 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
                 defaultValue={equipment.location}
                 options={Object.entries(LOCATIONS_LABELS).map(([value, label]) => ({ value, label }))}
             />
+            <DefaultInput
+                title="個数"
+                name="number"
+                type="number"
+                defaultValue={equipment.number.toString()}
+                required
+                label
+            />
+            <div>
+                <label className="text-gray-900 text-sm md:text-base flex flex-col gap-1">サイズ[cm]</label>
+                <div className="flex justify-between items-center">
+                    <div className="flex gap-2 items-center">
+                        <label className="font-bold">縦</label>
+                        <DefaultInput
+                            title="縦"
+                            name="size"
+                            type="number"
+                            defaultValue={equipment.size[0].toString()}
+                            required
+                        />
+                    </div>
+                    <div className="flex gap-2 items-center">
+                        <label className="font-bold">横</label>
+                        <DefaultInput
+                            title="横"
+                            name="size"
+                            type="number"
+                            defaultValue={equipment.size[1].toString()}
+                            required
+                        />
+                    </div>
+                    <div className="flex gap-2 items-center">
+                        <label className="font-bold">高さ</label>
+                        <DefaultInput
+                            title="高さ"
+                            name="size"
+                            type="number"
+                            defaultValue={equipment.size[2].toString()}
+                            required
+                        />
+                    </div>
+                </div>
+            </div>
             <DefaultAddableOption
                 title="内容物"
                 name="content"
