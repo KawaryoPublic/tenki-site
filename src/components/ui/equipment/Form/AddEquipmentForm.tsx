@@ -53,6 +53,7 @@ export default function AddEquipmentForm() {
             <DefaultTextArea
                 title="説明"
                 name="description"
+                required
                 label
             />
             <DefaultFile title="添付ファイル" name="file" />
