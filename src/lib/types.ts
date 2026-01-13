@@ -59,8 +59,9 @@ export interface Storage {
 export interface Equipment {
     id: number;
     name: string;
-    content: string[];
     location: string;
+    content: string[];
+    description: string;
     tags: string[];
     urls: string[];
     filenames: string[];

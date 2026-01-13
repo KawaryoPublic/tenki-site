@@ -25,7 +25,7 @@ export default function EquipmentDetailUI({ equipment, tier }: { equipment: Equi
                 <span>{equipment.location}</span>
             </div>
             <div className="whitespace-pre-wrap text-sm md:text-base">
-                <p className="font-bold">説明</p>
+                <p className="font-bold">内容物</p>
                 <ul>
                     {
                         equipment.content.map((content, i) => (
@@ -33,6 +33,10 @@ export default function EquipmentDetailUI({ equipment, tier }: { equipment: Equi
                         ))
                     }
                 </ul>
+            </div>
+            <div className="whitespace-pre-wrap text-sm md:text-base">
+                <p className="font-bold">説明</p>
+                <span>{equipment.description}</span>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 text-sm md:text-base">
                 {

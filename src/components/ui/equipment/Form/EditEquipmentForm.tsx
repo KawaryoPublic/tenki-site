@@ -52,16 +52,26 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
                 required
                 label
             />
-            <DefaultTextArea
+            <DefaultSelect
                 title="場所"
-                name="location"
+                name="loocation"
                 defaultValue={equipment.location}
-                label
+                options={[
+                    { value: "storage", label: "倉庫" },
+                    { value: "clubroom", label: "部室" },
+                    { value: "classroom", label: "地学" },
+                ]}
             />
             <DefaultAddableOption
-                title="内容"
+                title="内容物"
                 name="content"
                 defaultOptions={equipment.content}
+            />
+            <DefaultTextArea
+                title="説明"
+                name="description"
+                defaultValue={equipment.description || ""}
+                label
             />
             <DefaultFile 
                 title="添付ファイル" 

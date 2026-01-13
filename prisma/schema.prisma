@@ -76,14 +76,15 @@ model Storage {
 }
 
 model Equipment {
-  id         Int      @id @default(autoincrement())
-  name       String
-  content    String[]
-  location   String
-  tags       String[]
-  urls       String[]
-  filenames  String[]
-  tier       String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id          Int      @id @default(autoincrement())
+  name        String
+  location    String
+  content     String[]
+  description String
+  tags        String[]
+  urls        String[]
+  filenames   String[]
+  tier        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

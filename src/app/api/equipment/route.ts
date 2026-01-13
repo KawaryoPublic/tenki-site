@@ -54,8 +54,9 @@ export async function POST(request: NextRequest) {
         
         const data = await request.formData();
         const name = data.get("name") as string;
-        const content = data.getAll("content") as string[];
         const location = data.get("location") as string;
+        const content = data.getAll("content") as string[];
+        const description = data.get("description") as string;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
         const urls = data.getAll("url") as string[];
         const filenames = data.getAll("filename") as string[];
@@ -68,8 +69,9 @@ export async function POST(request: NextRequest) {
         const newEquipment = await prisma.equipment.create({
             data: {
                 name,
-                content,
                 location,
+                content,
+                description,
                 tags,
                 urls,
                 filenames,
@@ -95,8 +97,9 @@ export async function PUT(request: NextRequest) {
         const id = Number(request.nextUrl.searchParams.get("id"));
         const data = await request.formData();
         const name = data.get("name") as string;
-        const content = data.getAll("content") as string[];
         const location = data.get("location") as string;
+        const content = data.getAll("content") as string[];
+        const description = data.get("description") as string;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
         const urls = data.getAll("url") as string[];
         const filenames = data.getAll("filename") as string[];
@@ -115,8 +118,9 @@ export async function PUT(request: NextRequest) {
             where: { id: id },
             data: {
                 name,
-                content,
                 location,
+                content,
+                description,
                 tags,
                 urls,
                 filenames,

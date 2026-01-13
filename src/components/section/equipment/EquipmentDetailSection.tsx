@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Equipment, TIER } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
-import EquipmentDetailUI from "@/components/ui/equipment/EquipmentDetail";
+import EquipmentDetailUI from "@/components/ui/equipment/EquipmentDetailUI";
 
 export default function EquipmentDetailSection({ id, tier }: { id: number, tier: TIER }) {
     const [ equipment, setEquipment ] = useState<Equipment | null>();

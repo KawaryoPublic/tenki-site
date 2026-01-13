@@ -40,12 +40,21 @@ export default function AddEquipmentForm() {
                 required
                 label
             />
-            <DefaultTextArea
+            <DefaultSelect
                 title="場所"
                 name="loocation"
+                options={[
+                    { value: "storage", label: "倉庫" },
+                    { value: "clubroom", label: "部室" },
+                    { value: "classroom", label: "地学" },
+                ]}
+            />
+            <DefaultAddableOption title="内容物" name="content" />
+            <DefaultTextArea
+                title="説明"
+                name="description"
                 label
             />
-            <DefaultAddableOption title="内容" name="content" />
             <DefaultFile title="添付ファイル" name="file" />
             <DefaultAddableOption title="タグ" name="tag" />
             <DefaultSelect
