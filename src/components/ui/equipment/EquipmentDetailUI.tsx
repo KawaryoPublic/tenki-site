@@ -23,7 +23,7 @@ export default function EquipmentDetailUI({ equipment, tier }: { equipment: Equi
             </div>
             <div className="whitespace-pre-wrap text-sm md:text-base">
                 <p className="font-bold">場所</p>
-                <span>{LOCATIONS_LABELS[equipment.location]}</span>
+                <span>{LOCATIONS_LABELS[equipment.location as keyof typeof LOCATIONS_LABELS]}</span>
             </div>
             <div className="whitespace-pre-wrap text-sm md:text-base">
                 <p className="font-bold">内容物</p>

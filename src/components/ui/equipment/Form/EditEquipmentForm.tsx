@@ -66,7 +66,7 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
             <DefaultTextArea
                 title="説明"
                 name="description"
-                defaultValue={equipment.description || ""}
+                defaultValue={equipment.description}
                 required
                 label
             />
