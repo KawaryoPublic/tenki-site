@@ -29,7 +29,7 @@ export default function EquipmentDetailUI({ equipment, tier }: { equipment: Equi
                 <ul>
                     {
                         equipment.contents.map((content, i) => (
-                            <span>・{content}</span>
+                            <p key={i}>・{content}</p>
                         ))
                     }
                 </ul>
