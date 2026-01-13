@@ -2,7 +2,6 @@
 
 import Form from "next/form";
 import { redirect } from "next/navigation";
-import { TIER } from "@/lib/types";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
@@ -11,7 +10,7 @@ import { uploadFiles } from "@/lib/utils";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
 import { useActionState } from 'react';
-import { TIER_LABELS } from "@/lib/const";
+import { LOCATIONS_LABELS } from "@/lib/const";
 
 export default function AddEquipmentForm() {
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
@@ -43,11 +42,7 @@ export default function AddEquipmentForm() {
             <DefaultSelect
                 title="場所"
                 name="location"
-                options={[
-                    { value: "storage", label: "倉庫" },
-                    { value: "clubroom", label: "部室" },
-                    { value: "classroom", label: "地学" },
-                ]}
+                options={Object.entries(LOCATIONS_LABELS).map(([value, label]) => ({ value, label }))}
             />
             <DefaultAddableOption title="内容物" name="content" />
             <DefaultTextArea

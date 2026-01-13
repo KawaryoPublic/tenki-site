@@ -6,13 +6,13 @@ export const TIER_LABELS = {
     "student": "生徒",
     "parent": "保護者",
     "admin": "執行部",
-}
+};
 
-export const LOCATIONS_LABELS = [
-    { value: "storage", label: "倉庫" },
-    { value: "clubroom", label: "部室" },
-    { value: "classroom", label: "地学" },
-];
+export const LOCATIONS_LABELS = {
+    "storage": "倉庫",
+    "clubroom": "部室",
+    "classroom": "地学",
+};
 
 export const DAYS = ['日', '月', '火', '水', '木', '金', '土'];
 

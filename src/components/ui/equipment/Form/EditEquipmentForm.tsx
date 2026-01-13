@@ -11,7 +11,7 @@ import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
 import { useState, useActionState } from "react";
 import { uploadFiles } from "@/lib/utils";
-import { LOCATIONS_LABELS as LOCATIONS, TIER_LABELS } from "@/lib/const";
+import { LOCATIONS_LABELS } from "@/lib/const";
 
 export default function EditEquipmentForm({ equipment }: { equipment: Equipment }) {
     const initialFiles = equipment.urls.map((url, index) => ({ url: url, filename: equipment.filenames[index] }));
@@ -56,9 +56,7 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
                 title="場所"
                 name="location"
                 defaultValue={equipment.location}
-                options={[
-                    ...LOCATIONS
-                ]}
+                options={Object.entries(LOCATIONS_LABELS).map(([value, label]) => ({ value, label }))}
             />
             <DefaultAddableOption
                 title="内容物"
