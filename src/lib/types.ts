@@ -65,6 +65,5 @@ export interface Equipment {
     tags: string[];
     urls: string[];
     filenames: string[];
-    tier: string;
     updatedAt: Date;
 }

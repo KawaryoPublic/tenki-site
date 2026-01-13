@@ -58,14 +58,6 @@ export default function AddEquipmentForm() {
             />
             <DefaultFile title="添付ファイル" name="file" />
             <DefaultAddableOption title="タグ" name="tag" />
-            <DefaultSelect
-                title="対象"
-                name="tier"
-                options={[
-                    { value: TIER.STUDENT, label: `${TIER_LABELS[TIER.STUDENT]}向け` },
-                    { value: TIER.ADMIN, label: `${TIER_LABELS[TIER.ADMIN]}向け` },
-                ]}
-            />
             <div className="pt-4">
                 <BlueButton disabled={pending}>{pending ? "保存中..." : "保存"}</BlueButton>
             </div>

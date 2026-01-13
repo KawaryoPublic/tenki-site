@@ -1,6 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
-import { TIER } from "@/lib/types";
 import { getTier } from "@/lib/actions";
 import { checkTier } from "@/lib/utils";
 import { del } from "@vercel/blob";
@@ -11,6 +10,10 @@ export async function GET(request: NextRequest) {
         const searchParams = request.nextUrl.searchParams;
         const id = Number(searchParams.get("id"));
 
+        if(!checkTier(tier, false, true)) {
+            return NextResponse.json({ error: "Permission denied" }, { status: 403 });
+        }  
+
         let equipment;
         
         if(id) {
@@ -18,23 +21,9 @@ export async function GET(request: NextRequest) {
                 where: { id: id }
             })
         } else {
-            equipment = tier === TIER.ADMIN ? 
-                await prisma.equipment.findMany({
-                    orderBy: { createdAt: 'desc' },
-                }) : 
-                await prisma.equipment.findMany({
-                    where: {
-                        OR: [
-                            {
-                                tier: tier
-                            },
-                            {
-                                tier: TIER.NONE
-                            }
-                        ]
-                    },
-                    orderBy: { createdAt: 'desc' },
-                });
+            equipment = await prisma.equipment.findMany({
+                orderBy: { createdAt: 'desc' },
+            });   
         }
 
         return NextResponse.json(equipment, { status: 200 });
@@ -46,9 +35,9 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
     try {
-        const currentTier = await getTier(request);
+        const tier = await getTier(request);
 
-        if(!checkTier(currentTier)) {
+        if(!checkTier(tier)) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }   
         
@@ -60,9 +49,8 @@ export async function POST(request: NextRequest) {
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
         const urls = data.getAll("url") as string[];
         const filenames = data.getAll("filename") as string[];
-        const tier = data.get("tier") as TIER;
 
-        if (name === undefined || content === undefined || description === undefined || tier === undefined) {
+        if (name === undefined || content === undefined || description === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -74,8 +62,7 @@ export async function POST(request: NextRequest) {
                 description,
                 tags,
                 urls,
-                filenames,
-                tier
+                filenames
             },
         });
 
@@ -88,9 +75,9 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
     try {
-        const currentTier =  await getTier(request);
+        const tier =  await getTier(request);
 
-        if(!checkTier(currentTier)) {
+        if(!checkTier(tier)) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
 
@@ -104,9 +91,8 @@ export async function PUT(request: NextRequest) {
         const urls = data.getAll("url") as string[];
         const filenames = data.getAll("filename") as string[];
         const deleteFileUrls = data.getAll("deleteFileUrl") as string[];
-        const tier = data.get("tier") as TIER;
 
-        if (isNaN(id) || name === undefined || content === undefined || description === undefined || tier === undefined) {
+        if (isNaN(id) || name === undefined || content === undefined || description === undefined ) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -123,8 +109,7 @@ export async function PUT(request: NextRequest) {
                 description,
                 tags,
                 urls,
-                filenames,
-                tier
+                filenames
             },
         });
 
