@@ -27,11 +27,11 @@ export default function EquipmentDetailUI({ equipment, tier }: { equipment: Equi
             </div>
             <div className="whitespace-pre-wrap text-sm md:text-base">
                 <p className="font-bold">個数</p>
-                <span>{equipment.number}</span>
+                <span>{equipment.number}個</span>
             </div>
             <div className="whitespace-pre-wrap text-sm md:text-base">
                 <p className="font-bold">サイズ</p>
-                <span>{`${equipment.size[0]} × ${equipment.size[1]} × ${equipment.size[2]}`}</span>
+                <span>{`${equipment.size[0]}cm × ${equipment.size[1]}cm × ${equipment.size[2]}`}cm</span>
             </div>
             <div className="whitespace-pre-wrap text-sm md:text-base">
                 <p className="font-bold">内容物</p>
