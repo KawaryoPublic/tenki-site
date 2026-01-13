@@ -63,7 +63,7 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
             <DefaultAddableOption
                 title="内容物"
                 name="content"
-                defaultOptions={equipment.content}
+                defaultOptions={equipment.contents}
             />
             <DefaultTextArea
                 title="説明"

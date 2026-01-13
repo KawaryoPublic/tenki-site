@@ -60,7 +60,7 @@ export interface Equipment {
     id: number;
     name: string;
     location: string;
-    content: string[];
+    contents: string[];
     description: string;
     tags: string[];
     urls: string[];
