@@ -55,7 +55,7 @@ export default function AddEquipmentForm() {
             <div>
                 <label className="font-bold text-gray-900 text-sm md:text-base flex flex-col gap-1">サイズ[cm]</label>
                 <div className="flex flex-col md:flex-row gap-1 md:justify-between md:items-center">
-                    <div className="flex gap-2 items-center w-full">
+                    <div className="flex gap-2 items-center">
                         <label className="font-bold">縦幅</label>
                         <DefaultInput
                             title="縦幅"
@@ -64,7 +64,7 @@ export default function AddEquipmentForm() {
                             required
                         />
                     </div>
-                    <div className="flex gap-2 items-center w-full">
+                    <div className="flex gap-2 items-center">
                         <label className="font-bold">横幅</label>
                         <DefaultInput
                             title="横幅"
@@ -73,7 +73,7 @@ export default function AddEquipmentForm() {
                             required
                         />
                     </div>
-                    <div className="flex gap-2 items-center w-full">
+                    <div className="flex gap-2 items-center">
                         <label className="font-bold">高さ</label>
                         <DefaultInput
                             title="高さ"
