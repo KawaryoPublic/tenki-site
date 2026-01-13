@@ -68,11 +68,11 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
             />
             <div>
                 <label className="font-bold text-gray-900 text-sm md:text-base flex flex-col gap-1">サイズ[cm]</label>
-                <div className="flex flex-col md:flex-row justify-between items-center">
+                <div className="flex flex-col md:flex-row gap-1 md:justify-between md:items-center">
                     <div className="flex gap-2 items-center">
                         <label className="font-bold">縦</label>
                         <DefaultInput
-                            title="縦"
+                            title="縦幅"
                             name="size"
                             type="number"
                             defaultValue={equipment.size[0].toString()}
@@ -82,7 +82,7 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
                     <div className="flex gap-2 items-center">
                         <label className="font-bold">横</label>
                         <DefaultInput
-                            title="横"
+                            title="横幅"
                             name="size"
                             type="number"
                             defaultValue={equipment.size[1].toString()}
