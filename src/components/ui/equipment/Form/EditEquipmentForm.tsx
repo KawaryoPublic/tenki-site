@@ -67,8 +67,8 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
                 label
             />
             <div>
-                <label className="text-gray-900 text-sm md:text-base flex flex-col gap-1">サイズ[cm]</label>
-                <div className="flex justify-between items-center">
+                <label className="font-bold text-gray-900 text-sm md:text-base flex flex-col gap-1">サイズ[cm]</label>
+                <div className="flex flex-col md:flex-row justify-between items-center">
                     <div className="flex gap-2 items-center">
                         <label className="font-bold">縦</label>
                         <DefaultInput

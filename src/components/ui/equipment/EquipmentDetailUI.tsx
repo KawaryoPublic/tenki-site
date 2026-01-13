@@ -26,6 +26,14 @@ export default function EquipmentDetailUI({ equipment, tier }: { equipment: Equi
                 <span>{LOCATIONS_LABELS[equipment.location as keyof typeof LOCATIONS_LABELS]}</span>
             </div>
             <div className="whitespace-pre-wrap text-sm md:text-base">
+                <p className="font-bold">個数</p>
+                <span>{equipment.number}</span>
+            </div>
+            <div className="whitespace-pre-wrap text-sm md:text-base">
+                <p className="font-bold">サイズ</p>
+                <span>{`${equipment.size[0]} × ${equipment.size[1]} × ${equipment.size[2]}`}</span>
+            </div>
+            <div className="whitespace-pre-wrap text-sm md:text-base">
                 <p className="font-bold">内容物</p>
                 <ul>
                     {
