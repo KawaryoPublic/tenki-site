@@ -45,8 +45,8 @@ export default function AddEquipmentForm() {
                 options={Object.entries(LOCATIONS_LABELS).map(([value, label]) => ({ value, label }))}
             />
             <DefaultInput
-                title="名前"
-                name="name"
+                title="個数"
+                name="number"
                 type="number"
                 required
                 label
