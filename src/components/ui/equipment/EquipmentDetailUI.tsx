@@ -5,6 +5,7 @@ import { Equipment, TIER } from "@/lib/types";
 import FileLinkUI from "../global/FileLinkUI";
 import DeleteEquipmentButton from "./Button/DeleteEquipmentButton";
 import { LOCATIONS_LABELS } from "@/lib/const";
+import Link from "next/link";
 
 export default function EquipmentDetailUI({ equipment, tier }: { equipment: Equipment, tier: TIER }) {
     return (
