@@ -6,6 +6,7 @@ import WhiteFrameUI from "../global/WhiteFrameUI";
 import { Equipment, TIER } from "@/lib/types";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { LOCATIONS_LABELS } from "@/lib/const";
 
 export default function LocationDetailUI({ location, tier }: { location: string, tier: TIER }) {
     const [ allEquipment, setAllEquipment ] = useState<Equipment[]>([]);
@@ -24,7 +25,7 @@ export default function LocationDetailUI({ location, tier }: { location: string,
         !allEquipment ? <div className="flex-1 flex flex-col items-center font-bold text-xl">機材を読み込めませんでした</div> :
         <WhiteFrameUI className="flex-1 flex flex-col gap-2">
             <div className="flex justify-between items-center border-b pb-2">
-                <h2 className="text-xl md:text-3xl font-bold">{location}</h2>
+                <h2 className="text-xl md:text-3xl font-bold">{LOCATIONS_LABELS[location as keyof typeof LOCATIONS_LABELS]}</h2>
                 <div className="flex items-center gap-2 md:gap-4">
                     {
                         checkTier(tier) && 
