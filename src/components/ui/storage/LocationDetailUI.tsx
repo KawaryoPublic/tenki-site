@@ -39,7 +39,7 @@ export default function LocationDetailUI({ location, tier }: { location: string,
                 <p className="font-bold">機材一覧</p>
                 <nav>
                     {
-                        allEquipment.length === 0 ? <li>この場所には機材がありません。</li> :
+                        allEquipment.length === 0 ? <div>この場所には機材がありません。</div> :
                         allEquipment.map((equipment, i) => (
                             <div>
                                 ・

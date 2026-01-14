@@ -1,3 +1,4 @@
+import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import LocationDetailUI from "@/components/ui/storage/LocationDetailUI";
 import { LOCATIONS_LABELS } from "@/lib/const";
 import { TIER } from "@/lib/types";
@@ -10,14 +11,14 @@ export default function LocationSection({ location, tier }: { location: string, 
                 <nav className="flex flex gap-2">
                     {
                         Object.entries(LOCATIONS_LABELS).map(([value, label]) => (
-                            <div>
+                            <WhiteFrameUI>
                                 <Link href={`/storage/${value}`}>{label}</Link>
-                            </div>
+                            </WhiteFrameUI>
                         ))
                     }
                 </nav>
             </div>
-            <div className="flex-1 flex flex gap-2">
+            <div className="w-full flex-1 flex flex gap-2">
                 <div>
                     Location Map
                 </div>
