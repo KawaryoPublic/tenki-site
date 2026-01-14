@@ -22,7 +22,7 @@ export default function LocationDetailUI({ location, tier }: { location: string,
     return (
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
         !allEquipment ? <div className="flex-1 flex flex-col items-center font-bold text-xl">機材を読み込めませんでした</div> :
-        <WhiteFrameUI className="flex flex-col gap-2">
+        <WhiteFrameUI className="flex-1 flex flex-col gap-2">
             <div className="flex justify-between items-center border-b pb-2">
                 <h2 className="text-xl md:text-3xl font-bold">{location}</h2>
                 <div className="flex items-center gap-2 md:gap-4">
@@ -40,9 +40,12 @@ export default function LocationDetailUI({ location, tier }: { location: string,
                     {
                         allEquipment.length === 0 ? <li>この場所には機材がありません。</li> :
                         allEquipment.map((equipment, i) => (
-                            <Link href={`/equipment/${equipment.id}`} className="text-blue-500 underline" key={i}>
-                                ・{equipment.name}
-                            </Link>
+                            <div>
+                                ・
+                                <Link href={`/equipment/${equipment.id}`} className="text-blue-500 underline" key={i}>
+                                    {equipment.name}
+                                </Link>
+                            </div>
                         ))
                     }
                 </nav>
