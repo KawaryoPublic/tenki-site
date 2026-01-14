@@ -110,7 +110,6 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
                 title="説明"
                 name="description"
                 defaultValue={equipment.description}
-                required
                 label
             />
             <DefaultFile 
