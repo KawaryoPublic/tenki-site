@@ -47,7 +47,6 @@ export default function LocationDetailUI({ location, tier }: { location: string,
                     }
                 </nav>
             </div>
-            </div>
         </WhiteFrameUI>
     )
 }
