@@ -75,6 +75,7 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
                             title="縦幅"
                             name="size"
                             type="number"
+                            min={0}
                             defaultValue={equipment.size[0].toString()}
                             required
                         />
@@ -85,6 +86,7 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
                             title="横幅"
                             name="size"
                             type="number"
+                            min={0}
                             defaultValue={equipment.size[1].toString()}
                             required
                         />
@@ -95,6 +97,7 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
                             title="高さ"
                             name="size"
                             type="number"
+                            min={0}
                             defaultValue={equipment.size[2].toString()}
                             required
                         />

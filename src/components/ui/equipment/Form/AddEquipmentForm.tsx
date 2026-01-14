@@ -61,6 +61,7 @@ export default function AddEquipmentForm() {
                             title="縦幅"
                             name="size"
                             type="number"
+                            min={0}
                             required
                         />
                     </div>
@@ -70,6 +71,7 @@ export default function AddEquipmentForm() {
                             title="横幅"
                             name="size"
                             type="number"
+                            min={0}
                             required
                         />
                     </div>
@@ -79,6 +81,7 @@ export default function AddEquipmentForm() {
                             title="高さ"
                             name="size"
                             type="number"
+                            min={0}
                             required
                         />
                     </div>
