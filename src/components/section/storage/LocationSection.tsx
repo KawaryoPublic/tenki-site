@@ -1,3 +1,4 @@
+import LocationDetailUI from "@/components/ui/storage/LocationDetailUI";
 import { TIER } from "@/lib/types";
 
 export default function LocationSection({ location, tier }: { location: string, tier: TIER }) {
@@ -12,9 +13,7 @@ export default function LocationSection({ location, tier }: { location: string, 
                 <div>
                     Location Map
                 </div>
-                <div>
-                    Location Detail
-                </div>
+                <LocationDetailUI location={location} tier={tier} />
             </div>
         </section>
     )
