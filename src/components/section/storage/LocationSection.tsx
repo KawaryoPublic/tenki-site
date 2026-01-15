@@ -1,5 +1,6 @@
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import LocationDetailUI from "@/components/ui/storage/LocationDetailUI";
+import LocationMapUI from "@/components/ui/storage/LocationMapUI";
 import { LOCATIONS_LABELS } from "@/lib/const";
 import { TIER } from "@/lib/types";
 import Link from "next/link";
@@ -17,9 +18,7 @@ export default function LocationSection({ location, tier }: { location: string, 
                 }
                 </WhiteFrameUI>
             <div className="w-full flex-1 flex flex gap-2">
-                <div>
-                    Location Map
-                </div>
+                <LocationMapUI location={location} />
                 <LocationDetailUI location={location} tier={tier} />
             </div>
         </section>
