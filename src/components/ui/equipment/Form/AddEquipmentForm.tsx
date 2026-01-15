@@ -6,15 +6,19 @@ import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import DefaultSelect from "../../global/Form/DefaultSelect";
-import { uploadFiles } from "@/lib/utils";
+import { appendVector3, uploadFiles } from "@/lib/utils";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
 import { useActionState } from 'react';
 import { LOCATIONS_LABELS } from "@/lib/const";
+import { useEffect, useState } from "react";
+import { Location } from "@/lib/types";
 
 export default function AddEquipmentForm() {
+    const [ locations, setLocations ] = useState<Location[]>([]);
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
         formData = await uploadFiles(formData);
+        formData = appendVector3(formData, "size");
 
         await fetch("/api/equipment", {
             method: 'POST',
@@ -26,6 +30,13 @@ export default function AddEquipmentForm() {
 
         redirect("/equipment");
     }, null);
+
+    useEffect(() => {
+        fetch("/api/location")
+            .then(res => res.json())
+            .then(data => setLocations(data))
+            .catch(err => console.log(err));
+    }, []);
 
     return (
         <Form 
@@ -42,7 +53,9 @@ export default function AddEquipmentForm() {
             <DefaultSelect
                 title="場所"
                 name="location"
-                options={Object.entries(LOCATIONS_LABELS).map(([value, label]) => ({ value, label }))}
+                options={locations.map(location => ({ value: location, label: location.name }))}
+                required
+                label
             />
             <DefaultInput
                 title="個数"
@@ -59,7 +72,7 @@ export default function AddEquipmentForm() {
                         <label className="font-bold">縦幅</label>
                         <DefaultInput
                             title="縦幅"
-                            name="size"
+                            name="sizeX"
                             type="number"
                             min={0}
                             required
@@ -69,7 +82,7 @@ export default function AddEquipmentForm() {
                         <label className="font-bold">横幅</label>
                         <DefaultInput
                             title="横幅"
-                            name="size"
+                            name="sizeY"
                             type="number"
                             min={0}
                             required
@@ -79,7 +92,7 @@ export default function AddEquipmentForm() {
                         <label className="font-bold">高さ</label>
                         <DefaultInput
                             title="高さ"
-                            name="size"
+                            name="sizeZ"
                             type="number"
                             min={0}
                             required

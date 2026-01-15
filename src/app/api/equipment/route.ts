@@ -3,13 +3,14 @@ import prisma from "@/lib/prisma";
 import { getTier } from "@/lib/actions";
 import { checkTier } from "@/lib/utils";
 import { del } from "@vercel/blob";
+import { Vector3, Location } from "@/lib/types";
 
 export async function GET(request: NextRequest) {
     try {
         const tier = await getTier(request);
         const searchParams = request.nextUrl.searchParams;
         const id = Number(searchParams.get("id"));
-        const location = searchParams.get("location");
+        const locationId = searchParams.get("location_id");
 
         if(!checkTier(tier, false, true)) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
@@ -23,7 +24,9 @@ export async function GET(request: NextRequest) {
             })
         } else if(location) {
             equipment = await prisma.equipment.findMany({
-                where: { location: location },
+                where: { location: {
+                    id: locationId
+                } },
                 orderBy: { createdAt: 'desc' },
             });
         }
@@ -50,9 +53,9 @@ export async function POST(request: NextRequest) {
         
         const data = await request.formData();
         const name = data.get("name") as string;
-        const location = data.get("location") as string;
+        const location = data.get("location") as Location;
         const number = Number(data.get("number"));
-        const size = (data.getAll("size") as string[]).map(s => Number(s));
+        const size = (data.get("size") as Vector3);
         const contents = data.getAll("content") as string[];
         const description = data.get("description") as string;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
@@ -95,9 +98,9 @@ export async function PUT(request: NextRequest) {
         const id = Number(request.nextUrl.searchParams.get("id"));
         const data = await request.formData();
         const name = data.get("name") as string;
-        const location = data.get("location") as string;
+        const location = data.get("location") as Location;
         const number = Number(data.get("number"));
-        const size = (data.getAll("size") as string[]).map(s => Number(s));
+        const size = (data.getAll("size") as Vector3);
         const contents = data.getAll("content") as string[];
         const description = data.get("description") as string;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());

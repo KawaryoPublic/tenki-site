@@ -68,19 +68,29 @@ model Manual {
   updatedAt DateTime @updatedAt
 }
 
-model Storage {
-  id        Int      @id @default(autoincrement())
-  name      String
-  locations String[]
-  url       String
+model Vector2 {
+  x Int
+  y Int
+}
+
+model Vector3 {
+  x Int
+  y Int
+  z Int
+}
+
+model Location {
+  id        Int    @id @default(autoincrement())
+  name      String @unique
+  size      Vector2
 }
 
 model Equipment {
   id          Int      @id @default(autoincrement())
   name        String
-  location    String
+  location    Location
   number      Int
-  size        Int[]
+  size        Vector3
   contents    String[]
   description String
   tags        String[]

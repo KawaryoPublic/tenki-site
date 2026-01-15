@@ -49,19 +49,29 @@ export interface Manual {
     updatedAt: Date;
 }
 
-export interface Storage {
+export interface Vector2 {
+    x: number;
+    y: number;
+}
+
+export interface Vector3 {
+    x: number;
+    y: number;
+    z: number
+}
+
+export interface Location {
     id: number;
     name: string;
-    locations: string[];
-    url: string;
+    size: Vector2;
 }
 
 export interface Equipment {
     id: number;
     name: string;
-    location: string;
+    location: Location;
     number: number;
-    size: number[];
+    size: Vector3;
     contents: string[];
     description: string;
     tags: string[];

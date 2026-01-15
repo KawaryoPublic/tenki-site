@@ -74,6 +74,19 @@ export const uploadFiles = async (formData: FormData) => {
     return formData;
 }
 
+export const appendVector3 = (formData: FormData, key: string) => {
+    const x = formData.get(key + "X") as string;
+    const y = formData.get(key + "Y") as string;
+    const z = formData.get(key + "Z") as string;
+
+    formData.append(key, JSON.stringify({ x: Number(x), y: Number(y), z: Number(z) }));
+    formData.delete(key + "X");
+    formData.delete(key + "Y");
+    formData.delete(key + "Z");
+
+    return formData;
+}
+
 export const splitLinksAndHeaders = (text: string) => {
     const urlRegex = /(https?:\/\/[^\s+]+)/g;
     const parts: { type: "link" | "header" | "text", content: string }[] = [];
