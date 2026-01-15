@@ -1,7 +1,9 @@
+import WhiteFrameUI from "../global/WhiteFrameUI";
+
 export default function LocationMapUI({ location }: { location: string }) {
     return (
-        <div className="flex-1">
-            <div className="aspect-square object-contain"></div>
-        </div>
+        <WhiteFrameUI className="flex-1 flex items-center justify-center">
+            <div className="aspect-square object-contain border-2"></div>
+        </WhiteFrameUI>
     )
 }
