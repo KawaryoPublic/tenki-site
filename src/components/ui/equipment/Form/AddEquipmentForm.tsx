@@ -10,7 +10,6 @@ import { appendVector3, uploadFiles } from "@/lib/utils";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
 import { useActionState } from 'react';
-import { LOCATIONS_LABELS } from "@/lib/const";
 import { useEffect, useState } from "react";
 import { Location } from "@/lib/types";
 
@@ -53,9 +52,7 @@ export default function AddEquipmentForm() {
             <DefaultSelect
                 title="場所"
                 name="location"
-                options={locations.map(location => ({ value: location, label: location.name }))}
-                required
-                label
+                options={locations.map(location => ({ value: JSON.stringify(location), label: location.name }))}
             />
             <DefaultInput
                 title="個数"

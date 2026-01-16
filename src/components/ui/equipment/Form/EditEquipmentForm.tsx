@@ -2,19 +2,19 @@
 
 import Form from "next/form";
 import { redirect } from "next/navigation";
-import { Equipment, TIER } from "@/lib/types";
+import { Equipment } from "@/lib/types";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
-import { useState, useActionState } from "react";
-import { uploadFiles } from "@/lib/utils";
-import { LOCATIONS_LABELS } from "@/lib/const";
+import { useState, useActionState, useEffect } from "react";
+import { appendVector3, uploadFiles } from "@/lib/utils";
 
 export default function EditEquipmentForm({ equipment }: { equipment: Equipment }) {
     const initialFiles = equipment.urls.map((url, index) => ({ url: url, filename: equipment.filenames[index] }));
+    const [ locations, setLocations ] = useState<Location[]>([]);
     const [ files, setFiles ] = useState<{ url: string, filename: string }[]>(initialFiles);
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
         for(const file of initialFiles) {
@@ -27,6 +27,7 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
         }
 
         formData = await uploadFiles(formData);
+        formData = appendVector3(formData, "size");
 
         await fetch(`/api/equipment?id=${equipment.id}`, {
             method: 'PUT',
@@ -38,6 +39,13 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
 
         redirect(`/equipment/${equipment.id}`);
     }, null);
+
+    useEffect(() => {
+        fetch("/api/location")
+            .then(res => res.json())
+            .then(data => setLocations(data))
+            .catch(err => console.log(err));
+    }, []);
 
     return (
         <Form 
@@ -55,8 +63,8 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
             <DefaultSelect
                 title="場所"
                 name="location"
-                defaultValue={equipment.location}
-                options={Object.entries(LOCATIONS_LABELS).map(([value, label]) => ({ value, label }))}
+                options={locations.map(location => ({ value: JSON.stringify(location), label: location.name }))}
+                defaultValue={JSON.stringify(equipment.location)}
             />
             <DefaultInput
                 title="個数"
@@ -73,10 +81,9 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
                         <label className="font-bold">縦幅</label>
                         <DefaultInput
                             title="縦幅"
-                            name="size"
+                            name="sizeX"
                             type="number"
                             min={0}
-                            defaultValue={equipment.size[0].toString()}
                             required
                         />
                     </div>
@@ -84,10 +91,9 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
                         <label className="font-bold">横幅</label>
                         <DefaultInput
                             title="横幅"
-                            name="size"
+                            name="sizeY"
                             type="number"
                             min={0}
-                            defaultValue={equipment.size[1].toString()}
                             required
                         />
                     </div>
@@ -95,10 +101,9 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
                         <label className="font-bold">高さ</label>
                         <DefaultInput
                             title="高さ"
-                            name="size"
+                            name="sizeZ"
                             type="number"
                             min={0}
-                            defaultValue={equipment.size[2].toString()}
                             required
                         />
                     </div>

@@ -8,12 +8,6 @@ export const TIER_LABELS = {
     "admin": "執行部",
 };
 
-export const LOCATIONS_LABELS = {
-    "storage": "倉庫",
-    "clubroom": "部室",
-    "classroom": "地学",
-};
-
 export const DAYS = ['日', '月', '火', '水', '木', '金', '土'];
 
 export { STUDENT_PASSWORD, PARENT_PASSWORD, EXECUTIVE_PASSWORD };

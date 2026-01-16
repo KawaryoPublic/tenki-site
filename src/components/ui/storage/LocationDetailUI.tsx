@@ -1,31 +1,14 @@
-"use client";
-
 import { checkTier } from "@/lib/utils";
 import BlueButton from "../global/Button/BlueButton";
 import WhiteFrameUI from "../global/WhiteFrameUI";
-import { Equipment, TIER } from "@/lib/types";
+import { Equipment, Location, TIER } from "@/lib/types";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { LOCATIONS_LABELS } from "@/lib/const";
 
-export default function LocationDetailUI({ location, tier }: { location: string, tier: TIER }) {
-    const [ allEquipment, setAllEquipment ] = useState<Equipment[]>([]);
-    const [ loading, setLoading ] = useState(true);
-        
-    useEffect(() => {
-        fetch(`/api/equipment?location=${location}`)
-            .then(res => res.json())
-            .then(data => setAllEquipment(data))
-            .finally(() => setLoading(false))
-            .catch(err => console.error(err))
-    }, []);
-
-    return (
-        loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !allEquipment ? <div className="flex-1 flex flex-col items-center font-bold text-xl">機材を読み込めませんでした</div> :
+export default function LocationDetailUI({ location, allEquipment, tier }: { location: Location, allEquipment: Equipment[], tier: TIER }) {
+    return (  
         <WhiteFrameUI className="flex-1 flex flex-col gap-2">
             <div className="flex justify-between items-center border-b pb-2">
-                <h2 className="text-xl md:text-3xl font-bold">{LOCATIONS_LABELS[location as keyof typeof LOCATIONS_LABELS]}</h2>
+                <h2 className="text-xl md:text-3xl font-bold">{location.name}</h2>
                 <div className="flex items-center gap-2 md:gap-4">
                     {
                         checkTier(tier) && 

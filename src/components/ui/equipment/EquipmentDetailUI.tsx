@@ -4,7 +4,6 @@ import WhiteFrameUI from "../global/WhiteFrameUI";
 import { Equipment, TIER } from "@/lib/types";
 import FileLinkUI from "../global/FileLinkUI";
 import DeleteEquipmentButton from "./Button/DeleteEquipmentButton";
-import { LOCATIONS_LABELS } from "@/lib/const";
 import Link from "next/link";
 
 export default function EquipmentDetailUI({ equipment, tier }: { equipment: Equipment, tier: TIER }) {
@@ -24,7 +23,7 @@ export default function EquipmentDetailUI({ equipment, tier }: { equipment: Equi
             </div>
             <div className="whitespace-pre-wrap text-sm md:text-base">
                 <p className="font-bold">場所</p>
-                <span>{LOCATIONS_LABELS[equipment.location as keyof typeof LOCATIONS_LABELS]}</span>
+                <span>{equipment.location.name}</span>
             </div>
             <div className="whitespace-pre-wrap text-sm md:text-base">
                 <p className="font-bold">個数</p>
