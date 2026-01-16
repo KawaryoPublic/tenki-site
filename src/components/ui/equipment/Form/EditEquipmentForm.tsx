@@ -61,8 +61,8 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
             />
             <DefaultSelect
                 title="場所"
-                name="location"
-                options={locations.map(location => ({ value: location.id, label: location.name }))}
+                name="locationId"
+                options={locations.map(location => ({ value: location.id.toString(), label: location.name }))}
                 defaultValue={JSON.stringify(equipment.location)}
             />
             <DefaultInput
