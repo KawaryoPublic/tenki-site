@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
         const name = data.get("name") as string;
         const location = data.get("location") as Location;
         const number = Number(data.get("number"));
-        const size = (data.get("size") as Vector3);
+        const size = (data.getAll("size") as string[]).map(s => Number(s));
         const contents = data.getAll("content") as string[];
         const description = data.get("description") as string;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
@@ -100,7 +100,7 @@ export async function PUT(request: NextRequest) {
         const name = data.get("name") as string;
         const location = data.get("location") as Location;
         const number = Number(data.get("number"));
-        const size = (data.getAll("size") as Vector3);
+        const size = (data.getAll("size") as string[]).map(s => Number(s));
         const contents = data.getAll("content") as string[];
         const description = data.get("description") as string;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());

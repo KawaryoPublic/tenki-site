@@ -68,21 +68,10 @@ model Manual {
   updatedAt DateTime @updatedAt
 }
 
-model Vector2 {
-  x Int
-  y Int
-}
-
-model Vector3 {
-  x Int
-  y Int
-  z Int
-}
-
 model Location {
   id        Int    @id @default(autoincrement())
   name      String @unique
-  size      Vector2
+  size      Int[]
 }
 
 model Equipment {
@@ -90,7 +79,7 @@ model Equipment {
   name        String
   location    Location
   number      Int
-  size        Vector3
+  size        Int[]
   contents    String[]
   description String
   tags        String[]

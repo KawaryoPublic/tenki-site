@@ -10,7 +10,7 @@ import DefaultSelect from "../../global/Form/DefaultSelect";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
 import { useState, useActionState, useEffect } from "react";
-import { appendVector3, uploadFiles } from "@/lib/utils";
+import { uploadFiles } from "@/lib/utils";
 
 export default function EditEquipmentForm({ equipment }: { equipment: Equipment }) {
     const initialFiles = equipment.urls.map((url, index) => ({ url: url, filename: equipment.filenames[index] }));
@@ -27,7 +27,6 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
         }
 
         formData = await uploadFiles(formData);
-        formData = appendVector3(formData, "size");
 
         await fetch(`/api/equipment?id=${equipment.id}`, {
             method: 'PUT',
@@ -81,8 +80,9 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
                         <label className="font-bold">縦幅</label>
                         <DefaultInput
                             title="縦幅"
-                            name="sizeX"
+                            name="size"
                             type="number"
+                            defaultValue={equipment.size[0].toString()}
                             min={0}
                             required
                         />
@@ -91,8 +91,9 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
                         <label className="font-bold">横幅</label>
                         <DefaultInput
                             title="横幅"
-                            name="sizeY"
+                            name="size"
                             type="number"
+                            defaultValue={equipment.size[1].toString()}
                             min={0}
                             required
                         />
@@ -101,8 +102,9 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
                         <label className="font-bold">高さ</label>
                         <DefaultInput
                             title="高さ"
-                            name="sizeZ"
+                            name="size"
                             type="number"
+                            defaultValue={equipment.size[2].toString()}
                             min={0}
                             required
                         />

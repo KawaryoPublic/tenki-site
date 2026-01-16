@@ -6,7 +6,7 @@ import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import DefaultSelect from "../../global/Form/DefaultSelect";
-import { appendVector3, uploadFiles } from "@/lib/utils";
+import { uploadFiles } from "@/lib/utils";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
 import { useActionState } from 'react';
@@ -17,7 +17,6 @@ export default function AddEquipmentForm() {
     const [ locations, setLocations ] = useState<Location[]>([]);
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
         formData = await uploadFiles(formData);
-        formData = appendVector3(formData, "size");
 
         await fetch("/api/equipment", {
             method: 'POST',
@@ -69,7 +68,7 @@ export default function AddEquipmentForm() {
                         <label className="font-bold">縦幅</label>
                         <DefaultInput
                             title="縦幅"
-                            name="sizeX"
+                            name="size"
                             type="number"
                             min={0}
                             required
@@ -79,7 +78,7 @@ export default function AddEquipmentForm() {
                         <label className="font-bold">横幅</label>
                         <DefaultInput
                             title="横幅"
-                            name="sizeY"
+                            name="size"
                             type="number"
                             min={0}
                             required
@@ -89,7 +88,7 @@ export default function AddEquipmentForm() {
                         <label className="font-bold">高さ</label>
                         <DefaultInput
                             title="高さ"
-                            name="sizeZ"
+                            name="size"
                             type="number"
                             min={0}
                             required

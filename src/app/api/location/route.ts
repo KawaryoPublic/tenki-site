@@ -29,6 +29,7 @@ export async function GET(request: NextRequest) {
     }
 }
 
+/*
 export async function PUT(request: NextRequest) {
     try {
         const currentTier =  await getTier(request);
@@ -63,3 +64,4 @@ export async function PUT(request: NextRequest) {
         return NextResponse.json({ error: "Failed to update a storage" }, { status: 500 });
     }
 }
+*/
