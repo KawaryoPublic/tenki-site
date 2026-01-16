@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 import { getTier } from "@/lib/actions";
 import { checkTier } from "@/lib/utils";
 import { del } from "@vercel/blob";
-import { Vector3, Location } from "@/lib/types";
+import { Location } from "@/lib/types";
 
 export async function GET(request: NextRequest) {
     try {
@@ -54,6 +54,7 @@ export async function POST(request: NextRequest) {
         const data = await request.formData();
         const name = data.get("name") as string;
         const location = data.get("location") as Location;
+        const locationId = location.id;
         const number = Number(data.get("number"));
         const size = (data.getAll("size") as string[]).map(s => Number(s));
         const contents = data.getAll("content") as string[];
@@ -70,6 +71,7 @@ export async function POST(request: NextRequest) {
             data: {
                 name,
                 location,
+                locationId,
                 number,
                 size,
                 contents,
@@ -99,6 +101,7 @@ export async function PUT(request: NextRequest) {
         const data = await request.formData();
         const name = data.get("name") as string;
         const location = data.get("location") as Location;
+        const locationId = location.id;
         const number = Number(data.get("number"));
         const size = (data.getAll("size") as string[]).map(s => Number(s));
         const contents = data.getAll("content") as string[];
@@ -121,6 +124,7 @@ export async function PUT(request: NextRequest) {
             data: {
                 name,
                 location,
+                locationId,
                 number,
                 size,
                 contents,

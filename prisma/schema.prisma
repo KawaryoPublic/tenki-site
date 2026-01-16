@@ -77,7 +77,8 @@ model Location {
 model Equipment {
   id          Int      @id @default(autoincrement())
   name        String
-  location    Location
+  location    Location @relation(fields: [locationId], references: [id])
+  locationId  Int
   number      Int
   size        Int[]
   contents    String[]
