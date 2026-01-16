@@ -61,7 +61,6 @@ export async function POST(request: NextRequest) {
         const newEquipment = await prisma.equipment.create({
             data: {
                 name,
-                location,
                 locationId,
                 number,
                 size,
@@ -114,7 +113,6 @@ export async function PUT(request: NextRequest) {
             where: { id: id },
             data: {
                 name,
-                location,
                 locationId,
                 number,
                 size,
