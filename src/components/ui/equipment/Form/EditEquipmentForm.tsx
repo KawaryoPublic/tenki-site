@@ -11,6 +11,7 @@ import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
 import { useState, useActionState, useEffect } from "react";
 import { uploadFiles } from "@/lib/utils";
+import { Location } from "@/lib/types";
 
 export default function EditEquipmentForm({ equipment }: { equipment: Equipment }) {
     const initialFiles = equipment.urls.map((url, index) => ({ url: url, filename: equipment.filenames[index] }));
