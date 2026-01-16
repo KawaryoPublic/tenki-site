@@ -10,6 +10,8 @@ export default function EquipmentDetailSection({ id, tier }: { id: number, tier:
     const [ loading, setLoading ] = useState(true);
     
     useEffect(() => {
+        setLoading(true);
+
         fetch(`/api/equipment?id=${id}`)
             .then(res => res.json())
             .then(data => setEquipment(data))

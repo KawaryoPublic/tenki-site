@@ -14,6 +14,8 @@ export default function LocationSection({ id, tier }: { id: number, tier: TIER }
     const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {
+        setLoading(true);
+
         fetch("/api/location")
             .then(res => res.json())
             .then(data => {
