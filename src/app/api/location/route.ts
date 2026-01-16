@@ -2,7 +2,6 @@ import { NextResponse, NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
 import { getTier } from "@/lib/actions";
 import { checkTier } from "@/lib/utils";
-import { del } from "@vercel/blob";
 
 export async function GET(request: NextRequest) {
     try {
@@ -14,18 +13,18 @@ export async function GET(request: NextRequest) {
 
         const id = request.nextUrl.searchParams.get("id");
 
-        const storages = id ?
-            await prisma.storage.findUnique({
+        const locations = id ?
+            await prisma.location.findUnique({
                 where: { id: Number(id) },
             }) :
-            await prisma.storage.findMany({
+            await prisma.location.findMany({
                 orderBy: { id: 'asc' },
             });
 
-        return NextResponse.json(storages, { status: 200 });
+        return NextResponse.json(locations, { status: 200 });
     } catch (error) {
-        console.error("Error fetching storages:", error);
-        return NextResponse.json({ error: "Failed to fetch storages" }, { status: 500 });
+        console.error("Error fetching locations:", error);
+        return NextResponse.json({ error: "Failed to fetch locations" }, { status: 500 });
     }
 }
 
