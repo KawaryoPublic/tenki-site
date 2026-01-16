@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
         const tier = await getTier(request);
         const searchParams = request.nextUrl.searchParams;
         const id = Number(searchParams.get("id"));
-        const locationId = searchParams.get("location_id");
+        const locationId = Number(searchParams.get("location_id"));
 
         if(!checkTier(tier, false, true)) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
@@ -24,9 +24,7 @@ export async function GET(request: NextRequest) {
             })
         } else if(location) {
             equipment = await prisma.equipment.findMany({
-                where: { location: {
-                    id: locationId
-                } },
+                where: { locationId: locationId },
                 orderBy: { createdAt: 'desc' },
             });
         }
