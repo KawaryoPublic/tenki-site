@@ -15,6 +15,7 @@ import { Location } from "@/lib/types";
 
 export default function AddEquipmentForm() {
     const [ locations, setLocations ] = useState<Location[]>([]);
+    const [ loading, setLoading ] = useState(true);
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
         formData = await uploadFiles(formData);
 
@@ -30,13 +31,17 @@ export default function AddEquipmentForm() {
     }, null);
 
     useEffect(() => {
+        setLoading(true);
+
         fetch("/api/location")
             .then(res => res.json())
             .then(data => setLocations(data))
+            .finally(() => setLoading(false))
             .catch(err => console.log(err));
     }, []);
 
     return (
+        loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
         <Form 
             action={formAction}
             className="flex flex-col gap-2"

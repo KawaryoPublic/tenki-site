@@ -3,7 +3,7 @@
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import LocationDetailUI from "@/components/ui/storage/LocationDetailUI";
 import LocationMapUI from "@/components/ui/storage/LocationMapUI";
-import { TIER } from "@/lib/types";
+import { Equipment, TIER } from "@/lib/types";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Location } from "@/lib/types";
@@ -11,6 +11,7 @@ import { Location } from "@/lib/types";
 export default function LocationSection({ id, tier }: { id: number, tier: TIER }) {
     const [ location, setLocation ] = useState<Location | null>(null);
     const [ locations, setLocations ] = useState<Location[]>([]);
+    const [ equipment, setEquipment ] = useState<Equipment[]>([]);
     const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {
@@ -23,6 +24,11 @@ export default function LocationSection({ id, tier }: { id: number, tier: TIER }
 
                 const location = data.find((loc: Location) => loc.id === id);
                 setLocation(location);
+
+                fetch(`/api/equipment?locationId=${id}`)
+                    .then(res => res.json())
+                    .then(equipmentData => setEquipment(equipmentData))
+                    .catch(err => console.log(err));
             })
             .finally(() => setLoading(false))
             .catch(err => console.log(err));
@@ -43,7 +49,7 @@ export default function LocationSection({ id, tier }: { id: number, tier: TIER }
                 </WhiteFrameUI>
             <div className="w-full flex-1 flex flex gap-2">
                 <LocationMapUI location={location} />
-                <LocationDetailUI location={location} tier={tier} />
+                <LocationDetailUI location={location} equipment={equipment} tier={tier} />
             </div>
         </section>
     )

@@ -3,13 +3,13 @@ import prisma from "@/lib/prisma";
 import { getTier } from "@/lib/actions";
 import { checkTier } from "@/lib/utils";
 import { del } from "@vercel/blob";
-import { Location } from "@/lib/types";
 
 export async function GET(request: NextRequest) {
     try {
         const tier = await getTier(request);
         const searchParams = request.nextUrl.searchParams;
         const id = Number(searchParams.get("id"));
+        const locationId = Number(searchParams.get("locationId"));
 
         if(!checkTier(tier, false, true)) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
@@ -20,7 +20,11 @@ export async function GET(request: NextRequest) {
         if(id) {
             equipment = await prisma.equipment.findUnique({
                 where: { id: id }
-            })
+            });
+        } else if(locationId) {
+            equipment = await prisma.equipment.findMany({
+                where: { locationId: locationId }
+            });
         } else {
             equipment = await prisma.equipment.findMany({
                 orderBy: { createdAt: 'desc' },

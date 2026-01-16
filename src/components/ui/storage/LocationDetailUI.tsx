@@ -1,10 +1,10 @@
 import { checkTier } from "@/lib/utils";
 import BlueButton from "../global/Button/BlueButton";
 import WhiteFrameUI from "../global/WhiteFrameUI";
-import { Location, TIER } from "@/lib/types";
+import { Equipment, Location, TIER } from "@/lib/types";
 import Link from "next/link";
 
-export default function LocationDetailUI({ location, tier }: { location: Location, tier: TIER }) {
+export default function LocationDetailUI({ location, equipment, tier }: { location: Location, equipment: Equipment[], tier: TIER }) {
     return (  
         <WhiteFrameUI className="flex-1 flex flex-col gap-2">
             <div className="flex justify-between items-center border-b pb-2">
@@ -22,8 +22,8 @@ export default function LocationDetailUI({ location, tier }: { location: Locatio
                 <p className="font-bold">機材一覧</p>
                 <nav>
                     {
-                        !location.equipment ? <div>この場所には機材がありません。</div> :
-                        location.equipment.map((equipment, i) => (
+                        equipment.length === 0 ? <div>この場所には機材がありません。</div> :
+                        equipment.map((equipment, i) => (
                             <div key={i}>
                                 ・
                                 <Link href={`/equipment/${equipment.id}`} className="text-blue-500 underline">
