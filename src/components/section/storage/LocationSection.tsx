@@ -32,7 +32,7 @@ export default function LocationSection({ id, tier }: { id: number, tier: TIER }
         <section className="flex-1 flex flex-col gap-4 items-center">
              <WhiteFrameUI className="flex flex gap-4">
                 {
-                    locations.map(([location, i]) => (
+                    locations.map((location, i) => (
                         <div key={i}>
                             <Link href={`/storage/${location.id}`}>{location.name}</Link>
                         </div>
