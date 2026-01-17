@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Equipment, TIER } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import EquipmentDetailUI from "@/components/ui/equipment/EquipmentDetailUI";
+import { Location } from "@/lib/types";
 
 export default function EquipmentDetailSection({ id, tier }: { id: number, tier: TIER }) {
     const [ equipment, setEquipment ] = useState<Equipment | null>();
