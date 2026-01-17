@@ -53,12 +53,13 @@ export interface Location {
     id: number;
     name: string;
     size: number[];
+    equipment: Equipment[];
 }
 
 export interface Equipment {
     id: number;
     name: string;
-    locationId: number;
+    location: Location;
     number: number;
     size: number[];
     contents: string[];

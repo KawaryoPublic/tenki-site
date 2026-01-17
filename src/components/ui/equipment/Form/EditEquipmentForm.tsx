@@ -59,7 +59,7 @@ export default function EditEquipmentForm({ equipment, locations }: { equipment:
                 title="場所"
                 name="locationId"
                 options={locations.map(location => ({ value: location.id.toString(), label: location.name }))}
-                defaultValue={equipment.locationId.toString()}
+                defaultValue={equipment.location.id.toString()}
             />
             <DefaultInput
                 title="個数"
