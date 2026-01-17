@@ -6,6 +6,7 @@ import BlueButton from "@/components/ui/global/Button/BlueButton";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import { checkTier } from "@/lib/utils";
 import EditEquipmentForm from "@/components/ui/equipment/Form/EditEquipmentForm";
+import { Location } from "@/lib/types";
 
 export default function EditEquipmentSection({ id, tier }: { id: number, tier: TIER }) {
     const [ equipment, setEquipment ] = useState<Equipment | null>();
