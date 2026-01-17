@@ -23,12 +23,6 @@ export default function LocationSection({ id, tier }: { id: number, tier: TIER }
 
                 const location = data.find((loc: Location) => loc.id === id);
                 setLocation(location);
-
-                fetch(`/api/equipment?locationId=${id}`)
-                    .then(res => res.json())
-                    .then(equipmentData => setEquipment(equipmentData))
-                    .finally(() => setLoading(false))
-                    .catch(err => console.log(err));
             })
             .catch(err => console.log(err));
     }, []);
