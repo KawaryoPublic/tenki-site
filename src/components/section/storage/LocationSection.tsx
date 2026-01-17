@@ -36,7 +36,7 @@ export default function LocationSection({ id, tier }: { id: number, tier: TIER }
                 {
                     locations.map((location, i) => (
                         <div key={i}>
-                            <Link href={`/storage/${location.id}`}>{location.name}</Link>
+                            <Link href={`/storage/${location.id}`} className="font-bold">{location.name}</Link>
                         </div>
                     ))
                 }
