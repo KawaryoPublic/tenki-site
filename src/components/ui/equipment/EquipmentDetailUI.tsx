@@ -23,7 +23,7 @@ export default function EquipmentDetailUI({ equipment, tier }: { equipment: Equi
             </div>
             <div className="whitespace-pre-wrap text-sm md:text-base">
                 <p className="font-bold">場所</p>
-                <Link href={`/storage/${equipment.location.id}?equipment=${equipment.name}`} className="text-blue-500 underline">{location.name}</Link>
+                <Link href={`/storage/${equipment.location.id}?equipment=${equipment.name}`} className="text-blue-500 underline">{equipment.location.name}</Link>
             </div>
             <div className="whitespace-pre-wrap text-sm md:text-base">
                 <p className="font-bold">個数</p>
