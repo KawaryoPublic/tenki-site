@@ -7,7 +7,7 @@ import EquipmentDetailUI from "@/components/ui/equipment/EquipmentDetailUI";
 
 export default function EquipmentDetailSection({ id, tier }: { id: number, tier: TIER }) {
     const [ equipment, setEquipment ] = useState<Equipment | null>();
-    const [ location, setLocation ] = useState<Location>([]);
+    const [ location, setLocation ] = useState<Location | null>(null);
     const [ loading, setLoading ] = useState(true);
     
     useEffect(() => {
@@ -29,7 +29,7 @@ export default function EquipmentDetailSection({ id, tier }: { id: number, tier:
 
     return (
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !equipment ? <div className="flex-1 flex flex-col items-center font-bold text-xl">機材を読み込めませんでした</div> :
+        !equipment || !location ? <div className="flex-1 flex flex-col items-center font-bold text-xl">機材を読み込めませんでした</div> :
         <section className="w-full flex flex-col gap-4">
             <EquipmentDetailUI equipment={equipment} location={location} tier={tier} />
             <div>
