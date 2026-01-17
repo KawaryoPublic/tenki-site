@@ -16,9 +16,11 @@ export async function GET(request: NextRequest) {
         const locations = id ?
             await prisma.location.findUnique({
                 where: { id: Number(id) },
+                include: { equipment: true },
             }) :
             await prisma.location.findMany({
                 orderBy: { id: 'asc' },
+                include: { equipment: true },
             });
 
         return NextResponse.json(locations, { status: 200 });
