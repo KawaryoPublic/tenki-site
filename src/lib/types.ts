@@ -58,7 +58,7 @@ export interface Location {
 export interface Equipment {
     id: number;
     name: string;
-    location: Location;
+    locationId: number;
     number: number;
     size: number[];
     contents: string[];

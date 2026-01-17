@@ -1,12 +1,12 @@
 import { checkTier, splitLinksAndHeaders } from "@/lib/utils";
 import BlueButton from "../global/Button/BlueButton";
 import WhiteFrameUI from "../global/WhiteFrameUI";
-import { Equipment, TIER } from "@/lib/types";
+import { Equipment, Location, TIER } from "@/lib/types";
 import FileLinkUI from "../global/FileLinkUI";
 import DeleteEquipmentButton from "./Button/DeleteEquipmentButton";
 import Link from "next/link";
 
-export default function EquipmentDetailUI({ equipment, tier }: { equipment: Equipment, tier: TIER }) {
+export default function EquipmentDetailUI({ equipment, location, tier }: { equipment: Equipment, location: Location, tier: TIER }) {
     return (
         <WhiteFrameUI className="flex flex-col gap-2">
             <div className="flex justify-between items-center border-b pb-2">
@@ -23,7 +23,7 @@ export default function EquipmentDetailUI({ equipment, tier }: { equipment: Equi
             </div>
             <div className="whitespace-pre-wrap text-sm md:text-base">
                 <p className="font-bold">場所</p>
-                <span>{equipment.location.name}</span>
+                <Link href={`/storage/${location.id}?equipment=${equipment.name}`} className="text-blue-500 underline">{location.name}</Link>
             </div>
             <div className="whitespace-pre-wrap text-sm md:text-base">
                 <p className="font-bold">個数</p>

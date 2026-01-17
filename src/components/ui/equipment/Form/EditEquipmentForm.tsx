@@ -13,9 +13,9 @@ import { useState, useActionState, useEffect } from "react";
 import { uploadFiles } from "@/lib/utils";
 import { Location } from "@/lib/types";
 
-export default function EditEquipmentForm({ equipment }: { equipment: Equipment }) {
+export default function EditEquipmentForm({ equipment, locations }: { equipment: Equipment, locations: Location[] }) {
     const initialFiles = equipment.urls.map((url, index) => ({ url: url, filename: equipment.filenames[index] }));
-    const [ locations, setLocations ] = useState<Location[]>([]);
+    
     const [ files, setFiles ] = useState<{ url: string, filename: string }[]>(initialFiles);
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
         for(const file of initialFiles) {
@@ -40,12 +40,7 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
         redirect(`/equipment/${equipment.id}`);
     }, null);
 
-    useEffect(() => {
-        fetch("/api/location")
-            .then(res => res.json())
-            .then(data => setLocations(data))
-            .catch(err => console.log(err));
-    }, []);
+
 
     return (
         <Form 
@@ -64,7 +59,7 @@ export default function EditEquipmentForm({ equipment }: { equipment: Equipment 
                 title="場所"
                 name="locationId"
                 options={locations.map(location => ({ value: location.id.toString(), label: location.name }))}
-                defaultValue={JSON.stringify(equipment.location)}
+                defaultValue={equipment.locationId.toString()}
             />
             <DefaultInput
                 title="個数"
