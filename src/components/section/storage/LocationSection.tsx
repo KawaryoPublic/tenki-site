@@ -24,6 +24,7 @@ export default function LocationSection({ id, tier }: { id: number, tier: TIER }
                 const location = data.find((loc: Location) => loc.id === id);
                 setLocation(location);
             })
+            .finally(() => setLoading(false))
             .catch(err => console.log(err));
     }, []);
 

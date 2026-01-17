@@ -17,6 +17,7 @@ export default function EquipmentDetailSection({ id, tier }: { id: number, tier:
             .then(data => {
                 setEquipment(data);
             })
+            .finally(() => setLoading(false))
             .catch(err => console.error(err))
     }, []);
 
