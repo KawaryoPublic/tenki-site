@@ -7,7 +7,7 @@ import EquipmentDetailUI from "@/components/ui/equipment/EquipmentDetailUI";
 import { Location } from "@/lib/types";
 
 export default function EquipmentDetailSection({ id, tier }: { id: number, tier: TIER }) {
-    const [ equipment, setEquipment ] = useState<Equipment | null>();
+    const [ equipment, setEquipment ] = useState<Equipment | null>(null);
     const [ location, setLocation ] = useState<Location | null>(null);
     const [ loading, setLoading ] = useState(true);
     
