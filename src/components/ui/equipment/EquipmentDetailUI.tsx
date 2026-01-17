@@ -31,7 +31,7 @@ export default function EquipmentDetailUI({ equipment, location, tier }: { equip
             </div>
             <div className="whitespace-pre-wrap text-sm md:text-base">
                 <p className="font-bold">サイズ</p>
-                <span>{`${equipment.size[0]}cm × ${equipment.size[1]}cm × ${equipment.size[2]}`}cm</span>
+                <span>{equipment.size}</span>
             </div>
             <div className="whitespace-pre-wrap text-sm md:text-base">
                 <p className="font-bold">内容物</p>
