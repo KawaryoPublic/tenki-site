@@ -8,7 +8,7 @@ export default function LocationDetailUI({ location, tier }: { location: Locatio
     return (  
         <WhiteFrameUI className="flex-1 flex flex-col gap-2">
             <div className="flex justify-between items-center border-b pb-2">
-                <h2 className="text-xl md:text-3xl font-bold">{location.name}</h2>
+                <h2 className="text-xl md:text-2xl font-bold">{location.name}</h2>
                 <div className="flex items-center gap-2 md:gap-4">
                     {
                         checkTier(tier) && 
