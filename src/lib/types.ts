@@ -49,11 +49,25 @@ export interface Manual {
     updatedAt: Date;
 }
 
+export interface Shelf {
+    id: number;
+    name: string;
+    location: Location;
+    size: number[];
+    equipment: {
+        id: number;
+        name: string;
+        size: number[];
+        position: number[]
+    }[];
+};
+
 export interface Location {
     id: number;
     name: string;
     size: number[];
     equipment: Equipment[];
+    shelves: Shelf[];
 }
 
 export interface Equipment {

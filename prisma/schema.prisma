@@ -68,11 +68,23 @@ model Manual {
   updatedAt DateTime @updatedAt
 }
 
+model Shelf {
+  id           Int      @id @default(autoincrement())
+  name         String
+  location     Location @relation(fields: [locationId], references: [id])
+  locationId   Int
+  size         Int[]
+  equipment    Json[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
 model Location {
   id        Int    @id @default(autoincrement())
   name      String @unique
   size      Int[]
   equipment Equipment[]
+  shelves   Shelf[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
