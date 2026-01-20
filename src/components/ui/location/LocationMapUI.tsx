@@ -1,5 +1,6 @@
 import { Location } from "@/lib/types";
 import WhiteFrameUI from "../global/WhiteFrameUI";
+import Link from "next/link";
 
 export default function LocationMapUI({ location }: { location: Location }) {
     return (
@@ -7,7 +8,7 @@ export default function LocationMapUI({ location }: { location: Location }) {
             <div className="flex justify-between items-center border-b pb-2">
                 <h2 className="text-xl md:text-2xl font-bold">{location.name}の地図</h2>
             </div>
-            <div className={`flex-1 object-contain border-2`} style={{ aspectRatio: location.size[0] / location.size[1]}}>
+            <div className="flex-1 object-contain border-2 relative" style={{ aspectRatio: location.size[0] / location.size[1]}}>
                 {
                     location.shelves.map((shelf, i) => (
                         <Link 
