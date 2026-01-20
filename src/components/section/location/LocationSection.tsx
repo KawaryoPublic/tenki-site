@@ -1,8 +1,8 @@
 "use client";
 
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
-import LocationDetailUI from "@/components/ui/storage/LocationDetailUI";
-import LocationMapUI from "@/components/ui/storage/LocationMapUI";
+import LocationDetailUI from "@/components/ui/location/LocationDetailUI";
+import LocationMapUI from "@/components/ui/location/LocationMapUI";
 import { TIER } from "@/lib/types";
 import Link from "next/link";
 import { useEffect, useState } from "react";

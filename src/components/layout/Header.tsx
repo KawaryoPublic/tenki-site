@@ -15,7 +15,7 @@ export default async function Header() {
           <Nav href="/notification" title="告知" tier={tier} allowAll />
           <Nav href="/calendar" title="カレンダー" tier={tier} allowStudent />
           <Nav href="/equipment" title="機材" tier={tier} allowStudent />
-          <Nav href="/storage/1" title="倉庫" tier={tier} allowStudent />
+          <Nav href="/location/1" title="倉庫" tier={tier} allowStudent />
           <Nav href="/file" title="ファイル" tier={tier} allowStudent/>
           <Nav href="/manual" title="マニュアル" tier={tier} allowStudent />
         </nav>

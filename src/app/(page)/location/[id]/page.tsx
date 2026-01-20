@@ -1,4 +1,4 @@
-import LocationSection from "@/components/section/storage/LocationSection";
+import LocationSection from "@/components/section/location/LocationSection";
 import { getTier } from "@/lib/actions";
 import { checkTier } from "@/lib/utils";
 
