@@ -14,12 +14,12 @@ export default function LocationMapUI({ location }: { location: Location }) {
                         <Link 
                             key={i}
                             href={`/storage/${location.id}/${shelf.id}`}
-                            className="absolute border bg-gray-300 text-center text-sm md:text-base text-center overflow-hidden"
+                            className="absolute border bg-gray-300 text-center text-sm md:text-base overflow-hidden flex items-center justify-center hover:bg-gray-400"
                             style={{
                                 width: `${shelf.size[0] / location.size[0] * 100}%`,
                                 height: `${shelf.size[1] / location.size[1] * 100}%`,
                                 left: `${shelf.position[0] / location.size[0] * 100}%`,
-                                top: `${shelf.position[1] / location.size[1] * 100}%`,
+                                bottom: `${shelf.position[1] / location.size[1] * 100}%`,
                             }}
                         >
                             {shelf.name}
