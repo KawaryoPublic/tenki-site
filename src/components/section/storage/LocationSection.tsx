@@ -34,11 +34,11 @@ export default function LocationSection({ id, tier }: { id: number, tier: TIER }
         <section className="flex-1 flex flex gap-4 items-center">
             <LocationMapUI location={location} />
             <div className="h-full flex-1 flex flex-col gap-2">
-                <WhiteFrameUI className="flex gap-4 justify-between items-center">
+                <WhiteFrameUI className="flex justify-between items-center">
                     {
                         locations.map((location, i) => (
                             <div key={i}>
-                                <Link href={`/storage/${location.id}`} className={`text-lg md:text-xl font-bold ${location.id === id ? "underline" : ""} hover:bg-gray-100`}>{location.name}</Link>
+                                <Link href={`/storage/${location.id}`} className={`text-lg md:text-xl font-bold ${location.id === id ? "underline" : ""} hover:bg-gray-300`}>{location.name}</Link>
                             </div>
                         ))
                     }
