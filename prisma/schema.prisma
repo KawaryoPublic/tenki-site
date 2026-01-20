@@ -75,6 +75,7 @@ model Shelf {
   locationId   Int
   size         Int[]
   position     Int[]
+  height       Int[]
   equipment    Json[]
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt

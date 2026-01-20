@@ -13,7 +13,7 @@ export default function LocationMapUI({ location }: { location: Location }) {
                     location.shelves.map((shelf, i) => (
                         <Link 
                             key={i}
-                            href={`/storage/${location.id}/${shelf.id}`}
+                            href={`/location/${location.id}/${shelf.id}`}
                             className="absolute border bg-gray-300 text-center text-sm md:text-base overflow-hidden flex items-center justify-center hover:bg-gray-400"
                             style={{
                                 width: `${shelf.size[0] / location.size[0] * 100}%`,

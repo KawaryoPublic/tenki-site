@@ -11,9 +11,9 @@ export default function Nav({ href, title, tier, allowParent = false, allowStude
     return (
         allowAll ? 
         <div>
-            <Link href={href} className={`hover:bg-gray-400 ${(pathname === "/" && pathname === href) || (pathname !== "/" && href.includes(pathname)) ? "border-b-3 font-bold" : ""}`}>{title}</Link>
+            <Link href={href} className={`hover:bg-gray-400 ${pathname.split("/")[1] === href.split("/")[1] ? "border-b-3 font-bold" : ""}`}>{title}</Link>
         </div> :
         checkTier(tier, allowParent, allowStudent) ? 
-        <Link href={href} className={`hover:bg-gray-400 ${(pathname === "/" && pathname === href) || (pathname !== "/" && href.includes(pathname)) ? "border-b-3 font-bold" : ""}`}>{title}</Link> : ""
+        <Link href={href} className={`hover:bg-gray-400 ${pathname.split("/")[1] === href.split("/")[1] ? "border-b-3 font-bold" : ""}`}>{title}</Link> : ""
     );
 }

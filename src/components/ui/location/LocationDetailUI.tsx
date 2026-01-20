@@ -13,7 +13,7 @@ export default function LocationDetailUI({ location, tier }: { location: Locatio
                     {
                         checkTier(tier) && 
                         <>
-                            <BlueButton href={`storage/location/edit/${location}`}>編集</BlueButton>
+                            <BlueButton href={`/location/${location.id}/edit`}>編集</BlueButton>
                         </>
                     }
                 </div>
