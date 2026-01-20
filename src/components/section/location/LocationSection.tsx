@@ -31,7 +31,7 @@ export default function LocationSection({ id, tier }: { id: number, tier: TIER }
     return (
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
         !location ? <div className="flex-1 flex flex-col items-center font-bold text-xl">倉庫を読み込めませんでした</div> :
-        <section className="flex-1 flex flex-col gap-4 items-center">
+        <section className="max-h-full flex-1 flex flex-col gap-4 items-center">
             <WhiteFrameUI className="flex justify-center gap-4 md:gap-8">
                 {
                     locations.map((location, i) => (
