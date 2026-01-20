@@ -19,20 +19,20 @@ export default function LocationDetailUI({ location, tier }: { location: Locatio
                 </div>
             </div>
             <div className="whitespace-pre-wrap text-sm md:text-base">
-                <p className="font-bold">機材一覧</p>
-                <nav>
+                <p className="font-bold">大きさ</p>
+                <span>{location.size[0]}cm × {location.size[1]}cm</span>
+            </div>
+            <div>
+                <p className="font-bold">設備一覧</p>
+                <nav className="list-disc list-inside">
                     {
-                        location.equipment.length === 0 ? <div>この場所には機材がありません。</div> :
-                        location.equipment.map((equipment, i) => (
-                            <div key={i}>
-                                ・
-                                <Link href={`/equipment/${equipment.id}`} className="text-blue-500 underline">
-                                    {equipment.name}
-                                </Link>
+                        location.shelves.map((shelf, i) => (
+                            <div className="whitespace-pre-wrap" key={i}>
+                                ・<Link href={`/location/${location.id}/${shelf.id}`} className="text-blue-500 hover:underline">{shelf.name}</Link>
                             </div>
                         ))
                     }
-                </nav>
+                </nav>   
             </div>
         </WhiteFrameUI>
     )

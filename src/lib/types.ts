@@ -54,6 +54,7 @@ export interface Shelf {
     name: string;
     location: Location;
     size: number[];
+    position: number[];
     equipment: {
         id: number;
         name: string;

@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
             }) :
             await prisma.location.findMany({
                 orderBy: { id: 'asc' },
-                include: { equipment: true },
+                include: { equipment: true, shelves: true },
             });
 
         return NextResponse.json(locations, { status: 200 });

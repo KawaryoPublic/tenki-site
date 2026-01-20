@@ -74,6 +74,7 @@ model Shelf {
   location     Location @relation(fields: [locationId], references: [id])
   locationId   Int
   size         Int[]
+  position     Int[]
   equipment    Json[]
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt

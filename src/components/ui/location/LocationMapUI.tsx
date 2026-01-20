@@ -7,7 +7,25 @@ export default function LocationMapUI({ location }: { location: Location }) {
             <div className="flex justify-between items-center border-b pb-2">
                 <h2 className="text-xl md:text-2xl font-bold">{location.name}の地図</h2>
             </div>
-            <div className={`flex-1 object-contain border-2`} style={{ aspectRatio: location.size[0] / location.size[1]}}></div>
+            <div className={`flex-1 object-contain border-2`} style={{ aspectRatio: location.size[0] / location.size[1]}}>
+                {
+                    location.shelves.map((shelf, i) => (
+                        <Link 
+                            key={i}
+                            href={`/storage/${location.id}/${shelf.id}`}
+                            className="absolute border bg-gray-300 text-center text-sm md:text-base text-center overflow-hidden"
+                            style={{
+                                width: `${shelf.size[0] / location.size[0] * 100}%`,
+                                height: `${shelf.size[1] / location.size[1] * 100}%`,
+                                left: `${shelf.position[0] / location.size[0] * 100}%`,
+                                top: `${shelf.position[1] / location.size[1] * 100}%`,
+                            }}
+                        >
+                            {shelf.name}
+                        </Link>
+                    ))
+                }
+            </div>
         </WhiteFrameUI>
     )
 }
