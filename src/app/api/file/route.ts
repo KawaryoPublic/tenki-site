@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
         const title = data.get("title") as string;
         const url = data.get("url") as string;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
-        const tier = data.get("tier") as number;
+        const tier = Number(data.get("tier"));
 
         if (title === undefined || url === undefined || tags === undefined || tier === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -94,7 +94,7 @@ export async function PUT(request: NextRequest) {
         const title = data.get("title") as string;
         const url = data.get("url") as string;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
-        const tier = data.get("tier") as number;
+        const tier = Number(data.get("tier"));
 
         if (!id || title === undefined || url === undefined || tags === undefined || tier === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
