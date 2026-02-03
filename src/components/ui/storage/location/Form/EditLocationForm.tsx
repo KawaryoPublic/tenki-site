@@ -8,7 +8,7 @@ import DefaultVectorInput from "@/components/ui/global/Form/DefaultVectorInput";
 import DeleteShelfButton from "../../shelf/Button/DeleteShelfButton";
 import Link from "next/link";
 
-export default function EditLocationForm({ location, setLocation, setDisplayMap }: { location: Location, setLocation: Dispatch<SetStateAction<Location>>, setDisplayMap: Dispatch<SetStateAction<boolean>> }) {
+export default function EditLocationForm({ location, setLocation, setDisplayMap }: { location: Location, setLocation: Dispatch<SetStateAction<Location | null>>, setDisplayMap: Dispatch<SetStateAction<boolean>> }) {
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
     
         await fetch(`/api/storage/location?id=${location.id}`, {
