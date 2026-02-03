@@ -11,12 +11,12 @@ export default function PasswordForm() {
             action={async data => {
                 "use server";
                 const password = data.get("password");
-                let tier = 0;
+                let tier = "0";
 
                 switch (password) {
-                    case PARENT_PASSWORD: tier = 1; break;
-                    case STUDENT_PASSWORD: tier = 2; break;
-                    case EXECUTIVE_PASSWORD: tier = 3; break;
+                    case PARENT_PASSWORD: tier = "1"; break;
+                    case STUDENT_PASSWORD: tier = "2"; break;
+                    case EXECUTIVE_PASSWORD: tier = "3"; break;
                 }
 
                 const cookieStore = await cookies();
