@@ -20,7 +20,7 @@ export const formatDate = (date: string) => {
     return `${splitDate[0]}年${Number(splitDate[1]) + 1}月${splitDate[2]}日`;
 }
 
-export const fitToParentSize = (parentRef: RefObject<HTMLElement>, normalPadding: number, largePadding: number, aspectRatio: number) => {
+export const fitToParentSize = (parentRef: RefObject<HTMLElement | null>, normalPadding: number, largePadding: number, aspectRatio: number) => {
     const padding = window.innerWidth > 768 ? largePadding : normalPadding;
 
     const parentWidth = parentRef.current?.offsetWidth - padding;
