@@ -38,7 +38,7 @@ export default function EditLocationForm({ location, setLocation, setDisplayMap 
                 values={location.size}
                 onChange={(e, i) => {
                     const size = location.size;
-                    size[i] = e.target.value;
+                    size[i] = Number(e.target.value);
                     setLocation({...location, size: size});
                 }}
             />
