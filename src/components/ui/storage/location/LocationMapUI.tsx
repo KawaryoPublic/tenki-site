@@ -4,7 +4,7 @@ import WhiteFrameUI from "../../global/WhiteFrameUI";
 import Link from "next/link";
 import { fitToParentSize } from "@/lib/utils";
 
-export default function LocationMapUI({ location, parentRef, className = "" }: { location: Location, parentRef: RefObject, className?: string }) {
+export default function LocationMapUI({ location, parentRef, className = "" }: { location: Location, parentRef: RefObject<HTMLElement>, className?: string }) {
     const [ size, setSize ] = useState<number[]>([]);
 
     useEffect(() => {
