@@ -8,7 +8,7 @@ import EditLocationForm from "@/components/ui/storage/location/Form/EditLocation
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 
 export default function EditLocationSection({ id }: { id: number }) {
-    const parentRef = useRef();
+    const parentRef = useRef(null);
     const [ location, setLocation ] = useState<Location | null>(null);
     const [ displayMap, setDisplayMap ] = useState<boolean>(false);
     const [ loading, setLoading ] = useState(true);

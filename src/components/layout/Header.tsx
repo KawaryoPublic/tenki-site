@@ -1,6 +1,5 @@
 "use client";
 
-import { getTier } from "@/lib/actions";
 import Nav from "./Nav";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,7 +7,7 @@ import { useState, useEffect, useRef } from "react";
 import { fitToParentSize } from "@/lib/utils";
 
 export default function Header({ tier }: { tier: number }) {
-  const parentRef = useRef();
+  const parentRef = useRef(null);
   const [ size, setSize ] = useState<number[]>([]);
 
   useEffect(() => {

@@ -6,9 +6,10 @@ import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import { Location } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
+import { checkTier } from "@/lib/utils";
 
 export default function LocationSection({ id, tier }: { id: number, tier: number }) {
-    const parentRef = useRef();
+    const parentRef = useRef(null);
     const [ location, setLocation ] = useState<Location | null>(null);
     const [ locations, setLocations ] = useState<Location[]>([]);
     const [ loading, setLoading ] = useState(true);
@@ -42,7 +43,9 @@ export default function LocationSection({ id, tier }: { id: number, tier: number
                     ))
                 }
                 </WhiteFrameUI>
-                <BlueButton href={`/storage/location/edit/${location.id}`}><span className="text-lg md:text-xl p-1 font-bold">編集</span></BlueButton>
+                {
+                    checkTier(tier) && <BlueButton href={`/storage/location/edit/${location.id}`}><span className="text-lg md:text-xl p-1 font-bold">編集</span></BlueButton>
+                }
             </div>
             <div className="w-full flex-1 flex flex-col md:flex-row gap-4 lg:gap-8 relative" ref={parentRef}>
                 <LocationMapUI location={location} parentRef={parentRef} />
