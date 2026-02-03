@@ -1,6 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
-import { TIER } from "@/lib/types";
 import { checkTier } from "@/lib/utils";
 import { getTier } from "@/lib/actions";
 
@@ -33,7 +32,7 @@ export async function GET(request: NextRequest) {
                                 tier: tier
                             },
                             {
-                                tier: TIER.NONE
+                                tier: 0
                             }
                         ]
                     },

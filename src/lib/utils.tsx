@@ -1,11 +1,11 @@
-import { TIER } from "./types";
 import { upload } from "@vercel/blob/client";
 import { redirect } from "next/navigation";
+import { RefObject } from "react";
 
-export const checkTier = (tier: TIER, allowParent: boolean = false, allowStudent: boolean = false) => {
-    if(tier === TIER.ADMIN) return true;
-    if(allowParent) return tier === TIER.PARENT;
-    if(allowStudent) return tier === TIER.STUDENT;
+export const checkTier = (tier: number, allowParent: boolean = false, allowStudent: boolean = false) => {
+    if(tier === 3) return true;
+    if(allowParent) return tier === 1;
+    if(allowStudent) return tier === 2;
     
     return false;
 }
@@ -18,6 +18,15 @@ export const formatDate = (date: string) => {
     }
     
     return `${splitDate[0]}年${Number(splitDate[1]) + 1}月${splitDate[2]}日`;
+}
+
+export const fitToParentSize = (parentRef: RefObject, normalPadding: number, largePadding: number, aspectRatio: number) => {
+    const padding = window.innerWidth > 768 ? largePadding : normalPadding;
+
+    const parentWidth = parentRef.current?.offsetWidth - padding;
+    const parentHeight = parentRef.current?.offsetHeight - padding;
+
+    return parentWidth / parentHeight < aspectRatio ? [parentWidth, parentWidth / aspectRatio] : [parentHeight * aspectRatio, parentHeight];
 }
 
 export const filterByTagsAndTitle = (list: any[], tags: string[], title: string[]) => {

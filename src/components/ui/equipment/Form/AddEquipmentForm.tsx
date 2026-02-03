@@ -9,6 +9,7 @@ import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
 import { useActionState } from 'react';
 import { Location } from "@/lib/types";
+import DefaultVectorInput from "../../global/Form/DefaultVectorInput";
 
 export default function AddEquipmentForm({ locations }: { locations: Location[] }) {
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
@@ -50,41 +51,7 @@ export default function AddEquipmentForm({ locations }: { locations: Location[] 
                 required
                 label
             />
-            <div>
-                <label className="font-bold text-gray-900 text-sm md:text-base flex flex-col gap-1">サイズ[cm]</label>
-                <div className="flex flex-col md:flex-row gap-1 md:justify-between md:items-center">
-                    <div className="flex gap-2 items-center">
-                        <label className="font-bold">縦幅</label>
-                        <DefaultInput
-                            title="縦幅"
-                            name="size"
-                            type="number"
-                            min={0}
-                            required
-                        />
-                    </div>
-                    <div className="flex gap-2 items-center">
-                        <label className="font-bold">横幅</label>
-                        <DefaultInput
-                            title="横幅"
-                            name="size"
-                            type="number"
-                            min={0}
-                            required
-                        />
-                    </div>
-                    <div className="flex gap-2 items-center">
-                        <label className="font-bold">高さ</label>
-                        <DefaultInput
-                            title="高さ"
-                            name="size"
-                            type="number"
-                            min={0}
-                            required
-                        />
-                    </div>
-                </div>
-            </div>
+            <DefaultVectorInput title="サイズ[cm]" name="size" labels={["縦幅", "横幅", "高さ"]} />
             <DefaultAddableOption title="内容物" name="content" />
             <DefaultTextArea
                 title="説明"

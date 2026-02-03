@@ -2,17 +2,17 @@
 
 import { checkTier } from "@/lib/utils";
 import { useEffect, useState } from "react";
-import { Observation, TIER } from "@/lib/types";
+import { Observation } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
-import EditObservationForm from "@/components/ui/calendar/Form/EditObservationForm";
+import EditObservationForm from "@/components/ui/calendar/observation/Form/EditObservationForm";
 
-export default function EditObservationSection({ day, tier }: { day: number, tier: TIER }) {
+export default function EditObservationSection({ day, tier }: { day: number, tier: number }) {
     const [ observation, setObservation ] = useState<Observation | null>();
     const [ loading, setLoading ] = useState(true);
     
     useEffect(() => {
-        fetch(`/api/observation?day=${day}`)
+        fetch(`/api/calendar/observation?day=${day}`)
             .then(res => res.json())
             .then(data => setObservation(data))
             .finally(() => setLoading(false))

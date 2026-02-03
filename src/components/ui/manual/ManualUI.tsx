@@ -1,11 +1,11 @@
 import DeleteManualButton from "./Button/DeleteManualButton";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import { checkTier } from "@/lib/utils";
-import { Manual, TIER } from "@/lib/types";
+import { Manual } from "@/lib/types";
 import BlueButton from "../global/Button/BlueButton";
 import Link from "next/link";
 
-export default function ManualUI({ manual, tier }: { manual: Manual, tier: TIER }) {
+export default function ManualUI({ manual, tier }: { manual: Manual, tier: number }) {
     const updatedAt = new Date(manual.updatedAt);
 
     return (

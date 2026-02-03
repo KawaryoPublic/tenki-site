@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Manual, TIER } from "@/lib/types";
+import { Manual } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import ManualDetailUI from "@/components/ui/manual/ManualDetailUI";
 
-export default function ManualDetailSection({ id, tier }: { id: number, tier: TIER }) {
+export default function ManualDetailSection({ id, tier }: { id: number, tier: number }) {
     const [ manual, setManual ] = useState<Manual | null>();
     const [ loading, setLoading ] = useState(true);
     

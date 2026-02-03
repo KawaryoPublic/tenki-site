@@ -1,11 +1,11 @@
 import DeleteNotificationButton from "./Button/DeleteNotificationButton";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import { checkTier } from "@/lib/utils";
-import { Notification, TIER } from "@/lib/types";
+import { Notification } from "@/lib/types";
 import BlueButton from "../global/Button/BlueButton";
 import Link from "next/link";
 
-export default function NotificationUI({ notification, tier }: { notification: Notification, tier: TIER }) {
+export default function NotificationUI({ notification, tier }: { notification: Notification, tier: number }) {
     const updatedAt = new Date(notification.updatedAt);
 
     return (

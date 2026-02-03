@@ -1,13 +1,13 @@
 "use client";
 
 import NotificationUI from "@/components/ui/notification/NotificationUI";
-import { Notification, TIER } from "@/lib/types";
+import { Notification } from "@/lib/types";
 import { useState, useEffect } from "react";
 import { checkTier, filterByTagsAndTitle, searchByTagsAndTitle } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearch";
 
-export default function NotificationsSection({ tier, tags, title }: { tier: TIER, tags: string[], title: string[] }) {
+export default function NotificationsSection({ tier, tags, title }: { tier: number, tags: string[], title: string[] }) {
   const [ notifications, setNotifications ] = useState<Notification[]>([]);
   const [ loading, setLoading ] = useState<boolean>(true);
 

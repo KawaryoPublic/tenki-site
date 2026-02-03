@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Manual, TIER } from "@/lib/types";
+import { Manual } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import { checkTier } from "@/lib/utils";
 import EditManualForm from "@/components/ui/manual/Form/EditManualForm";
 
-export default function EditManualSection({ id, tier }: { id: number, tier: TIER }) {
+export default function EditManualSection({ id, tier }: { id: number, tier: number }) {
     const [ manual, setManual ] = useState<Manual | null>();
     const [ loading, setLoading ] = useState(true);
     

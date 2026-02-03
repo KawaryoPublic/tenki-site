@@ -1,11 +1,11 @@
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import { checkTier } from "@/lib/utils";
-import { Equipment, TIER } from "@/lib/types";
+import { Equipment } from "@/lib/types";
 import BlueButton from "../global/Button/BlueButton";
 import Link from "next/link";
 import DeleteEquipmentButton from "./Button/DeleteEquipmentButton";
 
-export default function EquipmentUI({ equipment, tier }: { equipment: Equipment, tier: TIER }) {
+export default function EquipmentUI({ equipment, tier }: { equipment: Equipment, tier: number }) {
     const updatedAt = new Date(equipment.updatedAt);
 
     return (

@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Equipment, TIER } from "@/lib/types";
+import { Equipment } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import EquipmentDetailUI from "@/components/ui/equipment/EquipmentDetailUI";
 
-export default function EquipmentDetailSection({ id, tier }: { id: number, tier: TIER }) {
+export default function EquipmentDetailSection({ id, tier }: { id: number, tier: number }) {
     const [ equipment, setEquipment ] = useState<Equipment | null>(null);
     const [ loading, setLoading ] = useState(true);
     

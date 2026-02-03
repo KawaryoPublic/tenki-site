@@ -1,12 +1,12 @@
 "use client";
 
-import { DateInfo, TIER, Observation } from "@/lib/types";
+import { DateInfo, Observation } from "@/lib/types";
 import { useEffect, useState } from "react";
 import CalendarUI from "@/components/ui/calendar/CalendarUI";
 import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearch";
 import { redirect } from "next/navigation";
 
-export default function CalendarSection({ filter, tier }: { filter: string, tier: TIER }) {
+export default function CalendarSection({ filter, tier }: { filter: string, tier: number }) {
     const [observationDays, setObservationDays] = useState<Number[]>([]);
     const [dateInfo, setDateInfo] = useState<DateInfo[]>([]);
     const [loading, setLoading] = useState(true);
@@ -14,13 +14,13 @@ export default function CalendarSection({ filter, tier }: { filter: string, tier
     useEffect(() => {
         setLoading(true);
 
-        fetch('/api/date_info')
+        fetch('/api/calendar/date_info')
             .then(res => res.json())
             .then(data => setDateInfo(data))
             .then(() => {
                 if (!filter) return;
 
-                fetch(`/api/observation?filter=${filter}`)
+                fetch(`/api/calendar/observation?filter=${filter}`)
                     .then(res => res.json())
                     .then(data => setObservationDays(
                         data.filter((observation: Observation) => observation.morning.includes(filter) || observation.noon.includes(filter) || observation.afterSchool.includes(filter))

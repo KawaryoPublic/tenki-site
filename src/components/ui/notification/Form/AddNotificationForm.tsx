@@ -2,7 +2,6 @@
 
 import Form from "next/form";
 import { redirect } from "next/navigation";
-import { TIER } from "@/lib/types";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
@@ -50,12 +49,9 @@ export default function AddNotificationForm() {
             <DefaultSelect
                 title="対象"
                 name="tier"
-                options={[
-                    { value: TIER.NONE, label: `${TIER_LABELS[TIER.NONE]}向け` },
-                    { value: TIER.PARENT, label: `${TIER_LABELS[TIER.PARENT]}向け` },
-                    { value: TIER.STUDENT, label: `${TIER_LABELS[TIER.STUDENT]}向け` },
-                    { value: TIER.ADMIN, label: `${TIER_LABELS[TIER.ADMIN]}向け` },
-                ]}
+                options={TIER_LABELS.map((value, i) => {
+                    return {value: i, label: value};
+                })}
             />
             <div className="pt-4">
                 <BlueButton disabled={pending}>{pending ? "保存中..." : "保存"}</BlueButton>

@@ -1,11 +1,10 @@
 "use client";
 
-import { TIER } from "@/lib/types";
 import { checkTier } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function Nav({ href, title, tier, allowParent = false, allowStudent = false, allowAll = false}: { href: string, title: string, tier: TIER, allowParent?: boolean, allowStudent?: boolean, allowAll?: boolean }) {
+export default function Nav({ href, title, tier, allowParent = false, allowStudent = false, allowAll = false}: { href: string, title: string, tier: number, allowParent?: boolean, allowStudent?: boolean, allowAll?: boolean }) {
     const pathname = usePathname();
 
     return (

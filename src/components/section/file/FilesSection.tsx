@@ -1,13 +1,13 @@
 "use client";
 
-import { File, TIER } from "@/lib/types";
+import { File } from "@/lib/types";
 import { useState, useEffect } from "react";
 import { checkTier, filterByTagsAndTitle, searchByTagsAndTitle } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import FileUI from "@/components/ui/file/FileUI";
 import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearch";
 
-export default function FilesSection({ tier, tags, title }: { tier: TIER, tags: string[], title: string[] }) {
+export default function FilesSection({ tier, tags, title }: { tier: number, tags: string[], title: string[] }) {
   const [ files, setFiles ] = useState<File[]>([]);
   const [ loading, setLoading ] = useState<boolean>(true);
 

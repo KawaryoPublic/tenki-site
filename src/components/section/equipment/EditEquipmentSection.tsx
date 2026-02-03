@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Equipment, TIER } from "@/lib/types";
+import { Equipment } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import { checkTier } from "@/lib/utils";
 import EditEquipmentForm from "@/components/ui/equipment/Form/EditEquipmentForm";
 import { Location } from "@/lib/types";
 
-export default function EditEquipmentSection({ id, tier }: { id: number, tier: TIER }) {
+export default function EditEquipmentSection({ id, tier }: { id: number, tier: number }) {
     const [ equipment, setEquipment ] = useState<Equipment | null>();
     const [ locations, setLocations ] = useState<Location[]>([]);
     const [ loading, setLoading ] = useState(true);

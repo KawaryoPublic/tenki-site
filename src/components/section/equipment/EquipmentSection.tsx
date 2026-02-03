@@ -1,13 +1,13 @@
 "use client";
 
-import { Equipment, TIER } from "@/lib/types";
+import { Equipment } from "@/lib/types";
 import { useState, useEffect } from "react";
 import { checkTier, filterByTagsAndTitle, searchByTagsAndTitle } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearch";
 import EquipmentUI from "@/components/ui/equipment/EquipmentUI";
 
-export default function EquipmentSection({ tier, tags, title }: { tier: TIER, tags: string[], title: string[] }) {
+export default function EquipmentSection({ tier, tags, title }: { tier: number, tags: string[], title: string[] }) {
   const [ equipment, setEquipment ] = useState<Equipment[]>([]);
   const [ loading, setLoading ] = useState<boolean>(true);
 

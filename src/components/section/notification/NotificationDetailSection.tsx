@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Notification, TIER } from "@/lib/types";
+import { Notification } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import NotificationDetailUI from "@/components/ui/notification/NotificationDetailUI";
 
-export default function NotificationDetailSection({ id, tier }: { id: number, tier: TIER }) {
+export default function NotificationDetailSection({ id, tier }: { id: number, tier: number }) {
     const [ notification, setNotification ] = useState<Notification | null>();
     const [ loading, setLoading ] = useState(true);
     

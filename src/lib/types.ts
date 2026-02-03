@@ -1,10 +1,3 @@
-export enum TIER {
-    NONE = "none",
-    PARENT = "parent",
-    STUDENT = "student",
-    ADMIN = "admin",
-}
-
 export interface Observation {
     day: number;
     morning: string[];
@@ -34,7 +27,7 @@ export interface File {
     title: string;
     url: string;
     tags: string[];
-    tier: TIER;
+    tier: number;
     updatedAt: Date;
 }
 

@@ -29,7 +29,7 @@ model Notification {
   tags      String[]
   urls      String[]
   filenames String[]
-  tier      String
+  tier      Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -51,7 +51,7 @@ model File {
   title     String
   url       String
   tags      String[]
-  tier      String
+  tier      Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -63,7 +63,7 @@ model Manual {
   tags      String[]
   urls      String[]
   filenames String[]
-  tier      String
+  tier      Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -76,6 +76,7 @@ model Shelf {
   size         Int[]
   position     Int[]
   height       Int[]
+  type         String
   equipment    Json[]
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
@@ -83,7 +84,7 @@ model Shelf {
 
 model Location {
   id        Int    @id @default(autoincrement())
-  name      String @unique
+  name      String 
   size      Int[]
   equipment Equipment[]
   shelves   Shelf[]

@@ -2,7 +2,6 @@
 
 import Form from "next/form";
 import { redirect } from "next/navigation";
-import { TIER } from "@/lib/types";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultSelect from "../../global/Form/DefaultSelect";
@@ -46,8 +45,8 @@ export default function AddFileForm() {
                 title="対象"
                 name="tier"
                 options={[
-                    { value: TIER.STUDENT, label: `${TIER_LABELS[TIER.STUDENT]}向け` },
-                    { value: TIER.ADMIN, label: `${TIER_LABELS[TIER.ADMIN]}向け` },
+                    { value: 2, label: `${TIER_LABELS[2]}向け` },
+                    { value: 3, label: `${TIER_LABELS[3]}向け` },
                 ]}
             />
             <div className="pt-4">

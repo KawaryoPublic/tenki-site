@@ -1,12 +1,12 @@
 import { checkTier, splitLinksAndHeaders } from "@/lib/utils";
 import BlueButton from "../global/Button/BlueButton";
 import WhiteFrameUI from "../global/WhiteFrameUI";
-import { Notification, TIER } from "@/lib/types";
+import { Notification } from "@/lib/types";
 import DeleteNotificationButton from "./Button/DeleteNotificationButton";
 import FileLinkUI from "../global/FileLinkUI";
 import Link from "next/link";
 
-export default function NotificationDetailUI({ notification, tier }: { notification: Notification, tier: TIER }) {
+export default function NotificationDetailUI({ notification, tier }: { notification: Notification, tier: number }) {
     return (
         <WhiteFrameUI className="flex flex-col gap-2">
             <div className="flex justify-between items-center border-b pb-2">

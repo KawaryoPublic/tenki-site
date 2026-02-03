@@ -1,6 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
-import { TIER } from "@/lib/types";
 import { getTier } from "@/lib/actions";
 import { checkTier } from "@/lib/utils";
 import { del } from "@vercel/blob";
@@ -23,7 +22,7 @@ export async function GET(request: NextRequest) {
                 where: { id: id }
             })
         } else {
-            manuals = tier === TIER.ADMIN ? 
+            manuals = tier === 3 ? 
                 await prisma.manual.findMany({
                     orderBy: { createdAt: 'desc' },
                 }) : 
@@ -34,7 +33,7 @@ export async function GET(request: NextRequest) {
                                 tier: tier
                             },
                             {
-                                tier: TIER.NONE
+                                tier: 0
                             }
                         ]
                     },
@@ -63,7 +62,7 @@ export async function POST(request: NextRequest) {
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
         const urls = data.getAll("url") as string[];
         const filenames = data.getAll("filename") as string[];
-        const tier = data.get("tier") as TIER;
+        const tier = data.get("tier") as number;
 
         if (title === undefined || content === undefined || tier === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -103,7 +102,7 @@ export async function PUT(request: NextRequest) {
         const urls = data.getAll("url") as string[];
         const filenames = data.getAll("filename") as string[];
         const deleteFileUrls = data.getAll("deleteFileUrl") as string[];
-        const tier = data.get("tier") as TIER;
+        const tier = data.get("tier") as number;
 
         if (isNaN(id) || title === undefined || content === undefined || tier === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });

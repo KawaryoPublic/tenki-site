@@ -1,9 +1,9 @@
 import { DAYS } from "@/lib/const";
-import DayUI from "./DayUI";
-import DateUI from "./DateUI";
-import { DateInfo, TIER } from "@/lib/types";
+import DayUI from "./date_info/DayUI";
+import DateUI from "./date_info/DateUI";
+import { DateInfo } from "@/lib/types";
 
-export default function CalendarUI({ index, tier, filter, dateInfo, observationDays }: { index: number, tier: TIER, filter: string, dateInfo: DateInfo[], observationDays: Number[] }) {
+export default function CalendarUI({ index, tier, filter, dateInfo, observationDays }: { index: number, tier: number, filter: string, dateInfo: DateInfo[], observationDays: Number[] }) {
     const firstDate = new Date(new Date().getFullYear(), new Date().getMonth() + index, 1);
 
     return (

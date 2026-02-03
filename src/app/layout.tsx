@@ -2,26 +2,29 @@ import type { Metadata } from "next";
 import "@/app/globals.css";
 import Image from "next/image";
 import Header from "@/components/layout/Header";
+import { getTier } from "@/lib/actions";
 
 export const metadata: Metadata = {
   title: "天気サイト",
   description: "天気サイト",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const tier = await getTier();
+
   return (
     <html lang="ja">
       <body className="min-h-screen overflow-x-hidden flex flex-col items-center">
         <div className="fixed z-[-1] top-0 left-0 w-full h-screen">
-          <Image src="/image/bg_pc.jpg" alt="背景" fill priority className="object-cover max-sm:hidden" />
-          <Image src="/image/bg_phone.jpg" alt="背景" fill priority className="object-cover sm:hidden" />
+          <Image src="/image/bg_pc.jpg" alt="背景" fill priority sizes="object-cover max-sm:hidden" />
+          <Image src="/image/bg_phone.jpg" alt="背景" fill priority sizes="object-cover sm:hidden" />
           <div className="w-full h-full bg-black opacity-50" />
         </div>
-        <Header />
+        <Header tier={tier} />
         <main className="p-5 container flex-1 flex">
           {children}
         </main>

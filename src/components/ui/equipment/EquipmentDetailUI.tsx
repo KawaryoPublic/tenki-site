@@ -1,12 +1,12 @@
 import { checkTier, splitLinksAndHeaders } from "@/lib/utils";
 import BlueButton from "../global/Button/BlueButton";
 import WhiteFrameUI from "../global/WhiteFrameUI";
-import { Equipment, TIER } from "@/lib/types";
+import { Equipment } from "@/lib/types";
 import FileLinkUI from "../global/FileLinkUI";
 import DeleteEquipmentButton from "./Button/DeleteEquipmentButton";
 import Link from "next/link";
 
-export default function EquipmentDetailUI({ equipment, tier }: { equipment: Equipment, tier: TIER }) {
+export default function EquipmentDetailUI({ equipment, tier }: { equipment: Equipment, tier: number }) {
     return (
         <WhiteFrameUI className="flex flex-col gap-2">
             <div className="flex justify-between items-center border-b pb-2">
