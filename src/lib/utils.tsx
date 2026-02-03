@@ -23,8 +23,8 @@ export const formatDate = (date: string) => {
 export const fitToParentSize = (parentRef: RefObject<HTMLElement | null>, normalPadding: number, largePadding: number, aspectRatio: number) => {
     const padding = window.innerWidth > 768 ? largePadding : normalPadding;
 
-    const parentWidth = parentRef.current?.offsetWidth - padding;
-    const parentHeight = parentRef.current?.offsetHeight - padding;
+    const parentWidth = parentRef?.current?.offsetWidth - padding;
+    const parentHeight = parentRef?.current?.offsetHeight - padding;
 
     return parentWidth / parentHeight < aspectRatio ? [parentWidth, parentWidth / aspectRatio] : [parentHeight * aspectRatio, parentHeight];
 }
