@@ -8,15 +8,18 @@ export default function LocationMapUI({ location, parentRef, className = "" }: {
     const [ size, setSize ] = useState<number[]>([]);
 
     useEffect(() => {
-        setSize(fitToParentSize(parentRef, 16, 32, location?.size[0] / location?.size[1]));
+        setSize(fitToParentSize(parentRef, location?.size[0] / location?.size[1]));
     }, [location]);
 
     return (
-        <WhiteFrameUI className={`flex justify-center items-center left-[50%] transform-[translateX(-50%)] z-2 margin-auto absolute top-0 bottom-0 ${className}`}>
-            <div className="border-2 relative" style={{
-                width: `${size[0]}px`,
-                height: `${size[1]}px`
-            }}>
+        <WhiteFrameUI 
+            className={`z-2 absolute top-[50%] transform-[translateY(-50%)]  ${className}`}
+            style={{
+                width: `${size[0] - 30}px`,
+                height: `${size[1] - 30}px`
+            }}
+        >
+            <div className="w-full h-full border-2 relative">
                 {
                     location.shelves.map((shelf, i) => (
                         <Link 

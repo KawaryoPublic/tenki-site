@@ -47,7 +47,7 @@ export default function LocationSection({ id, tier }: { id: number, tier: number
                     checkTier(tier) && <BlueButton href={`/storage/location/edit/${location.id}`}><span className="text-lg md:text-xl p-1 font-bold">編集</span></BlueButton>
                 }
             </div>
-            <div className="w-full flex-1 flex flex-col md:flex-row gap-4 lg:gap-8 relative" ref={parentRef}>
+            <div className="w-full flex-1 flex flex-col md:flex-row gap-4 lg:gap-8 justify-center items-center relative" ref={parentRef}>
                 <LocationMapUI location={location} parentRef={parentRef} />
             </div>
         </section>

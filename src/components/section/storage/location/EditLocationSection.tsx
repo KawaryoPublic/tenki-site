@@ -27,7 +27,7 @@ export default function EditLocationSection({ id }: { id: number }) {
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
         !location ? <div className="flex-1 flex flex-col items-center font-bold text-xl">倉庫を読み込めませんでした</div> :
         <section className="relative flex-1 overflow-x-scroll" ref={parentRef}>
-            <div className={displayMap ? "" : "hidden"}>
+            <div className={`flex justify-center ${displayMap ? "" : "hidden"}`}>
                 <button className="fixed z-1 top-0 left-0 w-full h-screen bg-black opacity-50" onClick={() => setDisplayMap(false)}></button>
                 <LocationMapUI location={location} parentRef={parentRef} />
             </div>

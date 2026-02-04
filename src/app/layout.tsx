@@ -9,13 +9,11 @@ export const metadata: Metadata = {
   description: "天気サイト",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const tier = await getTier();
-
   return (
     <html lang="ja">
       <body className="min-h-screen overflow-x-hidden flex flex-col items-center">
@@ -24,7 +22,7 @@ export default async function RootLayout({
           <Image src="/image/bg_phone.jpg" alt="背景" fill priority sizes="object-cover sm:hidden" />
           <div className="w-full h-full bg-black opacity-50" />
         </div>
-        <Header tier={tier} />
+        <Header />
         <main className="p-5 container flex-1 flex">
           {children}
         </main>
