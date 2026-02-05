@@ -46,7 +46,7 @@ export async function PUT(request: NextRequest) {
         }
 
         const updatedObservation = await prisma.observation.update({
-            where: { day: day },
+            where: { day: Number(day) },
             data: {
                 morning: morning,
                 noon: noon,
