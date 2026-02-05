@@ -118,8 +118,8 @@ export default function DefaultAddableStorage({ title, defaultOptions = [], setD
                     onClick={() => {
                         setNewOptions([...newOptions, {
                             name: "",
-                            size: ["", ""],
-                            position: ["", ""]
+                            size: [0, 0],
+                            position: [0, 0]
                         }]);
                     }}
                     type="button"
