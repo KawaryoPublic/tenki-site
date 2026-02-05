@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
     
-        const updatedStorage = await prisma.shelf.update({
+        const updatedStorage = await prisma.shelf.create({
             data: {
                 name,
                 type: Number(type),
