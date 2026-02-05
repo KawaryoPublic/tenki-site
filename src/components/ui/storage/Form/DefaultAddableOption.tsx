@@ -79,7 +79,7 @@ export default function DefaultAddableStorage({ title, defaultOptions = [], setD
                                     values={option.size}
                                     onChange={(e, i) => {
                                         const temp = [...newOptions];
-                                        temp[index].size[i] = e.target.value;
+                                        temp[index].size[i] = Number(e.target.value);
 
                                         onChange && onChange(temp);
                                         setNewOptions(temp);
@@ -92,7 +92,7 @@ export default function DefaultAddableStorage({ title, defaultOptions = [], setD
                                     values={option.position}
                                     onChange={(e, i) => {
                                         const temp = [...newOptions];
-                                        temp[index].position[i] = e.target.value;
+                                        temp[index].position[i] = Number(e.target.value);
 
                                         onChange && onChange(temp);
                                         setNewOptions(temp);
