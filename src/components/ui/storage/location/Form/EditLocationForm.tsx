@@ -87,11 +87,7 @@ export default function EditLocationForm({ location, setLocation, setDisplayMap 
                     title="場所"
                     defaultOptions={shelves}
                     setDefaultOptions={setShelves}
-                    onChange={shelves => {
-                        setLocation({ ...location, shelves: {
-
-                        }});
-                    }}
+                    
                 />
                 <div className="pb-6">
                     <BlueButton disabled={pending}>{pending ? "保存中..." : "保存"}</BlueButton>
