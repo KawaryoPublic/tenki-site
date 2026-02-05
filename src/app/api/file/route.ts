@@ -132,7 +132,7 @@ export async function DELETE(request: NextRequest) {
         }
 
         await prisma.file.delete({
-            where: { id: id },
+            where: { id: Number(id) },
         });
 
         return NextResponse.json({ message: "Deleted a file" }, { status: 200 });
