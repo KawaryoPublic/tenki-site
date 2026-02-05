@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
     try {
         const tier = await getTier(request);
         const searchParams = request.nextUrl.searchParams;
-        const id = Number(searchParams.get("id"));
+        const id = searchParams.get("id");
 
         if(!checkTier(tier, false, true)) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
@@ -16,15 +16,15 @@ export async function GET(request: NextRequest) {
 
         let equipment;
         
-        if(id) {
-            equipment = await prisma.equipment.findUnique({
-                where: { id: id },
-                include: { location: true }
-            });
-        } else {
+        if(id == undefined) {
             equipment = await prisma.equipment.findMany({
                 orderBy: { createdAt: 'desc' },
-            });   
+            });
+        } else {
+            equipment = await prisma.equipment.findUnique({
+                where: { id: Number(id) },
+                include: { location: true }
+            });
         }
 
         return NextResponse.json(equipment, { status: 200 });
@@ -44,8 +44,8 @@ export async function POST(request: NextRequest) {
         
         const data = await request.formData();
         const name = data.get("name") as string;
-        const locationId = Number(data.get("locationId"));
-        const number = Number(data.get("number"));
+        const locationId = data.get("locationId");
+        const number = data.get("number");
         const size = (data.getAll("size") as string[]).map(s => Number(s));
         const contents = data.getAll("content") as string[];
         const description = data.get("description") as string;
@@ -53,15 +53,15 @@ export async function POST(request: NextRequest) {
         const urls = data.getAll("url") as string[];
         const filenames = data.getAll("filename") as string[];
 
-        if (name === undefined || locationId === undefined || number === undefined || size === undefined || contents === undefined || description === undefined) {
+        if (name == undefined || locationId == undefined || number == undefined || size.length !== 3 || contents == undefined || description == undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
         const newEquipment = await prisma.equipment.create({
             data: {
                 name,
-                locationId,
-                number,
+                locationId: Number(locationId),
+                number: Number(number),
                 size,
                 contents,
                 description,
@@ -86,11 +86,11 @@ export async function PUT(request: NextRequest) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
 
-        const id = Number(request.nextUrl.searchParams.get("id"));
+        const id = request.nextUrl.searchParams.get("id");
         const data = await request.formData();
         const name = data.get("name") as string;
-        const locationId = Number(data.get("locationId"));
-        const number = Number(data.get("number"));
+        const locationId = data.get("locationId");
+        const number = data.get("number");
         const size = (data.getAll("size") as string[]).map(s => Number(s));
         const contents = data.getAll("content") as string[];
         const description = data.get("description") as string;
@@ -99,7 +99,7 @@ export async function PUT(request: NextRequest) {
         const filenames = data.getAll("filename") as string[];
         const deleteFileUrls = data.getAll("deleteFileUrl") as string[];
 
-        if (isNaN(id) || name === undefined || locationId === undefined || number === undefined || size === undefined || contents === undefined || description === undefined ) {
+        if (id == undefined || name == undefined || locationId == undefined || number == undefined || size.length !== 3 || contents == undefined || description == undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -108,11 +108,11 @@ export async function PUT(request: NextRequest) {
         }
 
         const updatedEquipment = await prisma.equipment.update({
-            where: { id: id },
+            where: { id: Number(id) },
             data: {
                 name,
-                locationId,
-                number,
+                locationId: Number(locationId),
+                number: Number(number),
                 size,
                 contents,
                 description,
@@ -138,9 +138,9 @@ export async function DELETE(request: NextRequest) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
 
-        const id = Number(request.nextUrl.searchParams.get("id"));
+        const id = request.nextUrl.searchParams.get("id");
 
-        if (isNaN(id)) {
+        if (id == undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -149,10 +149,10 @@ export async function DELETE(request: NextRequest) {
         }
 
         await prisma.equipment.delete({
-            where: { id: id },
+            where: { id: Number(id) },
         });
 
-        return NextResponse.json({ message: "Equipment deleted" }, { status: 200 });
+        return NextResponse.json({ message: "Deleted equipment" }, { status: 200 });
     } catch (error) {
         console.error("Error deleting equipment:", error);
         return NextResponse.json({ error: "Failed to delete equipment" }, { status: 500 });

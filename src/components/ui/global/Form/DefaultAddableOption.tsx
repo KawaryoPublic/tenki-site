@@ -3,8 +3,8 @@ import BlueButton from "../Button/BlueButton";
 import DefaultInput from "./DefaultInput";
 import RedButton from "../Button/RedButton";
 
-export default function DefaultAddableOption({ title, name, defaultOptions, className = "" }: { title: string, name: string, defaultOptions?: string[], className?: string }) {
-    const [ options, setOptions ] = useState<string[]>(defaultOptions && defaultOptions.length !== 0 ? defaultOptions : []);
+export default function DefaultAddableOption({ title, name, defaultOptions = [], className = "" }: { title: string, name: string, defaultOptions?: string[], className?: string }) {
+    const [ options, setOptions ] = useState<string[]>(defaultOptions);
 
     return (
         <div className={`flex flex-col gap-2 ${className}`}>
@@ -13,7 +13,6 @@ export default function DefaultAddableOption({ title, name, defaultOptions, clas
                 options.map((option, index) => (
                     <div key={index} className="flex items-center gap-2">
                         <DefaultInput
-                            key={index}
                             title={title}
                             name={name}
                             value={option}

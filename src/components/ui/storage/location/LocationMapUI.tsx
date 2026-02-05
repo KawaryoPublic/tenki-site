@@ -25,7 +25,7 @@ export default function LocationMapUI({ location, parentRef, className = "" }: {
                         <Link 
                             key={i}
                             href={`/storage/shelf/${shelf.id}`}
-                            className="absolute border bg-gray-300 text-center text-xs md:text-sm overflow-hidden flex items-center justify-center hover:bg-gray-400"
+                            className={`absolute border text-center text-xs md:text-sm overflow-hidden flex items-center justify-center ${shelf.type === 0 ? "bg-gray-300 hover:bg-gray-400" : "opacity-80 bg-gray-200 hover:bg-gray-300"}`}
                             style={{
                                 width: `${shelf.size[0] / location.size[0] * 100}%`,
                                 height: `${shelf.size[1] / location.size[1] * 100}%`,

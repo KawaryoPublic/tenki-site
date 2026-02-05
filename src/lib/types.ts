@@ -45,6 +45,7 @@ export interface Manual {
 export interface Shelf {
     id: number;
     name: string;
+    type: number;
     location: Location;
     size: number[];
     position: number[];

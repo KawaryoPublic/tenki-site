@@ -21,7 +21,7 @@ export default function EditEquipmentSection({ id, tier }: { id: number, tier: n
             .then(data => {
                 setEquipment(data);
 
-                fetch("/api/location")
+                fetch("/api/storage/location")
                     .then(res => res.json())
                     .then(data => setLocations(data))
                     .finally(() => setLoading(false))

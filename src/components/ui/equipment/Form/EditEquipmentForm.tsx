@@ -18,7 +18,7 @@ export default function EditEquipmentForm({ equipment, locations }: { equipment:
     const initialFiles = equipment.urls.map((url, index) => ({ url: url, filename: equipment.filenames[index] }));
     
     const [ files, setFiles ] = useState<{ url: string, filename: string }[]>(initialFiles);
-    const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
+    const [ state, formAction, pending ] = useActionState(async (initState: any, formData: FormData) => {
         for(const file of initialFiles) {
             if(!files.find(f => f.url === file.url)) {
                 formData.append("deleteFileUrl", file.url);

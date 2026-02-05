@@ -12,15 +12,11 @@ export async function GET(request: NextRequest) {
         }
 
         const searchParams = request.nextUrl.searchParams;
-        const id = Number(searchParams.get("id"));
+        const id = searchParams.get("id");
 
         let files;
         
-        if(id) {
-            files = await prisma.file.findUnique({
-                where: { id: id }
-            })
-        } else {
+        if(id == undefined) {
             files = checkTier(tier) ? 
                 await prisma.file.findMany({
                     orderBy: { createdAt: 'desc' },
@@ -38,6 +34,10 @@ export async function GET(request: NextRequest) {
                     },
                     orderBy: { createdAt: 'desc' },
                 });
+        } else {
+            files = await prisma.file.findUnique({
+                where: { id: Number(id) }
+            });
         }
 
         return NextResponse.json(files, { status: 200 });
@@ -59,9 +59,9 @@ export async function POST(request: NextRequest) {
         const title = data.get("title") as string;
         const url = data.get("url") as string;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
-        const tier = Number(data.get("tier"));
+        const tier = data.get("tier");
 
-        if (title === undefined || url === undefined || tags === undefined || tier === undefined) {
+        if (title == undefined || url == undefined || tags == undefined || tier == undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -70,7 +70,7 @@ export async function POST(request: NextRequest) {
                 title,
                 url,
                 tags,
-                tier
+                tier: Number(tier)
             },
         });
 
@@ -89,24 +89,24 @@ export async function PUT(request: NextRequest) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
 
-        const id = Number(request.nextUrl.searchParams.get("id"));
+        const id = request.nextUrl.searchParams.get("id");
         const data = await request.formData();
         const title = data.get("title") as string;
         const url = data.get("url") as string;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
-        const tier = Number(data.get("tier"));
+        const tier = data.get("tier");
 
-        if (!id || title === undefined || url === undefined || tags === undefined || tier === undefined) {
+        if (id == undefined || title == undefined || url == undefined || tags == undefined || tier == undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
         const udpateFile = await prisma.file.update({
-            where: { id: id },
+            where: { id: Number(id) },
             data: {
                 title,
                 url,
                 tags,
-                tier
+                tier: Number(tier)
             },
         });
 
@@ -125,9 +125,9 @@ export async function DELETE(request: NextRequest) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
 
-        const id = Number(request.nextUrl.searchParams.get("id"));
+        const id = request.nextUrl.searchParams.get("id");
 
-        if (!id) {
+        if (id == undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -135,7 +135,7 @@ export async function DELETE(request: NextRequest) {
             where: { id: id },
         });
 
-        return NextResponse.json({ message: "File deleted" }, { status: 200 });
+        return NextResponse.json({ message: "Deleted a file" }, { status: 200 });
     } catch (error) {
         console.error("Error deleting a file:", error);
         return NextResponse.json({ error: "Failed to delete a file" }, { status: 500 });

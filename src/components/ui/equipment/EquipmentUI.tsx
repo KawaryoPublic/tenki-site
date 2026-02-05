@@ -11,7 +11,7 @@ export default function EquipmentUI({ equipment, tier }: { equipment: Equipment,
     return (
         <WhiteFrameUI className="flex flex-col gap-2">
             <div className={`flex justify-between items-center ${equipment.tags.length !== 0 && "border-b pb-2"}`}>
-                <Link className="text-xl md:text-3xl font-bold" href={`equipment/${equipment.id}`}>{equipment.name }</Link>
+                <Link className="text-xl md:text-3xl font-bold" href={`equipment/${equipment.id}`}>{equipment.name}</Link>
                 <div className="flex items-center gap-2 md:gap-4">
                     <span className="text-gray-800 text-xs md:text-sm">{`${updatedAt.getFullYear() === (new Date()).getFullYear() ? "" : `${updatedAt.getFullYear()}年`}${updatedAt.getMonth() + 1}月${updatedAt.getDate()}日`}</span>
                     {

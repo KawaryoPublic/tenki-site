@@ -3,7 +3,7 @@ import BlueButton from "../global/Button/BlueButton";
 import WhiteFrameUI from "../global/WhiteFrameUI";
 import { Notification } from "@/lib/types";
 import DeleteNotificationButton from "./Button/DeleteNotificationButton";
-import FileLinkUI from "../global/FileLinkUI";
+import OptionLinkUI from "../global/FileLinkUI";
 import Link from "next/link";
 
 export default function NotificationDetailUI({ notification, tier }: { notification: Notification, tier: number }) {
@@ -35,7 +35,7 @@ export default function NotificationDetailUI({ notification, tier }: { notificat
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 text-sm md:text-base">
                 {
                     notification.urls.map((url, index) => (
-                        <FileLinkUI key={index} url={url} filename={notification.filenames[index]} className="py-2" />
+                        <OptionLinkUI key={index} url={url} label={notification.filenames[index]} className="py-2" />
                     ))
                 }
             </div>

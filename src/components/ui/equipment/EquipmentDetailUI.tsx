@@ -2,7 +2,7 @@ import { checkTier, splitLinksAndHeaders } from "@/lib/utils";
 import BlueButton from "../global/Button/BlueButton";
 import WhiteFrameUI from "../global/WhiteFrameUI";
 import { Equipment } from "@/lib/types";
-import FileLinkUI from "../global/FileLinkUI";
+import OptionLinkUI from "../global/FileLinkUI";
 import DeleteEquipmentButton from "./Button/DeleteEquipmentButton";
 import Link from "next/link";
 
@@ -61,7 +61,7 @@ export default function EquipmentDetailUI({ equipment, tier }: { equipment: Equi
            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 text-sm md:text-base">
                {
                    equipment.urls.map((url, index) => (
-                       <FileLinkUI key={index} url={url} filename={equipment.filenames[index]} className="py-2" />
+                       <OptionLinkUI key={index} url={url} label={equipment.filenames[index]} className="py-2" />
                    ))
                }
            </div>

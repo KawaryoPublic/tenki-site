@@ -13,11 +13,11 @@ export async function GET(request: NextRequest) {
 
         const date = request.nextUrl.searchParams.get("date");
 
-        const dateInfo = date ? 
+        const dateInfo = date == undefined ? 
+            await prisma.dateInfo.findMany() :
             await prisma.dateInfo.findUnique({
                 where: { date: date },
-            }) :
-            await prisma.dateInfo.findMany();
+            });
             
         return NextResponse.json(dateInfo, { status: 200 });
     } catch (error) {
@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
         const plan = data.get("plan") as string;
         const holiday = data.getAll("holiday") as string[];
 
-        if (!date || plan === undefined || holiday === undefined) {
+        if (date == undefined || plan == undefined || holiday == undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -71,7 +71,7 @@ export async function PUT(request: NextRequest) {
         const plan = data.get("plan") as string;
         const holiday = data.getAll("holiday") as string[];
 
-        if (!date || plan === undefined || holiday === undefined) {
+        if (date == undefined || plan == undefined || holiday == undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -105,7 +105,7 @@ export async function DELETE(request: NextRequest) {
         await prisma.dateInfo.delete({
             where: { date: date },
         });
-        return NextResponse.json({ message: "Date info deleted successfully" }, { status: 200 });
+        return NextResponse.json({ message: "Deleted date info" }, { status: 200 });
     } catch (error) {
         console.error("Error deleting date info:", error);
         return NextResponse.json({ error: "Failed to delete date info" }, { status: 500 });

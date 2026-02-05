@@ -8,15 +8,11 @@ export async function GET(request: NextRequest) {
     try {
         const tier = await getTier(request);
         const searchParams = request.nextUrl.searchParams;
-        const id = Number(searchParams.get("id"));
+        const id = searchParams.get("id");
 
         let notifications;
         
-        if(id) {
-            notifications = await prisma.notification.findUnique({
-                where: { id: id }
-            })
-        } else {
+        if(id == undefined) {
             notifications = tier === 3 ? 
                 await prisma.notification.findMany({
                     orderBy: { createdAt: 'desc' },
@@ -34,6 +30,10 @@ export async function GET(request: NextRequest) {
                     },
                     orderBy: { createdAt: 'desc' },
                 });
+        } else {
+            notifications = await prisma.notification.findUnique({
+                where: { id: Number(id) }
+            });
         }
 
         return NextResponse.json(notifications, { status: 200 });
@@ -57,9 +57,9 @@ export async function POST(request: NextRequest) {
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
         const urls = data.getAll("url") as string[];
         const filenames = data.getAll("filename") as string[];
-        const tier = Number(data.get("tier"));
+        const tier = data.get("tier");
 
-        if (title === undefined || content === undefined || tier === undefined) {
+        if (title == undefined || content == undefined || tier == undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -70,7 +70,7 @@ export async function POST(request: NextRequest) {
                 tags,
                 urls,
                 filenames,
-                tier
+                tier: Number(tier)
             },
         });
 
@@ -89,7 +89,7 @@ export async function PUT(request: NextRequest) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
 
-        const id = Number(request.nextUrl.searchParams.get("id"));
+        const id = request.nextUrl.searchParams.get("id");
         const data = await request.formData();
         const title = data.get("title") as string;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
@@ -97,9 +97,9 @@ export async function PUT(request: NextRequest) {
         const urls = data.getAll("url") as string[];
         const filenames = data.getAll("filename") as string[];
         const deleteFileUrls = data.getAll("deleteFileUrl") as string[];
-        const tier = Number(data.get("tier"));
+        const tier = data.get("tier");
 
-        if (isNaN(id) || title === undefined || content === undefined || tier === undefined) {
+        if (id == undefined || title == undefined || content == undefined || tier == undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -108,14 +108,14 @@ export async function PUT(request: NextRequest) {
         }
 
         const updatedNotification = await prisma.notification.update({
-            where: { id: id },
+            where: { id: Number(id) },
             data: {
                 title,
                 content,
                 tags,
                 urls,
                 filenames,
-                tier
+                tier: Number(tier)
             },
         });
 
@@ -135,9 +135,9 @@ export async function DELETE(request: NextRequest) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
 
-        const id = Number(request.nextUrl.searchParams.get("id"));
+        const id = request.nextUrl.searchParams.get("id");
 
-        if (isNaN(id)) {
+        if (id == undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -146,10 +146,10 @@ export async function DELETE(request: NextRequest) {
         }
 
         await prisma.notification.delete({
-            where: { id: id },
+            where: { id: Number(id) },
         });
 
-        return NextResponse.json({ message: "Notification deleted" }, { status: 200 });
+        return NextResponse.json({ message: "Deleted a notification" }, { status: 200 });
     } catch (error) {
         console.error("Error deleting a notification:", error);
         return NextResponse.json({ error: "Failed to delete a notification" }, { status: 500 });

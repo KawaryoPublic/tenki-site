@@ -13,13 +13,13 @@ export async function GET(request: NextRequest) {
 
         const id = request.nextUrl.searchParams.get("id");
 
-        const locations = id ?
-            await prisma.location.findUnique({
-                where: { id: Number(id) },
-                include: { equipment: true, shelves: true },
-            }) :
+        const locations = id == null ?
             await prisma.location.findMany({
                 orderBy: { id: 'asc' },
+                include: { equipment: true, shelves: true },
+            }) :
+            await prisma.location.findUnique({
+                where: { id: Number(id) },
                 include: { equipment: true, shelves: true },
             });
 
@@ -38,16 +38,16 @@ export async function PUT(request: NextRequest) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
 
-        const id = Number(request.nextUrl.searchParams.get("id"));
+        const id = request.nextUrl.searchParams.get("id");
         const data = await request.formData();
         const size = (data.getAll("size") as string[]).map(s => Number(s));
 
-        if (isNaN(id) || size === undefined) {
+        if (id == undefined || size.length !== 2) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
     
         const updatedStorage = await prisma.location.update({
-            where: { id: id },
+            where: { id: Number(id) },
             data: {
                 size: size
             },

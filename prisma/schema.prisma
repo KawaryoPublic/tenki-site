@@ -71,12 +71,12 @@ model Manual {
 model Shelf {
   id           Int      @id @default(autoincrement())
   name         String
+  type         Int
   location     Location @relation(fields: [locationId], references: [id])
   locationId   Int
   size         Int[]
   position     Int[]
   height       Int[]
-  type         String
   equipment    Json[]
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt

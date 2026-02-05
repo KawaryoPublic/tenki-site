@@ -1,7 +1,7 @@
 import BlueButton from "../Button/BlueButton";
 import DefaultInput from "./DefaultInput";
 import RedButton from "../Button/RedButton";
-import FileLinkUI from "../FileLinkUI";
+import OptionLinkUI from "../FileLinkUI";
 import { Dispatch, SetStateAction, useState, useRef } from "react";
 
 export default function DefaultFile({ title, name, defaultFiles = [], setDefaultFiles }: { title: string, name: string, defaultFiles?: { url: string, filename: string }[], setDefaultFiles?: Dispatch<SetStateAction<{ url: string, filename: string }[]>> }) {
@@ -14,7 +14,7 @@ export default function DefaultFile({ title, name, defaultFiles = [], setDefault
             {
                 defaultFiles.map((file, index) => (
                     <div key={index} className="flex items-center gap-2">
-                        <FileLinkUI url={file.url} filename={file.filename} className="flex-1" />
+                        <OptionLinkUI url={file.url} label={file.filename} className="flex-1" />
                         <RedButton
                             onClick={() => {
                                 const newFiles = [...defaultFiles];

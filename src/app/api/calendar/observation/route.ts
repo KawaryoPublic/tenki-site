@@ -12,18 +12,18 @@ export async function GET(request: NextRequest) {
         }
 
         const searchParams = request.nextUrl.searchParams;
-        const day = Number(searchParams.get("day"));
+        const day = searchParams.get("day");
 
-        const observations = day ? 
+        const observations = day == undefined ? 
+            await prisma.observation.findMany() :
             await prisma.observation.findUnique({
-                where: { day: day },
-            }) : 
-            await prisma.observation.findMany();
+                where: { day: Number(day) },
+            });
 
         return NextResponse.json(observations, { status: 200 });
     } catch (error) {
-        console.error("Error fetching observation:", error);
-        return NextResponse.json({ error: "Failed to fetch observation" }, { status: 500 });
+        console.error("Error fetching observations:", error);
+        return NextResponse.json({ error: "Failed to fetch observations" }, { status: 500 });
     }
 }
 
@@ -35,13 +35,13 @@ export async function PUT(request: NextRequest) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
 
-        const day = Number(request.nextUrl.searchParams.get("day"));
+        const day = request.nextUrl.searchParams.get("day");
         const data = await request.formData();
         const morning = data.getAll("morning") as string[];
         const noon = data.getAll("noon") as string[];
         const afterSchool = data.getAll("afterSchool") as string[];
 
-        if (!day || morning === undefined || noon === undefined || afterSchool === undefined) {
+        if (day == undefined || morning == undefined || noon == undefined || afterSchool == undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
