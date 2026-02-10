@@ -1,12 +1,12 @@
 import { Location, Shelf } from "@/lib/types";
-import { useEffect, useState, RefObject, Dispatch, SetActionState } from "react";
+import { useEffect, useState, RefObject, Dispatch, SetStateAction } from "react";
 import WhiteFrameUI from "../../global/WhiteFrameUI";
 import { checkCollision, fitToParentSize } from "@/lib/utils";
 import DefaultVectorInput from "../../global/Form/DefaultVectorInput";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 import { SHELF_TYPES } from "@/lib/const";
 
-export default function EditLocationMapUI({ location, shelves, setShelves, parentRef, className = "" }: { location: Location, shelves: Shelf[], setShelves: Dispatch<SetActionState<Shelf[]>> , parentRef: RefObject<HTMLElement | null>, className?: string }) {
+export default function EditLocationMapUI({ location, shelves, setShelves, parentRef, className = "" }: { location: Location, shelves: Shelf[], setShelves: Dispatch<SetStateAction<Shelf[]>> , parentRef: RefObject<HTMLElement | null>, className?: string }) {
     const [ size, setSize ] = useState<number[]>([]);
     const [ selectedIndex, setSelectedIndex ] = useState<number>(-1);
     const [ render, setRender ] = useState<number>(0);
