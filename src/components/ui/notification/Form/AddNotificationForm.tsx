@@ -10,7 +10,8 @@ import { uploadFiles } from "@/lib/utils";
 import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
 import { useActionState } from 'react';
-import { TIER_LABELS } from "@/lib/const";
+import { ROLE_LABELS, TIER_LABELS } from "@/lib/const";
+import DefaultAddableSelectOption from "../../global/Form/DefaultAddableSelectOption";
 
 export default function AddNotificationForm() {
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
@@ -46,6 +47,11 @@ export default function AddNotificationForm() {
             />
             <DefaultFile title="添付ファイル" name="file" />
             <DefaultAddableOption title="タグ" name="tag" />
+            <DefaultAddableSelectOption 
+                title="役職" 
+                name="role" 
+                selectOptions={ROLE_LABELS.map((role, i) => ({ value: i, label: role}))} 
+            />
             <DefaultSelect
                 title="対象"
                 name="tier"

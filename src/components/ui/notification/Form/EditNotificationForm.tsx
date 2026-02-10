@@ -11,7 +11,8 @@ import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
 import { useState, useActionState } from "react";
 import { uploadFiles } from "@/lib/utils";
-import { TIER_LABELS } from "@/lib/const";
+import { ROLE_LABELS, TIER_LABELS } from "@/lib/const";
+import DefaultAddableSelectOption from "../../global/Form/DefaultAddableSelectOption";
 
 export default function EditNotificationForm({ notification }: { notification: Notification }) {
     const initialFiles = notification.urls.map((url, index) => ({ url: url, filename: notification.filenames[index] }));
@@ -60,6 +61,11 @@ export default function EditNotificationForm({ notification }: { notification: N
             />
             <DefaultFile title="添付ファイル" name="file" defaultFiles={files} setDefaultFiles={setFiles} />
             <DefaultAddableOption title="タグ" name="tag" defaultOptions={notification.tags} />
+            <DefaultAddableSelectOption 
+                title="役職" 
+                name="role" 
+                selectOptions={ROLE_LABELS.map((role, i) => ({ value: i, label: role}))} 
+            />
             <DefaultSelect
                 title="対象"
                 name="tier"

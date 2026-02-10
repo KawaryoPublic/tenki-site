@@ -34,6 +34,7 @@ export default function NotificationsSection({ tier, tags, title }: { tier: numb
           className="w-[80%] md:w-[70%] lg:w-[50%]" 
           defaultValue={`${title.join(" ")}${(title.length !== 0 && tags.length !== 0) ? " " : ""}${tags.map(tag => `#${tag}`).join(" ")}`} 
           search={searchString => searchByTagsAndTitle("/notification", searchString)} 
+          role
         />
       </div>
       {
