@@ -1,17 +1,14 @@
-import { ROLE_LABELS } from "@/lib/const";
+import RolesSection from "@/components/section/role/RolesSection";
+import { getTier } from "@/lib/actions";
+import { checkTier } from "@/lib/utils";
 
-export default function Home() {
-    return (
-        <div>
-            <h1>各役職</h1>
-            {
-                ROLE_LABELS.map((label, index) => (
-                    <div key={index}>
-                        <h2>{index}: {label}</h2>
-                        <div>...</div>
-                    </div>
-                ))
-            }
-        </div>
-    );
+export default async function Home(props: { searchParams: Promise<{ tags?: string, title?: string }> }) {
+  const searchParams = await props.searchParams;
+  const tags = searchParams.tags ? searchParams.tags.split(",") : [];
+  const title = searchParams.title ? searchParams.title.split(",") : [];
+  const tier = await getTier();
+
+  return (
+    checkTier(tier, false, true) && <RolesSection tier={tier} />
+  );
 }
