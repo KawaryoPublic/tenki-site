@@ -21,7 +21,7 @@ export default function RoleDetailUI({ id }: { id: number }) {
                     </div>
                 </div>
                 <div className="flex items-center gap-4">
-                    <div href={`role/${role.id}`} className="w-12 relative flex aspect-square">
+                    <div className="w-12 relative flex aspect-square">
                         <Image src="/image/role_test.png" alt="Role Icon" fill sizes="w-full h-full" />
                     </div>
                     <div className="flex-1 whitespace-pre-wrap">
