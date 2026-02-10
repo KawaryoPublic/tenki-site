@@ -29,7 +29,7 @@ export default function RoleDetailUI({ id }: { id: number }) {
                     </div>
                 </div>
                 <div>
-                    <BlueButton href="/role" className="text-blue-500 hover:underline">役職一覧に戻る</BlueButton>
+                    <BlueButton href="/role">役職一覧に戻る</BlueButton>
                 </div>
             </WhiteFrameUI>
         </section>
