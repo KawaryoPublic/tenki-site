@@ -64,9 +64,7 @@ export default function EditNotificationForm({ notification }: { notification: N
                 title="対象"
                 name="tier"
                 defaultValue={notification.tier}
-                options={TIER_LABELS.map((value, i) => {
-                    return {value: i, label: value};
-                })}
+                options={TIER_LABELS.map((value, i) => ({ value: i, label: value }))}
                 label
             />
             <div className="pt-4">

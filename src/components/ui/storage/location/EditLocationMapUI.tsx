@@ -103,9 +103,7 @@ export default function EditLocationMapUI({ location, shelves, setShelves, paren
                                 <DefaultSelect
                                     title="種類"
                                     name="type"
-                                    options={SHELF_TYPES.map((shelf, i) => {
-                                        return { value: i, label: shelf}
-                                    })}
+                                    options={SHELF_TYPES.map((shelf, i) => ({ value: i, label: shelf}))}
                                     value={shelves[selectedIndex].type}
                                     onChange={e => {
                                         const newShelves = shelves;

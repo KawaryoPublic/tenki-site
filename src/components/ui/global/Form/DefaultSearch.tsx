@@ -6,7 +6,7 @@ import DefaultInput from "./DefaultInput";
 import DefaultSelect from "./DefaultSelect";
 import { ROLE_LABELS } from "@/lib/const";
 
-export default function DefaultSearchForm({ title, defaultValue, search, className = "" }: { title: string, defaultValue?: string, search: (searchString: string) => void, className?: string }) {
+export default function DefaultSearchForm({ title, defaultValue, search, role = false, className = "" }: { title: string, defaultValue?: string, search: (searchString: string) => void, role?: boolean, className?: string }) {
     return (
         <Form 
             action={async data => {
@@ -20,11 +20,14 @@ export default function DefaultSearchForm({ title, defaultValue, search, classNa
                 defaultValue={defaultValue}
                 className="flex-1"
             />
-            <DefaultSelect
-                title="役職"
-                name="role"
-                options={ROLE_LABELS.map((label, index) => ({ label: label, value: index }))}
-            />
+            {
+                role && 
+                    <DefaultSelect
+                        title="役職"
+                        name="role"
+                        options={ROLE_LABELS.map((label, index) => ({ label: label, value: index }))}
+                    />
+            }
             <BlueButton>検索</BlueButton>
         </Form>
     )

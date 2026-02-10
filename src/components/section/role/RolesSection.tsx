@@ -3,21 +3,22 @@
 import { useState, useEffect } from "react";
 import { checkTier } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
-import { ROLE_LABELS } from "@/lib/const";
-import RoleUI from "@/components/ui/role/RoleUI";
+import Link from "next/link";
+import Image from "next/image";
 import { Role } from "@/lib/types";
 
 export default function RolesSection({ tier }: { tier: number }) {
-  const roles = ROLE_LABELS.map((role, index) => ({
-    id: index,
-    name: role,
-    description: "aaa",
-    updatedAt: new Date(),
-  }));
+  const roles = [
+    {
+      id: "1",
+      name: "部長",
+      description: "説明",
+    }
+  ];
   const [ loading, setLoading ] = useState<boolean>(false);
 
   return (
-    <section className="flex-1 flex flex-col gap-3 w-full">
+    <section className="flex flex-col gap-3">
       <div className="flex justify-between items-center">
         <div>
           {
@@ -33,7 +34,9 @@ export default function RolesSection({ tier }: { tier: number }) {
           {
             roles.map((role, index) => (
               <div key={index}>
-                <RoleUI role={role} tier={tier} />
+                <Link href={`role/${role.id}`} className="relative flex aspect-square">
+                  <Image src="/image/role_test.png" alt="Role Icon" fill />
+                </Link>
               </div>
             ))
           }

@@ -49,9 +49,8 @@ export default function AddNotificationForm() {
             <DefaultSelect
                 title="対象"
                 name="tier"
-                options={TIER_LABELS.map((value, i) => {
-                    return {value: i, label: value};
-                })}
+                options={TIER_LABELS.map((value, i) => ({ value: i, label: value }))}
+                defaultValue={2}
                 label
             />
             <div className="pt-4">
