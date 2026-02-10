@@ -1,9 +1,11 @@
 import { ChangeEvent } from "react";
 
-export default function DefaultSelect({ name, title, options, defaultValue, value, onChange, className = "" }: { name: string; title: string; options: { value: string | number; label: string }[]; defaultValue?: string | number, value?: string | number, onChange?: (e: ChangeEvent<HTMLSelectElement>) => void, className?: string }) {
+export default function DefaultSelect({ name, title, options, defaultValue, value, onChange, className = "", label = false }: { name: string; title: string; options: { value: string | number; label: string }[]; defaultValue?: string | number, value?: string | number, onChange?: (e: ChangeEvent<HTMLSelectElement>) => void, className?: string, label?: boolean }) {
     return (
         <div className={`text-gray-900 text-sm md:text-base flex flex-col gap-1 ${className}`}>
-            <label htmlFor={name} className="font-bold">{title}</label>
+            {
+                label && <label htmlFor={name} className="font-bold">{title}</label>
+            }
             <select
                 name={name} 
                 defaultValue={defaultValue} 

@@ -77,6 +77,7 @@ export default function EditManualForm({ manual }: { manual: Manual }) {
                     { value: 2, label: `${TIER_LABELS[2]}向け` },
                     { value: 3, label: `${TIER_LABELS[3]}向け` },
                 ]}
+                label
             />
             <div className="pt-4">
                 <BlueButton disabled={pending}>{pending ? "保存中..." : "保存"}</BlueButton>

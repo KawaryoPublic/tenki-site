@@ -113,6 +113,7 @@ export default function EditLocationMapUI({ location, shelves, setShelves, paren
                                         setShelves(newShelves);
                                         setRender(render + 1);
                                     }}
+                                    label
                                 />
                                 <DefaultVectorInput 
                                     title="サイズ[cm]" 

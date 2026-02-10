@@ -41,7 +41,8 @@ export default function AddEquipmentForm({ locations }: { locations: Location[] 
             <DefaultSelect
                 title="場所"
                 name="locationId"
-                options={locations.map(location => ({ value: location.id.toString(), label: location.name }))}
+                options={locations.map(location => ({ value: location.id, label: location.name }))}
+                label
             />
             <DefaultInput
                 title="個数"
