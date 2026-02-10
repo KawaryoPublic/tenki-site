@@ -5,9 +5,15 @@ import { checkTier } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import { ROLE_LABELS } from "@/lib/const";
 import RoleUI from "@/components/ui/role/RoleUI";
+import { Role } from "@/lib/types";
 
 export default function RolesSection({ tier }: { tier: number }) {
-  const [ roles, setRoles ] = useState<string[]>(ROLE_LABELS);
+  const roles = ROLE_LABELS.map((role, index) => ({
+    id: index,
+    name: role,
+    description: "aaa",
+    updatedAt: new Date(),
+  }));
   const [ loading, setLoading ] = useState<boolean>(false);
 
   return (

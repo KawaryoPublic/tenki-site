@@ -78,3 +78,10 @@ export interface Equipment {
     filenames: string[];
     updatedAt: Date;
 }
+
+export interface Role {
+    id: number;
+    name: string;
+    description: string;
+    updatedAt: Date;
+}

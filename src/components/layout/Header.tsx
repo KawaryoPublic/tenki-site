@@ -18,7 +18,7 @@ export default async function Header() {
           <Nav href="/storage/location/1" title="倉庫" tier={tier} allowStudent />
           <Nav href="/file" title="ファイル" tier={tier} allowStudent/>
           <Nav href="/manual" title="マニュアル" tier={tier} allowStudent />
-          <Nav href="/role" title="各役職" tier={tier} allowStudent />
+          <Nav href="/role" title="役職" tier={tier} allowStudent />
         </nav>
         <Link href="/password" className="right-2 md:right-4 aspect-square absolute h-[50%] bg-blue-500 hover:bg-blue-600 focus:outline-2 focus:outline-offset-2 focus:outline-blue-600 text-whitextext-sm md:text-base rounded">
           <Image src="/image/sign_in.jpg" alt="部員はこちら" fill sizes="w-full h-full"/>
