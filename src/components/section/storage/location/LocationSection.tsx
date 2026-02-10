@@ -32,7 +32,7 @@ export default function LocationSection({ id, tier }: { id: number, tier: number
     return (
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
         !location ? <div className="flex-1 flex flex-col items-center font-bold text-xl">倉庫を読み込めませんでした</div> :
-        <section className="flex-1 flex flex-col gap-4 items-center">
+        <section className="flex-1 flex flex-col gap-6 items-center">
             <div className="flex items-center gap-4 md:gap-8">
                 <WhiteFrameUI className="flex justify-center gap-4 md:gap-8">
                 {
@@ -47,7 +47,7 @@ export default function LocationSection({ id, tier }: { id: number, tier: number
                     checkTier(tier) && <BlueButton href={`/storage/location/edit/${location.id}`}><span className="text-lg md:text-xl p-1 font-bold">編集</span></BlueButton>
                 }
             </div>
-            <div className="w-full flex-1 flex flex-col md:flex-row gap-4 lg:gap-8 justify-center items-center relative" ref={parentRef}>
+            <div className="w-full flex-1 flex flex-col md:flex-row justify-center items-center relative" ref={parentRef}>
                 <LocationMapUI location={location} parentRef={parentRef} />
             </div>
         </section>

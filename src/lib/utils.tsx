@@ -104,3 +104,12 @@ export const splitLinksAndHeaders = (text: string) => {
 
     return parts;
 }
+
+export const checkCollision = (size1: number[], position1: number[], size2: number[], position2: number[]) => {
+    for(let i = 0; i < size1.length; i++) {
+        if(position1[i] + size1[i] <= position2[i]) return false;
+        if(position2[i] + size2[i] <= position1[i]) return false;
+    }
+
+    return true;
+}

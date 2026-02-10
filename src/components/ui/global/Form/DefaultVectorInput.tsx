@@ -5,7 +5,7 @@ export default function DefaultVectorInput({title, name, labels, defaultValues, 
     return (
         <div className="flex flex-col gap-1">
             <label className="font-bold">{title}</label>
-            <div className="flex flex-col md:flex-row gap-1 md:justify-between md:items-center">
+            <div className="flex flex-col md:flex-row gap-2 md:justify-between md:items-center">
                 {
                     labels.map((label, i) => (
                         <div key={i} className="flex gap-2 items-center">

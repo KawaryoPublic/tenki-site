@@ -1,16 +1,14 @@
 "use client";
 
-import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
-import LocationMapUI from "@/components/ui/storage/location/LocationMapUI";
 import { useEffect, useState, useRef } from "react";
-import { Location } from "@/lib/types";
-import EditLocationForm from "@/components/ui/storage/location/Form/EditLocationForm";
+import { Location, Shelf } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
+import EditLocationMapUI from "@/components/ui/storage/location/EditLocationMapUI";
 
-export default function EditLocationSection({ id }: { id: number }) {
+export default function LocationSection({ id }: { id: number }) {
     const parentRef = useRef(null);
     const [ location, setLocation ] = useState<Location | null>(null);
-    const [ displayMap, setDisplayMap ] = useState<boolean>(false);
+    const [ shelves, setShelves ] = useState<Shelf[]>([]);
     const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {
@@ -18,7 +16,10 @@ export default function EditLocationSection({ id }: { id: number }) {
 
         fetch(`/api/storage/location?id=${id}`)
             .then(res => res.json())
-            .then(data => setLocation(data))
+            .then(data => {
+                setLocation(data);
+                setShelves(data.shelves);
+            })
             .finally(() => setLoading(false))
             .catch(err => console.log(err));
     }, []);
@@ -26,16 +27,13 @@ export default function EditLocationSection({ id }: { id: number }) {
     return (
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
         !location ? <div className="flex-1 flex flex-col items-center font-bold text-xl">倉庫を読み込めませんでした</div> :
-        <section className="relative flex-1 overflow-x-scroll" ref={parentRef}>
-            <div className={`flex justify-center ${displayMap ? "" : "hidden"}`}>
-                <button className="fixed z-1 top-0 left-0 w-full h-screen bg-black opacity-50" onClick={() => setDisplayMap(false)}></button>
-                <LocationMapUI location={location} parentRef={parentRef} />
+        <section className="flex-1 flex flex-col gap-4 items-center">
+            <div className="z-2 flex items-center gap-4 md:gap-8">
+                <BlueButton href={`/storage/location/edit/${location.id}`}><span className="text-lg md:text-xl p-1 font-bold">追加</span></BlueButton>
+                <BlueButton onClick={() => alert()}><span className="text-lg md:text-xl p-1 font-bold">保存</span></BlueButton>
             </div>
-            <WhiteFrameUI>
-                <EditLocationForm location={location} setLocation={setLocation} setDisplayMap={setDisplayMap} />
-            </WhiteFrameUI>
-            <div className="pt-4">
-                <BlueButton href={`/storage/location/${location.id}`}>倉庫に戻る</BlueButton>
+            <div className="w-full flex-1 flex flex-col md:flex-row justify-center items-center relative" ref={parentRef}>
+                <EditLocationMapUI location={location} shelves={shelves} setShelves={setShelves} parentRef={parentRef} />
             </div>
         </section>
     )
