@@ -20,6 +20,7 @@ export interface Notification {
     filenames: string[];
     tier: string;
     roles: number[];
+    roleNames: string[];
     updatedAt: Date;
 }
 
