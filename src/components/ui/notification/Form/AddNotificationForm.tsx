@@ -18,7 +18,7 @@ export default function AddNotificationForm() {
         formData = await uploadFiles(formData);
 
         for(const role of formData.getAll("role")) {
-            formData.append("roleName", TIER_LABELS[Number(role)]);
+            formData.append("roleName", ROLE_LABELS[Number(role)]);
         }
 
         await fetch("/api/notification", {
