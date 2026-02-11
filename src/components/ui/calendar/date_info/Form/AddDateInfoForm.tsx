@@ -5,7 +5,7 @@ import DefaultTextArea from "../../../global/Form/DefaultTextArea";
 import BlueButton from "../../../global/Button/BlueButton";
 import { useActionState } from 'react';
 import { redirect } from "next/navigation";
-import DefaultAddableOption from "../../../global/Form/DefaultAddableOption";
+import DefaultAddableInput from "../../../global/Form/DefaultAddableOption";
 
 export default function AddDateInfoForm({ date }: { date: string }) {
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
@@ -31,7 +31,7 @@ export default function AddDateInfoForm({ date }: { date: string }) {
                 name="plan" 
                 label
             />
-            <DefaultAddableOption title="休日観測" name="holiday"/>
+            <DefaultAddableInput title="休日観測" name="holiday"/>
             <div className="pt-4">
                 <BlueButton disabled={pending}>{pending ? "保存中..." : "保存"}</BlueButton>
             </div>

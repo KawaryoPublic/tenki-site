@@ -4,7 +4,7 @@ import { DateInfo } from "@/lib/types";
 import Form from "next/form";
 import DefaultTextArea from "../../../global/Form/DefaultTextArea";
 import BlueButton from "../../../global/Button/BlueButton";
-import DefaultAddableOption from "../../../global/Form/DefaultAddableOption";
+import DefaultAddableInput from "../../../global/Form/DefaultAddableOption";
 import { redirect } from "next/navigation";
 import { useActionState } from 'react';
 
@@ -33,7 +33,7 @@ export default function EditDateInfoForm({ info }: { info: DateInfo }) {
                 defaultValue={info.plan} 
                 label
             />
-            <DefaultAddableOption title="休日観測" name="holiday" defaultOptions={info.holiday} />
+            <DefaultAddableInput title="休日観測" name="holiday" defaultValues={info.holiday} />
             <div className="pt-4">
                 <BlueButton disabled={pending}>{pending ? "保存中..." : "保存"}</BlueButton>
             </div>

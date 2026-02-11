@@ -7,7 +7,7 @@ import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import DefaultSelect from "../../global/Form/DefaultSelect";
-import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
+import DefaultAddableInput from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
 import { useState, useActionState, useEffect } from "react";
 import { uploadFiles } from "@/lib/utils";
@@ -77,10 +77,10 @@ export default function EditEquipmentForm({ equipment, locations }: { equipment:
                 labels={["縦幅", "横幅", "高さ"]}
                 defaultValues={equipment.size} 
             />
-            <DefaultAddableOption
+            <DefaultAddableInput
                 title="内容物"
                 name="content"
-                defaultOptions={equipment.contents}
+                defaultValues={equipment.contents}
             />
             <DefaultTextArea
                 title="説明"
@@ -94,10 +94,10 @@ export default function EditEquipmentForm({ equipment, locations }: { equipment:
                 defaultFiles={files} 
                 setDefaultFiles={setFiles} 
             />
-            <DefaultAddableOption 
+            <DefaultAddableInput 
                 title="タグ" 
                 name="tag" 
-                defaultOptions={equipment.tags} 
+                defaultValues={equipment.tags} 
             />
             <div className="pt-4">
                 <BlueButton disabled={pending}>{pending ? "保存中..." : "保存"}</BlueButton>

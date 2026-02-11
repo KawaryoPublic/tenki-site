@@ -5,7 +5,7 @@ import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 import { uploadFiles } from "@/lib/utils";
-import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
+import DefaultAddableInput from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
 import { useActionState } from 'react';
 import { Location } from "@/lib/types";
@@ -53,14 +53,14 @@ export default function AddEquipmentForm({ locations }: { locations: Location[] 
                 label
             />
             <DefaultVectorInput title="サイズ[cm]" name="size" labels={["縦幅", "横幅", "高さ"]} />
-            <DefaultAddableOption title="内容物" name="content" />
+            <DefaultAddableInput title="内容物" name="content" />
             <DefaultTextArea
                 title="説明"
                 name="description"
                 label
             />
             <DefaultFile title="添付ファイル" name="file" />
-            <DefaultAddableOption title="タグ" name="tag" />
+            <DefaultAddableInput title="タグ" name="tag" />
             <div className="pt-4">
                 <BlueButton disabled={pending}>{pending ? "保存中..." : "保存"}</BlueButton>
             </div>

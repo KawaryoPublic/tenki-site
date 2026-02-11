@@ -7,7 +7,7 @@ import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import DefaultSelect from "../../global/Form/DefaultSelect";
-import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
+import DefaultAddableInput from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
 import { useState, useActionState } from "react";
 import { uploadFiles } from "@/lib/utils";
@@ -64,10 +64,10 @@ export default function EditManualForm({ manual }: { manual: Manual }) {
                 defaultFiles={files} 
                 setDefaultFiles={setFiles} 
             />
-            <DefaultAddableOption 
+            <DefaultAddableInput 
                 title="タグ" 
                 name="tag" 
-                defaultOptions={manual.tags} 
+                defaultValues={manual.tags} 
             />
             <DefaultSelect
                 title="対象"

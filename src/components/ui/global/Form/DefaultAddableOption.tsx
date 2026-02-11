@@ -3,32 +3,32 @@ import BlueButton from "../Button/BlueButton";
 import DefaultInput from "./DefaultInput";
 import RedButton from "../Button/RedButton";
 
-export default function DefaultAddableOption({ title, name, defaultOptions = [], className = "" }: { title: string, name: string, defaultOptions?: string[], className?: string }) {
-    const [ options, setOptions ] = useState<string[]>(defaultOptions);
+export default function DefaultAddableInput({ title, name, defaultValues = [], className = "" }: { title: string, name: string, defaultValues?: string[], className?: string }) {
+    const [ values, setValues ] = useState<string[]>(defaultValues);
 
     return (
         <div className={`flex flex-col gap-2 ${className}`}>
             <label htmlFor={name} className="font-bold">{title}</label>
             {
-                options.map((option, index) => (
+                values.map((value, index) => (
                     <div key={index} className="flex items-center gap-2">
                         <DefaultInput
                             title={title}
                             name={name}
-                            value={option}
+                            value={value}
                             onChange={e => {
-                                const newOptions = [...options];
-                                newOptions[index] = e.target.value;
-                                setOptions(newOptions);
+                                const newValues = [...values];
+                                newValues[index] = e.target.value;
+                                setValues(newValues);
                             }}
                             required
                             className="flex-1"
                         />
                         <RedButton
                             onClick={() => {
-                                const newOptions = [...options];
-                                newOptions.splice(index, 1);
-                                setOptions(newOptions);
+                                const newValues = [...values];
+                                newValues.splice(index, 1);
+                                setValues(newValues);
                             }}
                             type="button"
                         >
@@ -40,7 +40,7 @@ export default function DefaultAddableOption({ title, name, defaultOptions = [],
             <div>
                 <BlueButton
                     onClick={() => {
-                        setOptions([...options, ""]);
+                        setValues([...values, ""]);
                     }}
                     type="button"
                 >

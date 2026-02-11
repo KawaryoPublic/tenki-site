@@ -31,6 +31,7 @@ model Notification {
   filenames String[]
   tier      Int
   roles     Int[]
+  roleNames String[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

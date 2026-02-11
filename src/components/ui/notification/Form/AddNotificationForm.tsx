@@ -7,15 +7,19 @@ import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 import { uploadFiles } from "@/lib/utils";
-import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
+import DefaultAddableInput from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
 import { useActionState } from 'react';
 import { ROLE_LABELS, TIER_LABELS } from "@/lib/const";
-import DefaultAddableSelectOption from "../../global/Form/DefaultAddableSelectOption";
+import DefaultAddableSelect from "../../global/Form/DefaultAddableSelectOption";
 
 export default function AddNotificationForm() {
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
         formData = await uploadFiles(formData);
+
+        for(const role of formData.getAll("role")) {
+            formData.append("roleName", TIER_LABELS[Number(role)]);
+        }
 
         await fetch("/api/notification", {
             method: 'POST',
@@ -46,11 +50,11 @@ export default function AddNotificationForm() {
                 label
             />
             <DefaultFile title="添付ファイル" name="file" />
-            <DefaultAddableOption title="タグ" name="tag" />
-            <DefaultAddableSelectOption 
+            <DefaultAddableInput title="タグ" name="tag" />
+            <DefaultAddableSelect 
                 title="役職" 
                 name="role" 
-                selectOptions={ROLE_LABELS.map((role, i) => ({ value: i, label: role}))} 
+                options={ROLE_LABELS.map((role, i) => ({ value: i, label: role}))} 
             />
             <DefaultSelect
                 title="対象"

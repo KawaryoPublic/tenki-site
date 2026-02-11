@@ -7,7 +7,7 @@ import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 import { uploadFiles } from "@/lib/utils";
-import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
+import DefaultAddableInput from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
 import { useActionState } from 'react';
 import { TIER_LABELS } from "@/lib/const";
@@ -45,7 +45,7 @@ export default function AddManualForm() {
                 label
             />
             <DefaultFile title="添付ファイル" name="file" />
-            <DefaultAddableOption title="タグ" name="tag" />
+            <DefaultAddableInput title="タグ" name="tag" />
             <DefaultSelect
                 title="対象"
                 name="tier"

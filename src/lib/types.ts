@@ -19,6 +19,7 @@ export interface Notification {
     urls: string[];
     filenames: string[];
     tier: string;
+    roles: number[];
     updatedAt: Date;
 }
 

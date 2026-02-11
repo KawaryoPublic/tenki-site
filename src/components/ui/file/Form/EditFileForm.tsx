@@ -6,7 +6,7 @@ import { File } from "@/lib/types";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultSelect from "../../global/Form/DefaultSelect";
-import DefaultAddableOption from "../../global/Form/DefaultAddableOption";
+import DefaultAddableInput from "../../global/Form/DefaultAddableOption";
 import { useActionState } from 'react';
 import { TIER_LABELS } from "@/lib/const";
 
@@ -43,7 +43,7 @@ export default function EditFileForm({ file }: { file: File }) {
                 required
                 label
             />
-            <DefaultAddableOption title="タグ" name="tag" defaultOptions={file.tags} />
+            <DefaultAddableInput title="タグ" name="tag" defaultValues={file.tags} />
             <DefaultSelect
                 title="対象"
                 name="tier"
