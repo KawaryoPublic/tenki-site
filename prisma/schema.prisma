@@ -8,14 +8,14 @@ datasource db {
 }
 
 model Observation {
-  day         Int         @unique
+  day         Int         @id @unique
   morning     String[]
   noon        String[]
   afterSchool String[]
 }
 
 model DateInfo {
-  date                 String       @unique
+  date                 String       @id @unique
   createdAt            DateTime     @default(now())
   updatedAt            DateTime     @updatedAt
   plan                 String
