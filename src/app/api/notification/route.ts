@@ -9,10 +9,47 @@ export async function GET(request: NextRequest) {
         const tier = await getTier(request);
         const searchParams = request.nextUrl.searchParams;
         const id = searchParams.get("id");
+        const role = searchParams.get("id");
 
         let notifications;
         
-        if(id == undefined) {
+        if(id != undefined) {
+            notifications = await prisma.notification.findUnique({
+                where: { id: Number(id) }
+            });
+        } else if(role != null) {
+            notifications = tier === 3 ? 
+                await prisma.notification.findMany({
+                    where: {
+                        roles: {
+                            has: Number(role)
+                        }
+                    },
+                    orderBy: { createdAt: 'desc' },
+                }) : 
+                await prisma.notification.findMany({
+                    where: {
+                        AND: [
+                            {
+                                roles: {
+                                    has: Number(role)
+                                }
+                            },
+                            {
+                                OR: [
+                                    {
+                                        tier: tier
+                                    },
+                                    {
+                                        tier: 0
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    orderBy: { createdAt: 'desc' },
+                });
+        } else {
             notifications = tier === 3 ? 
                 await prisma.notification.findMany({
                     orderBy: { createdAt: 'desc' },
@@ -30,10 +67,6 @@ export async function GET(request: NextRequest) {
                     },
                     orderBy: { createdAt: 'desc' },
                 });
-        } else {
-            notifications = await prisma.notification.findUnique({
-                where: { id: Number(id) }
-            });
         }
 
         return NextResponse.json(notifications, { status: 200 });

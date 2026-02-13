@@ -15,11 +15,11 @@ model Observation {
 }
 
 model DateInfo {
-  date                 String       @id @unique
-  createdAt            DateTime     @default(now())
-  updatedAt            DateTime     @updatedAt
-  plan                 String
-  holiday              String[]
+  date      String       @id @unique
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  plan      String
+  holiday   String[]
 }
 
 model Notification {
@@ -36,24 +36,14 @@ model Notification {
   updatedAt DateTime @updatedAt
 }
 
-model Box {
-  id         Int      @id @default(autoincrement())
-  name       String
-  content    String
-  imageLink  String
-  tab        Int
-  width      Int
-  height     Int
-  top        Int
-  left       Int
-}
-
 model File {
   id        Int      @id @default(autoincrement())
   title     String
   url       String
   tags      String[]
   tier      Int
+  roles     Int[]
+  roleNames String[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -66,22 +56,24 @@ model Manual {
   urls      String[]
   filenames String[]
   tier      Int
+  roles     Int[]
+  roleNames String[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Shelf {
-  id           Int      @id @default(autoincrement())
-  name         String
-  type         Int
-  location     Location @relation(fields: [locationId], references: [id])
-  locationId   Int
-  size         Int[]
-  position     Int[]
-  height       Int[]
-  equipment    Json[]
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id         Int      @id @default(autoincrement())
+  name       String
+  type       Int
+  location   Location @relation(fields: [locationId], references: [id])
+  locationId Int
+  size       Int[]
+  position   Int[]
+  height     Int[]
+  equipment  Json[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
 
 model Location {
@@ -106,6 +98,8 @@ model Equipment {
   tags        String[]
   urls        String[]
   filenames   String[]
+  roles       Int[]
+  roleNames   String[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -115,9 +109,11 @@ model Role {
   name            String
   description     String
   markLink        String
+  markName        String
   person          String
   personDetail    String
   personImageLink String
+  personImageName String
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 }

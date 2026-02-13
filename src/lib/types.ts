@@ -85,5 +85,8 @@ export interface Role {
     id: number;
     name: string;
     description: string;
-    updatedAt: Date;
+    markLink: String;
+    person: String;
+    personDetail: String;
+    personImageLink: String;
 }

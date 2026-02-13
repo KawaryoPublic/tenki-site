@@ -8,17 +8,21 @@ import Image from "next/image";
 import { Role } from "@/lib/types";
 
 export default function RolesSection({ tier }: { tier: number }) {
-  const roles = [
-    {
-      id: "1",
-      name: "部長",
-      description: "説明",
-    }
-  ];
-  const [ loading, setLoading ] = useState<boolean>(false);
+  const [ roles, setRoles ] = useState<Role[]>([]);
+  const [ loading, setLoading ] = useState<boolean>(true);
+
+  useEffect(() => {
+    setLoading(true);
+
+    fetch('/api/role')
+      .then(res => res.json())
+      .then(data => setRoles(data))
+      .finally(() => setLoading(false))
+      .catch(err => console.log(err));
+  }, []);
 
   return (
-    <section className="flex flex-col gap-3">
+    <section className="w-full flex flex-col gap-3">
       <div className="flex justify-between items-center">
         <div>
           {
@@ -34,7 +38,7 @@ export default function RolesSection({ tier }: { tier: number }) {
           {
             roles.map((role, index) => (
               <div key={index}>
-                <Link href={`role/${role.id}`} className="relative flex aspect-square">
+                <Link href={`role/${role.id}`} className="w-[12%] relative flex aspect-square">
                   <Image src="/image/role_test.png" alt="Role Icon" fill />
                 </Link>
               </div>

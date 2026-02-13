@@ -1,9 +1,11 @@
-import RoleDetailUI from "@/components/ui/role/RoleDetailUI";
+import RoleDetailSection from "@/components/section/role/RoleDetailSection";
+import { getTier } from "@/lib/actions";
 
 export default async function Home(props: { params: Promise<{ id: string }>}) {
-   const params = await props.params;
+  const tier = await getTier();
+  const params = await props.params;
 
   return (
-    <RoleDetailUI id={Number(params.id)} />
+    <RoleDetailSection id={Number(params.id)} tier={tier} />
   )
 }
