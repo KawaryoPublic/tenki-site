@@ -43,6 +43,7 @@ export default function AddEquipmentForm({ locations }: { locations: Location[] 
                 name="locationId"
                 options={locations.map(location => ({ value: location.id, label: location.name }))}
                 label
+                required
             />
             <DefaultInput
                 title="個数"

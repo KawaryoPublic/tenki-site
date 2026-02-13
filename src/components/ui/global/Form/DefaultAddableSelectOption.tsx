@@ -3,7 +3,7 @@ import BlueButton from "../Button/BlueButton";
 import RedButton from "../Button/RedButton";
 import DefaultSelect from "./DefaultSelect";
 
-export default function DefaultAddableSelect({ title, name, options, defaultValues = [], className = "" }: { title: string, name: string, options: { value: string | number, label: string}[], defaultValues?: string[], className?: string }) {
+export default function DefaultAddableSelect({ title, name, options, defaultValues = [], className = "" }: { title: string, name: string, options: { value: string | number, label: string}[], defaultValues?: (string | number)[], className?: string }) {
     const [ values, setValues ] = useState<string[]>(defaultValues);
 
     return (
@@ -23,6 +23,7 @@ export default function DefaultAddableSelect({ title, name, options, defaultValu
                             }}
                             options={options}
                             className="flex-1"
+                            required
                         />
                         <RedButton
                             onClick={() => {

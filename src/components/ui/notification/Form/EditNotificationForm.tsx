@@ -68,6 +68,7 @@ export default function EditNotificationForm({ notification }: { notification: N
             <DefaultAddableSelect 
                 title="役職" 
                 name="role" 
+                defaultValues={notification.roles}
                 options={ROLE_LABELS.map((role, i) => ({ value: i, label: role}))} 
             />
             <DefaultSelect
@@ -76,6 +77,7 @@ export default function EditNotificationForm({ notification }: { notification: N
                 defaultValue={notification.tier}
                 options={TIER_LABELS.map((value, i) => ({ value: i, label: value }))}
                 label
+                required
             />
             <div className="pt-4">
                 <BlueButton disabled={pending}>{pending ? "保存中..." : "保存"}</BlueButton>

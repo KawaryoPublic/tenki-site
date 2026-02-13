@@ -3,11 +3,11 @@
 import NotificationUI from "@/components/ui/notification/NotificationUI";
 import { Notification } from "@/lib/types";
 import { useState, useEffect } from "react";
-import { checkTier, filterByTagsAndTitle, searchByTagsAndTitle } from "@/lib/utils";
+import { checkTier, defaultFilter, defaultSearch } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearch";
 
-export default function NotificationsSection({ tier, tags, title }: { tier: number, tags: string[], title: string[] }) {
+export default function NotificationsSection({ tier, tags, title, role }: { tier: number, tags: string[], title: string[], role?: number }) {
   const [ notifications, setNotifications ] = useState<Notification[]>([]);
   const [ loading, setLoading ] = useState<boolean>(true);
 
@@ -16,9 +16,9 @@ export default function NotificationsSection({ tier, tags, title }: { tier: numb
 
     fetch(`/api/notification`)
       .then(res => res.json())
-      .then(data => setNotifications(filterByTagsAndTitle(data, tags, title)))
+      .then(data => setNotifications(defaultFilter(data, tags, title, role)))
       .finally(() => setLoading(false))
-      .catch(err => console.error(err))
+      .catch(err => console.error(err));
     }, [tags, title]);
 
   return (
@@ -33,8 +33,9 @@ export default function NotificationsSection({ tier, tags, title }: { tier: numb
           title="検索(#をつけるとタグ)" 
           className="w-[80%] md:w-[70%] lg:w-[50%]" 
           defaultValue={`${title.join(" ")}${(title.length !== 0 && tags.length !== 0) ? " " : ""}${tags.map(tag => `#${tag}`).join(" ")}`} 
-          search={searchString => searchByTagsAndTitle("/notification", searchString)} 
+          search={(searchString, role) => defaultSearch("/notification", searchString, role)} 
           role
+          defaultRole={role}
         />
       </div>
       {

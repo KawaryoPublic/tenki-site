@@ -29,17 +29,18 @@ export const fitToParentSize = (parentRef: RefObject<HTMLElement | null>, aspect
     return parentWidth / parentHeight < aspectRatio ? [parentWidth, parentWidth / aspectRatio] : [parentHeight * aspectRatio, parentHeight];
 }
 
-export const filterByTagsAndTitle = (list: any[], tags: string[], title: string[]) => {
-    const filteredList = tags.length === 0 ? 
-        [...list] :
-        list.filter(item => tags.every(tag => item.tags.includes(tag)));
+export const defaultFilter = (list: any[], tags: string[], title: string[], role?: number) => {
+    let filteredList = role != null ? list.filter(item => item.roles.includes(role)) : [...list];
+
+    filteredList = tags.length === 0 ? filteredList :
+        filteredList.filter(item => tags.every(tag => item.tags.includes(tag)));
 
     return title.length === 0 ?
         filteredList :
         filteredList.filter(item => title.every(title => item.title.includes(title)));
 }
 
-export const searchByTagsAndTitle = (url: string, searchString: string) => {
+export const defaultSearch = (url: string, searchString: string, role?: number) => {
     const tags = [];
     const title = [];
 
@@ -61,6 +62,10 @@ export const searchByTagsAndTitle = (url: string, searchString: string) => {
 
     if(title.length !== 0) {
         redirectUrl += (tags.length !== 0 ? "&" : "?") + `title=${title.join(",")}`;
+    }
+
+    if(role != null) {
+        redirectUrl += (tags.length !== 0 || title.length !== 0 ? "&" : "?") + `role=${role}`;
     }
 
     redirect(redirectUrl);

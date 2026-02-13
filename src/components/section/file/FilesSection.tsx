@@ -2,7 +2,7 @@
 
 import { File } from "@/lib/types";
 import { useState, useEffect } from "react";
-import { checkTier, filterByTagsAndTitle, searchByTagsAndTitle } from "@/lib/utils";
+import { checkTier, defaultFilter, defaultSearch } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import FileUI from "@/components/ui/file/FileUI";
 import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearch";
@@ -16,7 +16,7 @@ export default function FilesSection({ tier, tags, title }: { tier: number, tags
 
     fetch(`/api/file`)
       .then(res => res.json())
-      .then(data => setFiles(filterByTagsAndTitle(data, tags, title)))
+      .then(data => setFiles(defaultFilter(data, tags, title)))
       .finally(() => setLoading(false))
       .catch(err => console.error(err))
     }, [tags, title]);
@@ -33,7 +33,7 @@ export default function FilesSection({ tier, tags, title }: { tier: number, tags
           title="検索(#をつけるとタグ)" 
           className="w-[80%] md:w-[70%] lg:w-[50%]" 
           defaultValue={`${title.join(" ")}${(title.length !== 0 && tags.length !== 0) ? " " : ""}${tags.map(tag => `#${tag}`).join(" ")}`} 
-          search={searchString => searchByTagsAndTitle("/file", searchString)}
+          search={(searchString, role) => defaultSearch("/file", searchString, role)}
         />
       </div>
       {

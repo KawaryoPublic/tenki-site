@@ -62,6 +62,7 @@ export default function EditEquipmentForm({ equipment, locations }: { equipment:
                 options={locations.map(location => ({ value: location.id, label: location.name }))}
                 defaultValue={equipment.location.id}
                 label
+                required
             />
             <DefaultInput
                 title="個数"

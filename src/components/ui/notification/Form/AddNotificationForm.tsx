@@ -62,6 +62,7 @@ export default function AddNotificationForm() {
                 options={TIER_LABELS.map((value, i) => ({ value: i, label: value }))}
                 defaultValue={2}
                 label
+                required
             />
             <div className="pt-4">
                 <BlueButton disabled={pending}>{pending ? "保存中..." : "保存"}</BlueButton>

@@ -2,7 +2,7 @@
 
 import { Equipment } from "@/lib/types";
 import { useState, useEffect } from "react";
-import { checkTier, filterByTagsAndTitle, searchByTagsAndTitle } from "@/lib/utils";
+import { checkTier, defaultFilter, defaultSearch } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearch";
 import EquipmentUI from "@/components/ui/equipment/EquipmentUI";
@@ -16,7 +16,7 @@ export default function EquipmentSection({ tier, tags, title }: { tier: number, 
 
     fetch(`/api/equipment`)
       .then(res => res.json())
-      .then(data => setEquipment(filterByTagsAndTitle(data, tags, title)))
+      .then(data => setEquipment(defaultFilter(data, tags, title)))
       .finally(() => setLoading(false))
       .catch(err => console.error(err))
     }, [tags, title]);
@@ -33,7 +33,7 @@ export default function EquipmentSection({ tier, tags, title }: { tier: number, 
           title="検索(#をつけるとタグ)" 
           className="w-[80%] md:w-[70%] lg:w-[50%]" 
           defaultValue={`${title.join(" ")}${(title.length !== 0 && tags.length !== 0) ? " " : ""}${tags.map(tag => `#${tag}`).join(" ")}`} 
-          search={searchString => searchByTagsAndTitle("/equipment", searchString)} 
+          search={(searchString, role) => defaultSearch("/equipment", searchString, role)} 
           role
         />
       </div>

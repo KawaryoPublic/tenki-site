@@ -2,7 +2,7 @@
 
 import { Manual } from "@/lib/types";
 import { useState, useEffect } from "react";
-import { checkTier, filterByTagsAndTitle, searchByTagsAndTitle } from "@/lib/utils";
+import { checkTier, defaultFilter, defaultSearch } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearch";
 import ManualUI from "@/components/ui/manual/ManualUI";
@@ -16,7 +16,7 @@ export default function ManualsSection({ tier, tags, title }: { tier: number, ta
 
     fetch(`/api/manual`)
       .then(res => res.json())
-      .then(data => setManuals(filterByTagsAndTitle(data, tags, title)))
+      .then(data => setManuals(defaultFilter(data, tags, title)))
       .finally(() => setLoading(false))
       .catch(err => console.error(err))
     }, [tags, title]);
@@ -33,7 +33,7 @@ export default function ManualsSection({ tier, tags, title }: { tier: number, ta
           title="検索(#をつけるとタグ)" 
           className="w-[80%] md:w-[70%] lg:w-[50%]" 
           defaultValue={`${title.join(" ")}${(title.length !== 0 && tags.length !== 0) ? " " : ""}${tags.map(tag => `#${tag}`).join(" ")}`} 
-          search={searchString => searchByTagsAndTitle("/manual", searchString)} 
+          search={searchString => defaultSearch("/manual", searchString)} 
           role
         />
       </div>
