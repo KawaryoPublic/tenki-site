@@ -4,7 +4,7 @@ import RedButton from "../Button/RedButton";
 import DefaultSelect from "./DefaultSelect";
 
 export default function DefaultAddableSelect({ title, name, options, defaultValues = [], className = "" }: { title: string, name: string, options: { value: string | number, label: string}[], defaultValues?: (string | number)[], className?: string }) {
-    const [ values, setValues ] = useState<string[]>(defaultValues);
+    const [ values, setValues ] = useState<(string | number)[]>(defaultValues);
 
     return (
         <div className={`flex flex-col gap-2 ${className}`}>

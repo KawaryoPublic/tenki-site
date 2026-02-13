@@ -3,8 +3,8 @@ import BlueButton from "../Button/BlueButton";
 import DefaultInput from "./DefaultInput";
 import RedButton from "../Button/RedButton";
 
-export default function DefaultAddableInput({ title, name, defaultValues = [], className = "" }: { title: string, name: string, defaultValues?: string[], className?: string }) {
-    const [ values, setValues ] = useState<string[]>(defaultValues);
+export default function DefaultAddableInput({ title, name, defaultValues = [], className = "" }: { title: string, name: string, defaultValues?: (string | number)[], className?: string }) {
+    const [ values, setValues ] = useState<(string | number)[]>(defaultValues);
 
     return (
         <div className={`flex flex-col gap-2 ${className}`}>
