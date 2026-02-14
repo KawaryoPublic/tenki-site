@@ -4,8 +4,8 @@ import RedButton from "../Button/RedButton";
 import DefaultSelect from "./DefaultSelect";
 
 export default function DefaultAddableSelect({ title, name, options, defaultValues = [], className = "" }: { title: string, name: string, options: { value: string | number, label: string}[], defaultValues?: (string | number)[], className?: string }) {
-    const [ values, setValues ] = useState<(string | number)[]>(defaultValues);
-
+    const [ values, setValues ] = useState<string[]>(defaultValues);
+    
     return (
         <div className={`flex flex-col gap-2 ${className}`}>
             <label htmlFor={name} className="font-bold">{title}</label>
@@ -19,7 +19,7 @@ export default function DefaultAddableSelect({ title, name, options, defaultValu
                             onChange={e => {
                                 const newValues = [...values];
                                 newValues[index] = e.target.value;
-                                setValues(newValues);
+                                setValues && setValues(newValues);
                             }}
                             options={options}
                             className="flex-1"
@@ -29,7 +29,7 @@ export default function DefaultAddableSelect({ title, name, options, defaultValu
                             onClick={() => {
                                 const newValues = [...values];
                                 newValues.splice(index, 1);
-                                setValues(newValues);
+                                setValues && setValues(newValues);
                             }}
                             type="button"
                         >
@@ -41,7 +41,7 @@ export default function DefaultAddableSelect({ title, name, options, defaultValu
             <div>
                 <BlueButton
                     onClick={() => {
-                        setValues([...values, ""]);
+                        setValues && setValues([...values, options[0].value]);
                     }}
                     type="button"
                 >

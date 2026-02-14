@@ -23,34 +23,36 @@ export default function NotificationsSection({ tier, tags, title, role }: { tier
 
   return (
     <section className="flex-1 flex flex-col gap-3 w-full">
-      <div className="flex justify-between items-center">
-        <div>
-          {
-            checkTier(tier) && <BlueButton href="/notification/add">追加</BlueButton>
-          }
-        </div>
-        <DefaultSearchForm 
-          title="検索(#をつけるとタグ)" 
-          className="w-[80%] md:w-[70%] lg:w-[50%]" 
-          defaultValue={`${title.join(" ")}${(title.length !== 0 && tags.length !== 0) ? " " : ""}${tags.map(tag => `#${tag}`).join(" ")}`} 
-          search={(searchString, role) => defaultSearch("/notification", searchString, role)} 
-          role
-          defaultRole={role}
-        />
-      </div>
       {
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
         !notifications ? <div className="flex-1 flex flex-col items-center font-bold text-xl">告知一覧を読み込めませんでした</div> :
         notifications.length === 0 ? <div className="flex-1 flex flex-col items-center font-bold text-xl">告知はありません</div> : 
-        <div className="flex flex-col gap-4">
-          {
-            notifications.map((notification, index) => (
-              <div key={index}>
-                <NotificationUI notification={notification} tier={tier} />
-              </div>
-            ))
-          }
-        </div>
+        <>
+          <div className="flex justify-between items-center">
+            <div>
+              {
+                checkTier(tier) && <BlueButton href="/notification/add">追加</BlueButton>
+              }
+            </div>
+            <DefaultSearchForm 
+              title="検索(#をつけるとタグ)" 
+              className="w-[80%] md:w-[70%] lg:w-[50%]" 
+              defaultValue={`${title.join(" ")}${(title.length !== 0 && tags.length !== 0) ? " " : ""}${tags.map(tag => `#${tag}`).join(" ")}`} 
+              search={(searchString, role) => defaultSearch("/notification", searchString, role)} 
+              role
+              defaultRole={role}
+            />
+          </div>
+          <div className="flex flex-col gap-4">
+            {
+              notifications.map((notification, index) => (
+                <div key={index}>
+                  <NotificationUI notification={notification} tier={tier} />
+                </div>
+              ))
+            }
+          </div>
+        </>
       }
     </section>
   );

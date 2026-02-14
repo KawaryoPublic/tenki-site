@@ -10,15 +10,16 @@ import { uploadFiles } from "@/lib/utils";
 import DefaultAddableInput from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
 import { useActionState } from 'react';
-import { ROLE_LABELS, TIER_LABELS } from "@/lib/const";
 import DefaultAddableSelect from "../../global/Form/DefaultAddableSelectOption";
+import { Role } from "@/lib/types";
+import { TIER_LABELS } from "@/lib/const";
 
-export default function AddNotificationForm() {
+export default function AddNotificationForm({ roles }: { roles: Role[] }) {
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
         formData = await uploadFiles(formData);
 
         for(const role of formData.getAll("role")) {
-            formData.append("roleName", ROLE_LABELS[Number(role)]);
+            formData.append("roleName", roles[Number(role)].name);
         }
 
         await fetch("/api/notification", {
@@ -54,13 +55,12 @@ export default function AddNotificationForm() {
             <DefaultAddableSelect 
                 title="役職" 
                 name="role" 
-                options={ROLE_LABELS.map((role, i) => ({ value: i, label: role}))} 
+                options={roles.map(role => ({ value: role.id, label: role.name}))} 
             />
             <DefaultSelect
                 title="対象"
                 name="tier"
-                options={TIER_LABELS.map((value, i) => ({ value: i, label: value }))}
-                defaultValue={2}
+                options={TIER_LABELS.map((label, i) => ({ value: i, label: label }))}
                 label
                 required
             />

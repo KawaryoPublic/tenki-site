@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 
-export default function DefaultSelect({ name, title, options, defaultValue, value, onChange, label = false, required, className = "" }: { name: string; title: string; options: { value: string | number; label: string }[]; defaultValue?: string | number, value?: string | number, onChange?: (e: ChangeEvent<HTMLSelectElement>) => void, label?: boolean, required?: boolean, className?: string }) {
+export default function DefaultSelect({ name, title, options, defaultValue, value, onChange, label = false, required, className = "" }: { name: string; title: string; options: { value: string | number; label: string }[]; defaultValue?: string | number, value?: string, onChange?: (e: ChangeEvent<HTMLSelectElement>) => void, label?: boolean, required?: boolean, className?: string }) {
     return (
         <div className={`text-gray-900 text-sm md:text-base flex flex-col gap-1 ${className}`}>
             {

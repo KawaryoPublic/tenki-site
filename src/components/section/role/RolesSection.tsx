@@ -39,7 +39,7 @@ export default function RolesSection({ tier }: { tier: number }) {
             roles.map((role, index) => (
               <div key={index} className="w-full aspect-square">
                 <Link href={`role/${role.id}`} className="w-full h-full relative flex">
-                  <Image src={role.markUrl} alt="Role Icon" fill sizes="flex-1" />
+                  <Image src={role.markUrl} alt="Role Icon" priority fill sizes="flex-1" />
                 </Link>
               </div>
             ))

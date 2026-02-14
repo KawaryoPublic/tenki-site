@@ -22,7 +22,7 @@ export default function RoleDetailUI({ role, tier }: { role: Role, tier: number 
             </div>
             <div className="flex items-center gap-4">
                 <div className="w-[20%] md:w-[12%] max-w-25 h-full min-h-25 relative">
-                    <Image src={role.markUrl} alt="Role Mark" fill className="object-contain" />
+                    <Image src={role.markUrl} alt="Role Mark" fill priority className="object-contain" />
                 </div>
                 <div className="flex-1 text-sm md:text-base whitespace-pre-wrap">
                     <p>{role.description}</p>
@@ -34,7 +34,7 @@ export default function RoleDetailUI({ role, tier }: { role: Role, tier: number 
             <h3 className="md:text-xl font-bold">{role.person}</h3>
             <div className="flex items-center gap-4">
                 <div className="w-[20%] md:w-[12%] max-w-25 h-full min-h-25 relative">
-                    <Image src={role.personImageUrl} alt="Person Image" fill className="object-contain" />
+                    <Image src={role.personImageUrl} alt="Person Image" fill priority className="object-contain" />
                 </div>
                 <div className="flex-1 text-sm md:text-base whitespace-pre-wrap">
                     <p>{role.personDetail}</p>

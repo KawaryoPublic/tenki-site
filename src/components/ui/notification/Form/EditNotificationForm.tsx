@@ -2,7 +2,7 @@
 
 import Form from "next/form";
 import { redirect } from "next/navigation";
-import { Notification } from "@/lib/types";
+import { Notification, Role } from "@/lib/types";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
@@ -11,13 +11,13 @@ import DefaultAddableInput from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
 import { useState, useActionState } from "react";
 import { uploadFiles } from "@/lib/utils";
-import { ROLE_LABELS, TIER_LABELS } from "@/lib/const";
+import { TIER_LABELS } from "@/lib/const";
 import DefaultAddableSelect from "../../global/Form/DefaultAddableSelectOption";
 
-export default function EditNotificationForm({ notification }: { notification: Notification }) {
-    const initialFiles = notification.urls.map((url, index) => ({ url: url, filename: notification.filenames[index] }));
+export default function EditNotificationForm({ notification, roles }: { notification: Notification, roles: Role[] }) {
+    const initialFiles = notification.urls.map((url, index) => ({ url: url, filename: notification.filenames[index] }));;
     const [ files, setFiles ] = useState<{ url: string, filename: string }[]>(initialFiles);
-    const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
+    const [ state, formAction, pending ] = useActionState(async (initState: any, formData: FormData) => {
         for(const file of initialFiles) {
             if(!files.find(f => f.url === file.url)) {
                 formData.append("deleteFileUrl", file.url);
@@ -29,8 +29,8 @@ export default function EditNotificationForm({ notification }: { notification: N
 
         formData = await uploadFiles(formData);
 
-        for(const role of formData.getAll("role")) {
-            formData.append("roleName", ROLE_LABELS[Number(role)]);
+        for(const id of formData.getAll("role")) {
+            formData.append("roleName", roles.find(role => role.id === Number(id))!.name);
         }
 
         await fetch(`/api/notification?id=${notification.id}`, {
@@ -69,7 +69,7 @@ export default function EditNotificationForm({ notification }: { notification: N
                 title="役職" 
                 name="role" 
                 defaultValues={notification.roles}
-                options={ROLE_LABELS.map((role, i) => ({ value: i, label: role}))} 
+                options={roles.map(role => ({ value: role.id, label: role.name}))} 
             />
             <DefaultSelect
                 title="対象"
