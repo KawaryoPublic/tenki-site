@@ -34,12 +34,12 @@ export default function RolesSection({ tier }: { tier: number }) {
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
         !roles ? <div className="flex-1 flex flex-col items-center font-bold text-xl">役職一覧を読み込めませんでした</div> :
         roles.length === 0 ? <div className="flex-1 flex flex-col items-center font-bold text-xl">役職はありません</div> : 
-        <div className="flex flex-col gap-4">
+        <div className="w-full h-full grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-8 md:gap-12 lg:gap-16">
           {
             roles.map((role, index) => (
-              <div key={index}>
-                <Link href={`role/${role.id}`} className="w-[12%] relative flex aspect-square">
-                  <Image src={role.markUrl} alt="Role Icon" fill />
+              <div key={index} className="w-full aspect-square">
+                <Link href={`role/${role.id}`} className="w-full h-full relative flex">
+                  <Image src={role.markLink} alt="Role Icon" fill sizes="flex-1" />
                 </Link>
               </div>
             ))
