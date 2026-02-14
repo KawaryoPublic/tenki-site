@@ -13,13 +13,13 @@ export default function ManualUI({ manual, tier }: { manual: Manual, tier: numbe
             <div className={`flex justify-between items-center ${manual.tags.length !== 0 && "border-b pb-2"}`}>
                 <Link className="text-xl md:text-3xl font-bold" href={`manual/${manual.id}`}>{manual.title}</Link>
                 <div className="flex items-center gap-2 md:gap-4">
-                    <span className="text-gray-800 text-xs md:text-sm">{`${updatedAt.getFullYear() === (new Date()).getFullYear() ? "" : `${updatedAt.getFullYear()}年`}${updatedAt.getMonth() + 1}月${updatedAt.getDate()}日`}</span>
+                    <span className="text-gray-800 text-xs md:text-sm max-sm:hidden">{`${updatedAt.getFullYear() === (new Date()).getFullYear() ? "" : `${updatedAt.getFullYear()}年`}${updatedAt.getMonth() + 1}月${updatedAt.getDate()}日`}</span>
                     {
                         checkTier(tier) &&
-                        <>
+                        <div className="flex items-center gap-2 md:gap-4 max-sm:hidden">
                             <BlueButton href={`/manual/edit/${manual.id}`}>編集</BlueButton>
                             <DeleteManualButton id={manual.id} urls={manual.urls} />
-                        </>
+                        </div>
                     }
                 </div>
             </div>

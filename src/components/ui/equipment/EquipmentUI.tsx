@@ -13,13 +13,13 @@ export default function EquipmentUI({ equipment, tier }: { equipment: Equipment,
             <div className={`flex justify-between items-center ${equipment.tags.length !== 0 && "border-b pb-2"}`}>
                 <Link className="text-xl md:text-3xl font-bold" href={`equipment/${equipment.id}`}>{equipment.name}</Link>
                 <div className="flex items-center gap-2 md:gap-4">
-                    <span className="text-gray-800 text-xs md:text-sm">{`${updatedAt.getFullYear() === (new Date()).getFullYear() ? "" : `${updatedAt.getFullYear()}年`}${updatedAt.getMonth() + 1}月${updatedAt.getDate()}日`}</span>
+                    <span className="text-gray-800 text-xs md:text-sm max-sm:hidden">{`${updatedAt.getFullYear() === (new Date()).getFullYear() ? "" : `${updatedAt.getFullYear()}年`}${updatedAt.getMonth() + 1}月${updatedAt.getDate()}日`}</span>
                     {
                         checkTier(tier) &&
-                        <>
+                        <div className="flex items-center gap-2 md:gap-4 max-sm:hidden">
                             <BlueButton href={`/equipment/edit/${equipment.id}`}>編集</BlueButton>
                             <DeleteEquipmentButton id={equipment.id} urls={equipment.urls} />
-                        </>
+                        </div>
                     }
                 </div>
             </div>

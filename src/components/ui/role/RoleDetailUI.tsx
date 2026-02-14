@@ -1,15 +1,15 @@
 import Image from "next/image";
 import WhiteFrameUI from "../global/WhiteFrameUI";
 import BlueButton from "../global/Button/BlueButton";
-import { Notification, Role } from "@/lib/types";
+import { Role } from "@/lib/types";
 import { checkTier } from "@/lib/utils";
 import DeleteRoleButton from "./Button/DeleteRoleButton";
 
-export default function RoleDetailUI({ role, notifications, tier }: { role: Role, notifications: Notification, tier: number }) {
+export default function RoleDetailUI({ role, tier }: { role: Role, tier: number }) {
     return (
         <WhiteFrameUI className="flex flex-col gap-4">
             <div className="flex justify-between items-center border-b pb-2">
-                <h2 className="text-xl md:text-3xl font-bold">{role.name}</h2>
+                <h2 className="text-xl md:text-3xl font-bold">{role.name}とは？</h2>
                 <div className="flex items-center gap-2 md:gap-4">
                 {
                     checkTier(tier) && 
@@ -20,7 +20,6 @@ export default function RoleDetailUI({ role, notifications, tier }: { role: Role
                 }
                 </div>
             </div>
-            <h3 className="md:text-xl font-bold">概要</h3>
             <div className="flex items-center gap-4">
                 <div className="w-[12%] relative flex aspect-square">
                     <Image src="/image/role_test.png" alt="Role Mark" fill sizes="w-full h-full" />
@@ -40,16 +39,6 @@ export default function RoleDetailUI({ role, notifications, tier }: { role: Role
                 <div className="flex-1 whitespace-pre-wrap">
                     <p>{role.personDetail}</p>
                 </div>
-            </div>
-            <h3 className="md:text-xl font-bold">告知</h3>
-            <div className="flex flex-col gap-4">
-                {
-                    notifications.map((notification, index) => (
-                        <div key={index}>
-                            <NotificationUI notification={notification} tier={tier} />
-                        </div>
-                    ))
-                }
             </div>
         </WhiteFrameUI>
     );

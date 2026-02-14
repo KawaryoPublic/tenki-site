@@ -11,18 +11,18 @@ export default function NotificationUI({ notification, tier }: { notification: N
     return (
         <WhiteFrameUI className="flex flex-col gap-2">
             <div className={`flex justify-between items-center ${notification.tags.length !== 0 && "border-b pb-2"}`}>
-                <Link className="text-xl md:text-3xl font-bold" href={`notification/${notification.id}`}>{notification.title}</Link>
+                <Link className="text-xl md:text-3xl font-bold" href={`/notification/${notification.id}`}>{notification.title}</Link>
                 <div className="flex items-center gap-2 md:gap-4">
                     <div className="flex items-center gap-1 md:gap-2">
-                        <span className="text-gray-800 text-xs md:text-sm">{`${updatedAt.getFullYear() === (new Date()).getFullYear() ? "" : `${updatedAt.getFullYear()}年`}${updatedAt.getMonth() + 1}月${updatedAt.getDate()}日`}</span>
+                        <span className="text-gray-800 text-xs md:text-sm max-sm:hidden">{`${updatedAt.getFullYear() === (new Date()).getFullYear() ? "" : `${updatedAt.getFullYear()}年`}${updatedAt.getMonth() + 1}月${updatedAt.getDate()}日`}</span>
                         <span className="text-gray-800 text-xs md:text-sm">{`${notification.roleNames.join(",")}`}</span>
                     </div>
                     {
                         checkTier(tier) &&
-                        <>
+                        <div className="flex items-center gap-2 md:gap-4 max-sm:hidden">
                             <BlueButton href={`/notification/edit/${notification.id}`}>編集</BlueButton>
                             <DeleteNotificationButton id={notification.id} urls={notification.urls} />
-                        </>
+                        </div>
                     }
                 </div>
             </div>

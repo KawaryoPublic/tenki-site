@@ -13,13 +13,13 @@ export default function FileUI({ file, tier }: { file: File, tier: number }) {
             <div className={`flex justify-between items-center ${file.tags.length !== 0 && "border-b pb-2"}`}>
                 <Link className="text-xl md:text-3xl font-bold" href={file.url}>{file.title}</Link>
                 <div className="flex items-center gap-2 md:gap-4">
-                    <span className="text-gray-800 text-xs md:text-sm">{`${updatedAt.getFullYear() === (new Date()).getFullYear() ? "" : `${updatedAt.getFullYear()}年`}${updatedAt.getMonth() + 1}月${updatedAt.getDate()}日`}</span>
+                    <span className="text-gray-800 text-xs md:text-sm max-sm:hidden">{`${updatedAt.getFullYear() === (new Date()).getFullYear() ? "" : `${updatedAt.getFullYear()}年`}${updatedAt.getMonth() + 1}月${updatedAt.getDate()}日`}</span>
                     {
                         checkTier(tier) &&
-                        <>
+                        <div className="flex items-center gap-2 md:gap-4 max-sm:hidden">
                             <BlueButton href={`/file/edit/${file.id}`}>編集</BlueButton>
                             <DeleteFileButton id={file.id}/>
-                        </>
+                        </div>
                     }
                 </div>
             </div>
