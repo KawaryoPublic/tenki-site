@@ -6,35 +6,29 @@ import { Role } from "@/lib/types";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
-import DefaultSelect from "../../global/Form/DefaultSelect";
-import DefaultAddableInput from "../../global/Form/DefaultAddableOption";
-import DefaultFile from "../../global/Form/DefaultFile";
 import { useState, useActionState } from "react";
 import { uploadFiles } from "@/lib/utils";
-import { ROLE_LABELS, TIER_LABELS } from "@/lib/const";
-import DefaultAddableSelect from "../../global/Form/DefaultAddableSelectOption";
+import RoleFile from "./RoleFile";
 
 export default function EditRoleForm({ role }: { role: Role }) {
-    /*
-    const initialMarkLink = role.markLink;
-    const initialPersonImageLink = role.personImageLink;
+    const [ markUrlChanged, setMarkUrlChanged ] = useState(false);
+    const [ personImageUrlChanged, setPersonImageUrlChanged ] = useState(false);
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
-        for(const file of initialFiles) {
-            if(!files.find(f => f.url === file.url)) {
-                formData.append("deleteFileUrl", file.url);
-            } else {
-                formData.append("url", file.url);
-                formData.append("filename", file.filename);
-            }
+        if(markUrlChanged) {
+            formData.append("deleteFileUrl", role.markUrl);
+        } else {
+            formData.append("markUrl", role.markUrl);
+        }
+
+        if(personImageUrlChanged) {
+            formData.append("deleteFileUrl", role.markUrl);
+        } else {
+            formData.append("personImageUrl", role.personImageUrl);
         }
 
         formData = await uploadFiles(formData);
 
-        for(const role of formData.getAll("role")) {
-            formData.append("roleName", ROLE_LABELS[Number(role)]);
-        }
-
-        await fetch(`/api/notification?id=${role.id}`, {
+        await fetch(`/api/role?id=${role.id}`, {
             method: 'PUT',
             body: formData,
         }).catch(err => {
@@ -42,50 +36,56 @@ export default function EditRoleForm({ role }: { role: Role }) {
             alert('保存に失敗しました。');
         });
 
-        redirect(`/notification/${role.id}`);
+        redirect(`/role/${role.id}`);
     }, null);
-    */
 
     return (
-        /*
         <Form 
             action={formAction}
             className="flex flex-col gap-2"
         >   
             <h2 className="text-xl md:text-3xl font-bold border-b pb-2">告知を編集</h2>
             <DefaultInput
-                title="タイトル"
-                name="title"
-                defaultValue={role.title}
+                title="役職名"
+                name="name"
+                defaultValue={role.name}
                 required
                 label
             />
             <DefaultTextArea
-                title="内容"
-                name="content"
-                defaultValue={role.content}
+                title="概要"
+                name="description"
+                defaultValue={role.description}
                 label
             />
-            <DefaultFile title="添付ファイル" name="file" defaultFiles={files} setDefaultFiles={setFiles} />
-            <DefaultAddableInput title="タグ" name="tag" defaultValues={role.tags} />
-            <DefaultAddableSelect 
-                title="役職" 
-                name="role" 
-                defaultValues={role.roles}
-                options={ROLE_LABELS.map((role, i) => ({ value: i, label: role}))} 
+            <RoleFile
+                title="役職のマーク"
+                defaultFile={{ url: role.markUrl, filename: "役職のマーク" }}
+                changed={markUrlChanged}
+                setChanged={setMarkUrlChanged}
             />
-            <DefaultSelect
-                title="対象"
-                name="tier"
-                defaultValue={role.tier}
-                options={TIER_LABELS.map((value, i) => ({ value: i, label: value }))}
-                label
+            <DefaultInput
+                title="チーフ名"
+                name="person"
+                defaultValue={role.person}
                 required
+                label
+            />
+            <DefaultTextArea
+                title="チーフの紹介"
+                name="personDetail"
+                defaultValue={role.personDetail}
+                label
+            />
+            <RoleFile
+                title="チーフ紹介の画像"
+                defaultFile={{ url: role.personImageUrl, filename: "チーフ紹介の画像" }}
+                changed={personImageUrlChanged}
+                setChanged={setPersonImageUrlChanged}
             />
             <div className="pt-4">
                 <BlueButton disabled={pending}>{pending ? "保存中..." : "保存"}</BlueButton>
             </div>
         </Form>
-        */<></>
     )
 }

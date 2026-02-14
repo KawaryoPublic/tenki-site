@@ -91,7 +91,6 @@ export default function EditEquipmentForm({ equipment, locations }: { equipment:
             />
             <DefaultFile 
                 title="添付ファイル" 
-                name="file" 
                 defaultFiles={files} 
                 setDefaultFiles={setFiles} 
             />

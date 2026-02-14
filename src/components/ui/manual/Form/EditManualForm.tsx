@@ -59,8 +59,7 @@ export default function EditManualForm({ manual }: { manual: Manual }) {
                 label
             />
             <DefaultFile 
-                title="添付ファイル" 
-                name="file" 
+                title="添付ファイル"  
                 defaultFiles={files} 
                 setDefaultFiles={setFiles} 
             />

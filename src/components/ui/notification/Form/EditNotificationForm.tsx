@@ -63,7 +63,7 @@ export default function EditNotificationForm({ notification }: { notification: N
                 defaultValue={notification.content}
                 label
             />
-            <DefaultFile title="添付ファイル" name="file" defaultFiles={files} setDefaultFiles={setFiles} />
+            <DefaultFile title="添付ファイル" defaultFiles={files} setDefaultFiles={setFiles} />
             <DefaultAddableInput title="タグ" name="tag" defaultValues={notification.tags} />
             <DefaultAddableSelect 
                 title="役職" 

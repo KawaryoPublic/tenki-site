@@ -34,7 +34,7 @@ export default function RoleDetailUI({ role, tier }: { role: Role, tier: number 
             <h3 className="md:text-xl font-bold">{role.person}</h3>
             <div className="flex items-center gap-4">
                 <div className="w-[12%] relative flex aspect-square">
-                    <Image src="/image/role_test.png" alt="Person Picture" fill sizes="w-full h-full" />
+                    <Image src="/image/role_test.png" alt="Person Image" fill sizes="w-full h-full" />
                 </div>
                 <div className="flex-1 whitespace-pre-wrap">
                     <p>{role.personDetail}</p>

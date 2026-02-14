@@ -49,7 +49,7 @@ export default function AddNotificationForm() {
                 name="content"
                 label
             />
-            <DefaultFile title="添付ファイル" name="file" />
+            <DefaultFile title="添付ファイル" />
             <DefaultAddableInput title="タグ" name="tag" />
             <DefaultAddableSelect 
                 title="役職" 

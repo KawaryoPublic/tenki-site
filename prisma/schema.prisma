@@ -108,12 +108,10 @@ model Role {
   id              Int      @id @default(autoincrement())
   name            String
   description     String
-  markLink        String
-  markName        String
+  markUrl         String
   person          String
   personDetail    String
-  personImageLink String
-  personImageName String
+  personImageUrl  String
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 }

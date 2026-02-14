@@ -3,7 +3,7 @@ import BlueButton from "../global/Button/BlueButton";
 import WhiteFrameUI from "../global/WhiteFrameUI";
 import { Manual } from "@/lib/types";
 import DeleteManualButton from "./Button/DeleteManualButton";
-import OptionLinkUI from "../global/FileLinkUI";
+import OptionUrlUI from "../global/OptionUrlUI";
 import Link from "next/link";
 
 export default function ManualDetailUI({ manual, tier }: { manual: Manual, tier: number }) {
@@ -35,7 +35,7 @@ export default function ManualDetailUI({ manual, tier }: { manual: Manual, tier:
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 text-sm md:text-base">
                 {
                     manual.urls.map((url, index) => (
-                        <OptionLinkUI key={index} url={url} label={manual.filenames[index]} className="py-2" />
+                        <OptionUrlUI key={index} url={url} label={manual.filenames[index]} className="py-2" />
                     ))
                 }
             </div>

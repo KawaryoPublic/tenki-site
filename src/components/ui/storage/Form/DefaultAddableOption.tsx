@@ -3,7 +3,7 @@ import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import RedButton from "../../global/Button/RedButton";
 import DefaultVectorInput from "../../global/Form/DefaultVectorInput";
-import OptionLinkUI from "../../global/FileLinkUI";
+import OptionUrlUI from "../../global/OptionUrlUI";
 
 export default function DefaultAddableStorage({ title, defaultOptions = [], setDefaultOptions, onChange, className = "" }: { 
     title: string, 
@@ -39,7 +39,7 @@ export default function DefaultAddableStorage({ title, defaultOptions = [], setD
                 {
                     defaultOptions.map((option, index) => (
                         <div key={index} className="flex items-center gap-2">
-                            <OptionLinkUI url={`/storage/shelf/${option.id}`} label={option.name} className="flex-1" />
+                            <OptionUrlUI url={`/storage/shelf/${option.id}`} label={option.name} className="flex-1" />
                             <RedButton
                                 onClick={() => {
                                     const temp = [...defaultOptions];

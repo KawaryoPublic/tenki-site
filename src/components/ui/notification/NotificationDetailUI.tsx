@@ -3,7 +3,7 @@ import BlueButton from "../global/Button/BlueButton";
 import WhiteFrameUI from "../global/WhiteFrameUI";
 import { Notification } from "@/lib/types";
 import DeleteNotificationButton from "./Button/DeleteNotificationButton";
-import OptionLinkUI from "../global/FileLinkUI";
+import OptionUrlUI from "../global/OptionUrlUI";
 import Link from "next/link";
 
 export default function NotificationDetailUI({ notification, tier }: { notification: Notification, tier: number }) {
@@ -14,6 +14,10 @@ export default function NotificationDetailUI({ notification, tier }: { notificat
             <div className="flex justify-between items-center border-b pb-2">
                 <h2 className="text-xl md:text-3xl font-bold">{notification.title}</h2>
                 <div className="flex items-center gap-2 md:gap-4">
+                    <div className="flex items-center gap-1 md:gap-2 max-sm:hidden">
+                        <span className="text-gray-800 text-xs md:text-sm">{`${updatedAt.getFullYear() === (new Date()).getFullYear() ? "" : `${updatedAt.getFullYear()}年`}${updatedAt.getMonth() + 1}月${updatedAt.getDate()}日`}</span>
+                        <span className="text-gray-800 text-xs md:text-sm">{`${notification.roleNames.join(",")}`}</span>
+                    </div>
                     {
                         checkTier(tier) && 
                         <>
@@ -37,7 +41,7 @@ export default function NotificationDetailUI({ notification, tier }: { notificat
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 text-sm md:text-base">
                 {
                     notification.urls.map((url, index) => (
-                        <OptionLinkUI key={index} url={url} label={notification.filenames[index]} className="py-2" />
+                        <OptionUrlUI key={index} url={url} label={notification.filenames[index]} className="py-2" />
                     ))
                 }
             </div>

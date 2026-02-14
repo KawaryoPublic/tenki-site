@@ -44,7 +44,7 @@ export default function AddManualForm() {
                 name="content"
                 label
             />
-            <DefaultFile title="添付ファイル" name="file" />
+            <DefaultFile title="添付ファイル" />
             <DefaultAddableInput title="タグ" name="tag" />
             <DefaultSelect
                 title="対象"

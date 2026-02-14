@@ -26,7 +26,7 @@ export default function RolesSection({ tier }: { tier: number }) {
       <div className="flex justify-between items-center">
         <div>
           {
-            checkTier(tier) && <BlueButton href="/manual/add">追加</BlueButton>
+            checkTier(tier) && <BlueButton href="/role/add">追加</BlueButton>
           }
         </div>
       </div>
@@ -39,7 +39,7 @@ export default function RolesSection({ tier }: { tier: number }) {
             roles.map((role, index) => (
               <div key={index}>
                 <Link href={`role/${role.id}`} className="w-[12%] relative flex aspect-square">
-                  <Image src="/image/role_test.png" alt="Role Icon" fill />
+                  <Image src={role.markUrl} alt="Role Icon" fill />
                 </Link>
               </div>
             ))

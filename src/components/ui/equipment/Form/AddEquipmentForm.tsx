@@ -60,7 +60,7 @@ export default function AddEquipmentForm({ locations }: { locations: Location[] 
                 name="description"
                 label
             />
-            <DefaultFile title="添付ファイル" name="file" />
+            <DefaultFile title="添付ファイル" />
             <DefaultAddableInput title="タグ" name="tag" />
             <div className="pt-4">
                 <BlueButton disabled={pending}>{pending ? "保存中..." : "保存"}</BlueButton>
