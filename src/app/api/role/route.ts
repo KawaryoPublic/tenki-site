@@ -23,8 +23,8 @@ export async function GET(request: NextRequest) {
 
         return NextResponse.json(observations, { status: 200 });
     } catch (error) {
-        console.error("Error fetching observations:", error);
-        return NextResponse.json({ error: "Failed to fetch observations" }, { status: 500 });
+        console.error("Error fetching roles:", error);
+        return NextResponse.json({ error: "Failed to fetch roles" }, { status: 500 });
     }
 }
 
@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
-        const updatedObservation = await prisma.role.create({
+        const createdRole = await prisma.role.create({
             data: {
                 name,
                 description,
@@ -59,10 +59,10 @@ export async function POST(request: NextRequest) {
                 personImageUrl: personImageUrl == null ? urls[markUrl == null ? 1 : 0] : personImageUrl,
             },
         });
-        return NextResponse.json(updatedObservation, { status: 200 });
+        return NextResponse.json(createdRole, { status: 200 });
     } catch (error) {
-        console.error("Error updating observation:", error);
-        return NextResponse.json({ error: "Failed to update observation" }, { status: 500 });
+        console.error("Error creating a observation:", error);
+        return NextResponse.json({ error: "Failed to create a role" }, { status: 500 });
     }
 }
 
@@ -83,7 +83,7 @@ export async function PUT(request: NextRequest) {
         const markUrl = data.get("markUrl") as string;
         const personImageUrl = data.get("personImageUrl") as string;
         const urls = data.getAll("url") as string[];
-        const deleteFileUrls = data.get("deleteFileUrl") as string;
+        const deleteFileUrls = data.getAll("deleteFileUrl") as string[];
 
         if (id == undefined || name == undefined || description == undefined || person == undefined || personDetail == undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -93,7 +93,7 @@ export async function PUT(request: NextRequest) {
             await del(url);
         }
 
-        const updatedObservation = await prisma.role.update({
+        const updatedRole = await prisma.role.update({
             where: { id: Number(id) },
             data: {
                 name,
@@ -104,9 +104,39 @@ export async function PUT(request: NextRequest) {
                 personImageUrl: personImageUrl == null ? urls[markUrl == null ? 1 : 0] : personImageUrl,
             },
         });
-        return NextResponse.json(updatedObservation, { status: 200 });
+        return NextResponse.json(updatedRole, { status: 200 });
     } catch (error) {
-        console.error("Error updating observation:", error);
-        return NextResponse.json({ error: "Failed to update observation" }, { status: 500 });
+        console.error("Error updating a role:", error);
+        return NextResponse.json({ error: "Failed to update a role" }, { status: 500 });
+    }
+}
+
+export async function DELETE(request: NextRequest) {
+    try {
+        const { urls } = await request.json();
+        const tier =  await getTier(request);
+
+        if(!checkTier(tier)) {
+            return NextResponse.json({ error: "Permission denied" }, { status: 403 });
+        }
+
+        const id = request.nextUrl.searchParams.get("id");
+
+        if (id == undefined) {
+            return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+        }
+
+        for (const url of urls) {
+            await del(url);
+        }
+
+        await prisma.role.delete({
+            where: { id: Number(id) },
+        });
+
+        return NextResponse.json({ message: "Deleted a role" }, { status: 200 });
+    } catch (error) {
+        console.error("Error deleting a notification:", error);
+        return NextResponse.json({ error: "Failed to delete a role" }, { status: 500 });
     }
 }

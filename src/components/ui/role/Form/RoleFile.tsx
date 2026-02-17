@@ -18,6 +18,7 @@ export default function RoleFile({ title, defaultFile, changed = true, setChange
                             type="file"
                             required
                             className="flex-1"
+                            accept="image/*"
                         />
                     </div> :
                     <div className="flex items-center gap-2">

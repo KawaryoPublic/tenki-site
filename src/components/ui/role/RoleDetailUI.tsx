@@ -15,7 +15,7 @@ export default function RoleDetailUI({ role, tier }: { role: Role, tier: number 
                     checkTier(tier) && 
                     <>
                         <BlueButton href={`/role/edit/${role.id}`}>編集</BlueButton>
-                        <DeleteRoleButton id={role.id} />
+                        <DeleteRoleButton id={role.id} urls={[role.markUrl, role.personImageUrl]} />
                     </>
                 }
                 </div>
