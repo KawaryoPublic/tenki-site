@@ -11,6 +11,8 @@ export default function DateInfoDetailSection({ date, tier }: { date: string, ti
     const [ loading, setLoading ] = useState(true);
     
     useEffect(() => {
+        setLoading(true);
+        
         fetch(`/api/calendar/date_info?date=${date}`)
             .then(res => res.json())
             .then(data => setInfo(data))

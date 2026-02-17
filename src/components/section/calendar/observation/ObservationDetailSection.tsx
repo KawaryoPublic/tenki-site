@@ -11,6 +11,8 @@ export default function ObservationDetailSection({ day, tier }: { day: number, t
     const [ loading, setLoading ] = useState(true);
     
     useEffect(() => {
+        setLoading(true);
+        
         fetch(`/api/calendar/observation?day=${day}`)
             .then(res => res.json())
             .then(data => setObservation(data))

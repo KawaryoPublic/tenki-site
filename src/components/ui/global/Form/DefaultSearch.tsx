@@ -4,22 +4,9 @@ import Form from "next/form";
 import BlueButton from "../Button/BlueButton";
 import DefaultInput from "./DefaultInput";
 import DefaultSelect from "./DefaultSelect";
-import { ROLE_LABELS } from "@/lib/const";
 import { Role } from "@/lib/types";
-import { useState, useEffect } from "react";
 
-export default function DefaultSearchForm({ title, defaultValue, search, role = false, defaultRole, className = "" }: { title: string, defaultValue?: string, search: (searchString: string, role?: number) => void, role?: boolean, defaultRole?: number, className?: string }) {
-    const [ roles, setRoles ] = useState<Role[]>([]);
-
-    useEffect(() => {
-        if(role) {
-            fetch('/api/role')
-                .then(res => res.json())
-                .then(data => setRoles(data))
-                .catch(err => console.error(err));
-        }
-    }, []);
-
+export default function DefaultSearchForm({ title, defaultValue, search, roles, defaultRole, className = "" }: { title: string, defaultValue?: string, search: (searchString: string, role?: number) => void, roles?: Role[], defaultRole?: number, className?: string }) {
     return (
         <Form 
             action={async data => {
@@ -35,7 +22,7 @@ export default function DefaultSearchForm({ title, defaultValue, search, role = 
                 className="flex-1"
             />
             {
-                role && 
+                roles &&
                     <DefaultSelect
                         title="役職"
                         name="role"

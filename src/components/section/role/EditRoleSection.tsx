@@ -11,6 +11,8 @@ export default function EditRoleSection({ id }: { id: number }) {
     const [ loading, setLoading ] = useState(true);
     
     useEffect(() => {
+        setLoading(true);
+        
         fetch(`/api/role?id=${id}`)
             .then(res => res.json())
             .then(data => setRole(data))

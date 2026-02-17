@@ -1,11 +1,11 @@
 import DeleteNotificationButton from "./Button/DeleteNotificationButton";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import { checkTier } from "@/lib/utils";
-import { Notification } from "@/lib/types";
+import { Notification, Role } from "@/lib/types";
 import BlueButton from "../global/Button/BlueButton";
 import Link from "next/link";
 
-export default function NotificationUI({ notification, tier }: { notification: Notification, tier: number }) {
+export default function NotificationUI({ notification, roles, tier }: { notification: Notification, roles: Role[], tier: number }) {
     const updatedAt = new Date(notification.updatedAt);
 
     return (
@@ -15,7 +15,7 @@ export default function NotificationUI({ notification, tier }: { notification: N
                 <div className="flex items-center gap-2 md:gap-4">
                     <div className="flex items-center gap-1 md:gap-2">
                         <span className="text-gray-800 text-xs md:text-sm max-sm:hidden">{`${updatedAt.getFullYear() === (new Date()).getFullYear() ? "" : `${updatedAt.getFullYear()}年`}${updatedAt.getMonth() + 1}月${updatedAt.getDate()}日`}</span>
-                        <span className="text-gray-800 text-xs md:text-sm">{`${notification.roleNames.join(",")}`}</span>
+                        <span className="text-gray-800 text-xs md:text-sm">{`${notification.roles.map(id => roles.find(r => r.id === id)?.name).join(",")}`}</span>
                     </div>
                     {
                         checkTier(tier) &&

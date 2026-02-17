@@ -13,6 +13,8 @@ export default function EditNotificationSection({ id, tier }: { id: number, tier
     const [ loading, setLoading ] = useState(true);
     
     useEffect(() => {
+        setLoading(true);
+
         fetch(`/api/notification?id=${id}`)
             .then(res => res.json())
             .then(data => setNotification(data))

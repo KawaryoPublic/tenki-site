@@ -29,10 +29,6 @@ export default function EditNotificationForm({ notification, roles }: { notifica
 
         formData = await uploadFiles(formData);
 
-        for(const id of formData.getAll("role")) {
-            formData.append("roleName", roles.find(role => role.id === Number(id))!.name);
-        }
-
         await fetch(`/api/notification?id=${notification.id}`, {
             method: 'PUT',
             body: formData,

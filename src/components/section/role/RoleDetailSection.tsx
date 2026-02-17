@@ -5,20 +5,28 @@ import { Notification, Role } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import RoleDetailUI from "@/components/ui/role/RoleDetailUI";
 import NotificationUI from "@/components/ui/notification/NotificationUI";
+import { defaultFilter } from "@/lib/utils";
 
 export default function RoleDetailSection({ id, tier }: { id: number, tier: number }) {
     const [ role, setRole ] = useState<Role | null>(null);
+    const [ roles, setRoles ] = useState<Role[]>([]);
     const [ notifications, setNotifications ] = useState<Notification[]>([]);
     const [ loading, setLoading ] = useState(true);
     
     useEffect(() => {
-        fetch(`/api/role?id=${id}`)
+        setLoading(true);
+
+        fetch("/api/role")
             .then(res => res.json())
-            .then(data => setRole(data))
+            .then(data => {
+                setRoles(data);
+
+                setRole(data.find(r => r.id === id));
+            })
             .then(() => {
-                fetch(`/api/notification?role=${id}`)
+                fetch("/api/notification")
                     .then(res => res.json())
-                    .then(data => setNotifications(data))
+                    .then(data => setNotifications(defaultFilter(data, [], [], id).slice(0, 5)))
                     .finally(() => setLoading(false))
                     .catch(err => console.error(err));
             })
@@ -27,7 +35,7 @@ export default function RoleDetailSection({ id, tier }: { id: number, tier: numb
 
     return (
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !role ? <div className="flex-1 flex flex-col items-center font-bold text-xl">役職を読み込めませんでした</div> :
+        !roles || !notifications ? <div className="flex-1 flex flex-col items-center font-bold text-xl">役職を読み込めませんでした</div> :
         <section className="w-full flex flex-col gap-8">
             <RoleDetailUI role={role} tier={tier} />
             <div className="flex flex-col gap-4">
@@ -36,7 +44,7 @@ export default function RoleDetailSection({ id, tier }: { id: number, tier: numb
                 {
                     notifications.map((notification, index) => (
                         <div key={index}>
-                            <NotificationUI notification={notification} tier={tier} />
+                            <NotificationUI notification={notification} roles={roles} tier={tier} />
                         </div>
                     ))
                 }

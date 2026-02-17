@@ -2,15 +2,16 @@
 
 import Form from "next/form";
 import { redirect } from "next/navigation";
-import { File } from "@/lib/types";
+import { File, Role } from "@/lib/types";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultSelect from "../../global/Form/DefaultSelect";
 import DefaultAddableInput from "../../global/Form/DefaultAddableOption";
 import { useActionState } from 'react';
 import { TIER_LABELS } from "@/lib/const";
+import DefaultAddableSelect from "../../global/Form/DefaultAddableSelectOption";
 
-export default function EditFileForm({ file }: { file: File }) {
+export default function EditFileForm({ file, roles }: { file: File, roles: Role[] }) {
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
         await fetch(`/api/file?id=${file.id}`, {
             method: 'PUT',
@@ -20,7 +21,7 @@ export default function EditFileForm({ file }: { file: File }) {
             alert('保存に失敗しました。');
         });
 
-        redirect(`/file/${file.id}`);
+        redirect("/file");
     }, null);
 
     return (
@@ -44,6 +45,12 @@ export default function EditFileForm({ file }: { file: File }) {
                 label
             />
             <DefaultAddableInput title="タグ" name="tag" defaultValues={file.tags} />
+            <DefaultAddableSelect
+                title="役職"
+                name="role"
+                options={roles.map(role => ({ value: role.id, label: role.name }))}
+                defaultValues={file.roles}
+            />
             <DefaultSelect
                 title="対象"
                 name="tier"

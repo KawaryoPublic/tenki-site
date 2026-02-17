@@ -9,7 +9,6 @@ export async function GET(request: NextRequest) {
         const tier = await getTier(request);
         const searchParams = request.nextUrl.searchParams;
         const id = searchParams.get("id");
-        const role = searchParams.get("id");
 
         let notifications;
         
@@ -17,38 +16,6 @@ export async function GET(request: NextRequest) {
             notifications = await prisma.notification.findUnique({
                 where: { id: Number(id) }
             });
-        } else if(role != null) {
-            notifications = tier === 3 ? 
-                await prisma.notification.findMany({
-                    where: {
-                        roles: {
-                            has: Number(role)
-                        }
-                    },
-                    orderBy: { createdAt: 'desc' },
-                }) : 
-                await prisma.notification.findMany({
-                    where: {
-                        AND: [
-                            {
-                                roles: {
-                                    has: Number(role)
-                                }
-                            },
-                            {
-                                OR: [
-                                    {
-                                        tier: tier
-                                    },
-                                    {
-                                        tier: 0
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    orderBy: { createdAt: 'desc' },
-                });
         } else {
             notifications = tier === 3 ? 
                 await prisma.notification.findMany({
@@ -92,7 +59,6 @@ export async function POST(request: NextRequest) {
         const filenames = data.getAll("filename") as string[];
         const tier = data.get("tier");
         const roles = data.getAll("role").map(r => Number(r));
-        const roleNames = data.getAll("roleName") as string[];
 
         if (title == undefined || content == undefined || tier == undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -107,7 +73,6 @@ export async function POST(request: NextRequest) {
                 filenames,
                 tier: Number(tier),
                 roles,
-                roleNames
             },
         });
 
@@ -136,7 +101,6 @@ export async function PUT(request: NextRequest) {
         const deleteFileUrls = data.getAll("deleteFileUrl") as string[];
         const tier = data.get("tier");
         const roles = data.getAll("role").map(r => Number(r));
-        const roleNames = data.getAll("roleName") as string[];
 
         if (id == undefined || title == undefined || content == undefined || tier == undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -156,7 +120,6 @@ export async function PUT(request: NextRequest) {
                 filenames,
                 tier: Number(tier),
                 roles,
-                roleNames
             },
         });
 

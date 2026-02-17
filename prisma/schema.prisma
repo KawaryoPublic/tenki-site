@@ -31,7 +31,6 @@ model Notification {
   filenames String[]
   tier      Int
   roles     Int[]
-  roleNames String[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -43,7 +42,6 @@ model File {
   tags      String[]
   tier      Int
   roles     Int[]
-  roleNames String[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -57,7 +55,6 @@ model Manual {
   filenames String[]
   tier      Int
   roles     Int[]
-  roleNames String[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -99,7 +96,6 @@ model Equipment {
   urls        String[]
   filenames   String[]
   roles       Int[]
-  roleNames   String[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

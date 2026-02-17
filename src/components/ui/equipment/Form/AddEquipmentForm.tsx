@@ -8,10 +8,11 @@ import { uploadFiles } from "@/lib/utils";
 import DefaultAddableInput from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
 import { useActionState } from 'react';
-import { Location } from "@/lib/types";
+import { Location, Role } from "@/lib/types";
 import DefaultVectorInput from "../../global/Form/DefaultVectorInput";
+import DefaultAddableSelect from "../../global/Form/DefaultAddableSelectOption";
 
-export default function AddEquipmentForm({ locations }: { locations: Location[] }) {
+export default function AddEquipmentForm({ locations, roles }: { locations: Location[], roles: Role[] }) {
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
         formData = await uploadFiles(formData);
 
@@ -59,6 +60,11 @@ export default function AddEquipmentForm({ locations }: { locations: Location[] 
                 title="説明"
                 name="description"
                 label
+            />
+            <DefaultAddableSelect 
+                title="役職" 
+                name="role" 
+                options={roles.map(role => ({ value: role.id, label: role.name}))} 
             />
             <DefaultFile title="添付ファイル" />
             <DefaultAddableInput title="タグ" name="tag" />

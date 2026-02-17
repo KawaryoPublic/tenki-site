@@ -1,17 +1,23 @@
 import { checkTier, splitLinksAndHeaders } from "@/lib/utils";
 import BlueButton from "../global/Button/BlueButton";
 import WhiteFrameUI from "../global/WhiteFrameUI";
-import { Equipment } from "@/lib/types";
+import { Equipment, Role } from "@/lib/types";
 import OptionUrlUI from "../global/OptionUrlUI";
 import DeleteEquipmentButton from "./Button/DeleteEquipmentButton";
 import Link from "next/link";
 
-export default function EquipmentDetailUI({ equipment, tier }: { equipment: Equipment, tier: number }) {
+export default function EquipmentDetailUI({ equipment, roles, tier }: { equipment: Equipment, roles: Role[], tier: number }) {
+    const updatedAt = new Date(equipment.updatedAt);
+
     return (
         <WhiteFrameUI className="flex flex-col gap-2">
             <div className="flex justify-between items-center border-b pb-2">
                 <h2 className="text-xl md:text-3xl font-bold">{equipment.name}</h2>
                 <div className="flex items-center gap-2 md:gap-4">
+                    <div className="flex items-center gap-1 md:gap-2 max-sm:hidden">
+                        <span className="text-gray-800 text-xs md:text-sm">{`${updatedAt.getFullYear() === (new Date()).getFullYear() ? "" : `${updatedAt.getFullYear()}年`}${updatedAt.getMonth() + 1}月${updatedAt.getDate()}日`}</span>
+                        <span className="text-gray-800 text-xs md:text-sm">{`${equipment.roles.map(id => roles.find(r => r.id === id)?.name).join(",")}`}</span>
+                    </div>
                     {
                         checkTier(tier) && 
                         <>

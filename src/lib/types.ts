@@ -20,7 +20,6 @@ export interface Notification {
     filenames: string[];
     tier: string;
     roles: number[];
-    roleNames: string[];
     updatedAt: Date;
 }
 
@@ -30,6 +29,7 @@ export interface File {
     url: string;
     tags: string[];
     tier: number;
+    roles: number[];
     updatedAt: Date;
 }
 
@@ -41,6 +41,7 @@ export interface Manual {
     urls: string[];
     filenames: string[];
     tier: string;
+    roles: number[];
     updatedAt: Date;
 }
 
@@ -78,6 +79,7 @@ export interface Equipment {
     tags: string[];
     urls: string[];
     filenames: string[];
+    roles: number[];
     updatedAt: Date;
 }
 

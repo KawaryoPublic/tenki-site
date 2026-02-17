@@ -22,8 +22,7 @@ export default function AddNotificationSection() {
 
     return (
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !roles ? <div className="flex-1 flex flex-col items-center font-bold text-xl">役職一覧を読み込めませんでした</div> :
-
+        !roles ? <div className="flex-1 flex flex-col items-center font-bold text-xl">告知を読み込めませんでした</div> :
         <section className="w-full flex flex-col gap-4">
             <WhiteFrameUI>
                 <AddNotificationForm roles={roles} />

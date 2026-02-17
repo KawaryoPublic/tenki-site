@@ -18,10 +18,6 @@ export default function AddNotificationForm({ roles }: { roles: Role[] }) {
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
         formData = await uploadFiles(formData);
 
-        for(const role of formData.getAll("role")) {
-            formData.append("roleName", roles[Number(role)].name);
-        }
-
         await fetch("/api/notification", {
             method: 'POST',
             body: formData,

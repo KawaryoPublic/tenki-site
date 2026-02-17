@@ -2,7 +2,7 @@
 
 import Form from "next/form";
 import { redirect } from "next/navigation";
-import { Manual } from "@/lib/types";
+import { Manual, Role } from "@/lib/types";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
@@ -12,8 +12,9 @@ import DefaultFile from "../../global/Form/DefaultFile";
 import { useState, useActionState } from "react";
 import { uploadFiles } from "@/lib/utils";
 import { TIER_LABELS } from "@/lib/const";
+import DefaultAddableSelect from "../../global/Form/DefaultAddableSelectOption";
 
-export default function EditManualForm({ manual }: { manual: Manual }) {
+export default function EditManualForm({ manual, roles }: { manual: Manual, roles: Role[] }) {
     const initialFiles = manual.urls.map((url, index) => ({ url: url, filename: manual.filenames[index] }));
     const [ files, setFiles ] = useState<{ url: string, filename: string }[]>(initialFiles);
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
@@ -67,6 +68,12 @@ export default function EditManualForm({ manual }: { manual: Manual }) {
                 title="タグ" 
                 name="tag" 
                 defaultValues={manual.tags} 
+            />
+            <DefaultAddableSelect
+                title="役職"
+                name="role"
+                options={roles.map(role => ({ value: role.id, label: role.name }))}
+                defaultValues={manual.roles}
             />
             <DefaultSelect
                 title="対象"

@@ -2,7 +2,7 @@
 
 import Form from "next/form";
 import { redirect } from "next/navigation";
-import { Equipment } from "@/lib/types";
+import { Equipment, Role } from "@/lib/types";
 import BlueButton from "../../global/Button/BlueButton";
 import DefaultInput from "../../global/Form/DefaultInput";
 import DefaultTextArea from "../../global/Form/DefaultTextArea";
@@ -13,8 +13,9 @@ import { useState, useActionState, useEffect } from "react";
 import { uploadFiles } from "@/lib/utils";
 import { Location } from "@/lib/types";
 import DefaultVectorInput from "../../global/Form/DefaultVectorInput";
+import DefaultAddableSelect from "../../global/Form/DefaultAddableSelectOption";
 
-export default function EditEquipmentForm({ equipment, locations }: { equipment: Equipment, locations: Location[] }) {
+export default function EditEquipmentForm({ equipment, locations, roles }: { equipment: Equipment, locations: Location[], roles: Role[] }) {
     const initialFiles = equipment.urls.map((url, index) => ({ url: url, filename: equipment.filenames[index] }));
     
     const [ files, setFiles ] = useState<{ url: string, filename: string }[]>(initialFiles);
@@ -88,6 +89,12 @@ export default function EditEquipmentForm({ equipment, locations }: { equipment:
                 name="description"
                 defaultValue={equipment.description}
                 label
+            />
+            <DefaultAddableSelect
+                title="役職"
+                name="role"
+                options={roles.map(role => ({ value: role.id, label: role.name }))}
+                defaultValues={equipment.roles}
             />
             <DefaultFile 
                 title="添付ファイル" 

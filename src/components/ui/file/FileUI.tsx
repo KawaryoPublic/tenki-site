@@ -1,11 +1,11 @@
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import { checkTier } from "@/lib/utils";
-import { File } from "@/lib/types";
+import { File, Role } from "@/lib/types";
 import Link from "next/link";
 import BlueButton from "../global/Button/BlueButton";
 import DeleteFileButton from "./Button/DeleteFileButton";
 
-export default function FileUI({ file, tier }: { file: File, tier: number }) {
+export default function FileUI({ file, roles, tier }: { file: File, roles: Role[], tier: number }) {
     const updatedAt = new Date(file.updatedAt);
 
     return (
@@ -14,6 +14,7 @@ export default function FileUI({ file, tier }: { file: File, tier: number }) {
                 <Link className="text-xl md:text-3xl font-bold" href={file.url}>{file.title}</Link>
                 <div className="flex items-center gap-2 md:gap-4">
                     <span className="text-gray-800 text-xs md:text-sm max-sm:hidden">{`${updatedAt.getFullYear() === (new Date()).getFullYear() ? "" : `${updatedAt.getFullYear()}年`}${updatedAt.getMonth() + 1}月${updatedAt.getDate()}日`}</span>
+                    <span className="text-gray-800 text-xs md:text-sm">{`${file.roles.map(id => roles.find(r => r.id === id)?.name).join(",")}`}</span>
                     {
                         checkTier(tier) &&
                         <div className="flex items-center gap-2 md:gap-4 max-sm:hidden">

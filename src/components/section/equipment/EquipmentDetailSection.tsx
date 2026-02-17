@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Equipment } from "@/lib/types";
+import { Equipment, Role } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import EquipmentDetailUI from "@/components/ui/equipment/EquipmentDetailUI";
 
 export default function EquipmentDetailSection({ id, tier }: { id: number, tier: number }) {
+    const [ roles, setRoles ] = useState<Role[]>([]);
     const [ equipment, setEquipment ] = useState<Equipment | null>(null);
     const [ loading, setLoading ] = useState(true);
     
@@ -14,18 +15,22 @@ export default function EquipmentDetailSection({ id, tier }: { id: number, tier:
 
         fetch(`/api/equipment?id=${id}`)
             .then(res => res.json())
-            .then(data => {
-                setEquipment(data);
+            .then(data => setEquipment(data))
+            .then(() => {
+                fetch('/api/role')
+                  .then(res => res.json())
+                  .then(data => setRoles(data))
+                  .finally(() => setLoading(false))
+                  .catch(err => console.error(err));
             })
-            .finally(() => setLoading(false))
             .catch(err => console.error(err))
     }, []);
 
     return (
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !equipment || !location ? <div className="flex-1 flex flex-col items-center font-bold text-xl">機材を読み込めませんでした</div> :
+        !equipment || !roles ? <div className="flex-1 flex flex-col items-center font-bold text-xl">機材を読み込めませんでした</div> :
         <section className="w-full flex flex-col gap-4">
-            <EquipmentDetailUI equipment={equipment} tier={tier} />
+            <EquipmentDetailUI equipment={equipment} roles={roles} tier={tier} />
             <div>
                 <BlueButton href="/equipment">機材一覧に戻る</BlueButton>
             </div>

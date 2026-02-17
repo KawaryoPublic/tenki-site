@@ -28,13 +28,13 @@ export default function CalendarSection({ filter, tier }: { filter: string, tier
                     .finally(() => setLoading(false))
                     .catch(err => console.error(err));
             })
-            .finally(() => setLoading(false))
+            .finally(() => setLoading(filter))
             .catch(err => console.log(err));
     }, [filter]);
 
     return (
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !dateInfo ? <div className="flex-1 flex flex-col items-center font-bold text-xl">カレンダーを読み込めませんでした</div> :
+        !dateInfo || !observationDays ? <div className="flex-1 flex flex-col items-center font-bold text-xl">カレンダーを読み込めませんでした</div> :
         <section className="flex-1 flex flex-col gap-2">
             <div className="w-full flex justify-end">
                 <DefaultSearchForm title="記号で観測シフトを検索" defaultValue={filter} search={searchString => redirect(`/calendar?filter=${searchString}`)} />

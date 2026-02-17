@@ -11,8 +11,10 @@ import DefaultAddableInput from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
 import { useActionState } from 'react';
 import { TIER_LABELS } from "@/lib/const";
+import { Role } from "@/lib/types";
+import DefaultAddableSelect from "../../global/Form/DefaultAddableSelectOption";
 
-export default function AddManualForm() {
+export default function AddManualForm({ roles }: { roles: Role[] }) {
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
         formData = await uploadFiles(formData);
 
@@ -46,6 +48,11 @@ export default function AddManualForm() {
             />
             <DefaultFile title="添付ファイル" />
             <DefaultAddableInput title="タグ" name="tag" />
+            <DefaultAddableSelect
+                title="役職"
+                name="role"
+                options={roles.map(role => ({ value: role.id, label: role.name }))}
+            />
             <DefaultSelect
                 title="対象"
                 name="tier"

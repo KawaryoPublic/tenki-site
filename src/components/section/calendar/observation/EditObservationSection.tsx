@@ -12,6 +12,8 @@ export default function EditObservationSection({ day, tier }: { day: number, tie
     const [ loading, setLoading ] = useState(true);
     
     useEffect(() => {
+        setLoading(true);
+        
         fetch(`/api/calendar/observation?day=${day}`)
             .then(res => res.json())
             .then(data => setObservation(data))

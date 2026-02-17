@@ -1,12 +1,12 @@
 import { checkTier, splitLinksAndHeaders } from "@/lib/utils";
 import BlueButton from "../global/Button/BlueButton";
 import WhiteFrameUI from "../global/WhiteFrameUI";
-import { Notification } from "@/lib/types";
+import { Notification, Role } from "@/lib/types";
 import DeleteNotificationButton from "./Button/DeleteNotificationButton";
 import OptionUrlUI from "../global/OptionUrlUI";
 import Link from "next/link";
 
-export default function NotificationDetailUI({ notification, tier }: { notification: Notification, tier: number }) {
+export default function NotificationDetailUI({ notification, roles, tier }: { notification: Notification, roles: Role[], tier: number }) {
     const updatedAt = new Date(notification.updatedAt);
 
     return (
@@ -16,7 +16,7 @@ export default function NotificationDetailUI({ notification, tier }: { notificat
                 <div className="flex items-center gap-2 md:gap-4">
                     <div className="flex items-center gap-1 md:gap-2 max-sm:hidden">
                         <span className="text-gray-800 text-xs md:text-sm">{`${updatedAt.getFullYear() === (new Date()).getFullYear() ? "" : `${updatedAt.getFullYear()}年`}${updatedAt.getMonth() + 1}月${updatedAt.getDate()}日`}</span>
-                        <span className="text-gray-800 text-xs md:text-sm">{`${notification.roleNames.join(",")}`}</span>
+                        <span className="text-gray-800 text-xs md:text-sm">{`${notification.roles.map(id => roles.find(r => r.id === id)?.name).join(",")}`}</span>
                     </div>
                     {
                         checkTier(tier) && 
