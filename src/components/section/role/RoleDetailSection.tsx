@@ -21,7 +21,7 @@ export default function RoleDetailSection({ id, tier }: { id: number, tier: numb
             .then(data => {
                 setRoles(data);
 
-                setRole(data.find(r => r.id === id));
+                setRole(data.find((r: Role) => r.id === id));
             })
             .then(() => {
                 fetch("/api/notification")
