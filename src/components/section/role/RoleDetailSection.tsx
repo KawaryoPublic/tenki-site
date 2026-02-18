@@ -35,7 +35,7 @@ export default function RoleDetailSection({ id, tier }: { id: number, tier: numb
 
     return (
         loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !roles || !notifications ? <div className="flex-1 flex flex-col items-center font-bold text-xl">役職を読み込めませんでした</div> :
+        !roles || !role || !notifications ? <div className="flex-1 flex flex-col items-center font-bold text-xl">役職を読み込めませんでした</div> :
         <section className="w-full flex flex-col gap-8">
             <RoleDetailUI role={role} tier={tier} />
             <div className="flex flex-col gap-4">
