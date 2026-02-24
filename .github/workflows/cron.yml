@@ -1,10 +1,21 @@
 name: Cron Job
 on: 
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '0 0 * * *'
+    - cron: '30 20 * * *'
 jobs:
-  hello:
+  auto_deletion:
+    if: github.event.schedule == '0 0 * * *'
     runs-on: ubuntu-latest
     steps:
-      - name: Curl scheduled endpoint
-        run: curl https://tenki-site.vercel.app/api/file
+      - name: everyday automatic deletion
+        run: curl https://tenki-site.vercel.app/api/cron/auto_deletion
+
+  observation_notification:
+    if: github.event.schedule == '30 20 * * *'
+    runs-on: ubuntu-latest
+    steps:
+      - name: everyday notification of tomorrow's observation
+        run: curl https://tenki-site.vercel.app/api/cron/observation_notification
+
+  
