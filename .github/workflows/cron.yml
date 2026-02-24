@@ -7,4 +7,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Curl scheduled endpoint
-        run: echo Hello! from cron job.
+        run: curl https://tenki-site.vercel.app/api/file
