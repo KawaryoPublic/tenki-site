@@ -1,6 +1,5 @@
 "use client";
 
-import RedButton from "../../global/Button/RedButton";
 import { useState } from "react";
 import { redirect } from "next/navigation";
 
@@ -8,7 +7,8 @@ export default function DeleteFileButton({ id }: { id: number }) {
     const [ deleting, setDeleting ] = useState(false);
 
     return (
-        <RedButton
+        <button
+            className="cursor-pointer hover:underline"
             onClick={async () => {
                 if(!confirm("本当に削除しますか？")) {
                     return;
@@ -28,6 +28,6 @@ export default function DeleteFileButton({ id }: { id: number }) {
             disabled={deleting}
         >
             {deleting ? "削除中..." : "削除"}
-        </RedButton>
+        </button>
     );
 }

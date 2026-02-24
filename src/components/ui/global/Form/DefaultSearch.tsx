@@ -13,24 +13,27 @@ export default function DefaultSearchForm({ title, defaultValue, search, roles, 
                 const role = data.get("role");
                 search(data.get("search") as string || "", role == "" ? undefined : Number(role));
             }}
-            className={`flex flex-row gap-1 ${className}`}
+            className={`flex flex-col sm:flex-row gap-1 z-2 ${className}`}
         >   
             <DefaultInput
                 title={title}
                 name="search"
                 defaultValue={defaultValue}
-                className="flex-1"
+                className="flex-1 text-xs md:text-sm"
             />
-            {
-                roles &&
-                    <DefaultSelect
-                        title="役職"
-                        name="role"
-                        defaultValue={defaultRole}
-                        options={roles.map(role => ({ label: role.name, value: role.id }))}
-                    />
-            }
-            <BlueButton>検索</BlueButton>
+            <div className="flex gap-1 justify-between">
+                {
+                    roles &&
+                        <DefaultSelect
+                            title="役職"
+                            name="role"
+                            defaultValue={defaultRole}
+                            options={roles.map(role => ({ label: role.name, value: role.id }))}
+                        />
+                }
+                <BlueButton>検索</BlueButton>
+            </div>
+            
         </Form>
     )
 }

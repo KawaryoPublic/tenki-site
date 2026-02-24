@@ -26,7 +26,7 @@ export default function EditDateInfoForm({ info }: { info: DateInfo }) {
             action={formAction}
             className="flex flex-col gap-2"
         >
-            <h2 className="text-xl lg:text-3xl font-bold border-b pb-2">詳細を編集</h2>
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold border-b pb-2">詳細を編集</h2>
             <DefaultTextArea 
                 title="予定" 
                 name="plan" 

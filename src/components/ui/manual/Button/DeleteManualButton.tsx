@@ -1,6 +1,5 @@
 "use client";
 
-import RedButton from "../../global/Button/RedButton";
 import { redirect } from "next/navigation";
 import { useState } from "react";
 
@@ -8,7 +7,8 @@ export default function DeleteManualButton({ id, urls }: { id: number, urls: str
     const [ deleting, setDeleting ] = useState(false);
 
     return (
-        <RedButton
+        <button
+            className="cursor-pointer hover:underline"
             onClick={async () => {
                 if(!confirm("本当に削除しますか？")) {
                     return;
@@ -28,6 +28,6 @@ export default function DeleteManualButton({ id, urls }: { id: number, urls: str
             }}
         >
             {deleting ? "削除中..." : "削除"}
-        </RedButton>
+        </button>
     );
 }

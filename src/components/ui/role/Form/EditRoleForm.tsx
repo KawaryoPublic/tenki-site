@@ -21,11 +21,12 @@ export default function EditRoleForm({ role }: { role: Role }) {
         }
 
         if(personImageUrlChanged) {
-            formData.append("deleteFileUrl", role.markUrl);
+            formData.append("deleteFileUrl", role.personImageUrl);
         } else {
             formData.append("personImageUrl", role.personImageUrl);
         }
 
+        
         formData = await uploadFiles(formData);
 
         await fetch(`/api/role?id=${role.id}`, {
@@ -45,6 +46,7 @@ export default function EditRoleForm({ role }: { role: Role }) {
             className="flex flex-col gap-2"
         >   
             <h2 className="text-xl md:text-3xl font-bold border-b pb-2">告知を編集</h2>
+            {personImageUrlChanged ? "true" : "false"}
             <DefaultInput
                 title="役職名"
                 name="name"

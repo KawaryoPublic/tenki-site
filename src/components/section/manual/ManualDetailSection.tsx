@@ -31,7 +31,7 @@ export default function ManualDetailSection({ id, tier }: { id: number, tier: nu
         !manual || !roles ? <div className="flex-1 flex flex-col items-center font-bold text-xl">マニュアルを読み込めませんでした</div> :
         <section className="w-full flex flex-col gap-4">
             <ManualDetailUI manual={manual} roles={roles} tier={tier} />
-            <div>
+            <div className="z-2">
                 <BlueButton href="/manual">マニュアル一覧に戻る</BlueButton>
             </div>
         </section>

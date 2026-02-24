@@ -12,7 +12,7 @@ export default function ObservationDetailSection({ day, tier }: { day: number, t
     
     useEffect(() => {
         setLoading(true);
-        
+
         fetch(`/api/calendar/observation?day=${day}`)
             .then(res => res.json())
             .then(data => setObservation(data))
@@ -26,7 +26,7 @@ export default function ObservationDetailSection({ day, tier }: { day: number, t
         !observation ? <div className="flex-1 flex flex-col items-center font-bold text-xl">観測シフトを読み込めませんでした</div> :
         <section className="w-full flex flex-col gap-4">
             <ObservationDetailUI observation={observation} tier={tier} />
-            <div>
+            <div className="z-2">
                 <BlueButton href="/calendar">日付一覧に戻る</BlueButton>
             </div>
         </section>

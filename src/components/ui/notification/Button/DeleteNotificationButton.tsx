@@ -1,6 +1,5 @@
 "use client";
 
-import RedButton from "../../global/Button/RedButton";
 import { redirect, usePathname } from "next/navigation";
 import { useState } from "react";
 
@@ -9,7 +8,8 @@ export default function DeleteNotificationButton({ id, urls }: { id: number, url
     const [ deleting, setDeleting ] = useState(false);
 
     return (
-        <RedButton
+        <button
+            className="cursor-pointer hover:underline"
             onClick={async () => {
                 if(!confirm("本当に削除しますか？")) {
                     return;
@@ -34,6 +34,6 @@ export default function DeleteNotificationButton({ id, urls }: { id: number, url
             }}
         >
             {deleting ? "削除中..." : "削除"}
-        </RedButton>
+        </button>
     );
 }

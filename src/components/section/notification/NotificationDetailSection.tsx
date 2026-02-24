@@ -31,7 +31,7 @@ export default function NotificationDetailSection({ id, tier }: { id: number, ti
         !notification || !roles ? <div className="flex-1 flex flex-col items-center font-bold text-xl">告知を読み込めませんでした</div> :
         <section className="w-full flex flex-col gap-4">
             <NotificationDetailUI notification={notification} roles={roles} tier={tier} />
-            <div>
+            <div className="z-2">
                 <BlueButton href="/notification">告知一覧に戻る</BlueButton>
             </div>
         </section>

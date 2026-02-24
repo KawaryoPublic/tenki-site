@@ -31,7 +31,7 @@ export default function EquipmentDetailSection({ id, tier }: { id: number, tier:
         !equipment || !roles ? <div className="flex-1 flex flex-col items-center font-bold text-xl">機材を読み込めませんでした</div> :
         <section className="w-full flex flex-col gap-4">
             <EquipmentDetailUI equipment={equipment} roles={roles} tier={tier} />
-            <div>
+            <div className="z-2">
                 <BlueButton href="/equipment">機材一覧に戻る</BlueButton>
             </div>
         </section>

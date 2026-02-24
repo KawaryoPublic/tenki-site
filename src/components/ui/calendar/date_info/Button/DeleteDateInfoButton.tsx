@@ -1,14 +1,14 @@
 "use client";
 
 import { redirect } from "next/navigation";
-import RedButton from "../../../global/Button/RedButton";
 import { useState } from "react";
 
 export default function DeleteDateInfoButton({ date }: { date: string }) {
     const [ deleting, setDeleting ] = useState(false);
 
     return (
-        <RedButton
+        <button
+            className="cursor-pointer hover:underline"
             onClick={async () => {
                 if(!confirm("本当に削除しますか？")) return;
 
@@ -26,6 +26,6 @@ export default function DeleteDateInfoButton({ date }: { date: string }) {
             disabled={deleting}
         >
             {deleting ? "削除中..." : "削除"}
-        </RedButton>
+        </button>
     );
 }

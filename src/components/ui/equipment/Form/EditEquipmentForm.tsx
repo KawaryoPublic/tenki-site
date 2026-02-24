@@ -49,7 +49,7 @@ export default function EditEquipmentForm({ equipment, locations, roles }: { equ
             action={formAction}
             className="flex flex-col gap-2"
         >   
-            <h2 className="text-xl md:text-3xl font-bold border-b pb-2">機材を編集</h2>
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold border-b pb-2">機材を編集</h2>
             <DefaultInput
                 title="名前"
                 name="name"

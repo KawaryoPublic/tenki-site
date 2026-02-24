@@ -34,7 +34,7 @@ export default function AddManualForm({ roles }: { roles: Role[] }) {
             action={formAction}
             className="flex flex-col gap-2"
         >   
-            <h2 className="text-xl md:text-3xl font-bold border-b pb-2">マニュアルを追加</h2>
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold border-b pb-2">マニュアルを追加</h2>
             <DefaultInput
                 title="タイトル"
                 name="title"

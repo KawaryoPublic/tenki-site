@@ -16,7 +16,9 @@ export async function GET(request: NextRequest) {
         const id = searchParams.get("id");
 
         const observations = id == undefined ? 
-            await prisma.role.findMany() :
+            await prisma.role.findMany({
+                orderBy: { id: 'asc' },
+            }) :
             await prisma.role.findUnique({
                 where: { id: Number(id) },
             });

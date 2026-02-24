@@ -50,8 +50,7 @@ export default function RoleDetailSection({ id, tier }: { id: number, tier: numb
                 }
                 </div>
             </div>
-            
-            <div>
+            <div className="z-2">
                 <BlueButton href="/role">役職一覧に戻る</BlueButton>
             </div>
         </section>

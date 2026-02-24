@@ -32,7 +32,7 @@ export default function NotificationsSection({ tier, tags, title, role }: { tier
     loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
     <section className="flex-1 flex flex-col gap-3 w-full">
       <div className="flex justify-between items-center">
-        <div>
+        <div className="z-2">
           {
             checkTier(tier) && <BlueButton href="/notification/add">追加</BlueButton>
           }

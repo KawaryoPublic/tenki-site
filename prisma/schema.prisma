@@ -12,14 +12,16 @@ model Observation {
   morning     String[]
   noon        String[]
   afterSchool String[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model DateInfo {
   date      String       @id @unique
-  createdAt DateTime     @default(now())
-  updatedAt DateTime     @updatedAt
   plan      String
   holiday   String[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Notification {

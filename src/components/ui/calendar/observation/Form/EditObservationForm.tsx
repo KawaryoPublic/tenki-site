@@ -25,7 +25,7 @@ export default function EditObservationForm({ observation }: { observation: Obse
             action={formAction}
             className="flex flex-col gap-2"
         >
-            <h2 className="text-xl lg:text-3xl font-bold border-b pb-2">観測シフトを編集</h2>
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold border-b pb-2">観測シフトを編集</h2>
             <DefaultAddableInput
                 title="朝"
                 name="morning"

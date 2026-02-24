@@ -3,12 +3,14 @@ export interface Observation {
     morning: string[];
     noon: string[];
     afterSchool: string[];
+    updatedAt: Date;
 }
 
 export interface DateInfo {
     date: string;
     plan: string;
     holiday: string[];
+    updatedAt: Date;
 }
 
 export interface Notification {
@@ -58,6 +60,7 @@ export interface Shelf {
         size: number[];
         position: number[]
     }[];
+    updatedAt: Date;
 };
 
 export interface Location {
@@ -66,6 +69,7 @@ export interface Location {
     size: number[];
     equipment: Equipment[];
     shelves: Shelf[];
+    updatedAt: Date;
 }
 
 export interface Equipment {
@@ -91,4 +95,5 @@ export interface Role {
     person: string;
     personDetail: string;
     personImageUrl: string;
+    updatedAt: Date;
 }
