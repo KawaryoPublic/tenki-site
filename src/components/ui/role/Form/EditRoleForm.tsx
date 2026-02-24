@@ -45,7 +45,7 @@ export default function EditRoleForm({ role }: { role: Role }) {
             action={formAction}
             className="flex flex-col gap-2"
         >   
-            <h2 className="text-xl md:text-3xl font-bold border-b pb-2">告知を編集</h2>
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold border-b pb-2">告知を編集</h2>
             {personImageUrlChanged ? "true" : "false"}
             <DefaultInput
                 title="役職名"
