@@ -1,11 +1,10 @@
 import prisma from "@/lib/prisma";
-import { DateInfo, Notification } from "@/lib/types";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
     try {
-        const notifications = await prisma.notification.findMany() as Notification[];
-        const date_info = await prisma.dateInfo.findMany() as DateInfo[];
+        const notifications = await prisma.notification.findMany();
+        const date_info = await prisma.dateInfo.findMany();
         const today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
 
         for(const notification of notifications) {
