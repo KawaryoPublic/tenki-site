@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
             where: { day: new Date().getDay() }
         });
 
-        return NextResponse.json({ message: `朝観測: ${observation.morning}, 昼観測: ${observation.noon}, 放課後観測: ${observation.afterSchool}` }, { status: 200 });
+        return NextResponse.json({ message: `朝観測: ${observation!.morning}, 昼観測: ${observation!.noon}, 放課後観測: ${observation!.afterSchool}` }, { status: 200 });
     } catch(error) {
         console.error("Error notifying an observation:", error);
         return NextResponse.json({ error: "Failed to notify an observation" }, { status: 500 });
