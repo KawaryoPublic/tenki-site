@@ -8,7 +8,7 @@ import { Role } from "@/lib/types";
 import { useState } from "react";
 
 export default function DefaultSearchForm({ title, defaultValue, search, roles, defaultRole, defaultImportant, className = "" }: { title: string, defaultValue?: string, search: (searchString: string, role?: number, important?: boolean) => void, roles?: Role[], defaultRole?: number, defaultImportant?: boolean, className?: string }) {
-    const [ important, setImportant ] = useState<boolean | null>(defaultImportant);
+    const [ important, setImportant ] = useState<boolean | undefined>(defaultImportant);
 
     return (
         <Form 
