@@ -46,6 +46,13 @@ export default function AddNotificationForm({ roles }: { roles: Role[] }) {
                 name="content"
                 label
             />
+            <DefaultInput
+                title="重要"
+                name="important"
+                type="checkbox"
+                label
+                className="h-12 mr-auto"
+            />
             <DefaultFile title="添付ファイル" />
             <DefaultAddableInput title="タグ" name="tag" />
             <DefaultAddableSelect 

@@ -15,7 +15,7 @@ export default function NotificationUI({ notification, roles, tier }: { notifica
             <button className={`fixed top-0 right-0 w-full h-full z-1 ${showOptions ? "" : "hidden"}`} onClick={() => setShowOptions(false)} />
             <div className="flex flex-col gap-1 w-full">
                 <div className="flex items-center justify-between">
-                    <Link className="text-xl md:text-2xl lg:text-3xl font-bold z-2" href={`/notification/${notification.id}`}>{notification.title}</Link>
+                    <Link className={`text-xl md:text-2xl lg:text-3xl font-bold z-2 ${notification.important && "text-red-600"}`} href={`/notification/${notification.id}`}>{notification.title}</Link>
                     {
                         checkTier(tier) && 
                             <button 

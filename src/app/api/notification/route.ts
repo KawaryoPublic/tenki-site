@@ -54,6 +54,7 @@ export async function POST(request: NextRequest) {
         const data = await request.formData();
         const title = data.get("title") as string;
         const content = data.get("content") as string;
+        const important = data.get("important") as boolean;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
         const urls = data.getAll("url") as string[];
         const filenames = data.getAll("filename") as string[];
@@ -68,6 +69,7 @@ export async function POST(request: NextRequest) {
             data: {
                 title,
                 content,
+                important: important != undefined,
                 tags,
                 urls,
                 filenames,
@@ -96,6 +98,7 @@ export async function PUT(request: NextRequest) {
         const title = data.get("title") as string;
         const tags = (data.getAll("tag") as string[]).map(tag => tag.trim());
         const content = data.get("content") as string;
+        const important = data.get("important") as boolean;
         const urls = data.getAll("url") as string[];
         const filenames = data.getAll("filename") as string[];
         const deleteFileUrls = data.getAll("deleteFileUrl") as string[];
@@ -115,6 +118,7 @@ export async function PUT(request: NextRequest) {
             data: {
                 title,
                 content,
+                important: important != undefined,
                 tags,
                 urls,
                 filenames,
