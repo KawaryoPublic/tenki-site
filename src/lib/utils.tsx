@@ -20,6 +20,10 @@ export const formatDate = (date: string) => {
     return `${splitDate[0]}年${Number(splitDate[1]) + 1}月${splitDate[2]}日`;
 }
 
+export const getDateId = (date: Date) => {
+    return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+}
+
 export const fitToParentSize = (parentRef: RefObject<HTMLElement | null>, aspectRatio: number) => {
     if(!parentRef.current) return [0, 0];
 

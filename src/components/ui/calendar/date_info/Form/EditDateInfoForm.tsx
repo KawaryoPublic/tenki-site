@@ -18,7 +18,7 @@ export default function EditDateInfoForm({ info }: { info: DateInfo }) {
             alert('保存に失敗しました。');
         });
 
-        redirect(`/calendar/date/${info.date}`);
+        redirect(`/calendar/date_info/${info.date}`);
     }, null);
 
     return (

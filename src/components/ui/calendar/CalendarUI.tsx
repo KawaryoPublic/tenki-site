@@ -2,6 +2,7 @@ import { DAYS } from "@/lib/const";
 import DayUI from "./date_info/DayUI";
 import DateUI from "./date_info/DateUI";
 import { DateInfo } from "@/lib/types";
+import { formatDate, getDateId } from "@/lib/utils";
 
 export default function CalendarUI({ index, tier, filter, dateInfo, observationDays }: { index: number, tier: number, filter: string, dateInfo: DateInfo[], observationDays: Number[] }) {
     const firstDate = new Date(new Date().getFullYear(), new Date().getMonth() + index, 1);
@@ -21,7 +22,7 @@ export default function CalendarUI({ index, tier, filter, dateInfo, observationD
                         date.setDate(date.getDate() + i - firstDate.getDay());
 
                         return date;
-                    }).map((date, index) => <DateUI date={date} info={dateInfo.find((d: DateInfo) => d.date === `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`)} filter={filter} firstDate={firstDate} tier={tier} index={index} key={index} />)
+                    }).map((date, index) => <DateUI date={date} info={dateInfo.find((d: DateInfo) => d.date === getDateId(date))} filter={filter} firstDate={firstDate} tier={tier} index={index} key={index} />)
                 }
             </div>
         </div>
