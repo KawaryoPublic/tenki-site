@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
 
         for(const notification of notifications) {
             const updatedAt = new Date(notification.updatedAt);
-            if(new Date(updatedAt.getFullYear(), updatedAt.getMonth() + 1, updatedAt.getDate()) <= today) {
+            if(new Date(updatedAt.getFullYear(), updatedAt.getMonth() + (notification.important ? 3 : 1), updatedAt.getDate()) <= today) {
                 await prisma.notification.delete({
                     where: { id: notification.id },
                 });

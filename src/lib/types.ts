@@ -17,6 +17,7 @@ export interface Notification {
     id: number;
     title: string;
     content: string;
+    important: boolean;
     tags: string[];
     urls: string[];
     filenames: string[];
