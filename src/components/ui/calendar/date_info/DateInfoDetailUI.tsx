@@ -1,4 +1,4 @@
-import { DateInfo } from "@/lib/types";
+import { DateInfo, Observation } from "@/lib/types";
 import WhiteFrameUI from "../../global/WhiteFrameUI";
 import { checkTier, formatDate, splitLinksAndHeaders } from "@/lib/utils";
 import { useState } from "react"; 
@@ -6,7 +6,7 @@ import DeleteDateInfoButton from "./Button/DeleteDateInfoButton";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function DateInfoDetailUI({ info, tier }: { info: DateInfo, tier: number }) {
+export default function DateInfoDetailUI({ info, observation, tier }: { info: DateInfo, observation: Observation, tier: number }) {
     const [ showOptions, setShowOptions ] = useState(false);
     const updatedAt = new Date(info.updatedAt);
 
@@ -52,8 +52,13 @@ export default function DateInfoDetailUI({ info, tier }: { info: DateInfo, tier:
                 </div>
             </div>
             <div>
-                <p className="font-bold">休日観測</p>
-                <span className="whitespace-pre-wrap text-sm md:text-base">{info.holiday.length === 0 ? "なし" : info.holiday.join(", ")}</span>
+                <p className="font-bold">観測</p>
+                <span className="whitespace-pre-wrap text-sm md:text-base">
+                    {
+                        info.holiday.length !== 0 ? info.holiday.join(", ") :
+                        `朝は${observation.morning.join(", ")}、昼は${observation.noon.join(", ")}、放課後は${observation.afterSchool.join(", ")}`
+                    }
+                </span>
             </div>
         </WhiteFrameUI>
     )
