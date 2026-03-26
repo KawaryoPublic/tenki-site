@@ -11,7 +11,7 @@ export default function SaveLocationButton({ id, shelves }: { id: number, shelve
     return (
         <button
             className="cursor-pointer hover:underline"
-            onClick={async () => {
+            onClick={async () => {/** 
                 if(!confirm("本当に削除しますか？")) {
                     return;
                 }
@@ -32,10 +32,11 @@ export default function SaveLocationButton({ id, shelves }: { id: number, shelve
                 }
 
                 window.location.reload();
+                */
             }}
         >
             <span className="text-lg md:text-xl p-1 font-bold">保存</span>
-            {deleting ? "削除中..." : "削除"}
+            
         </button>
     );
 }
