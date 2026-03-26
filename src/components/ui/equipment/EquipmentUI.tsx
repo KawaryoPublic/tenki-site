@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import DeleteEquipmentButton from "./Button/DeleteEquipmentButton";
 import { useState } from "react";
+import { EQUIPMENT_PREFIXES, EQUIPMENT_TYPES } from "@/lib/const";
 
 export default function EquipmentUI({ equipment, roles, tier }: { equipment: Equipment, roles: Role[], tier: number }) {
     const [ showOptions, setShowOptions ] = useState(false);
@@ -15,7 +16,7 @@ export default function EquipmentUI({ equipment, roles, tier }: { equipment: Equ
             <button className={`fixed top-0 right-0 w-full h-full z-1 ${showOptions ? "" : "hidden"}`} onClick={() => setShowOptions(false)} />
             <div className="flex flex-col gap-1 w-full">
                 <div className="flex items-center justify-between">
-                    <Link className="text-xl md:text-2xl lg:text-3xl font-bold z-2" href={`/equipment/${equipment.id}`}>{equipment.name}</Link>
+                    <Link className="text-xl md:text-2xl lg:text-3xl font-bold z-2" href={`/equipment/${equipment.id}`}>{(equipment.number !== 999 && equipment.type !== 4) &&`${EQUIPMENT_PREFIXES[equipment.type]}-${equipment.number}`} {equipment.name}</Link>
                     {
                         checkTier(tier) && 
                             <button 
@@ -32,6 +33,7 @@ export default function EquipmentUI({ equipment, roles, tier }: { equipment: Equ
                 </div>
                 <div className="flex items-center gap-2 md:gap-4 flex-wrap">
                     <span className="text-gray-800 text-xs md:text-sm">{`${updatedAt.getFullYear() === (new Date()).getFullYear() ? "" : `${updatedAt.getFullYear()}年`}${updatedAt.getMonth() + 1}月${updatedAt.getDate()}日更新`}</span>
+                    <span className="text-gray-800 text-xs md:text-sm flex gap-1 md:gap-2 flex-wrap">{EQUIPMENT_TYPES[equipment.type]}</span>
                     {
                         equipment.roles.length > 0 &&
                         <div className="text-gray-800 text-xs md:text-sm flex gap-1 md:gap-2 flex-wrap">

@@ -6,6 +6,7 @@ import DeleteEquipmentButton from "./Button/DeleteEquipmentButton";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { EQUIPMENT_PREFIXES, EQUIPMENT_TYPES } from "@/lib/const";
 
 export default function EquipmentDetailUI({ equipment, roles, tier }: { equipment: Equipment, roles: Role[], tier: number }) {
     const [ showOptions, setShowOptions ] = useState(false);
@@ -17,7 +18,7 @@ export default function EquipmentDetailUI({ equipment, roles, tier }: { equipmen
             <div className="flex justify-between items-center border-b pb-2">
                 <div className="flex flex-col gap-1 w-full">
                     <div className="flex items-center justify-between">
-                        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold">{equipment.name}</h2>
+                        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold">{(equipment.number !== 999 && equipment.type !== 4) &&`${EQUIPMENT_PREFIXES[equipment.type]}-${equipment.number}`} {equipment.name}</h2>
                         {
                             checkTier(tier) && 
                                 <button 
@@ -34,6 +35,7 @@ export default function EquipmentDetailUI({ equipment, roles, tier }: { equipmen
                     </div>
                     <div className="flex items-center gap-2 md:gap-4 flex-wrap">
                         <span className="text-gray-800 text-xs md:text-sm">{`${updatedAt.getFullYear() === (new Date()).getFullYear() ? "" : `${updatedAt.getFullYear()}年`}${updatedAt.getMonth() + 1}月${updatedAt.getDate()}日更新`}</span>
+                        <span className="text-gray-800 text-xs md:text-sm flex gap-1 md:gap-2 flex-wrap">{EQUIPMENT_TYPES[equipment.type]}</span>
                         {
                             equipment.roles.length > 0 &&
                             <div className="text-gray-800 text-xs md:text-sm flex gap-1 md:gap-2 flex-wrap">
@@ -65,7 +67,7 @@ export default function EquipmentDetailUI({ equipment, roles, tier }: { equipmen
                 equipment.number !== 1 && 
                 <div className="whitespace-pre-wrap text-sm md:text-base">
                     <p className="font-bold">個数</p>
-                    <span>{equipment.number}個</span>
+                    <span>{equipment.count}個</span>
                 </div>
             }
             <div className="whitespace-pre-wrap text-sm md:text-base">

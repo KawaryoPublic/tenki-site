@@ -77,7 +77,9 @@ export interface Equipment {
     id: number;
     name: string;
     location: Location;
+    type: number;
     number: number;
+    count: number;
     size: number[];
     contents: string[];
     description: string;

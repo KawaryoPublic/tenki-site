@@ -3,10 +3,10 @@ import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 
 export default function Home() {
   return (
-    <div className="w-full">
+    <section className="w-full">
       <WhiteFrameUI>
         <PasswordForm />
       </WhiteFrameUI>
-    </div>
+    </section>
   );
 }

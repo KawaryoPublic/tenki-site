@@ -18,7 +18,17 @@ export async function GET(request: NextRequest) {
         
         if(id == undefined) {
             equipment = await prisma.equipment.findMany({
-                orderBy: { createdAt: 'desc' },
+                orderBy: [
+                    {
+                        type: "asc"
+                    },
+                    {
+                        number: "asc"
+                    },
+                    {
+                        name: "asc"
+                    }
+                ]
             });
         } else {
             equipment = await prisma.equipment.findUnique({
@@ -45,7 +55,9 @@ export async function POST(request: NextRequest) {
         const data = await request.formData();
         const name = data.get("name") as string;
         const locationId = data.get("locationId");
+        const type = data.get("type");
         const number = data.get("number");
+        const count = data.get("count");
         const size = (data.getAll("size") as string[]).map(s => Number(s));
         const contents = data.getAll("content") as string[];
         const description = data.get("description") as string;
@@ -54,7 +66,7 @@ export async function POST(request: NextRequest) {
         const filenames = data.getAll("filename") as string[];
         const roles = data.getAll("role").map(r => Number(r));
 
-        if (name == undefined || locationId == undefined || number == undefined || size.length !== 3 || contents == undefined || description == undefined) {
+        if (name == undefined || locationId == undefined || type == undefined || number == undefined || count == undefined || size.length !== 3 || contents == undefined || description == undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -62,7 +74,9 @@ export async function POST(request: NextRequest) {
             data: {
                 name,
                 locationId: Number(locationId),
+                type: Number(type),
                 number: Number(number),
+                count: Number(count),
                 size,
                 contents,
                 description,
@@ -92,7 +106,9 @@ export async function PUT(request: NextRequest) {
         const data = await request.formData();
         const name = data.get("name") as string;
         const locationId = data.get("locationId");
+        const type = data.get("type");
         const number = data.get("number");
+        const count = data.get("count");
         const size = (data.getAll("size") as string[]).map(s => Number(s));
         const contents = data.getAll("content") as string[];
         const description = data.get("description") as string;
@@ -102,7 +118,7 @@ export async function PUT(request: NextRequest) {
         const deleteFileUrls = data.getAll("deleteFileUrl") as string[];
         const roles = data.getAll("role").map(r => Number(r));
 
-        if (id == undefined || name == undefined || locationId == undefined || number == undefined || size.length !== 3 || contents == undefined || description == undefined) {
+        if (id == undefined || name == undefined || locationId == undefined || type == undefined || number == undefined || count == undefined || size.length !== 3 || contents == undefined || description == undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -115,7 +131,9 @@ export async function PUT(request: NextRequest) {
             data: {
                 name,
                 locationId: Number(locationId),
+                type: Number(type),
                 number: Number(number),
+                count: Number(count),
                 size,
                 contents,
                 description,

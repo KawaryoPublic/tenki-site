@@ -14,6 +14,7 @@ import { uploadFiles } from "@/lib/utils";
 import { Location } from "@/lib/types";
 import DefaultVectorInput from "../../global/Form/DefaultVectorInput";
 import DefaultAddableSelect from "../../global/Form/DefaultAddableSelectOption";
+import { EQUIPMENT_TYPES } from "@/lib/const";
 
 export default function EditEquipmentForm({ equipment, locations, roles }: { equipment: Equipment, locations: Location[], roles: Role[] }) {
     const initialFiles = equipment.urls.map((url, index) => ({ url: url, filename: equipment.filenames[index] }));
@@ -30,6 +31,10 @@ export default function EditEquipmentForm({ equipment, locations, roles }: { equ
         }
 
         formData = await uploadFiles(formData);
+
+        if(formData.get("number") == "") {
+            formData.set("number", "999");
+        }
 
         await fetch(`/api/equipment?id=${equipment.id}`, {
             method: 'PUT',
@@ -65,11 +70,26 @@ export default function EditEquipmentForm({ equipment, locations, roles }: { equ
                 label
                 required
             />
+            <DefaultSelect
+                title="種類"
+                name="type"
+                options={EQUIPMENT_TYPES.map((type, i) => ({ value: i, label: type }))}
+                defaultValue={equipment.type}
+                label
+                required
+            />
             <DefaultInput
-                title="個数"
+                title="ナンバリング"
                 name="number"
                 type="number"
-                defaultValue={equipment.number}
+                defaultValue={equipment.number === 999 ? "" : equipment.number}
+                label
+            />
+            <DefaultInput
+                title="個数"
+                name="count"
+                type="number"
+                defaultValue={equipment.count}
                 required
                 label
             />

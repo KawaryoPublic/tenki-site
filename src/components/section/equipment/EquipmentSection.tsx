@@ -6,6 +6,7 @@ import { checkTier, defaultFilter, defaultSearch } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearch";
 import EquipmentUI from "@/components/ui/equipment/EquipmentUI";
+import { EQUIPMENT_TYPES } from "@/lib/const";
 
 export default function EquipmentSection({ tier, tags, title, role }: { tier: number, tags: string[], title: string[], role?: number }) {
   const [ roles, setRoles ] = useState<Role[]>([]);
@@ -51,11 +52,15 @@ export default function EquipmentSection({ tier, tags, title, role }: { tier: nu
         equipment.length === 0 ? <div className="flex-1 flex flex-col items-center font-bold text-xl">機材はありません</div> : 
         <div className="flex flex-col gap-4">
           {
-            equipment.map((equipment, index) => (
-              <div key={index}>
-                <EquipmentUI equipment={equipment} roles={roles} tier={tier} />
-              </div>
-            ))
+            Array.from(EQUIPMENT_TYPES).map((_, i) => {
+              return (
+                equipment.filter(e => e.type === i).map((equipment, index) => (
+                  <div key={index}>
+                    <EquipmentUI equipment={equipment} roles={roles} tier={tier} />
+                  </div>
+                ))
+              )
+            })
           }
         </div>
       }

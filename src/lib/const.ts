@@ -6,5 +6,7 @@ export const TIER_LABELS = ["一般", "保護者", "部員", "執行部"] as con
 export const ROLE_LABELS = ["部長", "気象", "流星"] as const;
 export const DAYS = ['日', '月', '火', '水', '木', '金', '土'] as const;
 export const SHELF_TYPES = ["たな", "床"] as const;
+export const EQUIPMENT_TYPES = ["BOX", "三脚", "赤道儀", "望遠鏡", "その他"] as const;
+export const EQUIPMENT_PREFIXES = ["B", "L", "E", "T"] as const;
 
 export { STUDENT_PASSWORD, PARENT_PASSWORD, EXECUTIVE_PASSWORD };

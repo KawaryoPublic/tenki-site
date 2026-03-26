@@ -11,10 +11,15 @@ import { useActionState } from 'react';
 import { Location, Role } from "@/lib/types";
 import DefaultVectorInput from "../../global/Form/DefaultVectorInput";
 import DefaultAddableSelect from "../../global/Form/DefaultAddableSelectOption";
+import { EQUIPMENT_TYPES } from "@/lib/const";
 
 export default function AddEquipmentForm({ locations, roles }: { locations: Location[], roles: Role[] }) {
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
         formData = await uploadFiles(formData);
+
+        if(formData.get("number") == "") {
+            formData.set("number", "999");
+        }
 
         await fetch("/api/equipment", {
             method: 'POST',
@@ -46,9 +51,22 @@ export default function AddEquipmentForm({ locations, roles }: { locations: Loca
                 label
                 required
             />
+            <DefaultSelect
+                title="種類"
+                name="type"
+                options={EQUIPMENT_TYPES.map((type, i) => ({ value: i, label: type }))}
+                label
+                required
+            />
+            <DefaultInput
+                title="ナンバリング"
+                name="number"
+                type="number"
+                label
+            />
             <DefaultInput
                 title="個数"
-                name="number"
+                name="count"
                 type="number"
                 defaultValue="1"
                 required
