@@ -4,7 +4,7 @@ import DateUI from "./date_info/DateUI";
 import { DateInfo } from "@/lib/types";
 import { formatDate, getDateId } from "@/lib/utils";
 
-export default function CalendarUI({ index, tier, filter, dateInfo, observationDays }: { index: number, tier: number, filter: string, dateInfo: DateInfo[], observationDays: Number[] }) {
+export default function CalendarUI({ index, tier, filter, dateInfo, observationDays }: { index: number, tier: number, filter: string[], dateInfo: DateInfo[], observationDays: Number[] }) {
     const firstDate = new Date(new Date().getFullYear(), new Date().getMonth() + index, 1);
 
     return (

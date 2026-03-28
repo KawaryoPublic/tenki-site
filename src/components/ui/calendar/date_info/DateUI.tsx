@@ -2,7 +2,7 @@ import { DateInfo } from "@/lib/types"
 import Link from "next/link"
 import AddDateInfoButton from "./Button/AddDateInfoButton";
 
-export default function DateUI({ date, info, filter, firstDate, tier, index }: { date: Date, info?: DateInfo, filter: string, firstDate: Date, tier: number, index: number }) {
+export default function DateUI({ date, info, filter, firstDate, tier, index }: { date: Date, info?: DateInfo, filter: string[], firstDate: Date, tier: number, index: number }) {
     return (
         <div 
             key={index}
@@ -10,7 +10,7 @@ export default function DateUI({ date, info, filter, firstDate, tier, index }: {
                 flex flex-col items-center justify-center rounded
                 ${date.toDateString() === new Date().toDateString() ? 'border-2 border-blue-500 font-bold' : ''}
                 ${
-                    filter && info?.holiday.includes(filter) ? 'bg-yellow-200 hover:bg-yellow-300 text-gray-900' : 
+                    filter.length !== 0 && filter.every(f => info?.holiday.includes(f)) ? 'bg-yellow-200 hover:bg-yellow-300 text-gray-900' : 
                     date.getMonth() === firstDate.getMonth() ? 'text-gray-900 bg-gray-200 hover:bg-gray-300' : 'bg-disabled-date text-gray-700'
                 }
             `}
