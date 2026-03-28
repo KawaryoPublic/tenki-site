@@ -26,7 +26,14 @@ export default function RoleDetailSection({ id, tier }: { id: number, tier: numb
             .then(() => {
                 fetch("/api/notification")
                     .then(res => res.json())
-                    .then(data => setNotifications(defaultFilter(data, [], [], id).slice(0, 5)))
+                    .then(data => setNotifications(defaultFilter(data, [], undefined, 
+                        [
+                            {
+                                label: "roles",
+                                value: id
+                            }
+                        ]
+                    ).slice(0, 5)))
                     .finally(() => setLoading(false))
                     .catch(err => console.error(err));
             })
