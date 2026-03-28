@@ -4,7 +4,7 @@ import { checkTier } from "@/lib/utils";
 
 export default async function Home(props: { searchParams: Promise<{ filter?: string }> }) {
     const searchParams = await props.searchParams;
-    const filter = searchParams.filter || "";
+    const filter = searchParams.filter ? searchParams.filter.split(",") : [];
     const tier = await getTier();
 
     return (

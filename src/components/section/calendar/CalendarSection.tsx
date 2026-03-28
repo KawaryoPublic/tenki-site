@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import CalendarUI from "@/components/ui/calendar/CalendarUI";
 import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearchForm";
 
-export default function CalendarSection({ filter, tier }: { filter: string, tier: number }) {
+export default function CalendarSection({ filter, tier }: { filter: string[], tier: number }) {
     const [observationDays, setObservationDays] = useState<Number[]>([]);
     const [dateInfo, setDateInfo] = useState<DateInfo[]>([]);
     const [loading, setLoading] = useState(true);
@@ -17,17 +17,17 @@ export default function CalendarSection({ filter, tier }: { filter: string, tier
             .then(res => res.json())
             .then(data => setDateInfo(data))
             .then(() => {
-                if (!filter) return;
+                if (filter.length === 0) return;
 
-                fetch(`/api/calendar/observation?filter=${filter}`)
+                fetch("/api/calendar/observation")
                     .then(res => res.json())
                     .then(data => setObservationDays(
-                        data.filter((observation: Observation) => observation.morning.includes(filter) || observation.noon.includes(filter) || observation.afterSchool.includes(filter))
+                        data.filter((observation: Observation) => filter.every(f => observation.morning.includes(f) || observation.noon.includes(f) || observation.afterSchool.includes(f)))
                             .map((observation: Observation) => observation.day)))
                     .finally(() => setLoading(false))
                     .catch(err => console.error(err));
             })
-            .finally(() => setLoading(filter ? true : false))
+            .finally(() => setLoading(filter.length !== 0))
             .catch(err => console.log(err));
     }, [filter]);
 
@@ -41,7 +41,7 @@ export default function CalendarSection({ filter, tier }: { filter: string, tier
                     title="記号で検索"
                     text={{
                         label: "filter",
-                        defaultValue: filter
+                        defaultValue: filter.join(" ")
                     }}
                     className="flex-row"
                 />

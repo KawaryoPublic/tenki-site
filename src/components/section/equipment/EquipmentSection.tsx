@@ -77,7 +77,7 @@ export default function EquipmentSection({ tier, tags, title, role, type }: { ti
               title: "種類",
               name: "type",
               defaultValue: type?.toString(),
-              values: EQUIPMENT_TYPES.map((type, i) => ({ label: type, value: i }))
+              values: EQUIPMENT_TYPES.map((type, i) => ({ label: type, value: i.toString() }))
             }
           ]}
           className="w-[80%] md:w-[70%] lg:w-[50%]" 
