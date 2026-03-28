@@ -14,7 +14,8 @@ export default function DefaultSearchForm({ url, title, text, selects = [], chec
                 const tags = [];
                 const texts = [];
 
-                const parts = data.get("search").trim().split(/\s+/g);
+                const parts = (data.get("search") as string).trim().split(/\s+/g);
+
                 for (const part of parts) {
                     if (part.startsWith("#")) {
                         const tag = part.substring(1);
