@@ -1,6 +1,8 @@
 import { upload } from "@vercel/blob/client";
 import { redirect } from "next/navigation";
 import { RefObject } from "react";
+import { Equipment } from "./types";
+import { EQUIPMENT_PREFIXES } from "./const";
 
 export const checkTier = (tier: number, allowParent: boolean = false, allowStudent: boolean = false) => {
     if(tier === 3) return true;
@@ -20,6 +22,14 @@ export const formatDate = (date: string) => {
     return `${splitDate[0]}年${Number(splitDate[1]) + 1}月${splitDate[2]}日`;
 }
 
+export const getEquipmentId = (equipment: Equipment) => {
+    if(equipment.number === 999 || equipment.type === 4) return "";
+
+    if(equipment.count === 1) return `${EQUIPMENT_PREFIXES[equipment.type]}-${equipment.number}`;
+
+    return `${EQUIPMENT_PREFIXES[equipment.type]}-${equipment.number} ~ ${EQUIPMENT_PREFIXES[equipment.type]}-${equipment.number + equipment.count - 1}`;
+}
+
 export const getDateId = (date: Date) => {
     return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
 }
@@ -33,53 +43,26 @@ export const fitToParentSize = (parentRef: RefObject<HTMLElement | null>, aspect
     return parentWidth / parentHeight < aspectRatio ? [parentWidth, parentWidth / aspectRatio] : [parentHeight * aspectRatio, parentHeight];
 }
 
-export const defaultFilter = (list: any[], tags: string[], title: string[], role?: number, important?: boolean) => {
-    let filteredList = role != null ? list.filter(item => item.roles.includes(role)) : [...list];
+export const defaultFilter = (list: any[], tags: string[] = [], text?: { label: string, values: string[] }, selects: { label: string, value?: string | number }[] = [], checks: { label: string, value: boolean }[] = []) => {
+    let filteredList = [...list];
 
-    filteredList = !important ? filteredList :
-        filteredList.filter(item => item.important);
+    filteredList = tags.length === 0 ? filteredList : filteredList.filter(item => tags.every(tag => item["tags"].includes(tag)));
 
-    filteredList = tags.length === 0 ? filteredList :
-        filteredList.filter(item => tags.every(tag => item.tags.includes(tag)));
+    filteredList = text?.values.length === 0 ? filteredList : filteredList.filter(item => text?.values.every(tag => item[text.label].includes(tag)));
 
-    return title.length === 0 ?
-        filteredList :
-        filteredList.filter(item => title.every(title => item.title.includes(title)));
-}
+    for(const select of selects) {
+        filteredList = select.value == undefined ? filteredList : filteredList.filter(item => {
+            if(Array.isArray(item[select.label])) return item[select.label].includes(select.value);
 
-export const defaultSearch = (url: string, searchString: string, role?: number, important?: boolean) => {
-    const tags = [];
-    const title = [];
-
-    const parts = searchString.trim().split(/\s+/g);
-    for (const part of parts) {
-        if (part.startsWith("#")) {
-            const tag = part.substring(1);
-            if(tag) tags.push(tag);
-        } else {
-            if(part) title.push(part);
-        }
+            return item[select.label] === select.value;
+        });
     }
 
-    let redirectUrl = url;
-
-    if(tags.length !== 0) {
-        redirectUrl += `?tags=${tags.join(",")}`;
+    for(const check of checks) {
+        filteredList = check.value ? filteredList.filter(item => item[check.label]) : filteredList;
     }
 
-    if(title.length !== 0) {
-        redirectUrl += (tags.length !== 0 ? "&" : "?") + `title=${title.join(",")}`;
-    }
-
-    if(role != null) {
-        redirectUrl += (tags.length !== 0 || title.length !== 0 ? "&" : "?") + `role=${role}`;
-    }
-
-    if(important) {
-        redirectUrl += (tags.length !== 0 || title.length !== 0 || role != null ? "&" : "?") + `important=y`;
-    }
-
-    redirect(redirectUrl);
+    return filteredList;
 }
 
 export const uploadFiles = async (formData: FormData) => {

@@ -4,7 +4,7 @@ import { Manual, Role } from "@/lib/types";
 import { useState, useEffect } from "react";
 import { checkTier, defaultFilter, defaultSearch } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
-import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearch";
+import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearchForm";
 import ManualUI from "@/components/ui/manual/ManualUI";
 
 export default function ManualsSection({ tier, tags, title, role }: { tier: number, tags: string[], title: string[], role?: number }) {
@@ -17,7 +17,18 @@ export default function ManualsSection({ tier, tags, title, role }: { tier: numb
 
     fetch(`/api/manual`)
       .then(res => res.json())
-      .then(data => setManuals(defaultFilter(data, tags, title, role)))
+      .then(data => setManuals(defaultFilter(data, tags, 
+        {
+          label: "title",
+          values: title
+        },
+        [
+          {
+            label: "roles",
+            value: role,
+          }
+        ]
+      )))
       .then(() => {
         fetch('/api/role')
           .then(res => res.json())
@@ -38,12 +49,21 @@ export default function ManualsSection({ tier, tags, title, role }: { tier: numb
           }
         </div>
         <DefaultSearchForm 
+          url="/manual"
           title="検索(#をつけるとタグ)" 
+          text={{
+            label: "title",
+            defaultValue: `${[...title, ...(tags.map(tag => `#${tag}`))].join(" ")}` 
+          }}
+          selects={[
+            {
+              title: "役職",
+              name: "role",
+              defaultValue: role?.toString(),
+              values: roles.map(role => ({ label: role.name, value: role.id }))
+            },
+          ]}
           className="w-[80%] md:w-[70%] lg:w-[50%]" 
-          defaultValue={`${title.join(" ")}${(title.length !== 0 && tags.length !== 0) ? " " : ""}${tags.map(tag => `#${tag}`).join(" ")}`} 
-          search={(searchString, role) => defaultSearch("/manual", searchString, role)} 
-          roles={roles}
-          defaultRole={role}
         />
       </div>
       {

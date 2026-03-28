@@ -2,13 +2,13 @@
 
 import { Equipment, Role } from "@/lib/types";
 import { useState, useEffect } from "react";
-import { checkTier, defaultFilter, defaultSearch } from "@/lib/utils";
+import { checkTier, defaultFilter, defaultSearch, getEquipmentId } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
-import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearch";
+import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearchForm";
 import EquipmentUI from "@/components/ui/equipment/EquipmentUI";
 import { EQUIPMENT_TYPES } from "@/lib/const";
 
-export default function EquipmentSection({ tier, tags, title, role }: { tier: number, tags: string[], title: string[], role?: number }) {
+export default function EquipmentSection({ tier, tags, title, role, type }: { tier: number, tags: string[], title: string[], role?: number, type?: number }) {
   const [ roles, setRoles ] = useState<Role[]>([]);
   const [ equipment, setEquipment ] = useState<Equipment[]>([]);
   const [ loading, setLoading ] = useState<boolean>(true);
@@ -18,7 +18,28 @@ export default function EquipmentSection({ tier, tags, title, role }: { tier: nu
 
     fetch(`/api/equipment`)
       .then(res => res.json())
-      .then(data => setEquipment(defaultFilter(data, tags, title, role)))
+      .then(data => {
+        for(const equipment of data) {
+          equipment.name = `${getEquipmentId(equipment)} ${equipment.name}`;
+        }
+
+        return data;
+      })
+      .then(data => setEquipment(defaultFilter(data, tags, 
+        {
+          label: "name",
+          values: title
+        },
+        [
+          {
+            label: "roles",
+            value: role,
+          },
+          {
+            label: "type",
+            value: type,
+          }
+        ])))
       .then(() => {
         fetch('/api/role')
           .then(res => res.json())
@@ -39,12 +60,27 @@ export default function EquipmentSection({ tier, tags, title, role }: { tier: nu
           }
         </div>
         <DefaultSearchForm 
+          url="/equipment"
           title="検索(#をつけるとタグ)" 
+          text={{
+            label: "title",
+            defaultValue: `${[...title, ...(tags.map(tag => `#${tag}`))].join(" ")}` 
+          }}
+          selects={[
+            {
+              title: "役職",
+              name: "role",
+              defaultValue: role?.toString(),
+              values: roles.map(role => ({ label: role.name, value: role.id }))
+            },
+            {
+              title: "種類",
+              name: "type",
+              defaultValue: type?.toString(),
+              values: EQUIPMENT_TYPES.map((type, i) => ({ label: type, value: i }))
+            }
+          ]}
           className="w-[80%] md:w-[70%] lg:w-[50%]" 
-          defaultValue={`${title.join(" ")}${(title.length !== 0 && tags.length !== 0) ? " " : ""}${tags.map(tag => `#${tag}`).join(" ")}`} 
-          search={(searchString, role) => defaultSearch("/equipment", searchString, role)} 
-          roles={roles}
-          defaultRole={role}
         />
       </div>
       {

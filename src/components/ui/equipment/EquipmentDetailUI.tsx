@@ -1,4 +1,4 @@
-import { checkTier, splitLinksAndHeaders } from "@/lib/utils";
+import { checkTier, getEquipmentId, splitLinksAndHeaders } from "@/lib/utils";
 import WhiteFrameUI from "../global/WhiteFrameUI";
 import { Equipment, Role } from "@/lib/types";
 import OptionUrlUI from "../global/OptionUrlUI";
@@ -6,7 +6,7 @@ import DeleteEquipmentButton from "./Button/DeleteEquipmentButton";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { EQUIPMENT_PREFIXES, EQUIPMENT_TYPES } from "@/lib/const";
+import { EQUIPMENT_TYPES } from "@/lib/const";
 
 export default function EquipmentDetailUI({ equipment, roles, tier }: { equipment: Equipment, roles: Role[], tier: number }) {
     const [ showOptions, setShowOptions ] = useState(false);
@@ -18,7 +18,7 @@ export default function EquipmentDetailUI({ equipment, roles, tier }: { equipmen
             <div className="flex justify-between items-center border-b pb-2">
                 <div className="flex flex-col gap-1 w-full">
                     <div className="flex items-center justify-between">
-                        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold">{(equipment.number !== 999 && equipment.type !== 4) &&`${EQUIPMENT_PREFIXES[equipment.type]}-${equipment.number}`} {equipment.name}</h2>
+                        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold">{getEquipmentId(equipment)} {equipment.name}</h2>
                         {
                             checkTier(tier) && 
                                 <button 

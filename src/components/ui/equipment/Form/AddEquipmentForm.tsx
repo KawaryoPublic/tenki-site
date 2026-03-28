@@ -7,14 +7,15 @@ import DefaultSelect from "../../global/Form/DefaultSelect";
 import { uploadFiles } from "@/lib/utils";
 import DefaultAddableInput from "../../global/Form/DefaultAddableOption";
 import DefaultFile from "../../global/Form/DefaultFile";
-import { useActionState } from 'react';
+import { useActionState, useState } from 'react';
 import { Location, Role } from "@/lib/types";
 import DefaultVectorInput from "../../global/Form/DefaultVectorInput";
 import DefaultAddableSelect from "../../global/Form/DefaultAddableSelectOption";
 import { EQUIPMENT_TYPES } from "@/lib/const";
 
 export default function AddEquipmentForm({ locations, roles }: { locations: Location[], roles: Role[] }) {
-    const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
+    const [ type, setType ] = useState<number>(0);
+    const [ state, formAction, pending ] = useActionState(async (initState: any, formData: FormData) => {
         formData = await uploadFiles(formData);
 
         if(formData.get("number") == "") {
@@ -55,14 +56,15 @@ export default function AddEquipmentForm({ locations, roles }: { locations: Loca
                 title="種類"
                 name="type"
                 options={EQUIPMENT_TYPES.map((type, i) => ({ value: i, label: type }))}
+                value={type}
+                onChange={e => setType(Number(e.target.value))}
                 label
                 required
             />
-            <DefaultInput
+            <DefaultVectorInput
                 title="ナンバリング"
                 name="number"
-                type="number"
-                label
+                labels={["~から", "~まで"]}
             />
             <DefaultInput
                 title="個数"

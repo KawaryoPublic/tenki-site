@@ -15,8 +15,6 @@ import { TIER_LABELS } from "@/lib/const";
 import DefaultAddableSelect from "../../global/Form/DefaultAddableSelectOption";
 
 export default function EditNotificationForm({ notification, roles }: { notification: Notification, roles: Role[] }) {
-    const [ important, setImportant ] = useState<boolean>(notification.important);
-
     const initialFiles = notification.urls.map((url, index) => ({ url: url, filename: notification.filenames[index] }));;
     const [ files, setFiles ] = useState<{ url: string, filename: string }[]>(initialFiles);
     const [ state, formAction, pending ] = useActionState(async (initState: any, formData: FormData) => {
@@ -65,8 +63,7 @@ export default function EditNotificationForm({ notification, roles }: { notifica
                 title="重要"
                 name="important"
                 type="checkbox"
-                checked={important}
-                onChange={e => setImportant(e.target.checked)}
+                defaultChecked={notification.important}
                 label
                 className="h-12 mr-auto"
             />

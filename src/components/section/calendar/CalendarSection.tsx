@@ -3,7 +3,7 @@
 import { DateInfo, Observation } from "@/lib/types";
 import { useEffect, useState } from "react";
 import CalendarUI from "@/components/ui/calendar/CalendarUI";
-import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearch";
+import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearchForm";
 import { redirect } from "next/navigation";
 
 export default function CalendarSection({ filter, tier }: { filter: string, tier: number }) {
@@ -37,7 +37,15 @@ export default function CalendarSection({ filter, tier }: { filter: string, tier
         !dateInfo || !observationDays ? <div className="flex-1 flex flex-col items-center font-bold text-xl">カレンダーを読み込めませんでした</div> :
         <section className="flex-1 flex flex-col gap-2">
             <div className="w-full flex justify-end">
-                <DefaultSearchForm title="記号で観測シフトを検索" defaultValue={filter} search={searchString => redirect(`/calendar?filter=${searchString}`)} />
+                <DefaultSearchForm 
+                    url="/calendar"
+                    title="記号で検索"
+                    text={{
+                        label: "filter",
+                        defaultValue: filter
+                    }}
+                    className="flex-row"
+                />
             </div>
             <div className="flex flex-col lg:flex-row gap-4 h-full">
                 {

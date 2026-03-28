@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { checkTier, defaultFilter, defaultSearch } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import FileUI from "@/components/ui/file/FileUI";
-import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearch";
+import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearchForm";
 
 export default function FilesSection({ tier, tags, title, role }: { tier: number, tags: string[], title: string[], role?: number }) {
   const [ roles, setRoles ] = useState<Role[]>([]);
@@ -17,7 +17,18 @@ export default function FilesSection({ tier, tags, title, role }: { tier: number
 
     fetch(`/api/file`)
       .then(res => res.json())
-      .then(data => setFiles(defaultFilter(data, tags, title, role)))
+      .then(data => setFiles(defaultFilter(data, tags, 
+        {
+          label: "title",
+          values: title
+        },
+        [
+          {
+            label: "roles",
+            value: role,
+          }
+        ]
+      )))
       .then(() => {
         fetch('/api/role')
           .then(res => res.json())
@@ -38,12 +49,21 @@ export default function FilesSection({ tier, tags, title, role }: { tier: number
           }
         </div>
         <DefaultSearchForm 
+          url="/file"
           title="検索(#をつけるとタグ)" 
+          text={{
+            label: "title",
+            defaultValue: `${[...title, ...(tags.map(tag => `#${tag}`))].join(" ")}` 
+          }}
+          selects={[
+            {
+              title: "役職",
+              name: "role",
+              defaultValue: role?.toString(),
+              values: roles.map(role => ({ label: role.name, value: role.id }))
+            },
+          ]}
           className="w-[80%] md:w-[70%] lg:w-[50%]" 
-          defaultValue={`${title.join(" ")}${(title.length !== 0 && tags.length !== 0) ? " " : ""}${tags.map(tag => `#${tag}`).join(" ")}`} 
-          search={(searchString, role) => defaultSearch("/file", searchString, role)}
-          roles={roles}
-          defaultRole={role}
         />
       </div>
       {

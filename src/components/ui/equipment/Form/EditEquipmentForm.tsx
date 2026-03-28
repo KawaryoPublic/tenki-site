@@ -20,6 +20,7 @@ export default function EditEquipmentForm({ equipment, locations, roles }: { equ
     const initialFiles = equipment.urls.map((url, index) => ({ url: url, filename: equipment.filenames[index] }));
     
     const [ files, setFiles ] = useState<{ url: string, filename: string }[]>(initialFiles);
+    const [ type, setType ] = useState<number>(equipment.number === 999 ? "" : equipment.number);
     const [ state, formAction, pending ] = useActionState(async (initState: any, formData: FormData) => {
         for(const file of initialFiles) {
             if(!files.find(f => f.url === file.url)) {
@@ -70,21 +71,6 @@ export default function EditEquipmentForm({ equipment, locations, roles }: { equ
                 label
                 required
             />
-            <DefaultSelect
-                title="種類"
-                name="type"
-                options={EQUIPMENT_TYPES.map((type, i) => ({ value: i, label: type }))}
-                defaultValue={equipment.type}
-                label
-                required
-            />
-            <DefaultInput
-                title="ナンバリング"
-                name="number"
-                type="number"
-                defaultValue={equipment.number === 999 ? "" : equipment.number}
-                label
-            />
             <DefaultInput
                 title="個数"
                 name="count"
@@ -93,6 +79,25 @@ export default function EditEquipmentForm({ equipment, locations, roles }: { equ
                 required
                 label
             />
+            <DefaultSelect
+                title="種類"
+                name="type"
+                options={EQUIPMENT_TYPES.map((type, i) => ({ value: i, label: type }))}
+                value={type}
+                onChange={e => setType(Number(e.target.value))}
+                label
+                required
+            />
+            {
+                type !== 4 && 
+                <DefaultInput
+                    title="ナンバリング(一番最初の)"
+                    name="number"
+                    type="number"
+                    defaultValue={equipment.number}
+                    label
+                />
+            }
             <DefaultVectorInput 
                 title="サイズ[cm]" 
                 name="size" 

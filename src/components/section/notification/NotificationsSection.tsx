@@ -5,9 +5,9 @@ import { Notification, Role } from "@/lib/types";
 import { useState, useEffect } from "react";
 import { checkTier, defaultFilter, defaultSearch } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
-import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearch";
+import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearchForm";
 
-export default function NotificationsSection({ tier, tags, title, role, important }: { tier: number, tags: string[], title: string[], role?: number, important?: boolean }) {
+export default function NotificationsSection({ tier, tags, title, role, important }: { tier: number, tags: string[], title: string[], role?: number, important: boolean }) {
   const [ roles, setRoles ] = useState<Role[]>([]);
   const [ notifications, setNotifications ] = useState<Notification[]>([]);
   const [ loading, setLoading ] = useState<boolean>(true);
@@ -17,7 +17,24 @@ export default function NotificationsSection({ tier, tags, title, role, importan
 
     fetch(`/api/notification`)
       .then(res => res.json())
-      .then(data => setNotifications(defaultFilter(data, tags, title, role, important)))
+      .then(data => setNotifications(defaultFilter(data, tags, 
+        {
+          label: "title",
+          values: title
+        },
+        [
+          {
+            label: "roles",
+            value: role,
+          }
+        ],
+        [
+          {
+            label: "important",
+            value: important
+          }
+        ]
+      )))
       .then(() => {
         fetch('/api/role')
           .then(res => res.json())
@@ -38,13 +55,28 @@ export default function NotificationsSection({ tier, tags, title, role, importan
           }
         </div>
         <DefaultSearchForm 
+          url="/notification"
           title="検索(#をつけるとタグ)" 
+          text={{
+            label: "title",
+            defaultValue: `${[...title, ...(tags.map(tag => `#${tag}`))].join(" ")}` 
+          }}
+          selects={[
+            {
+              title: "役職",
+              name: "role",
+              defaultValue: role?.toString(),
+              values: roles.map(role => ({ label: role.name, value: role.id }))
+            },
+          ]}
+          checks={[
+            {
+              title: "重要度",
+              name: "important",
+              defaultValue: important
+            }
+          ]}
           className="w-[80%] md:w-[70%] lg:w-[50%]" 
-          defaultValue={`${title.join(" ")}${(title.length !== 0 && tags.length !== 0) ? " " : ""}${tags.map(tag => `#${tag}`).join(" ")}`} 
-          search={(searchString, role, important) => defaultSearch("/notification", searchString, role, important)} 
-          roles={roles}
-          defaultRole={role}
-          defaultImportant={important}
         />
       </div>
       {

@@ -1,5 +1,4 @@
 // TODO
-
 - ツールの作成
  - 機材リスト
  - 雲の分類
@@ -10,23 +9,18 @@
   - editでadd
   - editでdelete button
   - 四隅にサイズ, ドラッグで移動
-
  - shelf
 
 - 404 not found page
-
 - PUSH通知
-
 - 選択、一括削除
-
 - UNDO, Trash Can
-
 - calendarで観測
-
+- 内容物チェックリスト
+- 検索
 
 
 // BUGS
-
 - notificationでnoneだとだとroleでバグる
 - calendarで検索
 - textboxが大きくならない

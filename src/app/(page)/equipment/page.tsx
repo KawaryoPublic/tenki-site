@@ -2,14 +2,15 @@ import EquipmentSection from "@/components/section/equipment/EquipmentSection";
 import { getTier } from "@/lib/actions";
 import { checkTier } from "@/lib/utils";
 
-export default async function Home(props: { searchParams: Promise<{ tags?: string, title?: string, role?: string }> }) {
+export default async function Home(props: { searchParams: Promise<{ tags?: string, title?: string, role?: string, type?: string }> }) {
   const searchParams = await props.searchParams;
   const tags = searchParams.tags ? searchParams.tags.split(",") : [];
   const title = searchParams.title ? searchParams.title.split(",") : [];
   const role = searchParams.role;
+  const type = searchParams.type;
   const tier = await getTier();
 
   return (
-    checkTier(tier, false, true) && <EquipmentSection tier={tier} tags={tags} title={title} role={role == null ? undefined : Number(role)} />
+    checkTier(tier, false, true) && <EquipmentSection tier={tier} tags={tags} title={title} role={role == null ? undefined : Number(role)} type={type == null ? undefined : Number(type)} />
   );
 }

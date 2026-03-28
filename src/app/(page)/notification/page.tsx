@@ -6,7 +6,7 @@ export default async function Home(props: { searchParams: Promise<{ tags?: strin
   const tags = searchParams.tags ? searchParams.tags.split(",") : [];
   const title = searchParams.title ? searchParams.title.split(",") : [];
   const role = searchParams.role;
-  const important = searchParams.important === "y";
+  const important = searchParams.important === "on";
   const tier = await getTier();
 
   return (
