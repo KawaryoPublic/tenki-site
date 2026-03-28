@@ -2,7 +2,7 @@
 
 import { File, Role } from "@/lib/types";
 import { useState, useEffect } from "react";
-import { checkTier, defaultFilter, defaultSearch } from "@/lib/utils";
+import { checkTier, defaultFilter } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import FileUI from "@/components/ui/file/FileUI";
 import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearchForm";

@@ -56,7 +56,7 @@ export default function DateInfoDetailUI({ info, observation, tier }: { info: Da
                 <span className="whitespace-pre-wrap text-sm md:text-base">
                     {
                         info.holiday.length !== 0 ? info.holiday.join(", ") :
-                        `朝は${observation.morning.join(", ")}、昼は${observation.noon.join(", ")}、放課後は${observation.afterSchool.join(", ")}`
+                        `朝は${observation.morning.join(", ")}、昼は${observation.noon.join(", ")}、放課後は${observation.afterSchool.length === 0 ? "ありません" : observation.afterSchool.join(", ")}`
                     }
                 </span>
             </div>

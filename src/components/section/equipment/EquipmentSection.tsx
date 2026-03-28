@@ -2,7 +2,7 @@
 
 import { Equipment, Role } from "@/lib/types";
 import { useState, useEffect } from "react";
-import { checkTier, defaultFilter, defaultSearch, getEquipmentId } from "@/lib/utils";
+import { checkTier, defaultFilter, getEquipmentId } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearchForm";
 import EquipmentUI from "@/components/ui/equipment/EquipmentUI";

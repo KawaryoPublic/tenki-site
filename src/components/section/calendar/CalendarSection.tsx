@@ -4,7 +4,6 @@ import { DateInfo, Observation } from "@/lib/types";
 import { useEffect, useState } from "react";
 import CalendarUI from "@/components/ui/calendar/CalendarUI";
 import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearchForm";
-import { redirect } from "next/navigation";
 
 export default function CalendarSection({ filter, tier }: { filter: string, tier: number }) {
     const [observationDays, setObservationDays] = useState<Number[]>([]);

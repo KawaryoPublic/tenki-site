@@ -2,7 +2,7 @@
 
 import { Manual, Role } from "@/lib/types";
 import { useState, useEffect } from "react";
-import { checkTier, defaultFilter, defaultSearch } from "@/lib/utils";
+import { checkTier, defaultFilter } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearchForm";
 import ManualUI from "@/components/ui/manual/ManualUI";
