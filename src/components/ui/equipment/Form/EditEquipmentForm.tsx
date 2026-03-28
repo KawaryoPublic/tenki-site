@@ -20,7 +20,7 @@ export default function EditEquipmentForm({ equipment, locations, roles }: { equ
     const initialFiles = equipment.urls.map((url, index) => ({ url: url, filename: equipment.filenames[index] }));
     
     const [ files, setFiles ] = useState<{ url: string, filename: string }[]>(initialFiles);
-    const [ type, setType ] = useState<number>(equipment.number === 999 ? "" : equipment.number);
+    const [ type, setType ] = useState<string | number>(equipment.number === 999 ? "" : equipment.number);
     const [ state, formAction, pending ] = useActionState(async (initState: any, formData: FormData) => {
         for(const file of initialFiles) {
             if(!files.find(f => f.url === file.url)) {
