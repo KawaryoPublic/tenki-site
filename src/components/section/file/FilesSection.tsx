@@ -60,7 +60,7 @@ export default function FilesSection({ tier, tags, title, role }: { tier: number
               title: "役職",
               name: "role",
               defaultValue: role?.toString(),
-              values: roles.map(role => ({ label: role.name, value: role.id }))
+              values: roles.map(role => ({ label: role.name, value: role.id.toString() }))
             },
           ]}
           className="w-[80%] md:w-[70%] lg:w-[50%]" 

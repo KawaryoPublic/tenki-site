@@ -5,7 +5,7 @@ import { Location } from "@/lib/types";
 import { useState, useActionState, Dispatch, SetStateAction } from "react";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import DefaultVectorInput from "@/components/ui/global/Form/DefaultVectorInput";
-import DefaultAddableStorage from "../../Form/DefaultAddableOption";
+import DefaultAddableStorage from "../../Form/DefaultAddableStorage";
 
 export default function EditLocationForm({ location, setLocation, setDisplayMap }: { location: Location, setLocation: Dispatch<SetStateAction<Location | null>>, setDisplayMap: Dispatch<SetStateAction<boolean>> }) {
     const initShelves = location.shelves.map(shelf => {

@@ -66,7 +66,7 @@ export default function NotificationsSection({ tier, tags, title, role, importan
               title: "役職",
               name: "role",
               defaultValue: role?.toString(),
-              values: roles.map(role => ({ label: role.name, value: role.id }))
+              values: roles.map(role => ({ label: role.name, value: role.id.toString() }))
             },
           ]}
           checks={[

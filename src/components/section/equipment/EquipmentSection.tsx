@@ -71,7 +71,7 @@ export default function EquipmentSection({ tier, tags, title, role, type }: { ti
               title: "役職",
               name: "role",
               defaultValue: role?.toString(),
-              values: roles.map(role => ({ label: role.name, value: role.id }))
+              values: roles.map(role => ({ label: role.name, value: role.id.toString() }))
             },
             {
               title: "種類",
