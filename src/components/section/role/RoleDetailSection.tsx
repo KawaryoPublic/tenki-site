@@ -46,9 +46,10 @@ export default function RoleDetailSection({ id, tier }: { id: number, tier: numb
         <section className="w-full flex flex-col gap-8">
             <RoleDetailUI role={role} tier={tier} />
             <div className="flex flex-col gap-4">
-                <h2 className="text-xl md:text-3xl font-bold">告知</h2>
+                <h2 className="text-xl md:text-3xl font-bold">{role.name}からの告知</h2>
                 <div className="flex flex-col gap-4">
                 {
+                    notifications.length === 0 ? <div className="flex-1 flex flex-col items-center font-bold text-xl">告知はありません</div> : 
                     notifications.map((notification, index) => (
                         <div key={index}>
                             <NotificationUI notification={notification} roles={roles} tier={tier} />
