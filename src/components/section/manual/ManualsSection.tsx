@@ -6,6 +6,7 @@ import { checkTier, defaultFilter } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearchForm";
 import ManualUI from "@/components/ui/manual/ManualUI";
+import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 
 export default function ManualsSection({ tier, tags, title, role }: { tier: number, tags: string[], title: string[], role?: number }) {
   const [ roles, setRoles ] = useState<Role[]>([]);
@@ -40,7 +41,7 @@ export default function ManualsSection({ tier, tags, title, role }: { tier: numb
     }, [tags, title, role]);
 
   return (
-    loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
+    loading ? <LoadingResultUI>Loading...</LoadingResultUI> :
     <section className="flex-1 flex flex-col gap-3 w-full">
       <div className="flex justify-between items-center">
         <div className="z-2">
@@ -67,8 +68,8 @@ export default function ManualsSection({ tier, tags, title, role }: { tier: numb
         />
       </div>
       {
-        !manuals || !roles ? <div className="flex-1 flex flex-col items-center font-bold text-xl">マニュアル一覧を読み込めませんでした</div> :
-        manuals.length === 0 ? <div className="flex-1 flex flex-col items-center font-bold text-xl">マニュアルはありません</div> : 
+        !manuals || !roles ? <LoadingResultUI>マニュアル一覧を読み込めませんでした</LoadingResultUI> :
+        manuals.length === 0 ? <LoadingResultUI>マニュアルはありません</LoadingResultUI> : 
         <div className="flex flex-col gap-4">
           {
             manuals.map((manual, index) => (

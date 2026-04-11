@@ -4,6 +4,7 @@ import { DateInfo, Observation } from "@/lib/types";
 import { useEffect, useState } from "react";
 import CalendarUI from "@/components/ui/calendar/CalendarUI";
 import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearchForm";
+import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 
 export default function CalendarSection({ filter, tier }: { filter: string[], tier: number }) {
     const [observationDays, setObservationDays] = useState<Number[]>([]);
@@ -32,8 +33,8 @@ export default function CalendarSection({ filter, tier }: { filter: string[], ti
     }, [filter]);
 
     return (
-        loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !dateInfo || !observationDays ? <div className="flex-1 flex flex-col items-center font-bold text-xl">カレンダーを読み込めませんでした</div> :
+        loading ? <LoadingResultUI>Loading...</LoadingResultUI> :
+        !dateInfo || !observationDays ? <LoadingResultUI>カレンダーを読み込めませんでした</LoadingResultUI> :
         <section className="flex-1 flex flex-col gap-2">
             <div className="w-full flex justify-end">
                 <DefaultSearchForm 

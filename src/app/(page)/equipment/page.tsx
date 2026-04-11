@@ -1,4 +1,5 @@
 import EquipmentSection from "@/components/section/equipment/EquipmentSection";
+import NotFoundSection from "@/components/section/NotFoundSection";
 import { getTier } from "@/lib/actions";
 import { checkTier } from "@/lib/utils";
 
@@ -11,6 +12,6 @@ export default async function Home(props: { searchParams: Promise<{ tags?: strin
   const tier = await getTier();
 
   return (
-    checkTier(tier, false, true) && <EquipmentSection tier={tier} tags={tags} title={title} role={role == null ? undefined : Number(role)} type={type == null ? undefined : Number(type)} />
+    checkTier(tier, false, true) ? <EquipmentSection tier={tier} tags={tags} title={title} role={role == null ? undefined : Number(role)} type={type == null ? undefined : Number(type)} /> : <NotFoundSection />
   );
 }

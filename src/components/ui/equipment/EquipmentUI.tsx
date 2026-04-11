@@ -1,11 +1,12 @@
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import { checkTier, getEquipmentId } from "@/lib/utils";
 import { Equipment, Role } from "@/lib/types";
-import Image from "next/image";
 import Link from "next/link";
 import DeleteEquipmentButton from "./Button/DeleteEquipmentButton";
 import { useState } from "react";
 import { EQUIPMENT_TYPES } from "@/lib/const";
+import DefaultHeadingUI from "../global/DefaultHeadingUI";
+import ThreePointsUI from "../global/ThreePointsUI";
 
 export default function EquipmentUI({ equipment, roles, tier }: { equipment: Equipment, roles: Role[], tier: number }) {
     const [ showOptions, setShowOptions ] = useState(false);
@@ -16,7 +17,9 @@ export default function EquipmentUI({ equipment, roles, tier }: { equipment: Equ
             <button className={`fixed top-0 right-0 w-full h-full z-1 ${showOptions ? "" : "hidden"}`} onClick={() => setShowOptions(false)} />
             <div className="flex flex-col gap-1 w-full">
                 <div className="flex items-center justify-between">
-                    <Link className="text-xl md:text-2xl lg:text-3xl font-bold z-2" href={`/equipment/${equipment.id}`}>{equipment.name}</Link>
+                    <DefaultHeadingUI>
+                        <Link className="z-2" href={`/equipment/${equipment.id}`}>{equipment.name}</Link>
+                    </DefaultHeadingUI>
                     {
                         checkTier(tier) && 
                             <button 
@@ -27,7 +30,7 @@ export default function EquipmentUI({ equipment, roles, tier }: { equipment: Equ
                                     <Link href={`/equipment/edit/${equipment.id}`} className="hover:underline">編集</Link>
                                     <DeleteEquipmentButton id={equipment.id} urls={equipment.urls} />
                                 </WhiteFrameUI>
-                                <Image src="/image/3_points.webp" alt="Options" fill priority className="w-full h-full cursor-pointer" />
+                                <ThreePointsUI />
                             </button>
                     }
                 </div>

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Equipment, Role } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import EquipmentDetailUI from "@/components/ui/equipment/EquipmentDetailUI";
+import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 
 export default function EquipmentDetailSection({ id, tier }: { id: number, tier: number }) {
     const [ roles, setRoles ] = useState<Role[]>([]);
@@ -27,8 +28,8 @@ export default function EquipmentDetailSection({ id, tier }: { id: number, tier:
     }, []);
 
     return (
-        loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !equipment || !roles ? <div className="flex-1 flex flex-col items-center font-bold text-xl">機材を読み込めませんでした</div> :
+        loading ? <LoadingResultUI>Loading...</LoadingResultUI> :
+        !equipment || !roles ? <LoadingResultUI>機材を読み込めませんでした</LoadingResultUI> :
         <section className="w-full flex flex-col gap-4">
             <EquipmentDetailUI equipment={equipment} roles={roles} tier={tier} />
             <div className="z-2">

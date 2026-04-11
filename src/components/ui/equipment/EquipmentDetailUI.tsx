@@ -7,6 +7,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { EQUIPMENT_TYPES } from "@/lib/const";
+import DefaultHeadingUI from "../global/DefaultHeadingUI";
+import ThreePointsUI from "../global/ThreePointsUI";
 
 export default function EquipmentDetailUI({ equipment, roles, tier }: { equipment: Equipment, roles: Role[], tier: number }) {
     const [ showOptions, setShowOptions ] = useState(false);
@@ -18,7 +20,7 @@ export default function EquipmentDetailUI({ equipment, roles, tier }: { equipmen
             <div className="flex justify-between items-center border-b pb-2">
                 <div className="flex flex-col gap-1 w-full">
                     <div className="flex items-center justify-between">
-                        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold">{getEquipmentId(equipment)} {equipment.name}</h2>
+                        <DefaultHeadingUI>{getEquipmentId(equipment)} {equipment.name}</DefaultHeadingUI>
                         {
                             checkTier(tier) && 
                                 <button 
@@ -29,7 +31,7 @@ export default function EquipmentDetailUI({ equipment, roles, tier }: { equipmen
                                         <Link href={`/equipment/edit/${equipment.id}`} className="hover:underline">編集</Link>
                                         <DeleteEquipmentButton id={equipment.id} urls={equipment.urls} />
                                     </WhiteFrameUI>
-                                    <Image src="/image/3_points.webp" alt="Options" fill priority className="w-full h-full cursor-pointer" />
+                                    <ThreePointsUI />
                                 </button>
                         }
                     </div>

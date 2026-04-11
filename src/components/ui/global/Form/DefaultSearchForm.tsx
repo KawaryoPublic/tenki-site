@@ -80,10 +80,9 @@ export default function DefaultSearchForm({ url, title, text, selects = [], chec
                 }
                 {
                     checks.map((check, i) => (
-                        <WhiteFrameUI className="flex gap-1 md:gap-2">
-                            {check.title}:
+                        <WhiteFrameUI key={i} className="flex gap-1 md:gap-2 bg-gray-300">
+                            <span className="text-sm md:text-base">{check.title}:</span>
                             <DefaultInput
-                                key={i}
                                 type="checkbox"
                                 title={check.title}
                                 name={check.name}

@@ -9,6 +9,7 @@ import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import { useState, useActionState } from "react";
 import { uploadFiles } from "@/lib/utils";
 import RoleFile from "./RoleFile";
+import DefaultHeadingUI from "../../global/DefaultHeadingUI";
 
 export default function EditRoleForm({ role }: { role: Role }) {
     const [ markUrlChanged, setMarkUrlChanged ] = useState(false);
@@ -45,7 +46,7 @@ export default function EditRoleForm({ role }: { role: Role }) {
             action={formAction}
             className="flex flex-col gap-2"
         >   
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold border-b pb-2">告知を編集</h2>
+            <DefaultHeadingUI className="border-b pb-2">役職を編集</DefaultHeadingUI>
             {personImageUrlChanged ? "true" : "false"}
             <DefaultInput
                 title="役職名"

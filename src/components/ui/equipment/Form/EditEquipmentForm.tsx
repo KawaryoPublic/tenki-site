@@ -15,12 +15,13 @@ import { Location } from "@/lib/types";
 import DefaultVectorInput from "../../global/Form/DefaultVectorInput";
 import DefaultAddableSelect from "../../global/Form/DefaultAddableSelectOption";
 import { EQUIPMENT_TYPES } from "@/lib/const";
+import DefaultHeadingUI from "../../global/DefaultHeadingUI";
 
 export default function EditEquipmentForm({ equipment, locations, roles }: { equipment: Equipment, locations: Location[], roles: Role[] }) {
     const initialFiles = equipment.urls.map((url, index) => ({ url: url, filename: equipment.filenames[index] }));
     
     const [ files, setFiles ] = useState<{ url: string, filename: string }[]>(initialFiles);
-    const [ type, setType ] = useState<string | number>(equipment.number === 999 ? "" : equipment.number);
+    const [ type, setType ] = useState<string | number>(equipment.type);
     const [ state, formAction, pending ] = useActionState(async (initState: any, formData: FormData) => {
         for(const file of initialFiles) {
             if(!files.find(f => f.url === file.url)) {
@@ -55,7 +56,7 @@ export default function EditEquipmentForm({ equipment, locations, roles }: { equ
             action={formAction}
             className="flex flex-col gap-2"
         >   
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold border-b pb-2">機材を編集</h2>
+            <DefaultHeadingUI className="border-b pb-2">機材を編集</DefaultHeadingUI>
             <DefaultInput
                 title="名前"
                 name="name"
@@ -94,7 +95,7 @@ export default function EditEquipmentForm({ equipment, locations, roles }: { equ
                     title="ナンバリング(一番最初の)"
                     name="number"
                     type="number"
-                    defaultValue={equipment.number}
+                    defaultValue={equipment.number === 999 ? "" : equipment.number}
                     label
                 />
             }

@@ -1,3 +1,4 @@
+import NotFoundSection from "@/components/section/NotFoundSection";
 import ShelfSection from "@/components/section/storage/shelf/ShelfSection";
 import { getTier } from "@/lib/actions";
 import { checkTier } from "@/lib/utils";
@@ -7,6 +8,6 @@ export default async function Home({ params }: { params: { id: string }}) {
     const id = (await params).id;
 
     return (
-        checkTier(tier, false, true) && <ShelfSection id={Number(id)} tier={tier} />
+        checkTier(tier, false, true) ? <ShelfSection id={Number(id)} tier={tier} /> : <NotFoundSection />
     );
 }

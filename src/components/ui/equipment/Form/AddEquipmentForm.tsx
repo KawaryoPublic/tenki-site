@@ -12,6 +12,7 @@ import { Location, Role } from "@/lib/types";
 import DefaultVectorInput from "../../global/Form/DefaultVectorInput";
 import DefaultAddableSelect from "../../global/Form/DefaultAddableSelectOption";
 import { EQUIPMENT_TYPES } from "@/lib/const";
+import DefaultHeadingUI from "../../global/DefaultHeadingUI";
 
 export default function AddEquipmentForm({ locations, roles }: { locations: Location[], roles: Role[] }) {
     const [ type, setType ] = useState<number>(0);
@@ -38,7 +39,7 @@ export default function AddEquipmentForm({ locations, roles }: { locations: Loca
             action={formAction}
             className="flex flex-col gap-2"
         >   
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold border-b pb-2">機材を追加</h2>
+            <DefaultHeadingUI className="border-b pb-2">機材を追加</DefaultHeadingUI>
             <DefaultInput
                 title="名前"
                 name="name"
@@ -52,6 +53,14 @@ export default function AddEquipmentForm({ locations, roles }: { locations: Loca
                 label
                 required
             />
+            <DefaultInput
+                title="個数"
+                name="count"
+                type="number"
+                defaultValue="1"
+                required
+                label
+            />
             <DefaultSelect
                 title="種類"
                 name="type"
@@ -61,19 +70,16 @@ export default function AddEquipmentForm({ locations, roles }: { locations: Loca
                 label
                 required
             />
-            <DefaultVectorInput
-                title="ナンバリング"
-                name="number"
-                labels={["~から", "~まで"]}
-            />
-            <DefaultInput
-                title="個数"
-                name="count"
-                type="number"
-                defaultValue="1"
-                required
-                label
-            />
+            {
+                type !== 4 && 
+                <DefaultInput
+                    title="ナンバリング(一番最初の)"
+                    name="number"
+                    type="number"
+                    defaultValue=""
+                    label
+                />
+            }
             <DefaultVectorInput title="サイズ[cm]" name="size" labels={["縦幅", "横幅", "高さ"]} />
             <DefaultAddableInput title="内容物" name="content" />
             <DefaultTextArea

@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 import OptionUrlUI from "../global/OptionUrlUI";
 import Link from "next/link";
+import DefaultHeadingUI from "../global/DefaultHeadingUI";
 
 export default function NotificationDetailUI({ notification, roles, tier }: { notification: Notification, roles: Role[], tier: number }) {
     const [ showOptions, setShowOptions ] = useState(false);
@@ -17,7 +18,7 @@ export default function NotificationDetailUI({ notification, roles, tier }: { no
             <div className="flex justify-between items-center border-b pb-2">
                 <div className="flex flex-col gap-1 w-full">
                     <div className="flex items-center justify-between">
-                        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold">{notification.title}</h2>
+                        <DefaultHeadingUI className={`${notification.important && "text-red-600"}`}>{notification.title}</DefaultHeadingUI>
                         {
                             checkTier(tier) && 
                                 <button 

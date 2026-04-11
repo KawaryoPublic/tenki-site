@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { checkTier } from "@/lib/utils";
 import DateInfoDetailUI from "@/components/ui/calendar/date_info/DateInfoDetailUI";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
+import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 
 export default function DateInfoDetailSection({ date, tier }: { date: string, tier: number }) {
     const splitDate = date.split("-");
@@ -29,8 +30,8 @@ export default function DateInfoDetailSection({ date, tier }: { date: string, ti
 
     return (
         checkTier(tier, false, true) &&
-        loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !info || !observation ? <div className="flex-1 flex flex-col items-center font-bold text-xl">詳細を読み込めませんでした</div> :
+        loading ? <LoadingResultUI>Loading...</LoadingResultUI> :
+        !info || !observation ? <LoadingResultUI>詳細を読み込めませんでした</LoadingResultUI> :
         <section className="w-full flex flex-col gap-4">
             <DateInfoDetailUI info={info} observation={observation} tier={tier} />
             <div className="flex flex-col gap-4">

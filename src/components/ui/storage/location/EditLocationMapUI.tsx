@@ -1,12 +1,12 @@
 import { Location, Shelf } from "@/lib/types";
 import { useEffect, useState, RefObject, Dispatch, SetStateAction } from "react";
 import WhiteFrameUI from "../../global/WhiteFrameUI";
-import { checkCollision, fitToParentSize } from "@/lib/utils";
-import DefaultVectorInput from "../../global/Form/DefaultVectorInput";
-import DefaultSelect from "../../global/Form/DefaultSelect";
-import { SHELF_TYPES } from "@/lib/const";
+import { fitToParentSize } from "@/lib/utils";
+import Link from "next/link";
+import EditShelfForm from "./Form/EditShelfForm";
+import AddShelfForm from "./Form/AddShelfForm";
 
-export default function EditLocationMapUI({ location, shelves, setShelves, parentRef, className = "" }: { location: Location, shelves: Shelf[], setShelves: Dispatch<SetStateAction<Shelf[]>> , parentRef: RefObject<HTMLElement | null>, className?: string }) {
+export default function EditLocationMapUI({ location, shelves, setShelves, parentRef, add, className = "" }: { location: Location, shelves: Shelf[], setShelves: Dispatch<SetStateAction<Shelf[]>> , parentRef: RefObject<HTMLElement | null>, add: boolean, className?: string }) {
     const [ size, setSize ] = useState<number[]>([]);
     const [ selectedIndex, setSelectedIndex ] = useState<number>(-1);
     const [ render, setRender ] = useState<number>(0);
@@ -23,14 +23,15 @@ export default function EditLocationMapUI({ location, shelves, setShelves, paren
                 height: `${size[1]}px`
             }}
         >
-            <button className="z-1 fixed top-0 bottom-0 left-0 right-0" onClick={() => setSelectedIndex(-1)}></button>
+            <button className={`fixed top-0 bottom-0 left-0 right-0 ${selectedIndex !== -1 ? "opacity-50 bg-black z-1" : ""}`} onClick={() => setSelectedIndex(-1)} ></button>
+            <Link className={`fixed top-0 bottom-0 left-0 right-0 cursor-default ${add ? "opacity-50 bg-black z-1" : ""}`} href={`/storage/location/edit/${location.id}`} ></Link>
             <div className="w-full h-full border-2 relative">
                 {
                     shelves.map((shelf, i) => (
                         <button 
                             key={i}
                             onClick={() => setSelectedIndex(i)}
-                            className={`z-2 absolute text-center text-xs md:text-sm overflow-hidden flex items-center justify-center ${shelf.type === 0 ? "bg-gray-300" : "bg-gray-200"} ${selectedIndex === i ? "border-2" : "border"} hover:border-2`}
+                            className={`absolute text-center text-xs md:text-sm overflow-hidden flex items-center justify-center ${shelf.type === 0 ? "bg-gray-300" : "bg-gray-200"} ${selectedIndex === i ? "border-2 z-2" : "border"} hover:border-2`}
                             style={{
                                 width: `${shelf.size[0] / location.size[0] * 100}%`,
                                 height: `${shelf.size[1] / location.size[1] * 100}%`,
@@ -38,19 +39,7 @@ export default function EditLocationMapUI({ location, shelves, setShelves, paren
                                 bottom: `${shelf.position[1] / location.size[1] * 100}%`,
                             }}
                         >
-                            {
-                                i !== selectedIndex ? <span className="whitespace-nowrap">{shelf.name}</span> :
-                                <input 
-                                    type="text" 
-                                    defaultValue={shelf.name}
-                                    onChange={e => {
-                                        const newShelves = shelves;
-                                        newShelves[i].name = e.target.value;
-                                        setShelves(newShelves);
-                                    }} 
-                                    className="field-sizing-content p-1" 
-                                />
-                            }
+                            <span className="whitespace-nowrap">{shelf.name}</span>
                         </button>
                     ))
                 }
@@ -92,86 +81,15 @@ export default function EditLocationMapUI({ location, shelves, setShelves, paren
                             ></button>
                         </>
                         */
-                       <WhiteFrameUI
-                            className="z-2 absolute"
-                            style={{
-                                left: `${(shelves[selectedIndex].position[0] + shelves[selectedIndex].size[0]) / location.size[0] * 100 + 4}%`,
-                                bottom: `${shelves[selectedIndex].position[1] / location.size[1] * 100}%`,
-                            }}
-                       >
-                            <form className="flex flex-col gap-4">
-                                <DefaultSelect
-                                    title="種類"
-                                    name="type"
-                                    options={SHELF_TYPES.map((shelf, i) => ({ value: i, label: shelf}))}
-                                    value={shelves[selectedIndex].type}
-                                    onChange={e => {
-                                        const newShelves = shelves;
-                                        newShelves[selectedIndex].type = Number(e.target.value);
-                                        setShelves(newShelves);
-                                        setRender(render + 1);
-                                    }}
-                                    label
-                                    required
-                                />
-                                <DefaultVectorInput 
-                                    title="サイズ[cm]" 
-                                    name="size" 
-                                    labels={["縦幅", "横幅"]} 
-                                    values={shelves[selectedIndex].size} 
-                                    onChange={(e, i) => {
-                                        const newShelves = shelves;
-                                        const thisShelf = newShelves[selectedIndex];
-                                        thisShelf.size[i] = Number(e.target.value);
-
-                                        if(thisShelf.size[i] + thisShelf.position[i] > location.size[i]) {
-                                            alert("倉庫とぶつかっています。");
-                                            return;
-                                        }
-
-                                        for(const shelf of newShelves) {
-                                            if(shelf === thisShelf) continue;
-
-                                            if(checkCollision(thisShelf.size, thisShelf.position, shelf.size, shelf.position)) {
-                                                alert(`${shelf.name}とぶつかります。`);
-                                                return;
-                                            }
-                                        }
-
-                                        setShelves(newShelves);
-                                        setRender(render + 1);
-                                    }} 
-                                />
-                                <DefaultVectorInput 
-                                    title="座標[cm]" 
-                                    name="position" 
-                                    labels={["x", "y"]} 
-                                    values={shelves[selectedIndex].position} 
-                                    onChange={(e, i) => {
-                                        const newShelves = shelves;
-                                        const thisShelf = newShelves[selectedIndex];
-                                        thisShelf.position[i] = Number(e.target.value);
-
-                                        if(thisShelf.size[i] + thisShelf.position[i] > location.size[i]) {
-                                            alert("倉庫とぶつかります。");
-                                            return;
-                                        }
-
-                                        for(const shelf of newShelves) {
-                                            if(shelf === thisShelf) continue;
-
-                                            if(checkCollision(thisShelf.size, thisShelf.position, shelf.size, shelf.position)) {
-                                                alert(`${shelf.name}とぶつかります。`);
-                                                return;
-                                            }
-                                        }
-                                        
-                                        setShelves(newShelves);
-                                        setRender(render + 1);
-                                    }} 
-                                />
-                            </form>
+                       <WhiteFrameUI className="z-2 fixed left-3 right-3 md:left-[20%] md:right-[20%] top-6 shadow-2xl">
+                            <EditShelfForm locationSize={location.size} shelves={shelves} setShelves={setShelves} selectedIndex={selectedIndex} setRender={setRender} />
                         </WhiteFrameUI>
+                }
+                {
+                    add &&
+                    <WhiteFrameUI className="z-2 fixed left-3 right-3 md:left-[20%] md:right-[20%] top-6 shadow-2xl">
+                        <AddShelfForm id={location.id} setShelves={setShelves} />
+                    </WhiteFrameUI>
                 }
             </div>
         </WhiteFrameUI>

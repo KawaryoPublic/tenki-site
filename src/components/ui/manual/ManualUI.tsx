@@ -3,8 +3,9 @@ import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import { checkTier } from "@/lib/utils";
 import Link from "next/link";
 import { useState } from "react";
-import Image from "next/image";
+import ThreePointsUI from "@/components/ui/global/ThreePointsUI";
 import { Manual, Role } from "@/lib/types";
+import DefaultHeadingUI from "../global/DefaultHeadingUI";
 
 export default function ManualUI({ manual, roles, tier }: { manual: Manual, roles: Role[], tier: number }) {
     const [ showOptions, setShowOptions ] = useState(false);
@@ -15,7 +16,9 @@ export default function ManualUI({ manual, roles, tier }: { manual: Manual, role
             <button className={`fixed top-0 right-0 w-full h-full z-1 ${showOptions ? "" : "hidden"}`} onClick={() => setShowOptions(false)} />
             <div className="flex flex-col gap-1 w-full">
                 <div className="flex items-center justify-between">
-                    <Link className="text-xl md:text-2xl lg:text-3xl font-bold z-2" href={`/manual/${manual.id}`}>{manual.title}</Link>
+                    <DefaultHeadingUI>
+                        <Link className="z-2" href={`/manual/${manual.id}`}>{manual.title}</Link>
+                    </DefaultHeadingUI>
                     {
                         checkTier(tier) && 
                             <button 
@@ -26,7 +29,7 @@ export default function ManualUI({ manual, roles, tier }: { manual: Manual, role
                                     <Link href={`/manual/edit/${manual.id}`} className="hover:underline">編集</Link>
                                     <DeleteManualButton id={manual.id} urls={manual.urls} />
                                 </WhiteFrameUI>
-                                <Image src="/image/3_points.webp" alt="Options" fill priority className="w-full h-full cursor-pointer" />
+                                <ThreePointsUI />
                             </button>
                     }
                 </div>

@@ -6,6 +6,8 @@ import OptionUrlUI from "../global/OptionUrlUI";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import DefaultHeadingUI from "../global/DefaultHeadingUI";
+import ThreePointsUI from "../global/ThreePointsUI";
 
 export default function ManualDetailUI({ manual, roles, tier }: { manual: Manual, roles: Role[], tier: number }) {
     const [ showOptions, setShowOptions ] = useState(false);
@@ -17,7 +19,7 @@ export default function ManualDetailUI({ manual, roles, tier }: { manual: Manual
             <div className="flex justify-between items-center border-b pb-2">
                 <div className="flex flex-col gap-1 w-full">
                     <div className="flex items-center justify-between">
-                        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold">{manual.title}</h2>
+                        <DefaultHeadingUI>{manual.title}</DefaultHeadingUI>
                         {
                             checkTier(tier) && 
                                 <button 
@@ -28,7 +30,7 @@ export default function ManualDetailUI({ manual, roles, tier }: { manual: Manual
                                         <Link href={`/manual/edit/${manual.id}`} className="hover:underline">編集</Link>
                                         <DeleteManualButton id={manual.id} urls={manual.urls} />
                                     </WhiteFrameUI>
-                                    <Image src="/image/3_points.webp" alt="Options" fill priority className="w-full h-full cursor-pointer" />
+                                    <ThreePointsUI />
                                 </button>
                         }
                     </div>

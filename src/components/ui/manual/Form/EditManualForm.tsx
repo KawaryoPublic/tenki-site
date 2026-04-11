@@ -13,6 +13,7 @@ import { useState, useActionState } from "react";
 import { uploadFiles } from "@/lib/utils";
 import { TIER_LABELS } from "@/lib/const";
 import DefaultAddableSelect from "../../global/Form/DefaultAddableSelectOption";
+import DefaultHeadingUI from "../../global/DefaultHeadingUI";
 
 export default function EditManualForm({ manual, roles }: { manual: Manual, roles: Role[] }) {
     const initialFiles = manual.urls.map((url, index) => ({ url: url, filename: manual.filenames[index] }));
@@ -45,7 +46,7 @@ export default function EditManualForm({ manual, roles }: { manual: Manual, role
             action={formAction}
             className="flex flex-col gap-2"
         >   
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold border-b pb-2">マニュアルを編集</h2>
+            <DefaultHeadingUI className="border-b pb-2">マニュアルを編集</DefaultHeadingUI>
             <DefaultInput
                 title="タイトル"
                 name="title"

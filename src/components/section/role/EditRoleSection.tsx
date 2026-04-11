@@ -5,6 +5,7 @@ import { Role } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import EditRoleForm from "@/components/ui/role/Form/EditRoleForm";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
+import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 
 export default function EditRoleSection({ id }: { id: number }) {
     const [ role, setRole ] = useState<Role | null>(null);
@@ -21,8 +22,8 @@ export default function EditRoleSection({ id }: { id: number }) {
     }, []);
 
     return (
-        loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !role ? <div className="flex-1 flex flex-col items-center font-bold text-xl">役職を読み込めませんでした</div> :
+        loading ? <LoadingResultUI>Loading...</LoadingResultUI> :
+        !role ? <LoadingResultUI>役職を読み込めませんでした</LoadingResultUI> :
         <section className="w-full flex flex-col gap-8">
             <WhiteFrameUI>
                 <EditRoleForm role={role} />

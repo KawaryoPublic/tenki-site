@@ -5,6 +5,7 @@ import { checkTier } from "@/lib/utils";
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import DefaultHeadingUI from "../../global/DefaultHeadingUI";
 
 export default function ObservationDetailUI({ observation, tier }: { observation: Observation, tier: number }) {
     const [ showOptions, setShowOptions ] = useState(false);
@@ -16,7 +17,7 @@ export default function ObservationDetailUI({ observation, tier }: { observation
             <div className="flex justify-between items-center border-b pb-2">
                 <div className="flex flex-col gap-1 w-full">
                     <div className="flex items-center justify-between">
-                        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold">{DAYS[observation.day]}曜日の観測シフト</h2>
+                        <DefaultHeadingUI>{DAYS[observation.day]}曜日の観測シフト</DefaultHeadingUI>
                         {
                             checkTier(tier) && 
                                 <button 

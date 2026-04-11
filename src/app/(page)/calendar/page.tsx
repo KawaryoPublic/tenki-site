@@ -1,4 +1,5 @@
 import CalendarSection from "@/components/section/calendar/CalendarSection";
+import NotFoundSection from "@/components/section/NotFoundSection";
 import { getTier } from "@/lib/actions";
 import { checkTier } from "@/lib/utils";
 
@@ -8,6 +9,6 @@ export default async function Home(props: { searchParams: Promise<{ filter?: str
     const tier = await getTier();
 
     return (
-        checkTier(tier, false, true) && <CalendarSection filter={filter} tier={tier} />
+        checkTier(tier, false, true) ? <CalendarSection filter={filter} tier={tier} /> : <NotFoundSection />
     )
 }

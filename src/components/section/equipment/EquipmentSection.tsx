@@ -7,6 +7,7 @@ import BlueButton from "@/components/ui/global/Button/BlueButton";
 import DefaultSearchForm from "@/components/ui/global/Form/DefaultSearchForm";
 import EquipmentUI from "@/components/ui/equipment/EquipmentUI";
 import { EQUIPMENT_TYPES } from "@/lib/const";
+import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 
 export default function EquipmentSection({ tier, tags, title, role, type }: { tier: number, tags: string[], title: string[], role?: number, type?: number }) {
   const [ roles, setRoles ] = useState<Role[]>([]);
@@ -51,7 +52,7 @@ export default function EquipmentSection({ tier, tags, title, role, type }: { ti
     }, [tags, title, role]);
 
   return (
-    loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
+    loading ? <div className="flex-1 flex flex-col items-center font-bold text-lg md:text-xl">Loading...</div> :
     <section className="flex-1 flex flex-col gap-3 w-full">
       <div className="flex justify-between items-center">
         <div className="z-2">
@@ -84,8 +85,8 @@ export default function EquipmentSection({ tier, tags, title, role, type }: { ti
         />
       </div>
       {
-        !equipment || !roles ? <div className="flex-1 flex flex-col items-center font-bold text-xl">機材一覧を読み込めませんでした</div> :
-        equipment.length === 0 ? <div className="flex-1 flex flex-col items-center font-bold text-xl">機材はありません</div> : 
+        !equipment || !roles ? <LoadingResultUI>機材一覧を読み込めませんでした</LoadingResultUI> :
+        equipment.length === 0 ? <LoadingResultUI>機材はありません</LoadingResultUI> :
         <div className="flex flex-col gap-4">
           {
             Array.from(EQUIPMENT_TYPES).map((_, i) => {

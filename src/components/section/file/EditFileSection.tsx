@@ -5,6 +5,7 @@ import { File, Role } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import EditFileForm from "@/components/ui/file/Form/EditFileForm";
+import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 
 export default function EditFileSection({ id }: { id: number }) {
     const [ roles, setRoles ] = useState<Role[]>([]);
@@ -28,8 +29,8 @@ export default function EditFileSection({ id }: { id: number }) {
     }, []);
 
     return (
-        loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !file ? <div className="flex-1 flex flex-col items-center font-bold text-xl">ファイルを読み込めませんでした</div> :
+        loading ? <LoadingResultUI>Loading...</LoadingResultUI> :
+        !file ? <LoadingResultUI>ファイルを読み込めませんでした</LoadingResultUI> :
         <section className="w-full flex flex-col gap-4">
             <WhiteFrameUI>
                 <EditFileForm file={file} roles={roles} />

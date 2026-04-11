@@ -1,3 +1,4 @@
+import NotFoundSection from "@/components/section/NotFoundSection";
 import LocationSection from "@/components/section/storage/location/LocationSection";
 import { getTier } from "@/lib/actions";
 import { checkTier } from "@/lib/utils";
@@ -5,8 +6,7 @@ import { checkTier } from "@/lib/utils";
 export default async function Home({ params }: { params: { id: string }}) {
   const tier = await getTier();
   const id = (await params).id;
-  
   return (
-    checkTier(tier, false, true) && <LocationSection id={Number(id)} tier={tier} />
+    checkTier(tier, false, true) ? <LocationSection id={Number(id)} tier={tier} /> : <NotFoundSection />
   )
 }

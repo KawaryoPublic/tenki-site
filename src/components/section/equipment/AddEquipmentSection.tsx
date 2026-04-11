@@ -5,6 +5,7 @@ import BlueButton from "@/components/ui/global/Button/BlueButton";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import { useEffect, useState } from "react";
 import { Location, Role } from "@/lib/types";
+import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 
 export default function AddEquipmentSection() {
     const [ roles, setRoles ] = useState<Role[]>([]);
@@ -27,8 +28,8 @@ export default function AddEquipmentSection() {
             .catch(err => console.log(err));
     }, []);
     return (
-        loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !locations || !roles ? <div className="flex-1 flex flex-col items-center font-bold text-xl">機材を読み込めませんでした</div> :
+        loading ? <LoadingResultUI>Loading...</LoadingResultUI> :
+        !locations || !roles ? <LoadingResultUI>機材を読み込めませんでした</LoadingResultUI> :
         <section className="w-full flex flex-col gap-4">
             <WhiteFrameUI>
                 <AddEquipmentForm locations={locations} roles={roles} />

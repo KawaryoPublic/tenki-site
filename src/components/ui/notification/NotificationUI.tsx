@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import DeleteNotificationButton from "./Button/DeleteNotificationButton";
+import ThreePointsUI from "../global/ThreePointsUI";
+import DefaultHeadingUI from "../global/DefaultHeadingUI";
 
 export default function NotificationUI({ notification, roles, tier }: { notification: Notification, roles: Role[], tier: number }) {
     const [ showOptions, setShowOptions ] = useState(false);
@@ -15,7 +17,9 @@ export default function NotificationUI({ notification, roles, tier }: { notifica
             <button className={`fixed top-0 right-0 w-full h-full z-1 ${showOptions ? "" : "hidden"}`} onClick={() => setShowOptions(false)} />
             <div className="flex flex-col gap-1 w-full">
                 <div className="flex items-center justify-between">
-                    <Link className={`text-xl md:text-2xl lg:text-3xl font-bold z-2 ${notification.important && "text-red-600"}`} href={`/notification/${notification.id}`}>{notification.title}</Link>
+                    <DefaultHeadingUI>
+                        <Link className={`z-2 ${notification.important && "text-red-600"}`} href={`/notification/${notification.id}`}>{notification.title}</Link>
+                    </DefaultHeadingUI>
                     {
                         checkTier(tier) && 
                             <button 
@@ -26,7 +30,7 @@ export default function NotificationUI({ notification, roles, tier }: { notifica
                                     <Link href={`/notification/edit/${notification.id}`} className="hover:underline">編集</Link>
                                     <DeleteNotificationButton id={notification.id} urls={notification.urls} />
                                 </WhiteFrameUI>
-                                <Image src="/image/3_points.webp" alt="Options" fill priority className="w-full h-full cursor-pointer" />
+                                <ThreePointsUI />
                             </button>
                     }
                 </div>

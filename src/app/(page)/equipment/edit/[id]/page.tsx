@@ -1,12 +1,13 @@
 import { getTier } from "@/lib/actions";
 import { checkTier } from "@/lib/utils";
 import EditEquipmentSection from "@/components/section/equipment/EditEquipmentSection";
+import NotFoundSection from "@/components/section/NotFoundSection";
 
 export default async function Home(props: { params: Promise<{ id: string }>}) {
     const params = await props.params;
     const tier = await getTier();
 
     return (
-        checkTier(tier) && <EditEquipmentSection id={Number(params.id)} tier={tier} />
+        checkTier(tier) ? <EditEquipmentSection id={Number(params.id)} tier={tier} /> : <NotFoundSection />
     )
 }

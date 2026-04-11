@@ -6,6 +6,7 @@ import BlueButton from "../../../global/Button/BlueButton";
 import DefaultAddableInput from "../../../global/Form/DefaultAddableOption";
 import { redirect } from "next/navigation";
 import { useActionState } from 'react';
+import DefaultHeadingUI from "@/components/ui/global/DefaultHeadingUI";
 
 export default function EditObservationForm({ observation }: { observation: Observation }) {
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
@@ -25,7 +26,7 @@ export default function EditObservationForm({ observation }: { observation: Obse
             action={formAction}
             className="flex flex-col gap-2"
         >
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold border-b pb-2">観測シフトを編集</h2>
+            <DefaultHeadingUI>観測シフトを編集</DefaultHeadingUI>
             <DefaultAddableInput
                 title="朝"
                 name="morning"

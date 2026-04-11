@@ -1,6 +1,7 @@
 "use client";
 
 import BlueButton from "@/components/ui/global/Button/BlueButton";
+import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import AddNotificationForm from "@/components/ui/notification/Form/AddNotificationForm";
 import { Role } from "@/lib/types";
@@ -21,8 +22,8 @@ export default function AddNotificationSection() {
     }, []);
 
     return (
-        loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !roles ? <div className="flex-1 flex flex-col items-center font-bold text-xl">告知を読み込めませんでした</div> :
+        loading ? <LoadingResultUI>Loading...</LoadingResultUI> :
+        !roles ? <LoadingResultUI>告知を読み込めませんでした</LoadingResultUI> :
         <section className="w-full flex flex-col gap-4">
             <WhiteFrameUI>
                 <AddNotificationForm roles={roles} />

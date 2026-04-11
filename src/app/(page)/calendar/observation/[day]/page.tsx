@@ -1,4 +1,5 @@
 import ObservationDetailSection from "@/components/section/calendar/observation/ObservationDetailSection";
+import NotFoundSection from "@/components/section/NotFoundSection";
 import { getTier } from "@/lib/actions";
 import { checkTier } from "@/lib/utils";
 
@@ -7,6 +8,6 @@ export default async function Home(props: { params: Promise<{ day: string }> }) 
     const tier = await getTier();
 
     return (
-        checkTier(tier, false, true) && <ObservationDetailSection day={Number(params.day)} tier={tier} />
+        checkTier(tier, false, true) ? <ObservationDetailSection day={Number(params.day)} tier={tier} /> : <NotFoundSection />
     )
 }

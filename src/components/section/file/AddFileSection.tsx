@@ -2,6 +2,7 @@
 
 import AddFileForm from "@/components/ui/file/Form/AddFileForm";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
+import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import { Role } from "@/lib/types";
 import { useState, useEffect } from 'react';
@@ -20,8 +21,8 @@ export default function AddFileSection() {
         .catch(err => console.log(err));
     }, []);
     return (
-        loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !roles ? <div className="flex-1 flex flex-col items-center font-bold text-xl">ファイルを読み込めませんでした</div> :
+        loading ? <LoadingResultUI>Loading...</LoadingResultUI> :
+        !roles ? <LoadingResultUI>ファイルを読み込めませんでした</LoadingResultUI> :
         <section className="w-full flex flex-col gap-4">
             <WhiteFrameUI>
                 <AddFileForm roles={roles} />

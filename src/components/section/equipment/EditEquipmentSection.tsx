@@ -7,6 +7,7 @@ import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import { checkTier } from "@/lib/utils";
 import EditEquipmentForm from "@/components/ui/equipment/Form/EditEquipmentForm";
 import { Location } from "@/lib/types";
+import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 
 export default function EditEquipmentSection({ id, tier }: { id: number, tier: number }) {
     const [ roles, setRoles ] = useState<Role[]>([]);
@@ -38,8 +39,8 @@ export default function EditEquipmentSection({ id, tier }: { id: number, tier: n
 
     return (
         checkTier(tier) &&
-        loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !equipment || !locations || !roles ? <div className="flex-1 flex flex-col items-center font-bold text-xl">機材を読み込めませんでした</div> :
+        loading ? <LoadingResultUI>Loading...</LoadingResultUI> :
+        !equipment || !locations || !roles ? <LoadingResultUI>機材を読み込めませんでした</LoadingResultUI> :
         <section className="w-full flex flex-col gap-4">
             <WhiteFrameUI>
                 <EditEquipmentForm equipment={equipment} locations={locations} roles={roles} />

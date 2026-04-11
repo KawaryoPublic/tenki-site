@@ -13,6 +13,7 @@ import { useState, useActionState } from "react";
 import { uploadFiles } from "@/lib/utils";
 import { TIER_LABELS } from "@/lib/const";
 import DefaultAddableSelect from "../../global/Form/DefaultAddableSelectOption";
+import DefaultHeadingUI from "../../global/DefaultHeadingUI";
 
 export default function EditNotificationForm({ notification, roles }: { notification: Notification, roles: Role[] }) {
     const initialFiles = notification.urls.map((url, index) => ({ url: url, filename: notification.filenames[index] }));;
@@ -45,7 +46,7 @@ export default function EditNotificationForm({ notification, roles }: { notifica
             action={formAction}
             className="flex flex-col gap-2"
         >   
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold border-b pb-2">告知を編集</h2>
+            <DefaultHeadingUI className="border-b pb-2">告知を編集</DefaultHeadingUI>
             <DefaultInput
                 title="タイトル"
                 name="title"

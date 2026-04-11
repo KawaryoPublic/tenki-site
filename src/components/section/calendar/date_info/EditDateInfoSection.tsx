@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { checkTier } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import EditDateInfoForm from "@/components/ui/calendar/date_info/Form/EditDateInfoForm";
+import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 
 export default function EditDateInfoSection({ date, tier }: { date: string, tier: number }) {
     const [ info, setInfo ] = useState<DateInfo | null>();
@@ -23,8 +24,8 @@ export default function EditDateInfoSection({ date, tier }: { date: string, tier
 
     return (
         checkTier(tier) &&
-        loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !info ? <div className="flex-1 flex flex-col items-center font-bold text-xl">詳細を読み込めませんでした</div> :
+        loading ? <LoadingResultUI>Loading...</LoadingResultUI> :
+        !info ? <LoadingResultUI>詳細を読み込めませんでした</LoadingResultUI> :
         <section className="w-full flex flex-col gap-4">
             <WhiteFrameUI>
                 <EditDateInfoForm info={info} />

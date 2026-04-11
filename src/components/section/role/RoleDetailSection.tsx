@@ -6,6 +6,7 @@ import BlueButton from "@/components/ui/global/Button/BlueButton";
 import RoleDetailUI from "@/components/ui/role/RoleDetailUI";
 import NotificationUI from "@/components/ui/notification/NotificationUI";
 import { defaultFilter } from "@/lib/utils";
+import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 
 export default function RoleDetailSection({ id, tier }: { id: number, tier: number }) {
     const [ role, setRole ] = useState<Role | null>(null);
@@ -41,15 +42,15 @@ export default function RoleDetailSection({ id, tier }: { id: number, tier: numb
     }, []);
 
     return (
-        loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !roles || !role || !notifications ? <div className="flex-1 flex flex-col items-center font-bold text-xl">役職を読み込めませんでした</div> :
+        loading ? <LoadingResultUI>Loading...</LoadingResultUI> :
+        !roles || !role || !notifications ? <LoadingResultUI>役職を読み込めませんでした</LoadingResultUI> :
         <section className="w-full flex flex-col gap-8">
             <RoleDetailUI role={role} tier={tier} />
             <div className="flex flex-col gap-4">
                 <h2 className="text-xl md:text-3xl font-bold">{role.name}からの告知</h2>
                 <div className="flex flex-col gap-4">
                 {
-                    notifications.length === 0 ? <div className="flex-1 flex flex-col items-center font-bold text-xl">告知はありません</div> : 
+                    notifications.length === 0 ? <LoadingResultUI>告知はありません</LoadingResultUI> : 
                     notifications.map((notification, index) => (
                         <div key={index}>
                             <NotificationUI notification={notification} roles={roles} tier={tier} />

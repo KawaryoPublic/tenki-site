@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { Manual, Role } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import ManualDetailUI from "@/components/ui/manual/ManualDetailUI";
+import NotFoundSection from "../NotFoundSection";
+import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 
 export default function ManualDetailSection({ id, tier }: { id: number, tier: number }) {
     const [ roles, setRoles ] = useState<Role[]>([]);
@@ -27,8 +29,9 @@ export default function ManualDetailSection({ id, tier }: { id: number, tier: nu
     }, []);
 
     return (
-        loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !manual || !roles ? <div className="flex-1 flex flex-col items-center font-bold text-xl">マニュアルを読み込めませんでした</div> :
+        loading ? <LoadingResultUI>Loading...</LoadingResultUI> :
+        !manual || !roles ? <LoadingResultUI>マニュアルを読み込めませんでした</LoadingResultUI> :
+        tier !== 3 && manual.tier !== tier ? <NotFoundSection /> :
         <section className="w-full flex flex-col gap-4">
             <ManualDetailUI manual={manual} roles={roles} tier={tier} />
             <div className="z-2">

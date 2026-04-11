@@ -14,13 +14,13 @@ export default async function Header() {
         <nav className="flex text-base md:text-xl gap-2 md:gap-4 p-2 md:p-4 overflow-x-auto">
           <Nav href="/" title="ホーム" tier={tier} allowAll />
           <Nav href="/about" title="アバウト" tier={tier} allowAll />
+          <Nav href="/role" title="役職" tier={tier} allowAll />
           <Nav href="/notification" title="告知" tier={tier} allowAll />
           <Nav href="/calendar" title="カレンダー" tier={tier} allowStudent />
           <Nav href="/equipment" title="機材" tier={tier} allowStudent />
           <Nav href="/storage/location/1" title="倉庫" tier={tier} allowStudent />
-          <Nav href="/file" title="ファイル" tier={tier} allowStudent/>
+          <Nav href="/file" title="ファイル" tier={tier} allowStudent />
           <Nav href="/manual" title="マニュアル" tier={tier} allowStudent />
-          <Nav href="/role" title="役職" tier={tier} allowStudent />
         </nav>
         <Link href="/password" className="relative h-8 md:h-10 ml-auto mr-2 md:mr-4 aspect-square text-whitextext-sm md:text-base rounded">
           <Image src="/image/sign_in.webp" alt="部員はこちら" fill sizes="w-full h-full"/>

@@ -6,6 +6,7 @@ import { Observation } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import EditObservationForm from "@/components/ui/calendar/observation/Form/EditObservationForm";
+import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 
 export default function EditObservationSection({ day, tier }: { day: number, tier: number }) {
     const [ observation, setObservation ] = useState<Observation | null>();
@@ -23,8 +24,8 @@ export default function EditObservationSection({ day, tier }: { day: number, tie
 
     return (
         checkTier(tier) &&
-        loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !observation ? <div className="flex-1 flex flex-col items-center font-bold text-xl">観測シフトを読み込めませんでした</div> :
+        loading ? <LoadingResultUI>Loading...</LoadingResultUI> :
+        !observation ? <LoadingResultUI>観測シフトを読み込めませんでした</LoadingResultUI> :
         <section className="w-full flex flex-col gap-4">
             <WhiteFrameUI>
                 <EditObservationForm observation={observation} />

@@ -8,6 +8,7 @@ import DefaultTextArea from "../../global/Form/DefaultTextArea";
 import { useActionState } from "react";
 import { uploadFiles } from "@/lib/utils";
 import RoleFile from "./RoleFile";
+import DefaultHeadingUI from "../../global/DefaultHeadingUI";
 
 export default function AddRoleForm() {
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
@@ -29,7 +30,7 @@ export default function AddRoleForm() {
             action={formAction}
             className="flex flex-col gap-2"
         >   
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold border-b pb-2">告知を編集</h2>
+            <DefaultHeadingUI className="border-b pb-2">役職を追加</DefaultHeadingUI>
             <DefaultInput
                 title="役職名"
                 name="name"

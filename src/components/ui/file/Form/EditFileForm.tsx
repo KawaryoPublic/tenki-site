@@ -10,6 +10,7 @@ import DefaultAddableInput from "../../global/Form/DefaultAddableOption";
 import { useActionState } from 'react';
 import { TIER_LABELS } from "@/lib/const";
 import DefaultAddableSelect from "../../global/Form/DefaultAddableSelectOption";
+import DefaultHeadingUI from "../../global/DefaultHeadingUI";
 
 export default function EditFileForm({ file, roles }: { file: File, roles: Role[] }) {
     const [state, formAction, pending] = useActionState(async (initState: any, formData: FormData) => {
@@ -29,7 +30,7 @@ export default function EditFileForm({ file, roles }: { file: File, roles: Role[
             action={formAction}
             className="flex flex-col gap-2"
         >   
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold border-b pb-2">ファイルを編集</h2>
+            <DefaultHeadingUI className="border-b pb-2">ファイルを編集</DefaultHeadingUI>
             <DefaultInput
                 title="タイトル"
                 name="title"

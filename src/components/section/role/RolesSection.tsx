@@ -6,6 +6,7 @@ import BlueButton from "@/components/ui/global/Button/BlueButton";
 import Link from "next/link";
 import Image from "next/image";
 import { Role } from "@/lib/types";
+import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 
 export default function RolesSection({ tier }: { tier: number }) {
   const [ roles, setRoles ] = useState<Role[]>([]);
@@ -31,9 +32,9 @@ export default function RolesSection({ tier }: { tier: number }) {
         </div>
       </div>
       {
-        loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !roles ? <div className="flex-1 flex flex-col items-center font-bold text-xl">役職一覧を読み込めませんでした</div> :
-        roles.length === 0 ? <div className="flex-1 flex flex-col items-center font-bold text-xl">役職はありません</div> : 
+        loading ? <LoadingResultUI>Loading...</LoadingResultUI> :
+        !roles ? <LoadingResultUI>役職一覧を読み込めませんでした</LoadingResultUI> :
+        roles.length === 0 ? <LoadingResultUI>役職はありません</LoadingResultUI> : 
         <div className="w-full h-full grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-8 md:gap-12 lg:gap-16">
           {
             roles.map((role, index) => (

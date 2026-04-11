@@ -7,6 +7,7 @@ import { Shelf } from "@/lib/types";
 import { checkTier } from "@/lib/utils";
 import { useEffect, useState, useRef } from "react";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
+import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 
 export default function ShelfSection({ id, tier }: { id: number, tier: number }) {
         const parentRef = useRef(null);
@@ -24,8 +25,8 @@ export default function ShelfSection({ id, tier }: { id: number, tier: number })
     }, []);
 
     return (
-        loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !shelf ? <div className="flex-1 flex flex-col items-center font-bold text-xl">場所を読み込めませんでした</div> :
+        loading ? <LoadingResultUI>Loading...</LoadingResultUI> :
+        !shelf ? <LoadingResultUI>場所を読み込めませんでした</LoadingResultUI> :
         <section className="flex-1 flex flex-col gap-4 items-center">
             <div>
                 <WhiteFrameUI className="flex items-center gap-4 md:gap-8 text-lg md:text-xl font-bold">

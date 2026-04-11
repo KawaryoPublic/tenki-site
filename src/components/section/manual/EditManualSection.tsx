@@ -6,6 +6,7 @@ import BlueButton from "@/components/ui/global/Button/BlueButton";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import { checkTier } from "@/lib/utils";
 import EditManualForm from "@/components/ui/manual/Form/EditManualForm";
+import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 
 export default function EditManualSection({ id, tier }: { id: number, tier: number }) {
     const [ roles, setRoles ] = useState<Role[]>([]);
@@ -30,8 +31,8 @@ export default function EditManualSection({ id, tier }: { id: number, tier: numb
 
     return (
         checkTier(tier) &&
-        loading ? <div className="flex-1 flex flex-col items-center font-bold text-xl">Loading...</div> :
-        !manual || !roles ? <div className="flex-1 flex flex-col items-center font-bold text-xl">マニュアルを読み込めませんでした</div> :
+        loading ? <LoadingResultUI>Loading...</LoadingResultUI> :
+        !manual || !roles ? <LoadingResultUI>マニュアルを読み込めませんでした</LoadingResultUI> :
         <section className="w-full flex flex-col gap-4">
             <WhiteFrameUI>
                 <EditManualForm manual={manual} roles={roles} />
