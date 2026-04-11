@@ -6,10 +6,11 @@ import BlueButton from "@/components/ui/global/Button/BlueButton";
 import EditLocationMapUI from "@/components/ui/storage/location/EditLocationMapUI";
 import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 
-export default function LocationSection({ id, add }: { id: number, add: boolean }) {
+export default function LocationSection({ id }: { id: number }) {
     const parentRef = useRef(null);
     const [ location, setLocation ] = useState<Location | null>(null);
     const [ shelves, setShelves ] = useState<Shelf[]>([]);
+    const [ add, setAdd ] = useState(false);
     const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {
@@ -30,10 +31,10 @@ export default function LocationSection({ id, add }: { id: number, add: boolean 
         !location ? <LoadingResultUI>倉庫を読み込めませんでした</LoadingResultUI> :
         <section className="flex-1 flex flex-col gap-4 items-center">
             <div className="flex items-center gap-4 md:gap-8">
-                <BlueButton href={`/storage/location/edit/${location.id}?add=on`} className="z-1"><span className="text-lg md:text-xl p-1 font-bold">追加</span></BlueButton>   
+                <BlueButton onClick={() => setAdd(true)} className="z-1"><span className="text-lg md:text-xl p-1 font-bold">追加</span></BlueButton>   
             </div>
             <div className="w-full flex-1 flex flex-col md:flex-row justify-center items-center relative" ref={parentRef}>
-                <EditLocationMapUI location={location} shelves={shelves} setShelves={setShelves} parentRef={parentRef} add={add} />
+                <EditLocationMapUI location={location} shelves={shelves} setShelves={setShelves} parentRef={parentRef} add={add} setAdd={setAdd} />
             </div>
         </section>
     )

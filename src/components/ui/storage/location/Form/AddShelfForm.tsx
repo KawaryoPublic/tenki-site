@@ -3,29 +3,27 @@ import DefaultInput from "@/components/ui/global/Form/DefaultInput";
 import DefaultSelect from "@/components/ui/global/Form/DefaultSelect";
 import DefaultVectorInput from "@/components/ui/global/Form/DefaultVectorInput";
 import { SHELF_TYPES } from "@/lib/const";
+import { Shelf } from "@/lib/types";
 import Form from "next/form";
 import { Dispatch, SetStateAction } from "react";
-import { Shelf } from "@/lib/types";
-import { redirect } from "next/navigation";
 
-export default function AddShelfForm({ id, setAddedShelves }: { id: number, setAddedShelves: Dispatch<SetStateAction<{
-    name: string,
-    type: number,
-    size: number[],
-    position: number[]
-}[]>> }) {
+export default function AddShelfForm({ shelfCount, setShelves, setAdd }: { shelfCount: number, setShelves: Dispatch<SetStateAction<Shelf[]>>, setAdd: Dispatch<SetStateAction<boolean>> }) {
     return (
         <Form
             action={(data) => {
                 const shelf = {
+                    id: shelfCount + 1,
                     name: data.get("name") as string,
+                    location: null,
                     type: Number(data.get("type")),
                     size: data.getAll("size").map(s => Number(s)),
-                    position: data.getAll("position").map(p => Number(p))
+                    position: data.getAll("position").map(p => Number(p)),
+                    equipment: [],
+                    updatedAt: null,
                 };
 
-                setAddedShelves(prev => [...prev, shelf]);
-                redirect(`/storage/location/edit/${id}`);
+                setShelves(prev => [...prev, shelf]);
+                setAdd(false);
             }}
             className="flex flex-col gap-4"
         >
