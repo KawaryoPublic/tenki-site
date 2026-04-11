@@ -21,7 +21,7 @@ export interface Notification {
     tags: string[];
     urls: string[];
     filenames: string[];
-    tier: string;
+    tier: number;
     roles: number[];
     updatedAt: Date;
 }
@@ -43,7 +43,7 @@ export interface Manual {
     tags: string[];
     urls: string[];
     filenames: string[];
-    tier: string;
+    tier: number;
     roles: number[];
     updatedAt: Date;
 }
