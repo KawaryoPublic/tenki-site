@@ -30,7 +30,7 @@ export default function EditLocationMapUI({ location, shelves, setShelves, paren
                         <button 
                             key={i}
                             onClick={() => setSelectedIndex(i)}
-                            className={`absolute text-center text-xs md:text-sm overflow-hidden flex items-center justify-center ${shelf.type === 0 ? "bg-gray-300" : "bg-gray-200"} ${selectedIndex === i ? "border-2 z-2" : "border"} hover:border-2`}
+                            className={`absolute text-center text-xs md:text-sm overflow-hidden flex items-center justify-center hover:border-2 ${shelf.type === 0 ? "bg-gray-300" : shelf.type === 1 ? "bg-gray-200" : "bg-gray-100"} ${selectedIndex === i ? "border-2 z-2" : "border"}`}
                             style={{
                                 width: `${shelf.size[0] / location.size[0] * 100}%`,
                                 height: `${shelf.size[1] / location.size[1] * 100}%`,

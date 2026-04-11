@@ -3,23 +3,25 @@ import DefaultInput from "@/components/ui/global/Form/DefaultInput";
 import DefaultSelect from "@/components/ui/global/Form/DefaultSelect";
 import DefaultVectorInput from "@/components/ui/global/Form/DefaultVectorInput";
 import { SHELF_TYPES } from "@/lib/const";
-import { Shelf } from "@/lib/types";
+import { Location, Shelf } from "@/lib/types";
 import Form from "next/form";
 import { Dispatch, SetStateAction } from "react";
 
 export default function AddShelfForm({ shelfCount, setShelves, setAdd }: { shelfCount: number, setShelves: Dispatch<SetStateAction<Shelf[]>>, setAdd: Dispatch<SetStateAction<boolean>> }) {
+    
     return (
+        
         <Form
             action={(data) => {
                 const shelf = {
                     id: shelfCount + 1,
                     name: data.get("name") as string,
-                    location: null,
+                    location: null as unknown as Location,
                     type: Number(data.get("type")),
                     size: data.getAll("size").map(s => Number(s)),
                     position: data.getAll("position").map(p => Number(p)),
                     equipment: [],
-                    updatedAt: null,
+                    updatedAt: null as unknown as Date,
                 };
 
                 setShelves(prev => [...prev, shelf]);
