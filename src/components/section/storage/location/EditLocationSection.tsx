@@ -25,7 +25,8 @@ export default function LocationSection({ id, add }: { id: number, add: boolean 
     }, []);
 
     return (
-
+        loading ? <LoadingResultUI>Loading...</LoadingResultUI> :
+        !location ? <LoadingResultUI>倉庫を読み込めませんでした</LoadingResultUI> :
         <section className="flex-1 flex flex-col gap-4 items-center">
             <div className="flex items-center gap-4 md:gap-8">
                 <BlueButton href={`/storage/location/edit/${location.id}?add=on`} className="z-1"><span className="text-lg md:text-xl p-1 font-bold">追加</span></BlueButton>
