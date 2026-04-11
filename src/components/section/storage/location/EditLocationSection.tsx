@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { Location, Shelf } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import EditLocationMapUI from "@/components/ui/storage/location/EditLocationMapUI";
+import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 
 export default function LocationSection({ id, add }: { id: number, add: boolean }) {
     const parentRef = useRef(null);
