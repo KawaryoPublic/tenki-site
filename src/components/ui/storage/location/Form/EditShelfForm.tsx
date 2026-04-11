@@ -4,12 +4,11 @@ import DefaultVectorInput from "@/components/ui/global/Form/DefaultVectorInput";
 import { SHELF_TYPES } from "@/lib/const";
 import { Location, Shelf } from "@/lib/types";
 import { checkCollision } from "@/lib/utils";
-import Form from "next/form";
 import { Dispatch, SetStateAction } from "react";
 
 export default function EditShelfForm({ locationSize, shelves, setShelves, selectedIndex, setRender }: { locationSize: number[], shelves: Shelf[], setShelves: Dispatch<SetStateAction<Shelf[]>>, selectedIndex: number, setRender: Dispatch<SetStateAction<number>> }) {
     return (
-        <Form className="flex flex-col gap-4">
+        <form className="flex flex-col gap-4">
             <DefaultInput
                 title="名前"
                 name="name"
@@ -97,6 +96,6 @@ export default function EditShelfForm({ locationSize, shelves, setShelves, selec
                     setRender(prev => prev + 1);
                 }} 
             />
-        </Form>
+        </form>
     )
 }
