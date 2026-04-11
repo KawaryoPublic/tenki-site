@@ -8,6 +8,12 @@ import AddShelfForm from "./Form/AddShelfForm";
 
 export default function EditLocationMapUI({ location, shelves, setShelves, parentRef, add, className = "" }: { location: Location, shelves: Shelf[], setShelves: Dispatch<SetStateAction<Shelf[]>> , parentRef: RefObject<HTMLElement | null>, add: boolean, className?: string }) {
     const [ size, setSize ] = useState<number[]>([]);
+    const [ addedShelves, setAddedShelves ] = useState<{
+        name: string,
+        type: number,
+        size: number[],
+        position: number[]
+    }[]>([]);
     const [ selectedIndex, setSelectedIndex ] = useState<number>(-1);
     const [ render, setRender ] = useState<number>(0);
 
@@ -28,6 +34,23 @@ export default function EditLocationMapUI({ location, shelves, setShelves, paren
             <div className="w-full h-full border-2 relative">
                 {
                     shelves.map((shelf, i) => (
+                        <button 
+                            key={i}
+                            onClick={() => setSelectedIndex(i)}
+                            className={`absolute text-center text-xs md:text-sm overflow-hidden flex items-center justify-center ${shelf.type === 0 ? "bg-gray-300" : "bg-gray-200"} ${selectedIndex === i ? "border-2 z-2" : "border"} hover:border-2`}
+                            style={{
+                                width: `${shelf.size[0] / location.size[0] * 100}%`,
+                                height: `${shelf.size[1] / location.size[1] * 100}%`,
+                                left: `${shelf.position[0] / location.size[0] * 100}%`,
+                                bottom: `${shelf.position[1] / location.size[1] * 100}%`,
+                            }}
+                        >
+                            <span className="whitespace-nowrap">{shelf.name}</span>
+                        </button>
+                    ))
+                }
+                {
+                    addedShelves.map((shelf, i) => (
                         <button 
                             key={i}
                             onClick={() => setSelectedIndex(i)}

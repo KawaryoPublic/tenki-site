@@ -8,7 +8,12 @@ import { Dispatch, SetStateAction } from "react";
 import { Shelf } from "@/lib/types";
 import { redirect } from "next/navigation";
 
-export default function AddShelfForm({ id, setShelves }: { id: number, setShelves: Dispatch<SetStateAction<Shelf[]>> }) {
+export default function AddShelfForm({ id, setAddedShelves }: { id: number, setAddedShelves: Dispatch<SetStateAction<{
+    name: string,
+    type: number,
+    size: number[],
+    position: number[]
+}[]>> }) {
     return (
         <Form
             action={(data) => {
@@ -19,7 +24,7 @@ export default function AddShelfForm({ id, setShelves }: { id: number, setShelve
                     position: data.getAll("position").map(p => Number(p))
                 };
 
-                setShelves(prev => [...prev, shelf]);
+                setAddedShelves(prev => [...prev, shelf]);
                 redirect(`/storage/location/edit/${id}`);
             }}
             className="flex flex-col gap-4"
