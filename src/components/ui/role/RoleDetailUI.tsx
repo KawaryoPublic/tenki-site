@@ -6,6 +6,7 @@ import DeleteRoleButton from "./Button/DeleteRoleButton";
 import Link from "next/link";
 import { useState } from "react";
 import DefaultHeadingUI from "../global/DefaultHeadingUI";
+import ThreePointsUI from "../global/ThreePointsUI";
 
 export default function RoleDetailUI({ role, tier }: { role: Role, tier: number }) {
     const [ showOptions, setShowOptions ] = useState(false);
@@ -28,7 +29,7 @@ export default function RoleDetailUI({ role, tier }: { role: Role, tier: number 
                                         <Link href={`/role/edit/${role.id}`} className="hover:underline">編集</Link>
                                         <DeleteRoleButton id={role.id} urls={[role.markUrl, role.personImageUrl]} />
                                     </WhiteFrameUI>
-                                    <Image src="/image/3_points.webp" alt="Options" fill priority className="w-full h-full cursor-pointer" />
+                                    <ThreePointsUI />
                                 </button>
                         }
                     </div>
