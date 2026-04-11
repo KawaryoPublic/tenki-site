@@ -111,7 +111,7 @@ export default function EditLocationMapUI({ location, shelves, setShelves, paren
                 {
                     add &&
                     <WhiteFrameUI className="z-2 fixed left-3 right-3 md:left-[20%] md:right-[20%] top-6 shadow-2xl">
-                        <AddShelfForm id={location.id} setShelves={setShelves} />
+                        <AddShelfForm id={location.id} setAddedShelves={setAddedShelves} />
                     </WhiteFrameUI>
                 }
             </div>
