@@ -5,13 +5,22 @@ import { fitToParentSize } from "@/lib/utils";
 import EditShelfForm from "./Form/EditShelfForm";
 import AddShelfForm from "./Form/AddShelfForm";
 
-export default function EditLocationMapUI({ location, shelves, setShelves, parentRef, add, setAdd }: { location: Location, shelves: Shelf[], setShelves: Dispatch<SetStateAction<Shelf[]>> , parentRef: RefObject<HTMLElement | null>, add: boolean, setAdd: Dispatch<SetStateAction<boolean>> }) {
+export default function EditLocationMapUI({ location, shelves, setShelves, parentRef, add, setAdd }: { location: Location, shelves: {shelf: Shelf, updated: boolean}[], setShelves: Dispatch<SetStateAction<{shelf: Shelf, updated: boolean}[]>>, parentRef: RefObject<HTMLElement | null>, add: boolean, setAdd: Dispatch<SetStateAction<boolean>> }) {
     const [ size, setSize ] = useState<number[]>([]);
     const [ selectedIndex, setSelectedIndex ] = useState<number>(-1);
-    const [ render, setRender ] = useState<number>(0);
 
     useEffect(() => {
         setSize(fitToParentSize(parentRef, location?.size[0] / location?.size[1]));
+
+        const preventRefresh = (e) => {
+            e.preventDefault();
+            return (e.returnValue = '');
+        };
+
+        window.addEventListener('beforeunload', preventRefresh);
+        return () => {
+            window.removeEventListener('beforeunload', preventRefresh);
+        }
     }, [location]);
 
     return (
@@ -26,7 +35,7 @@ export default function EditLocationMapUI({ location, shelves, setShelves, paren
             <button className={`fixed top-0 bottom-0 left-0 right-0 cursor-default ${add ? "opacity-50 bg-black z-1" : ""}`} onClick={() => setAdd(false)} ></button>
             <div className="w-full h-full border-2 relative">
                 {
-                    shelves.map((shelf, i) => (
+                    shelves.map(({ shelf, updated }, i) => (
                         <button 
                             key={i}
                             onClick={() => setSelectedIndex(i)}
@@ -81,7 +90,7 @@ export default function EditLocationMapUI({ location, shelves, setShelves, paren
                         </>
                         */
                        <WhiteFrameUI className="z-2 fixed left-3 right-3 md:left-[20%] md:right-[20%] top-6 shadow-2xl">
-                            <EditShelfForm locationSize={location.size} shelves={shelves} setShelves={setShelves} selectedIndex={selectedIndex} setRender={setRender} />
+                            <EditShelfForm locationSize={location.size} shelves={shelves} setShelves={setShelves} selectedIndex={selectedIndex} />
                         </WhiteFrameUI>
                 }
                 {

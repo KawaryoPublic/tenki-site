@@ -7,8 +7,8 @@ import { Location, Shelf } from "@/lib/types";
 import Form from "next/form";
 import { Dispatch, SetStateAction } from "react";
 
-export default function AddShelfForm({ shelfCount, setShelves, setAdd }: { shelfCount: number, setShelves: Dispatch<SetStateAction<Shelf[]>>, setAdd: Dispatch<SetStateAction<boolean>> }) {
-    
+export default function AddShelfForm({ shelfCount, setShelves, setAdd }: { shelfCount: number, setShelves: Dispatch<SetStateAction<{shelf: Shelf, updated: boolean}[]>>, setAdd: Dispatch<SetStateAction<boolean>> }) {
+
     return (
         
         <Form
@@ -24,7 +24,7 @@ export default function AddShelfForm({ shelfCount, setShelves, setAdd }: { shelf
                     updatedAt: null as unknown as Date,
                 };
 
-                setShelves(prev => [...prev, shelf]);
+                setShelves(prev => [...prev, { shelf, updated: false }]);
                 setAdd(false);
             }}
             className="flex flex-col gap-4"

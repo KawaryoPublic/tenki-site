@@ -1,42 +1,46 @@
 "use client";
 
+import BlueButton from "@/components/ui/global/Button/BlueButton";
 import { Shelf } from "@/lib/types";
-import { redirect, usePathname } from "next/navigation";
+import { redirect } from "next/navigation";
 import { useState } from "react";
 
-export default function SaveLocationButton({ id, shelves }: { id: number, shelves: Shelf[] }) {
-    const pathname = usePathname();
+export default function SaveLocationButton({ id, shelves }: { id: number, shelves: {shelf: Shelf, updated: boolean}[] }) {
     const [ saving, setSaving ] = useState(false);
 
     return (
-        <button
-            className="cursor-pointer hover:underline"
-            onClick={async () => {/** 
-                if(!confirm("本当に削除しますか？")) {
-                    return;
-                }
+        <BlueButton
+            disabled={saving}
+            onClick={async () => {
+                setSaving(true);
 
-                setDeleting(true);
-
-                await fetch(`/api/notification?id=${id}`, {
-                    method: 'DELETE',
-                    body: JSON.stringify({ urls: urls }),
+                await fetch(`/api/storage/shelf`, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        shelves: shelves.filter(s => s.shelf.location == null).map(s => s.shelf),
+                        locationId: id,
+                    }),
                 }).catch(err => {
                     console.log(err);
-                    alert('削除に失敗しました。');
+                    alert('保存に失敗しました。');
                 });
-                
-                if(pathname.startsWith('/notification')) {
-                    redirect('/notification');
-                    return;
-                }
 
-                window.location.reload();
-                */
+                await fetch(`/api/storage/shelf`, {
+                    method: 'PUT',
+                    body: JSON.stringify({
+                        shelves: shelves.filter(s => s.updated && s.shelf.location != null).map(s => s.shelf),
+                        locationId: id,
+                    }),
+                }).catch(err => {
+                    console.log(err);
+                    alert('保存に失敗しました。');
+                });
+
+                redirect(`/storage/location/${id}`);
+                setSaving(false);
             }}
         >
-            <span className="text-lg md:text-xl p-1 font-bold">保存</span>
-            
-        </button>
+            <span className="text-lg md:text-xl p-1 font-bold">{saving ? "保存中..." : "保存"}</span>   
+        </BlueButton>
     );
 }

@@ -2,6 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
 import { getTier } from "@/lib/actions";
 import { checkTier } from "@/lib/utils";
+import { Shelf } from "@/lib/types";
 
 export async function GET(request: NextRequest) {
     try {
@@ -33,33 +34,29 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
 
-        const data = await request.formData();
-        const name = data.get("name") as string;
-        const type = data.get("type") as string;
-        const locationId = data.get("locationId");
-        const size = (data.getAll("size") as string[]).map(s => Number(s));
-        const position = (data.getAll("position") as string[]).map(s => Number(s));
-        const height = [0];
+        const data = await request.json();
+        const { shelves, locationId } = data;
 
-        if (name == undefined || type == undefined || locationId == undefined || size.length !== 2 || position.length !== 2 || height.length === 0) {
+        if (!Array.isArray(shelves) || locationId == undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
     
-        const updatedStorage = await prisma.shelf.create({
-            data: {
-                name,
-                type: Number(type),
+        const createdShelves = await prisma.shelf.createMany({
+            data: shelves.map(shelf => ({
+                name: shelf.name,
+                type: Number(shelf.type),
                 locationId: Number(locationId),
-                size,
-                position,
-                height
-            },
+                size: shelf.size,
+                position: shelf.position,
+                height: shelf.height,
+                equipment: [],
+            })),
         });
 
-        return NextResponse.json(updatedStorage, { status: 200 });
+        return NextResponse.json(createdShelves, { status: 200 });
     } catch (error) {
-        console.error("Error updating a shelf:", error);
-        return NextResponse.json({ error: "Failed to update a shelf" }, { status: 500 });
+        console.error("Error creating shelves:", error);
+        return NextResponse.json({ error: "Failed to create shelves" }, { status: 500 });
     }
 }
 
@@ -71,22 +68,33 @@ export async function PUT(request: NextRequest) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
 
-        const id = request.nextUrl.searchParams.get("id");
-        const data = await request.formData();
-        const size = (data.getAll("size") as string[]).map(s => Number(s));
+        const data = await request.json();
+        const { shelves, locationId } = data;
 
-        if (id == undefined || size == undefined) {
+        if (!Array.isArray(shelves) || locationId == undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
-    
-        const updatedStorage = await prisma.location.update({
-            where: { id: Number(id) },
-            data: {
-                size: size
-            },
-        });
 
-        return NextResponse.json(updatedStorage, { status: 200 });
+        const updatedShelves: Shelf[] = [];
+
+        for (const shelf of shelves) {
+            const updatedShelf = await prisma.shelf.update({
+                where: { id: shelf.id },
+                data: {
+                    name: shelf.name,
+                    type: Number(shelf.type),
+                    locationId: Number(locationId),
+                    size: shelf.size,
+                    position: shelf.position,
+                    height: shelf.height,
+                    equipment: shelf.equipment,
+                },
+            });
+
+            updatedShelves.push(updatedShelf);
+        }
+
+        return NextResponse.json(updatedShelves, { status: 200 });
     } catch (error) {
         console.error("Error updating a shelf:", error);
         return NextResponse.json({ error: "Failed to update a shelf" }, { status: 500 });

@@ -2,22 +2,23 @@ import DefaultInput from "@/components/ui/global/Form/DefaultInput";
 import DefaultSelect from "@/components/ui/global/Form/DefaultSelect";
 import DefaultVectorInput from "@/components/ui/global/Form/DefaultVectorInput";
 import { SHELF_TYPES } from "@/lib/const";
-import { Location, Shelf } from "@/lib/types";
-import { checkCollision } from "@/lib/utils";
+import { Shelf } from "@/lib/types";
 import { Dispatch, SetStateAction } from "react";
 
-export default function EditShelfForm({ locationSize, shelves, setShelves, selectedIndex, setRender }: { locationSize: number[], shelves: Shelf[], setShelves: Dispatch<SetStateAction<Shelf[]>>, selectedIndex: number, setRender: Dispatch<SetStateAction<number>> }) {
+export default function EditShelfForm({ locationSize, shelves, setShelves, selectedIndex }: { locationSize: number[], shelves: {shelf: Shelf, updated: boolean}[], setShelves: Dispatch<SetStateAction<{shelf: Shelf, updated: boolean}[]>>, selectedIndex: number }) {
+    const shelf = shelves[selectedIndex].shelf;
+
     return (
         <form className="flex flex-col gap-4">
             <DefaultInput
                 title="名前"
                 name="name"
-                value={shelves[selectedIndex].name}
+                value={shelf.name}
                 onChange={e => {
                     const newShelves = shelves;
-                    newShelves[selectedIndex].name = e.target.value;
-                    setShelves(newShelves);
-                    setRender(prev => prev + 1);
+                    newShelves[selectedIndex].updated = true;
+                    newShelves[selectedIndex].shelf.name = e.target.value;
+                    setShelves([...newShelves]);
                 }}
                 label
                 required
@@ -26,12 +27,12 @@ export default function EditShelfForm({ locationSize, shelves, setShelves, selec
                 title="種類"
                 name="type"
                 options={SHELF_TYPES.map((shelf, i) => ({ value: i, label: shelf}))}
-                value={shelves[selectedIndex].type}
+                value={shelf.type}
                 onChange={e => {
                     const newShelves = shelves;
-                    newShelves[selectedIndex].type = Number(e.target.value);
-                    setShelves(newShelves);
-                    setRender(prev => prev + 1);
+                    newShelves[selectedIndex].updated = true;
+                    newShelves[selectedIndex].shelf.type = Number(e.target.value);
+                    setShelves([...newShelves]);
                 }}
                 label
                 required
@@ -40,11 +41,16 @@ export default function EditShelfForm({ locationSize, shelves, setShelves, selec
                 title="サイズ[cm]" 
                 name="size" 
                 labels={["縦幅", "横幅"]} 
-                values={shelves[selectedIndex].size} 
+                values={shelf.size} 
                 onChange={(e, i) => {
                     const newShelves = shelves;
-                    const thisShelf = newShelves[selectedIndex];
+                    newShelves[selectedIndex].updated = true;
+                    const thisShelf = newShelves[selectedIndex].shelf;
                     thisShelf.size[i] = Number(e.target.value);
+
+                    if(thisShelf.size[i] + thisShelf.position[i] > locationSize[i]) {
+                        thisShelf.size[i] = locationSize[i] - thisShelf.position[i];
+                    }
 
                     /**
                     if(thisShelf.size[i] + thisShelf.position[i] > locationSize[i]) {
@@ -62,26 +68,25 @@ export default function EditShelfForm({ locationSize, shelves, setShelves, selec
                     }
                     */
 
-                    setShelves(newShelves);
-                    setRender(prev => prev + 1);
+                    setShelves([...newShelves]);
                 }} 
             />
             <DefaultVectorInput 
                 title="座標[cm]" 
                 name="position" 
                 labels={["x", "y"]} 
-                values={shelves[selectedIndex].position} 
+                defaultValues={shelf.position} 
                 onChange={(e, i) => {
                     const newShelves = shelves;
-                    const thisShelf = newShelves[selectedIndex];
+                    newShelves[selectedIndex].updated = true;
+                    const thisShelf = newShelves[selectedIndex].shelf;
                     thisShelf.position[i] = Number(e.target.value);
 
-                    /**
                     if(thisShelf.size[i] + thisShelf.position[i] > locationSize[i]) {
-                        alert("倉庫とぶつかります。");
-                        return;
+                        thisShelf.position[i] = locationSize[i] - thisShelf.size[i];
                     }
-
+                        
+                    /**
                     for(const shelf of newShelves) {
                         if(shelf === thisShelf) continue;
 
@@ -92,8 +97,7 @@ export default function EditShelfForm({ locationSize, shelves, setShelves, selec
                     }
                     */
                                         
-                    setShelves(newShelves);
-                    setRender(prev => prev + 1);
+                    setShelves([...newShelves]);
                 }} 
             />
         </form>
