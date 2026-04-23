@@ -1,5 +1,3 @@
-"use client";
-
 import Form from "next/form";
 import DefaultTextArea from "../../../global/Form/DefaultTextArea";
 import BlueButton from "../../../global/Button/BlueButton";

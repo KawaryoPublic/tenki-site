@@ -6,8 +6,6 @@
 
 - 倉庫
     - location
-        - editでadd
-        - editでdelete button
         - 四隅にサイズ, ドラッグで移動
     - shelf
 
@@ -16,7 +14,6 @@
     - PUSH通知
     - 選択、一括削除
     - UNDO, Trash Can
-    - 内容物チェックリスト
 
 ## BUGS
 - storageでeditでサイズ

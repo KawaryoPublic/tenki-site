@@ -1,26 +1,17 @@
 import { Location, Shelf } from "@/lib/types";
 import { useEffect, useState, RefObject, Dispatch, SetStateAction } from "react";
 import WhiteFrameUI from "../../global/WhiteFrameUI";
-import { fitToParentSize } from "@/lib/utils";
+import { fitToParentSize, preventRefresh } from "@/lib/utils";
 import EditShelfForm from "./Form/EditShelfForm";
-import AddShelfForm from "./Form/AddShelfForm";
 
-export default function EditLocationMapUI({ location, shelves, setShelves, parentRef, add, setAdd }: { location: Location, shelves: {shelf: Shelf, updated: boolean}[], setShelves: Dispatch<SetStateAction<{shelf: Shelf, updated: boolean}[]>>, parentRef: RefObject<HTMLElement | null>, add: boolean, setAdd: Dispatch<SetStateAction<boolean>> }) {
+export default function EditLocationMapUI({ location, shelves, setShelves, parentRef }: { location: Location, shelves: {shelf: Shelf, state: "none" | "added" | "updated" | "deleted"}[], setShelves: Dispatch<SetStateAction<{shelf: Shelf, state: "none" | "added" | "updated" | "deleted"}[]>>, parentRef: RefObject<HTMLElement | null> }) {
     const [ size, setSize ] = useState<number[]>([]);
     const [ selectedIndex, setSelectedIndex ] = useState<number>(-1);
 
     useEffect(() => {
         setSize(fitToParentSize(parentRef, location?.size[0] / location?.size[1]));
 
-        const preventRefresh = (e) => {
-            e.preventDefault();
-            return (e.returnValue = '');
-        };
-
-        window.addEventListener('beforeunload', preventRefresh);
-        return () => {
-            window.removeEventListener('beforeunload', preventRefresh);
-        }
+        return preventRefresh();
     }, [location]);
 
     return (
@@ -32,10 +23,10 @@ export default function EditLocationMapUI({ location, shelves, setShelves, paren
             }}
         >
             <button className={`fixed top-0 bottom-0 left-0 right-0 ${selectedIndex !== -1 ? "opacity-50 bg-black z-1" : ""}`} onClick={() => setSelectedIndex(-1)} ></button>
-            <button className={`fixed top-0 bottom-0 left-0 right-0 cursor-default ${add ? "opacity-50 bg-black z-1" : ""}`} onClick={() => setAdd(false)} ></button>
             <div className="w-full h-full border-2 relative">
                 {
-                    shelves.map(({ shelf, updated }, i) => (
+                    shelves.map(({ shelf, state }, i) => (
+                        state !== "deleted" &&
                         <button 
                             key={i}
                             onClick={() => setSelectedIndex(i)}
@@ -89,15 +80,9 @@ export default function EditLocationMapUI({ location, shelves, setShelves, paren
                             ></button>
                         </>
                         */
-                       <WhiteFrameUI className="z-2 fixed left-3 right-3 md:left-[20%] md:right-[20%] top-6 shadow-2xl">
-                            <EditShelfForm locationSize={location.size} shelves={shelves} setShelves={setShelves} selectedIndex={selectedIndex} />
+                       <WhiteFrameUI className={`z-2 fixed left-3 right-3 md:left-[20%] md:right-[20%] shadow-2xl ${shelves[selectedIndex].shelf.position[1] + shelves[selectedIndex].shelf.size[1] < location.size[1] * 0.65 ? "top-3" : "bottom-3"}`}>
+                            <EditShelfForm locationSize={location.size} shelves={shelves} setShelves={setShelves} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
                         </WhiteFrameUI>
-                }
-                {
-                    add &&
-                    <WhiteFrameUI className="z-2 fixed left-3 right-3 md:left-[20%] md:right-[20%] top-6 shadow-2xl">
-                        <AddShelfForm shelfCount={shelves.length} setShelves={setShelves} setAdd={setAdd} />
-                    </WhiteFrameUI>
                 }
             </div>
         </WhiteFrameUI>

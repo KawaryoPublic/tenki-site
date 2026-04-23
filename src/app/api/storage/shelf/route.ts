@@ -75,8 +75,6 @@ export async function PUT(request: NextRequest) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
-        const updatedShelves: Shelf[] = [];
-
         for (const shelf of shelves) {
             const updatedShelf = await prisma.shelf.update({
                 where: { id: shelf.id },
@@ -90,11 +88,9 @@ export async function PUT(request: NextRequest) {
                     equipment: shelf.equipment,
                 },
             });
-
-            updatedShelves.push(updatedShelf);
         }
 
-        return NextResponse.json(updatedShelves, { status: 200 });
+        return NextResponse.json({count: shelves.length}, { status: 200 });
     } catch (error) {
         console.error("Error updating a shelf:", error);
         return NextResponse.json({ error: "Failed to update a shelf" }, { status: 500 });
@@ -109,19 +105,24 @@ export async function DELETE(request: NextRequest) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
 
-        const id = request.nextUrl.searchParams.get("id");
+        const data = await request.json();
+        const { shelves, locationId } = data;
 
-        if (id == undefined) {
+        if (!Array.isArray(shelves) || locationId == undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
-        await prisma.shelf.delete({
-            where: { id: Number(id) },
+        await prisma.shelf.deleteMany({
+            where: {
+                id: {
+                    in: shelves.map(shelf => shelf.id)
+                }
+            }
         });
 
-        return NextResponse.json({ message: "Deleted a shelf" }, { status: 200 });
+        return NextResponse.json({ message: "Deleted shelves" }, { status: 200 });
     } catch (error) {
-        console.error("Error deleting a shelf:", error);
-        return NextResponse.json({ error: "Failed to delete a shelf" }, { status: 500 });
+        console.error("Error deleting shelves:", error);
+        return NextResponse.json({ error: "Failed to delete shelves" }, { status: 500 });
     }
 }

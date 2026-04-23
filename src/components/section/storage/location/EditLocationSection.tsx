@@ -10,8 +10,7 @@ import SaveLocationButton from "@/components/ui/storage/location/Button/SaveLoca
 export default function LocationSection({ id }: { id: number }) {
     const parentRef = useRef(null);
     const [ location, setLocation ] = useState<Location | null>(null);
-    const [ shelves, setShelves ] = useState<{shelf: Shelf, updated: boolean}[]>([]);
-    const [ add, setAdd ] = useState(false);
+    const [ shelves, setShelves ] = useState<{shelf: Shelf, state: "none" | "added" | "updated" | "deleted"}[]>([]);
     const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {
@@ -21,7 +20,7 @@ export default function LocationSection({ id }: { id: number }) {
             .then(res => res.json())
             .then(data => {
                 setLocation(data);
-                setShelves(data.shelves.map(shelf => ({ shelf, updated: false })));
+                setShelves(data.shelves.map(shelf => ({ shelf, state: "none" })));
             })
             .finally(() => setLoading(false))
             .catch(err => console.log(err));
@@ -32,16 +31,33 @@ export default function LocationSection({ id }: { id: number }) {
         !location ? <LoadingResultUI>倉庫を読み込めませんでした</LoadingResultUI> :
         <section className="flex-1 flex flex-col gap-4 items-center">
             <div className="flex items-center gap-4 md:gap-8 z-1">
-                <BlueButton onClick={() => setAdd(true)}><span className="text-lg md:text-xl p-1 font-bold">追加</span></BlueButton>
+                <BlueButton onClick={() => {
+                    const shelf = {
+                        id: shelves.length + 1,
+                        name: "名無し",
+                        location: undefined as unknown as Location,
+                        type: 0,
+                        size: [50, 50],
+                        position: [0, 0],
+                        equipment: [],
+                        updatedAt: new Date(),
+                    };
+
+                    setShelves(prev => [...prev, { shelf, state: "added" }]);
+                }}>
+                    <span className="text-lg md:text-xl p-1 font-bold">追加</span>
+                </BlueButton>
                 <SaveLocationButton id={location.id} shelves={shelves} />
             </div>
             <div className="w-full flex-1 flex flex-col md:flex-row justify-center items-center relative" ref={parentRef}>
-                <EditLocationMapUI location={location} shelves={shelves} setShelves={setShelves} parentRef={parentRef} add={add} setAdd={setAdd} />
+                <EditLocationMapUI location={location} shelves={shelves} setShelves={setShelves} parentRef={parentRef} />
             </div>
             <div className="z-1">
-                <a href={`/storage/location/${location.id}`} className={`bg-blue-500 hover:bg-blue-600 focus:outline-2 focus:outline-offset-2 focus:outline-blue-600 text-white px-2 md:px-3 py-[4.5px] text-sm md:text-base rounded`}>
-                    <span className="text-lg md:text-xl p-1 font-bold">{location.name}にもどる</span>
-                </a>
+                <BlueButton>
+                    <a href={`/storage/location/${location.id}`}>
+                        <span className="text-lg md:text-xl p-1 font-bold">{location.name}にもどる</span>
+                    </a>
+                </BlueButton>
             </div>
         </section>
     )

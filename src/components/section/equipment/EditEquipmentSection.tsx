@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Equipment, Role } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
-import { checkTier } from "@/lib/utils";
+import { checkTier, preventRefresh } from "@/lib/utils";
 import EditEquipmentForm from "@/components/ui/equipment/Form/EditEquipmentForm";
 import { Location } from "@/lib/types";
 import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
@@ -34,7 +34,9 @@ export default function EditEquipmentSection({ id, tier }: { id: number, tier: n
                     })  
                     .catch(err => console.log(err));
             })
-            .catch(err => console.error(err))
+            .catch(err => console.error(err));
+
+            return preventRefresh();
     }, []);
 
     return (
@@ -46,7 +48,9 @@ export default function EditEquipmentSection({ id, tier }: { id: number, tier: n
                 <EditEquipmentForm equipment={equipment} locations={locations} roles={roles} />
             </WhiteFrameUI>
             <div>
-                <BlueButton href="/equipment">機材一覧に戻る</BlueButton>
+                <BlueButton>
+                    <a href="/equipment">機材一覧に戻る</a>
+                </BlueButton>
             </div>
         </section>
     )

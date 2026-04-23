@@ -3,7 +3,7 @@
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import { DateInfo } from "@/lib/types";
 import { useState, useEffect } from "react";
-import { checkTier } from "@/lib/utils";
+import { checkTier, preventRefresh } from "@/lib/utils";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import EditDateInfoForm from "@/components/ui/calendar/date_info/Form/EditDateInfoForm";
 import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
@@ -20,6 +20,8 @@ export default function EditDateInfoSection({ date, tier }: { date: string, tier
             .then(data => setInfo(data))
             .finally(() => setLoading(false))
             .catch(err => console.error(err));
+
+        return preventRefresh();
     }, []);
 
     return (
@@ -32,7 +34,9 @@ export default function EditDateInfoSection({ date, tier }: { date: string, tier
             </WhiteFrameUI>
             <div className="flex flex-col gap-4">
                 <div>
-                    <BlueButton href="/calendar">日付一覧に戻る</BlueButton>
+                    <BlueButton>
+                        <a href="/calendar">日付一覧に戻る</a>
+                    </BlueButton>
                 </div>
             </div>
         </section>

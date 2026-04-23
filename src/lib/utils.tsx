@@ -1,5 +1,4 @@
 import { upload } from "@vercel/blob/client";
-import { redirect } from "next/navigation";
 import { RefObject } from "react";
 import { Equipment } from "./types";
 import { EQUIPMENT_PREFIXES } from "./const";
@@ -10,6 +9,18 @@ export const checkTier = (tier: number, allowParent: boolean = false, allowStude
     if(allowStudent) return tier === 2;
     
     return false;
+}
+
+export const preventRefresh = () => {
+    const preventRefresh = (e) => {
+        e.preventDefault();
+        return (e.returnValue = '');
+    };
+    
+    window.addEventListener('beforeunload', preventRefresh);
+    return () => {
+        window.removeEventListener('beforeunload', preventRefresh);
+    }
 }
 
 export const formatDate = (date: string) => {

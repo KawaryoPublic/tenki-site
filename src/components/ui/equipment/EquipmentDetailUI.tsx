@@ -1,66 +1,19 @@
-import { checkTier, getEquipmentId, splitLinksAndHeaders } from "@/lib/utils";
+import { getEquipmentId, splitLinksAndHeaders } from "@/lib/utils";
 import WhiteFrameUI from "../global/WhiteFrameUI";
 import { Equipment, Role } from "@/lib/types";
 import OptionUrlUI from "../global/OptionUrlUI";
-import DeleteEquipmentButton from "./Button/DeleteEquipmentButton";
 import Link from "next/link";
-import Image from "next/image";
-import { useState } from "react";
-import { EQUIPMENT_TYPES } from "@/lib/const";
+import DefaultDetailTitleUI from "../global/DefaultDetailTitleUI";
 import DefaultHeadingUI from "../global/DefaultHeadingUI";
-import ThreePointsUI from "../global/ThreePointsUI";
+import DeleteEquipmentButton from "./Button/DeleteEquipmentButton";
+import { EQUIPMENT_TYPES } from "@/lib/const";
 
 export default function EquipmentDetailUI({ equipment, roles, tier }: { equipment: Equipment, roles: Role[], tier: number }) {
-    const [ showOptions, setShowOptions ] = useState(false);
-    const updatedAt = new Date(equipment.updatedAt);
-
     return (
         <WhiteFrameUI className="flex flex-col gap-2">
-            <button className={`fixed top-0 right-0 w-full h-full z-1 ${showOptions ? "" : "hidden"}`} onClick={() => setShowOptions(false)} />
-            <div className="flex justify-between items-center border-b pb-2">
-                <div className="flex flex-col gap-1 w-full">
-                    <div className="flex items-center justify-between">
-                        <DefaultHeadingUI>{getEquipmentId(equipment)} {equipment.name}</DefaultHeadingUI>
-                        {
-                            checkTier(tier) && 
-                                <button 
-                                    className="relative w-4 md-[18px] lg:w-5 aspect-square"
-                                    onClick={() => setShowOptions(true)}
-                                >
-                                    <WhiteFrameUI className={`whitespace-nowrap absolute right-0 top-full mt-1 flex flex-col gap-2 md:gap-4 text-sm md:text-base text-gray-800 z-3 ${showOptions ? "" : "hidden"}`}>
-                                        <Link href={`/equipment/edit/${equipment.id}`} className="hover:underline">編集</Link>
-                                        <DeleteEquipmentButton id={equipment.id} urls={equipment.urls} />
-                                    </WhiteFrameUI>
-                                    <ThreePointsUI />
-                                </button>
-                        }
-                    </div>
-                    <div className="flex items-center gap-2 md:gap-4 flex-wrap">
-                        <span className="text-gray-800 text-xs md:text-sm">{`${updatedAt.getFullYear() === (new Date()).getFullYear() ? "" : `${updatedAt.getFullYear()}年`}${updatedAt.getMonth() + 1}月${updatedAt.getDate()}日更新`}</span>
-                        <span className="text-gray-800 text-xs md:text-sm flex gap-1 md:gap-2 flex-wrap">{EQUIPMENT_TYPES[equipment.type]}</span>
-                        {
-                            equipment.roles.length > 0 &&
-                            <div className="text-gray-800 text-xs md:text-sm flex gap-1 md:gap-2 flex-wrap">
-                                {
-                                    equipment.roles.map((id, index) => 
-                                        <Link key={index} href={`/equipment?role=${id}`} className="z-2">{`${roles.find(r => r.id === id)?.name}`}</Link>
-                                    )
-                                }
-                            </div>
-                        }
-                        {
-                            equipment.tags.length > 0 &&
-                            <div className="text-xs md:text-sm font-bold flex gap-1 md:gap-2 flex-wrap">
-                                {
-                                    equipment.tags.map((tag, index) => 
-                                        <Link key={index} href={`/equipment?tags=${tag}`} className="text-blue-700 z-2">#{tag}</Link>
-                                    )
-                                }
-                            </div>
-                        }
-                    </div>
-                </div>
-            </div>
+            <DefaultDetailTitleUI tier={tier} editLink={`/equipment/edit/${equipment.id}`} deleteButton={<DeleteEquipmentButton id={equipment.id} urls={equipment.urls} />} updatedAt={new Date(equipment.updatedAt)} roles={roles} tags={equipment.tags} othersToShow={[EQUIPMENT_TYPES[equipment.type]]} className="border-b pb-2">
+                <DefaultHeadingUI>{getEquipmentId(equipment)} {equipment.name}</DefaultHeadingUI>
+            </DefaultDetailTitleUI>
             <div className="whitespace-pre-wrap text-sm md:text-base">
                 <p className="font-bold">場所</p>
                 <Link href={`/storage/${equipment.location.id}?equipment=${equipment.name}`}>{equipment.location.name}</Link>
@@ -81,7 +34,9 @@ export default function EquipmentDetailUI({ equipment, roles, tier }: { equipmen
                <ul>
                    {
                        equipment.contents.map((content, i) => (
-                           <li key={i}>・{content}</li>
+                            <li key={i}>
+                                <input type="checkbox" className="mr-2" /> {content}
+                            </li>
                        ))
                    }
                </ul>

@@ -6,6 +6,7 @@ import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import { useEffect, useState } from "react";
 import { Location, Role } from "@/lib/types";
 import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
+import { preventRefresh } from "@/lib/utils";
 
 export default function AddEquipmentSection() {
     const [ roles, setRoles ] = useState<Role[]>([]);
@@ -26,6 +27,8 @@ export default function AddEquipmentSection() {
                     .catch(err => console.log(err));
             })
             .catch(err => console.log(err));
+
+            return preventRefresh();
     }, []);
     return (
         loading ? <LoadingResultUI>Loading...</LoadingResultUI> :
@@ -35,7 +38,9 @@ export default function AddEquipmentSection() {
                 <AddEquipmentForm locations={locations} roles={roles} />
             </WhiteFrameUI>
             <div>
-                <BlueButton href="/equipment">機材一覧に戻る</BlueButton>
+                <BlueButton>
+                    <a href="/equipment">機材一覧に戻る</a>
+                </BlueButton>
             </div>
         </section>
     )
