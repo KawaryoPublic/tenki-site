@@ -12,7 +12,7 @@ export const checkTier = (tier: number, allowParent: boolean = false, allowStude
 }
 
 export const preventRefresh = () => {
-    const preventRefresh = (e) => {
+    const preventRefresh = (e: BeforeUnloadEvent) => {
         e.preventDefault();
         return (e.returnValue = '');
     };

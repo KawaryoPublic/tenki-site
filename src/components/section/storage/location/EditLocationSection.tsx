@@ -20,7 +20,7 @@ export default function LocationSection({ id }: { id: number }) {
             .then(res => res.json())
             .then(data => {
                 setLocation(data);
-                setShelves(data.shelves.map((shelf: Shelf) => ({ shelf, state: "none" })));
+                setShelves(location.shelves.map(shelf => ({ shelf, state: "none" })));
             })
             .finally(() => setLoading(false))
             .catch(err => console.log(err));
