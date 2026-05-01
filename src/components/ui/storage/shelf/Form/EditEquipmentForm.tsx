@@ -5,7 +5,7 @@ import DefaultVectorInput from "@/components/ui/global/Form/DefaultVectorInput";
 import { EquipmentInstance } from "@/lib/types";
 import { Dispatch, SetStateAction } from "react";
 
-export default function EditEquipmentForm({ shelfSize, shelfEquipment, setShelfEquipment, selectedIndex, setSelectedIndex }: { shelfSize: number[], shelfEquipment: {equipment: EquipmentInstance, state: "none" | "added" | "updated" | "deleted"}[], setShelfEquipment: Dispatch<SetStateAction<{shelf: EquipmentInstance, state: "none" | "added" | "updated" | "deleted"}[]>>, selectedIndex: number, setSelectedIndex: Dispatch<SetStateAction<number>> }) {
+export default function EditEquipmentForm({ shelfSize, shelfEquipment, setShelfEquipment, selectedIndex, setSelectedIndex }: { shelfSize: number[], shelfEquipment: {equipment: EquipmentInstance, state: "none" | "added" | "updated" | "deleted"}[], setShelfEquipment: Dispatch<SetStateAction<{equipment: EquipmentInstance, state: "none" | "added" | "updated" | "deleted"}[]>>, selectedIndex: number, setSelectedIndex: Dispatch<SetStateAction<number>> }) {
     const equipment = shelfEquipment[selectedIndex].equipment;
 
     return (
