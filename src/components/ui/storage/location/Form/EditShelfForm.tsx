@@ -56,6 +56,10 @@ export default function EditShelfForm({ locationSize, shelves, setShelves, selec
                     const thisShelf = newShelves[selectedIndex].shelf;
                     thisShelf.size[i] = Number(e.target.value);
 
+                    if(thisShelf.size[i] <= 0) {
+                        thisShelf.size[i] = 1;
+                    }
+
                     if(thisShelf.size[i] + thisShelf.position[i] > locationSize[i]) {
                         thisShelf.size[i] = locationSize[i] - thisShelf.position[i];
                     }
@@ -64,22 +68,6 @@ export default function EditShelfForm({ locationSize, shelves, setShelves, selec
                         newShelves[selectedIndex].state = "updated";
                     }
 
-                    /**
-                    if(thisShelf.size[i] + thisShelf.position[i] > locationSize[i]) {
-                        alert("倉庫とぶつかっています。");
-                        return;
-                    }
-
-                    for(const shelf of newShelves) {
-                        if(shelf === thisShelf) continue;
-
-                        if(checkCollision(thisShelf.size, thisShelf.position, shelf.size, shelf.position)) {
-                            alert(`${shelf.name}とぶつかります。`);
-                            return;
-                        }
-                    }
-                    */
-
                     setShelves([...newShelves]);
                 }} 
             />
@@ -87,11 +75,15 @@ export default function EditShelfForm({ locationSize, shelves, setShelves, selec
                 title="座標[cm]" 
                 name="position" 
                 labels={["x", "y"]} 
-                defaultValues={shelf.position} 
+                values={shelf.position} 
                 onChange={(e, i) => {
                     const newShelves = shelves;
                     const thisShelf = newShelves[selectedIndex].shelf;
                     thisShelf.position[i] = Number(e.target.value);
+
+                    if(thisShelf.position[i] <= 0) {
+                        thisShelf.position[i] = 0;
+                    }
 
                     if(thisShelf.size[i] + thisShelf.position[i] > locationSize[i]) {
                         thisShelf.position[i] = locationSize[i] - thisShelf.size[i];
@@ -100,17 +92,6 @@ export default function EditShelfForm({ locationSize, shelves, setShelves, selec
                     if(newShelves[selectedIndex].state !== "added") {
                         newShelves[selectedIndex].state = "updated";
                     }
-                        
-                    /**
-                    for(const shelf of newShelves) {
-                        if(shelf === thisShelf) continue;
-
-                        if(checkCollision(thisShelf.size, thisShelf.position, shelf.size, shelf.position)) {
-                            alert(`${shelf.name}とぶつかります。`);
-                            return;
-                        }
-                    }
-                    */
                                         
                     setShelves([...newShelves]);
                 }} 

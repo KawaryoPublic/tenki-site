@@ -55,14 +55,18 @@ export interface Shelf {
     location: Location;
     size: number[];
     position: number[];
-    equipment: {
-        id: number;
-        name: string;
-        size: number[];
-        position: number[]
-    }[];
+    equipment: EquipmentInstance[];
     updatedAt: Date;
 };
+
+export interface EquipmentInstance {
+    id: number;
+    name: string;
+    height: number;
+    size: number[];
+    position: number[];
+    isEquipment: boolean;
+}
 
 export interface Location {
     id: number;

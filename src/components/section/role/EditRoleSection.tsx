@@ -6,6 +6,7 @@ import BlueButton from "@/components/ui/global/Button/BlueButton";
 import EditRoleForm from "@/components/ui/role/Form/EditRoleForm";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
+import { preventRefresh } from "@/lib/utils";
 
 export default function EditRoleSection({ id }: { id: number }) {
     const [ role, setRole ] = useState<Role | null>(null);
@@ -19,6 +20,8 @@ export default function EditRoleSection({ id }: { id: number }) {
             .then(data => setRole(data))
             .finally(() => setLoading(false))
             .catch(err => console.error(err));
+
+        return preventRefresh();
     }, []);
 
     return (
@@ -29,7 +32,9 @@ export default function EditRoleSection({ id }: { id: number }) {
                 <EditRoleForm role={role} />
             </WhiteFrameUI>
             <div>
-                <BlueButton href="/role">役職一覧に戻る</BlueButton>
+                <BlueButton>
+                    <a href="/role">役職一覧に戻る</a>
+                </BlueButton>
             </div>
         </section>
     )

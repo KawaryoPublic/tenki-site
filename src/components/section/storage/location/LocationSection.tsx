@@ -6,13 +6,14 @@ import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import { Location } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
-import { checkTier } from "@/lib/utils";
+import { checkTier, fitToParentSize } from "@/lib/utils";
 import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 
 export default function LocationSection({ id, tier }: { id: number, tier: number }) {
     const parentRef = useRef(null);
     const [ location, setLocation ] = useState<Location | null>(null);
     const [ locations, setLocations ] = useState<Location[]>([]);
+    const [ size, setSize ] = useState<number[]>([]);
     const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {
@@ -30,10 +31,16 @@ export default function LocationSection({ id, tier }: { id: number, tier: number
             .catch(err => console.log(err));
     }, []);
 
+    useEffect(() => {
+        if(location) {
+            setSize(fitToParentSize(parentRef, location.size[0] / location.size[1]));
+        }
+    }, [loading]);
+
     return (
         loading ? <LoadingResultUI>Loading...</LoadingResultUI> :
         !location ? <LoadingResultUI>倉庫を読み込めませんでした</LoadingResultUI> :
-        <section className="flex-1 flex flex-col gap-6 items-center">
+        <section className="flex-1 flex flex-col gap-4 items-center">
             <div className="flex items-center gap-4 md:gap-8">
                 <WhiteFrameUI className="flex justify-center gap-4 md:gap-8">
                 {
@@ -48,8 +55,10 @@ export default function LocationSection({ id, tier }: { id: number, tier: number
                     checkTier(tier) && <BlueButton href={`/storage/location/edit/${location.id}`}><span className="text-lg md:text-xl p-1 font-bold">編集</span></BlueButton>
                 }
             </div>
-            <div className="w-full flex-1 flex flex-col md:flex-row justify-center items-center relative" ref={parentRef}>
-                <LocationMapUI location={location} parentRef={parentRef} />
+            <div className="w-full flex-1 flex flex-col items-center" ref={parentRef}>
+                <div className="flex justify-center">
+                    <LocationMapUI location={location} size={size} />
+                </div>
             </div>
         </section>
     )

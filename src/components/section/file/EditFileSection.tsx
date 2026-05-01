@@ -6,6 +6,7 @@ import BlueButton from "@/components/ui/global/Button/BlueButton";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import EditFileForm from "@/components/ui/file/Form/EditFileForm";
 import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
+import { preventRefresh } from "@/lib/utils";
 
 export default function EditFileSection({ id }: { id: number }) {
     const [ roles, setRoles ] = useState<Role[]>([]);
@@ -25,7 +26,9 @@ export default function EditFileSection({ id }: { id: number }) {
                     .finally(() => setLoading(false))
                     .catch(err => console.log(err));
             })
-            .catch(err => console.error(err))
+            .catch(err => console.error(err));
+
+        return preventRefresh();
     }, []);
 
     return (
@@ -36,7 +39,9 @@ export default function EditFileSection({ id }: { id: number }) {
                 <EditFileForm file={file} roles={roles} />
             </WhiteFrameUI>
             <div>
-                <BlueButton href="/file">ファイル一覧に戻る</BlueButton>
+                <BlueButton>
+                    <a href="/file">ファイル一覧に戻る</a>
+                </BlueButton>
             </div>
         </section>
     )

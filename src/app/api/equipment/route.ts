@@ -28,7 +28,8 @@ export async function GET(request: NextRequest) {
                     {
                         name: "asc"
                     }
-                ]
+                ],
+                include: { location: true }
             });
         } else {
             equipment = await prisma.equipment.findUnique({

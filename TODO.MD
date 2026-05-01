@@ -10,7 +10,6 @@
     - shelf
 
 - その他
-    - password関連
     - PUSH通知
     - 選択、一括削除
     - UNDO, Trash Can

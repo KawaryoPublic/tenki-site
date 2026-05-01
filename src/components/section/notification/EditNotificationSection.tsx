@@ -5,7 +5,7 @@ import { Notification, Role } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import EditNotificationForm from "@/components/ui/notification/Form/EditNotificationForm";
-import { checkTier } from "@/lib/utils";
+import { checkTier, preventRefresh } from "@/lib/utils";
 import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 
 export default function EditNotificationSection({ id, tier }: { id: number, tier: number }) {
@@ -26,7 +26,9 @@ export default function EditNotificationSection({ id, tier }: { id: number, tier
                     .finally(() => setLoading(false))
                     .catch(err => console.log(err));
             })
-            .catch(err => console.error(err))
+            .catch(err => console.error(err));
+
+        return preventRefresh();
     }, []);
 
     return (
@@ -38,7 +40,9 @@ export default function EditNotificationSection({ id, tier }: { id: number, tier
                 <EditNotificationForm notification={notification} roles={roles} />
             </WhiteFrameUI>
             <div>
-                <BlueButton href="/notification">告知一覧に戻る</BlueButton>
+                <BlueButton>
+                    <a href="/notification">告知一覧に戻る</a>
+                </BlueButton>
             </div>
         </section>
     )

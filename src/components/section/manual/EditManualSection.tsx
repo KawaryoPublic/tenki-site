@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Manual, Role } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
-import { checkTier } from "@/lib/utils";
+import { checkTier, preventRefresh } from "@/lib/utils";
 import EditManualForm from "@/components/ui/manual/Form/EditManualForm";
 import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 
@@ -26,7 +26,9 @@ export default function EditManualSection({ id, tier }: { id: number, tier: numb
                     .finally(() => setLoading(false))
                     .catch(err => console.log(err));
             })
-            .catch(err => console.error(err))
+            .catch(err => console.error(err));
+
+        return preventRefresh();
     }, []);
 
     return (
@@ -38,7 +40,9 @@ export default function EditManualSection({ id, tier }: { id: number, tier: numb
                 <EditManualForm manual={manual} roles={roles} />
             </WhiteFrameUI>
             <div>
-                <BlueButton href="/manual">マニュアル一覧に戻る</BlueButton>
+                <BlueButton>
+                    <a href="/manual">マニュアル一覧に戻る</a>
+                </BlueButton>
             </div>
         </section>
     )

@@ -1,19 +1,10 @@
 import { Location } from "@/lib/types";
-import { useEffect, useState, RefObject } from "react";
 import WhiteFrameUI from "../../global/WhiteFrameUI";
 import Link from "next/link";
-import { fitToParentSize } from "@/lib/utils";
 
-export default function LocationMapUI({ location, parentRef, className = "" }: { location: Location, parentRef: RefObject<HTMLElement | null>, className?: string }) {
-    const [ size, setSize ] = useState<number[]>([]);
-
-    useEffect(() => {
-        setSize(fitToParentSize(parentRef, location?.size[0] / location?.size[1]));
-    }, [location]);
-
+export default function LocationMapUI({ location, size }: { location: Location, size: number[] }) {
     return (
         <WhiteFrameUI 
-            className={`z-2 absolute top-[50%] transform-[translateY(-50%)]  ${className}`}
             style={{
                 width: `${size[0]}px`,
                 height: `${size[1]}px`
@@ -34,7 +25,7 @@ export default function LocationMapUI({ location, parentRef, className = "" }: {
                         >
                             {
                                 shelf.type === 2 ? <span>{shelf.name}</span> :
-                                <Link href={`/storage/shelf/${shelf.id}`} className="w-full h-full flex items-center justify-center">
+                                <Link href={`/storage/shelf/${shelf.id}?height=0`} className="w-full h-full flex items-center justify-center">
                                     {shelf.name}
                                 </Link>
                             }

@@ -1,5 +1,5 @@
 import { checkTier } from "@/lib/utils";
-import ThreePointsUI from "./ThreePointsUI";
+import Image from "next/image";
 import WhiteFrameUI from "./WhiteFrameUI";
 import Link from "next/link";
 import { ReactNode, useState } from "react";
@@ -24,7 +24,7 @@ export default function DefaultDetailTitleUI({ children, tier, editLink, deleteB
                                     <Link href={editLink} className="hover:underline">編集</Link>
                                     {deleteButton}
                                 </WhiteFrameUI>
-                                <ThreePointsUI />
+                                <Image src="/image/3_points.webp" alt="Options" fill priority className="w-full h-full cursor-pointer" />
                             </button>
                     }
                 </div>

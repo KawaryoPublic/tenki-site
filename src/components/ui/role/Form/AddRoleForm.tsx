@@ -1,5 +1,3 @@
-"use client";
-
 import Form from "next/form";
 import { redirect } from "next/navigation";
 import BlueButton from "../../global/Button/BlueButton";

@@ -2,6 +2,7 @@ import { getTier } from "@/lib/actions";
 import Nav from "./Nav";
 import Image from "next/image";
 import Link from "next/link";
+import { TIER_LABELS } from "@/lib/const";
 
 export default async function Header() {
   const tier = await getTier();
@@ -22,8 +23,11 @@ export default async function Header() {
           <Nav href="/file" title="ファイル" tier={tier} allowStudent />
           <Nav href="/manual" title="マニュアル" tier={tier} allowStudent />
         </nav>
-        <Link href="/password" className="relative h-8 md:h-10 ml-auto mr-2 md:mr-4 aspect-square text-whitextext-sm md:text-base rounded">
-          <Image src="/image/sign_in.webp" alt="部員はこちら" fill sizes="w-full h-full"/>
+        <Link href="/password" className={`relative h-8 md:h-10 ml-auto mr-2 md:mr-4 aspect-square text-sm md:text-base rounded-lg ${tier !== 0 && "border"}`}>
+          {
+            tier === 0 ? <Image src="/image/sign_in.webp" alt="部員はこちら" fill sizes="w-full h-full"/> : 
+            <span className="w-full h-full flex items-center justify-center font-bold text-[20px]">{TIER_LABELS[tier][0]}</span>
+          }
         </Link>
     </header>
   );

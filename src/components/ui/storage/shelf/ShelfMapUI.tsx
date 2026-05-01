@@ -1,19 +1,10 @@
 import { Shelf } from "@/lib/types";
 import WhiteFrameUI from "../../global/WhiteFrameUI";
-import { useEffect, useState, RefObject } from "react";
 import Link from "next/link";
-import { fitToParentSize } from "@/lib/utils";
 
-export default function ShelfMapUI({ shelf, parentRef, className = ""  }: { shelf: Shelf, parentRef: RefObject<HTMLElement | null>, className?: string }) {
-    const [ size, setSize ] = useState<number[]>([]);
-    
-    useEffect(() => {
-        setSize(fitToParentSize(parentRef, shelf?.size[0] / shelf?.size[1]));
-    }, [shelf]);
-
+export default function ShelfMapUI({ shelf, size }: { shelf: Shelf, size: number[] }) {
     return (
         <WhiteFrameUI
-            className={`z-2 absolute top-[50%] transform-[translateY(-50%)]  ${className}`}
             style={{
                 width: `${size[0] - 30}px`,
                 height: `${size[1] - 30}px`

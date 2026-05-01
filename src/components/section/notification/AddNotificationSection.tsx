@@ -5,6 +5,7 @@ import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import AddNotificationForm from "@/components/ui/notification/Form/AddNotificationForm";
 import { Role } from "@/lib/types";
+import { preventRefresh } from "@/lib/utils";
 import { useState, useEffect } from 'react';
 
 export default function AddNotificationSection() {
@@ -19,6 +20,8 @@ export default function AddNotificationSection() {
         .then(data => setRoles(data))
         .finally(() => setLoading(false))
         .catch(err => console.log(err));
+
+        return preventRefresh();
     }, []);
 
     return (
@@ -29,7 +32,9 @@ export default function AddNotificationSection() {
                 <AddNotificationForm roles={roles} />
             </WhiteFrameUI>
             <div>
-                <BlueButton href="/notification">告知一覧に戻る</BlueButton>
+                <BlueButton>
+                    <a href="/notification">告知一覧に戻る</a>
+                </BlueButton>
             </div>
         </section>
     )
