@@ -45,8 +45,20 @@ export default function ShelfSection({ id, tier, height }: { id: number, tier: n
                 }
             </div>
             <div className="w-full flex-1 flex flex-col gap-4 lg:gap-8 items-center" ref={parentRef}>
-                <div className="flex justify-center">
+                <div className="flex gap-2 justify-center">
+                    <div className="flex justify-center items-center">
+                    <WhiteFrameUI className="flex flex-col gap-4 md:gap-8 justify-center items-center text-lg md:text-xl font-bold">
+                        <span>1</span>
+                        <span>2</span>
+                        <span>3</span>
+                    </WhiteFrameUI>
+                    </div>
                     <ShelfMapUI shelf={shelf} size={size} />
+                    <div className="flex justify-center items-center opacity-0">
+                    <WhiteFrameUI className="flex flex-col gap-4 md:gap-8 justify-center items-center text-lg md:text-xl font-bold">
+                        1
+                    </WhiteFrameUI>
+                    </div>
                 </div>
                 <div className="w-full z-1">
                     <BlueButton>

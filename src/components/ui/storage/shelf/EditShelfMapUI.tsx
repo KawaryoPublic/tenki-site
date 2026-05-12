@@ -22,7 +22,7 @@ export default function EditShelfMapUI({ shelf, shelfEquipment, setShelfEquipmen
                         <button 
                             key={i}
                             onClick={() => setSelectedIndex(i)}
-                            className={`absolute text-center text-xs md:text-sm overflow-hidden flex items-center justify-center hover:border-2 bg-gray-300 ${selectedIndex === i ? "border-2 z-2" : "border"}`}
+                            className={`absolute text-center text-xs md:text-sm overflow-hidden flex items-center justify-center hover:border-2 hover:z-2 bg-gray-300 ${selectedIndex === i ? "border-2 z-2" : "border"}`}
                             style={{
                                 width: `${equipment.size[0] / shelf.size[0] * 100}%`,
                                 height: `${equipment.size[1] / shelf.size[1] * 100}%`,

@@ -16,7 +16,7 @@ export default function ShelfMapUI({ shelf, size }: { shelf: Shelf, size: number
                         equipment.id === -1 ? 
                             <div
                                 key={i}
-                                className="absolute border bg-gray-300 text-center text-sm md:text-base overflow-hidden flex items-center justify-center"
+                                className="absolute border bg-gray-200 text-center text-sm md:text-base overflow-hidden flex items-center justify-center hover:z-2"
                                 style={{
                                     width: `${equipment.size[0] / shelf.size[0] * 100}%`,
                                     height: `${equipment.size[1] / shelf.size[1] * 100}%`,
@@ -29,7 +29,7 @@ export default function ShelfMapUI({ shelf, size }: { shelf: Shelf, size: number
                             <Link 
                                 key={i}
                                 href={`/equipment/${equipment.id}`}
-                                className="absolute border bg-gray-300 text-center text-sm md:text-base overflow-hidden flex items-center justify-center hover:bg-gray-400"
+                                className="absolute border bg-gray-300 text-center text-sm md:text-base overflow-hidden flex items-center justify-center hover:border-2 hover:z-2"
                                 style={{
                                     width: `${equipment.size[0] / shelf.size[0] * 100}%`,
                                     height: `${equipment.size[1] / shelf.size[1] * 100}%`,

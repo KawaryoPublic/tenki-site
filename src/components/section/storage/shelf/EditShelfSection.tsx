@@ -6,6 +6,7 @@ import BlueButton from "@/components/ui/global/Button/BlueButton";
 import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 import { fitToParentSize, preventRefresh } from "@/lib/utils";
 import EditShelfMapUI from "@/components/ui/storage/shelf/EditShelfMapUI";
+import SaveShelfButton from "@/components/ui/storage/shelf/Button/SaveShelfButton";
 
 export default function EditShelfSection({ id, height }: { id: number, height: number }) {
     const parentRef = useRef(null);
@@ -53,7 +54,7 @@ export default function EditShelfSection({ id, height }: { id: number, height: n
                 <BlueButton onClick={() => setAdd(true)}>
                     <span className="text-lg md:text-xl p-1 font-bold">追加</span>
                 </BlueButton>
-                save
+                <SaveShelfButton shelf={shelf} shelfEquipment={shelfEquipment} height={height} />
             </div>
             <div className="w-full flex-1 flex flex-col gap-4 md:gap-8 items-center" ref={parentRef}>
                 <div className="flex justify-center">

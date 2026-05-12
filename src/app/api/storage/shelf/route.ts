@@ -68,29 +68,50 @@ export async function PUT(request: NextRequest) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
 
-        const data = await request.json();
-        const { shelves, locationId } = data;
+        const id = Number(request.nextUrl.searchParams.get("id"));
 
-        if (!Array.isArray(shelves) || locationId == undefined) {
-            return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+        if(id == null) {
+            const data = await request.json();
+            const { shelves, locationId } = data;
+
+            if (!Array.isArray(shelves) || locationId == undefined) {
+                return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+            }
+
+            for (const shelf of shelves) {
+                await prisma.shelf.update({
+                    where: { id: shelf.id },
+                    data: {
+                        name: shelf.name,
+                        type: Number(shelf.type),
+                        locationId: Number(locationId),
+                        size: shelf.size,
+                        position: shelf.position,
+                        height: shelf.height,
+                        equipment: shelf.equipment,
+                    },
+                });
+            }
+
+            return NextResponse.json({ count: shelves.length }, { status: 200 });
         }
 
-        for (const shelf of shelves) {
-            const updatedShelf = await prisma.shelf.update({
-                where: { id: shelf.id },
-                data: {
-                    name: shelf.name,
-                    type: Number(shelf.type),
-                    locationId: Number(locationId),
-                    size: shelf.size,
-                    position: shelf.position,
-                    height: shelf.height,
-                    equipment: shelf.equipment,
-                },
-            });
-        }
+        const shelf = await request.json();
 
-        return NextResponse.json({count: shelves.length}, { status: 200 });
+        const updatedShelf = await prisma.shelf.update({
+            where: { id },
+            data: {
+                name: shelf.name,
+                type: shelf.type,
+                locationId: shelf.location.id,
+                size: shelf.size,
+                position: shelf.position,
+                height: shelf.height,
+                equipment: shelf.equipment,
+            },
+        });
+
+        return NextResponse.json(updatedShelf, { status: 200 });
     } catch (error) {
         console.error("Error updating a shelf:", error);
         return NextResponse.json({ error: "Failed to update a shelf" }, { status: 500 });

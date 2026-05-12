@@ -27,6 +27,34 @@ export default function EditEquipmentForm({ shelfSize, shelfEquipment, setShelfE
                 label
                 required
             />
+            {
+                !equipment.isEquipment &&
+                <DefaultVectorInput 
+                    title="サイズ[cm]" 
+                    name="size" 
+                    labels={["幅", "奥行"]} 
+                    values={equipment.size} 
+                    onChange={(e, i) => {
+                        const newEquipment = shelfEquipment;
+                        const thisEquipment = newEquipment[selectedIndex].equipment;
+                        thisEquipment.size[i] = Number(e.target.value);
+
+                        if(thisEquipment.size[i] <= 0) {
+                            thisEquipment.size[i] = 1;
+                        }
+
+                        if(thisEquipment.size[i] + thisEquipment.position[i] > shelfSize[i]) {
+                            thisEquipment.size[i] = shelfSize[i] - thisEquipment.position[i];
+                        }
+
+                        if(newEquipment[selectedIndex].state !== "added") {
+                            newEquipment[selectedIndex].state = "updated";
+                        }
+
+                        setShelfEquipment([...newEquipment]);
+                    }} 
+                />
+            }
             <DefaultVectorInput 
                 title="座標[cm]" 
                 name="position" 
