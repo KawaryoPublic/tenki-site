@@ -13,7 +13,7 @@ export default function EditLocationMapUI({ location, shelves, setShelves, size 
                 height: `${size[1]}px`
             }}
         >
-            <button className={`fixed top-0 bottom-0 left-0 right-0 opacity-50 bg-black z-1 ${selectedIndex === -1 && "hidden"}`} onClick={() => setSelectedIndex(-1)} ></button>
+            <button className={`fixed top-0 bottom-0 left-0 right-0 opacity-50 bg-black z-999 ${selectedIndex === -1 && "hidden"}`} onClick={() => setSelectedIndex(-1)} ></button>
             <div className="w-full h-full border-2 relative">
                 {
                     shelves.map(({ shelf, state }, i) => (
@@ -21,12 +21,13 @@ export default function EditLocationMapUI({ location, shelves, setShelves, size 
                         <button 
                             key={i}
                             onClick={() => setSelectedIndex(i)}
-                            className={`absolute text-center text-xs md:text-sm overflow-hidden flex items-center justify-center hover:border-2 ${shelf.type === 0 ? "bg-gray-300" : shelf.type === 1 ? "bg-gray-200" : "bg-gray-100"} ${selectedIndex === i ? "border-2 z-2" : "border"}`}
+                            className={`absolute text-center text-xs md:text-sm overflow-hidden flex items-center justify-center hover:border-2 ${shelf.type === 0 ? "bg-gray-300" : shelf.type === 1 ? "bg-gray-200" : "bg-gray-100"} ${selectedIndex === i ? "border-2" : "border"}`}
                             style={{
                                 width: `${shelf.size[0] / location.size[0] * 100}%`,
                                 height: `${shelf.size[1] / location.size[1] * 100}%`,
                                 left: `${shelf.position[0] / location.size[0] * 100}%`,
                                 bottom: `${shelf.position[1] / location.size[1] * 100}%`,
+                                zIndex: shelf.z
                             }}
                         >
                             <span className="whitespace-nowrap">{shelf.name}</span>
@@ -71,7 +72,7 @@ export default function EditLocationMapUI({ location, shelves, setShelves, size 
                             ></button>
                         </>
                         */
-                       <WhiteFrameUI className={`z-2 fixed left-3 right-3 md:left-[20%] md:right-[20%] shadow-2xl ${shelves[selectedIndex].shelf.position[1] + shelves[selectedIndex].shelf.size[1] < location.size[1] * 0.65 ? "top-3" : "bottom-3"}`}>
+                       <WhiteFrameUI className={`z-1001 fixed left-3 right-3 md:left-[20%] md:right-[20%] shadow-2xl ${shelves[selectedIndex].shelf.position[1] + shelves[selectedIndex].shelf.size[1] < location.size[1] * 0.65 ? "top-3" : "bottom-3"}`}>
                             <EditShelfForm locationSize={location.size} shelves={shelves} setShelves={setShelves} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
                         </WhiteFrameUI>
                 }

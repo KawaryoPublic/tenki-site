@@ -1,3 +1,4 @@
+import BlueButton from "@/components/ui/global/Button/BlueButton";
 import RedButton from "@/components/ui/global/Button/RedButton";
 import DefaultInput from "@/components/ui/global/Form/DefaultInput";
 import DefaultSelect from "@/components/ui/global/Form/DefaultSelect";
@@ -9,6 +10,12 @@ import { Dispatch, SetStateAction } from "react";
 export default function EditShelfForm({ locationSize, shelves, setShelves, selectedIndex, setSelectedIndex }: { locationSize: number[], shelves: {shelf: Shelf, state: "none" | "added" | "updated" | "deleted"}[], setShelves: Dispatch<SetStateAction<{shelf: Shelf, state: "none" | "added" | "updated" | "deleted"}[]>>, selectedIndex: number, setSelectedIndex: Dispatch<SetStateAction<number>> }) {
     const shelf = shelves[selectedIndex].shelf;
 
+    const markEdited = (shelf: {shelf: Shelf, state: "none" | "added" | "updated" | "deleted"}) => {
+        if(shelf.state !== "added") {
+            shelf.state = "updated";
+        }
+    }
+
     return (
         <form className="flex flex-col gap-4">
             <DefaultInput
@@ -17,11 +24,10 @@ export default function EditShelfForm({ locationSize, shelves, setShelves, selec
                 value={shelf.name}
                 onChange={e => {     
                     const newShelves = shelves;
-                    newShelves[selectedIndex].shelf.name = e.target.value;
-                    
-                    if(newShelves[selectedIndex].state !== "added") {
-                        newShelves[selectedIndex].state = "updated";
-                    }
+                    const thisShelf = newShelves[selectedIndex];
+                    thisShelf.shelf.name = e.target.value;
+
+                    markEdited(thisShelf);
 
                     setShelves([...newShelves]);
                 }}
@@ -35,17 +41,39 @@ export default function EditShelfForm({ locationSize, shelves, setShelves, selec
                 value={shelf.type}
                 onChange={e => {
                     const newShelves = shelves;
-                    newShelves[selectedIndex].shelf.type = Number(e.target.value);
-                    
-                    if(newShelves[selectedIndex].state !== "added") {
-                        newShelves[selectedIndex].state = "updated";
+                    const thisShelf = newShelves[selectedIndex];
+                    thisShelf.shelf.type = Number(e.target.value);
+
+                    if(e.target.value !== "0") {
+                        thisShelf.shelf.height = [39];
                     }
+
+                    markEdited(thisShelf);
 
                     setShelves([...newShelves]);
                 }}
                 label
                 required
             />
+            {
+                shelf.type === 0 &&
+                <DefaultInput
+                    title="段数"
+                    name="height"
+                    value={shelf.height.length}
+                    onChange={e => {
+                        const newShelves = shelves;
+                        const thisShelf = newShelves[selectedIndex];
+                        thisShelf.shelf.height = new Array(Number(e.target.value) || 1).fill(39);
+
+                        markEdited(thisShelf);
+
+                        setShelves([...newShelves]);
+                    }}
+                    label
+                    required
+                />  
+            }
             <DefaultVectorInput 
                 title="サイズ[cm]" 
                 name="size" 
@@ -64,9 +92,7 @@ export default function EditShelfForm({ locationSize, shelves, setShelves, selec
                         thisShelf.size[i] = locationSize[i] - thisShelf.position[i];
                     }
 
-                    if(newShelves[selectedIndex].state !== "added") {
-                        newShelves[selectedIndex].state = "updated";
-                    }
+                    markEdited(newShelves[selectedIndex]);
 
                     setShelves([...newShelves]);
                 }} 
@@ -89,14 +115,53 @@ export default function EditShelfForm({ locationSize, shelves, setShelves, selec
                         thisShelf.position[i] = locationSize[i] - thisShelf.size[i];
                     }
 
-                    if(newShelves[selectedIndex].state !== "added") {
-                        newShelves[selectedIndex].state = "updated";
-                    }
+                    markEdited(newShelves[selectedIndex]);
                                         
                     setShelves([...newShelves]);
                 }} 
             />
-            <div>
+            <div className="flex gap-4">
+                <BlueButton
+                    className="max-sm:hidden"
+                    type="button"
+                    onClick={() => setSelectedIndex(-1)}
+                >
+                    閉じる
+                </BlueButton>
+                {
+                    shelves.filter(s => s.shelf !== shelf).every(s => s.shelf.z >= shelf.z) &&
+                    <BlueButton
+                        type="button"
+                        onClick={() => {
+                            const newShelves = shelves;
+                            const thisShelf = newShelves[selectedIndex];
+                            thisShelf.shelf.z++;
+
+                            markEdited(thisShelf);
+
+                            setShelves([...newShelves]);
+                        }}
+                    >
+                        前面へ
+                    </BlueButton>
+                }
+                {
+                    shelves.filter(s => s.shelf !== shelf).every(s => s.shelf.z <= shelf.z) &&
+                    <BlueButton
+                        type="button"
+                        onClick={() => {
+                            const newShelves = shelves;
+                            const thisShelf = newShelves[selectedIndex];
+                            thisShelf.shelf.z--;
+
+                            markEdited(thisShelf);
+
+                            setShelves([...newShelves]);
+                        }}
+                    >
+                        背面へ
+                    </BlueButton>
+                }
                 <RedButton 
                     type="button"
                     onClick={() => {

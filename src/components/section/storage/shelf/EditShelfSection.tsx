@@ -1,22 +1,24 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { Equipment, EquipmentInstance, Shelf } from "@/lib/types";
+import { Equipment, EquipmentInstance, Location, Shelf } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
 import { fitToParentSize, preventRefresh } from "@/lib/utils";
 import EditShelfMapUI from "@/components/ui/storage/shelf/EditShelfMapUI";
 import SaveShelfButton from "@/components/ui/storage/shelf/Button/SaveShelfButton";
+import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
+import Link from "next/link";
 
 export default function EditShelfSection({ id, height }: { id: number, height: number }) {
     const parentRef = useRef(null);
+    const [ location, setLocation ] = useState<Location | null>(null);
     const [ shelf, setShelf ] = useState<Shelf | null>(null);
     const [ equipment, setEquipment ] = useState<Equipment[]>([]);
     const [ shelfEquipment, setShelfEquipment ] = useState<{equipment: EquipmentInstance, state: "none" | "added" | "updated" | "deleted"}[]>([]);
     const [ loading, setLoading ] = useState(true);
     const [ size, setSize ] = useState<number[]>([]);
     const [ add, setAdd ] = useState<boolean>(false);
-    
 
     useEffect(() => {
         setLoading(true);
@@ -33,7 +35,12 @@ export default function EditShelfSection({ id, height }: { id: number, height: n
                 fetch(`/api/equipment`)
                     .then(res => res.json())
                     .then(data => setEquipment(data.filter((equipment: Equipment) => equipment.location.id === shelf?.location.id)))
-                    .finally(() => setLoading(false));
+                    .then(() => {
+                        fetch(`/api/storage/location?id=${shelf?.location.id}`)
+                            .then(res => res.json())
+                            .then(data => setLocation(data))
+                            .finally(() => setLoading(false));
+                    })
             })
             .catch(err => console.log(err));
 
@@ -56,13 +63,36 @@ export default function EditShelfSection({ id, height }: { id: number, height: n
                 </BlueButton>
                 <SaveShelfButton shelf={shelf} shelfEquipment={shelfEquipment} height={height} />
             </div>
+            <div className="flex justify-center items-center">
+                <WhiteFrameUI className="flex gap-5 justify-center items-center text-lg md:text-xl font-bold md:hidden">
+                    {
+                        shelf.height.map((_, i) => (
+                            <Link key={i} href={`/storage/shelf/edit/${shelf.id}?height=${i}`} className={`text-lg md:text-xl p-1 ${i === height ? "border-b-2 font-bold" : ""} hover:bg-gray-400`}>{i + 1}</Link>
+                        ))
+                    }
+                </WhiteFrameUI>
+            </div>
             <div className="w-full flex-1 flex flex-col gap-4 md:gap-8 items-center" ref={parentRef}>
-                <div className="flex justify-center">
-                    <EditShelfMapUI shelf={shelf} shelfEquipment={shelfEquipment} setShelfEquipment={setShelfEquipment} size={size} height={height} add={add} setAdd={setAdd} equipment={equipment} />
+                <div className="flex justify-center items-center max-md:hidden">
+                    <WhiteFrameUI className="flex flex-col gap-5 justify-center items-center text-lg md:text-xl font-bold">
+                        {
+                            shelf.height.map((_, i) => {
+                                <Link key={i} href={`/storage/shelf/edit/${shelf.id}?height=${i}`} className={`text-lg md:text-xl p-1 ${i === height ? "border-b-2 font-bold" : ""} hover:bg-gray-400`}>{i + 1}</Link>
+                            })
+                        }
+                    </WhiteFrameUI>
                 </div>
-                <div className="w-full md:w-[80%] lg:w-[60%] z-1">
+                <div className="flex justify-center">
+                    <EditShelfMapUI location={location} shelf={shelf} shelfEquipment={shelfEquipment} setShelfEquipment={setShelfEquipment} size={size} height={height} add={add} setAdd={setAdd} equipment={equipment} />
+                </div>
+                <div className="flex justify-center items-center opacity-0 max-md:hidden">
+                    <WhiteFrameUI className="flex flex-col gap-8 justify-center items-center text-lg md:text-xl font-bold">
+                        <span>1</span>
+                    </WhiteFrameUI>
+                </div>
+                <div className="w-full md:w-[80%] lg:w-[60%]">
                     <BlueButton>
-                        <a href={`/storage/shelf/${shelf.id}`}>
+                        <a href={`/storage/shelf/${shelf.id}?height=${height}`}>
                             <span className="text-lg md:text-xl p-1 font-bold">{shelf.name}にもどる</span>
                         </a>
                     </BlueButton>

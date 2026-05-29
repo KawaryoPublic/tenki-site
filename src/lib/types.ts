@@ -53,8 +53,10 @@ export interface Shelf {
     name: string;
     type: number;
     location: Location;
+    height: number[];
     size: number[];
     position: number[];
+    z: number;
     equipment: EquipmentInstance[];
     updatedAt: Date;
 };
@@ -65,7 +67,7 @@ export interface EquipmentInstance {
     height: number;
     size: number[];
     position: number[];
-    isEquipment: boolean;
+    z: number;
 }
 
 export interface Location {

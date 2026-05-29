@@ -2,7 +2,6 @@ import { NextResponse, NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
 import { getTier } from "@/lib/actions";
 import { checkTier } from "@/lib/utils";
-import { Shelf } from "@/lib/types";
 
 export async function GET(request: NextRequest) {
     try {
@@ -49,6 +48,7 @@ export async function POST(request: NextRequest) {
                 size: shelf.size,
                 position: shelf.position,
                 height: shelf.height,
+                z: Number(shelf.z),
                 equipment: [],
             })),
         });
@@ -70,7 +70,7 @@ export async function PUT(request: NextRequest) {
 
         const id = Number(request.nextUrl.searchParams.get("id"));
 
-        if(id == null) {
+        if(isNaN(id)) {
             const data = await request.json();
             const { shelves, locationId } = data;
 
@@ -88,6 +88,7 @@ export async function PUT(request: NextRequest) {
                         size: shelf.size,
                         position: shelf.position,
                         height: shelf.height,
+                        z: Number(shelf.z),
                         equipment: shelf.equipment,
                     },
                 });

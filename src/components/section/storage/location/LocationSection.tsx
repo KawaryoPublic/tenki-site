@@ -46,7 +46,7 @@ export default function LocationSection({ id, tier }: { id: number, tier: number
                 {
                     locations.map((location, i) => (
                         <div key={i}>
-                            <Link href={`/storage/location/${location.id}`} className={`text-lg md:text-xl m-1 ${location.id === id ? "border-b-2 font-bold" : ""} hover:bg-gray-400`}>{location.name}</Link>
+                            <Link href={`/storage/location/${location.id}`} className={`text-lg md:text-xl p-1 ${location.id === id ? "border-b-2 font-bold" : ""} hover:bg-gray-400`}>{location.name}</Link>
                         </div>
                     ))
                 }

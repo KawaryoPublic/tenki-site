@@ -7,6 +7,7 @@ import { checkTier, fitToParentSize, preventRefresh } from "@/lib/utils";
 import { useEffect, useState, useRef } from "react";
 import WhiteFrameUI from "@/components/ui/global/WhiteFrameUI";
 import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
+import Link from "next/link";
 
 export default function ShelfSection({ id, tier, height }: { id: number, tier: number, height: number }) {
     const parentRef = useRef(null);
@@ -44,20 +45,31 @@ export default function ShelfSection({ id, tier, height }: { id: number, tier: n
                     checkTier(tier) && <BlueButton href={`/storage/shelf/edit/${shelf.id}?height=${height}`}><span className="text-lg md:text-xl p-1 font-bold">編集</span></BlueButton>
                 }
             </div>
+            <div className="flex justify-center items-center">
+                <WhiteFrameUI className="flex gap-5 justify-center md:text-xl md:hidden">
+                    {
+                        shelf.height.map((_, i) => (
+                            <Link key={i} href={`/storage/shelf/${shelf.id}?height=${i}`} className={`text-lg md:text-xl p-1 ${i === height ? "border-b-2 font-bold" : ""} hover:bg-gray-400`}>{i + 1}</Link>
+                        ))
+                    }
+                </WhiteFrameUI>
+            </div>
             <div className="w-full flex-1 flex flex-col gap-4 lg:gap-8 items-center" ref={parentRef}>
-                <div className="flex gap-2 justify-center">
-                    <div className="flex justify-center items-center">
-                    <WhiteFrameUI className="flex flex-col gap-4 md:gap-8 justify-center items-center text-lg md:text-xl font-bold">
-                        <span>1</span>
-                        <span>2</span>
-                        <span>3</span>
-                    </WhiteFrameUI>
+                <div className="flex gap-8 justify-center">
+                    <div className="flex justify-center items-center max-md:hidden">
+                        <WhiteFrameUI className="flex flex-col gap-5 justify-center items-center text-lg md:text-xl font-bold">
+                            {
+                                shelf.height.map((_, i) => (
+                                    <Link key={i} href={`/storage/shelf/${shelf.id}?height=${i}`} className={`text-lg md:text-xl p-1 ${i === height ? "border-b-2 font-bold" : ""} hover:bg-gray-400`}>{i + 1}</Link>
+                                ))
+                            }
+                        </WhiteFrameUI>
                     </div>
-                    <ShelfMapUI shelf={shelf} size={size} />
-                    <div className="flex justify-center items-center opacity-0">
-                    <WhiteFrameUI className="flex flex-col gap-4 md:gap-8 justify-center items-center text-lg md:text-xl font-bold">
-                        1
-                    </WhiteFrameUI>
+                    <ShelfMapUI shelf={shelf} size={size} height={height} />
+                    <div className="flex justify-center items-center opacity-0 max-md:hidden">
+                        <WhiteFrameUI className="flex flex-col gap-8 justify-center items-center text-lg md:text-xl font-bold">
+                            <span>1</span>
+                        </WhiteFrameUI>
                     </div>
                 </div>
                 <div className="w-full z-1">

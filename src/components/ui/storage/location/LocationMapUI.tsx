@@ -21,6 +21,7 @@ export default function LocationMapUI({ location, size }: { location: Location, 
                                 height: `${shelf.size[1] / location.size[1] * 100}%`,
                                 left: `${shelf.position[0] / location.size[0] * 100}%`,
                                 bottom: `${shelf.position[1] / location.size[1] * 100}%`,
+                                zIndex: shelf.z
                             }}
                         >
                             {

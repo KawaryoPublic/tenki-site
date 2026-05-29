@@ -25,6 +25,7 @@ export default function SaveLocationButton({ location, shelves }: { location: Lo
 
                     for(const shelf of newShelves) {
                         if(shelf === thisShelf) continue;
+                        if(shelf.type !== 0 && thisShelf.type !== 0) continue;
 
                         if(checkCollision(thisShelf.size, thisShelf.position, shelf.size, shelf.position)) {
                             alert(`${shelf.name}と${thisShelf.name}がぶつかります。`);

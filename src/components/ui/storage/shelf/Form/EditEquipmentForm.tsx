@@ -8,6 +8,12 @@ import { Dispatch, SetStateAction } from "react";
 export default function EditEquipmentForm({ shelfSize, shelfEquipment, setShelfEquipment, selectedIndex, setSelectedIndex }: { shelfSize: number[], shelfEquipment: {equipment: EquipmentInstance, state: "none" | "added" | "updated" | "deleted"}[], setShelfEquipment: Dispatch<SetStateAction<{equipment: EquipmentInstance, state: "none" | "added" | "updated" | "deleted"}[]>>, selectedIndex: number, setSelectedIndex: Dispatch<SetStateAction<number>> }) {
     const equipment = shelfEquipment[selectedIndex].equipment;
 
+    const markEdited = (equipment: {equipment: EquipmentInstance, state: "none" | "added" | "updated" | "deleted"}) => {
+        if(equipment.state !== "added") {
+            equipment.state = "updated";
+        }
+    }
+
     return (
         <form className="flex flex-col gap-4">
             <DefaultInput
@@ -16,11 +22,10 @@ export default function EditEquipmentForm({ shelfSize, shelfEquipment, setShelfE
                 value={equipment.name}
                 onChange={e => {     
                     const newEquipment = shelfEquipment;
-                    newEquipment[selectedIndex].equipment.name = e.target.value;
-                    
-                    if(newEquipment[selectedIndex].state !== "added") {
-                        newEquipment[selectedIndex].state = "updated";
-                    }
+                    const thisEquipment = newEquipment[selectedIndex].equipment;
+                    thisEquipment.name = e.target.value;
+
+                    markEdited(newEquipment[selectedIndex]);
 
                     setShelfEquipment([...newEquipment]);
                 }}
@@ -28,7 +33,7 @@ export default function EditEquipmentForm({ shelfSize, shelfEquipment, setShelfE
                 required
             />
             {
-                !equipment.isEquipment &&
+                equipment.id === -1 &&
                 <DefaultVectorInput 
                     title="サイズ[cm]" 
                     name="size" 
@@ -47,9 +52,7 @@ export default function EditEquipmentForm({ shelfSize, shelfEquipment, setShelfE
                             thisEquipment.size[i] = shelfSize[i] - thisEquipment.position[i];
                         }
 
-                        if(newEquipment[selectedIndex].state !== "added") {
-                            newEquipment[selectedIndex].state = "updated";
-                        }
+                        markEdited(newEquipment[selectedIndex]);
 
                         setShelfEquipment([...newEquipment]);
                     }} 
@@ -73,14 +76,53 @@ export default function EditEquipmentForm({ shelfSize, shelfEquipment, setShelfE
                         thisEquipment.position[i] = shelfSize[i] - thisEquipment.size[i];
                     }
 
-                    if(newEquipment[selectedIndex].state !== "added") {
-                        newEquipment[selectedIndex].state = "updated";
-                    }
+                    markEdited(newEquipment[selectedIndex]);
 
                     setShelfEquipment([...newEquipment]);
                 }} 
             />
-            <div>
+            <div className="flex gap-2">
+                <BlueButton
+                    className="max-sm:hidden"
+                    type="button"
+                    onClick={() => setSelectedIndex(-1)}
+                >
+                    閉じる
+                </BlueButton>
+                {
+                    shelfEquipment.filter(e => e.equipment !== equipment).every(e => e.equipment.z >= equipment.z) &&
+                    <BlueButton
+                        type="button"
+                        onClick={() => {
+                            const newEquipment = shelfEquipment;
+                            const thisEquipment = newEquipment[selectedIndex];
+                            thisEquipment.equipment.z++;
+
+                            markEdited(thisEquipment);
+
+                            setShelfEquipment([...newEquipment]);
+                        }}
+                    >
+                        前面へ
+                    </BlueButton>
+                }
+                {
+                    shelfEquipment.filter(e => e.equipment !== equipment).every(e => e.equipment.z <= equipment.z) &&
+                    <BlueButton
+                        type="button"
+                        onClick={() => {
+                            const newEquipment = shelfEquipment;
+                            const thisEquipment = newEquipment[selectedIndex];
+                            thisEquipment.equipment.z--;
+
+                            markEdited(thisEquipment);
+
+                            setShelfEquipment([...newEquipment]);
+                        }}
+                    >
+                        背面へ
+                    </BlueButton>
+                }
                 <BlueButton
                     type="button"
                     onClick={() => {
@@ -110,7 +152,9 @@ export default function EditEquipmentForm({ shelfSize, shelfEquipment, setShelfE
 
                         setShelfEquipment([...newEquipment]);
                     }}
-                >回転</BlueButton>
+                >
+                    回転
+                </BlueButton>
             </div>
             <div>
                 <RedButton 

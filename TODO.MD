@@ -8,6 +8,7 @@
     - location
         - 四隅にサイズ, ドラッグで移動
     - shelf
+        - 四隅にサイズ, ドラッグで移動
 
 - その他
     - PUSH通知
@@ -15,4 +16,3 @@
     - UNDO, Trash Can
 
 ## BUGS
-- storageでeditでサイズ

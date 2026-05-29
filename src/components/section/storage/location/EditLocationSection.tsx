@@ -50,6 +50,8 @@ export default function EditLocationSection({ id }: { id: number }) {
                         size: [50, 50],
                         position: [0, 0],
                         equipment: [],
+                        height: [39],
+                        z: 500,
                         updatedAt: new Date(),
                     };
 
