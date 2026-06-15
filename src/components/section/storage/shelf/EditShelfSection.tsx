@@ -76,9 +76,9 @@ export default function EditShelfSection({ id, height }: { id: number, height: n
                 <div className="flex justify-center items-center max-md:hidden">
                     <WhiteFrameUI className="flex flex-col gap-5 justify-center items-center text-lg md:text-xl font-bold">
                         {
-                            shelf.height.map((_, i) => {
+                            shelf.height.map((_, i) => (
                                 <Link key={i} href={`/storage/shelf/edit/${shelf.id}?height=${i}`} className={`text-lg md:text-xl p-1 ${i === height ? "border-b-2 font-bold" : ""} hover:bg-gray-400`}>{i + 1}</Link>
-                            })
+                            ))
                         }
                     </WhiteFrameUI>
                 </div>
