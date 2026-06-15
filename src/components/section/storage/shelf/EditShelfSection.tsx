@@ -83,7 +83,9 @@ export default function EditShelfSection({ id, height }: { id: number, height: n
                     </WhiteFrameUI>
                 </div>
                 <div className="flex justify-center">
-                    <EditShelfMapUI location={location} shelf={shelf} shelfEquipment={shelfEquipment} setShelfEquipment={setShelfEquipment} size={size} height={height} add={add} setAdd={setAdd} equipment={equipment} />
+                    {
+                        location && <EditShelfMapUI location={location} shelf={shelf} shelfEquipment={shelfEquipment} setShelfEquipment={setShelfEquipment} size={size} height={height} add={add} setAdd={setAdd} equipment={equipment} />
+                    }
                 </div>
                 <div className="flex justify-center items-center opacity-0 max-md:hidden">
                     <WhiteFrameUI className="flex flex-col gap-8 justify-center items-center text-lg md:text-xl font-bold">
