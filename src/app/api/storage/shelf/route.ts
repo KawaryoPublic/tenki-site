@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
                 position: shelf.position,
                 height: shelf.height,
                 z: Number(shelf.z),
-                equipment: [],
+                equipment: shelf.equipment.length > 0 ? shelf.equipment : [],
             })),
         });
 
@@ -68,9 +68,9 @@ export async function PUT(request: NextRequest) {
             return NextResponse.json({ error: "Permission denied" }, { status: 403 });
         }
 
-        const id = Number(request.nextUrl.searchParams.get("id"));
+        const id = request.nextUrl.searchParams.get("id");
 
-        if(isNaN(id)) {
+        if(id == undefined) {
             const data = await request.json();
             const { shelves, locationId } = data;
 
@@ -100,7 +100,7 @@ export async function PUT(request: NextRequest) {
         const shelf = await request.json();
 
         const updatedShelf = await prisma.shelf.update({
-            where: { id },
+            where: { id: Number(id) },
             data: {
                 name: shelf.name,
                 type: shelf.type,

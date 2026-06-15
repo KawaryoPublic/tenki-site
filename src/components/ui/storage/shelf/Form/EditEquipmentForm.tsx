@@ -90,7 +90,7 @@ export default function EditEquipmentForm({ shelfSize, shelfEquipment, setShelfE
                     閉じる
                 </BlueButton>
                 {
-                    shelfEquipment.filter(e => e.equipment !== equipment).every(e => e.equipment.z >= equipment.z) &&
+                    shelfEquipment.filter(e => e.equipment !== equipment).some(e => e.equipment.z >= equipment.z) &&
                     <BlueButton
                         type="button"
                         onClick={() => {
@@ -107,7 +107,7 @@ export default function EditEquipmentForm({ shelfSize, shelfEquipment, setShelfE
                     </BlueButton>
                 }
                 {
-                    shelfEquipment.filter(e => e.equipment !== equipment).every(e => e.equipment.z <= equipment.z) &&
+                    shelfEquipment.filter(e => e.equipment !== equipment).some(e => e.equipment.z <= equipment.z) &&
                     <BlueButton
                         type="button"
                         onClick={() => {

@@ -1,32 +1,11 @@
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import DefaultSelect from "@/components/ui/global/Form/DefaultSelect";
 import { Equipment, EquipmentInstance, Location, Shelf } from "@/lib/types";
-import { getEquipmentId } from "@/lib/utils";
+import { getEquipmentCount, getEquipmentId } from "@/lib/utils";
 import { Dispatch, SetStateAction } from "react";
 import Form from "next/form";
 
 export default function AddEquipmentForm({ equipment, shelf, location, shelfEquipment, setShelfEquipment, setAdd, height }: { equipment: Equipment[], shelf: Shelf, location: Location, shelfEquipment: {equipment: EquipmentInstance, state: "none" | "added" | "updated" | "deleted"}[], setShelfEquipment: Dispatch<SetStateAction<{equipment: EquipmentInstance, state: "none" | "added" | "updated" | "deleted"}[]>>, setAdd: Dispatch<SetStateAction<boolean>>, height: number }) {   
-    const getEquipmentCount = (id: number) => {
-        let count = 0;
-        location.shelves.forEach(s => {
-            if(s.id === shelf.id) {
-                shelfEquipment.forEach(eq => {
-                    if (eq.state !== "deleted" && eq.equipment.id === id) {
-                        count++;
-                    }
-                });
-                return;
-            }
-
-            s.equipment.forEach(eq => {
-                if (eq.id === id) {
-                    count++;
-                }
-            });
-        });
-        return count;
-    }
-
     return (
         <Form 
             className="flex flex-col gap-4"
@@ -75,7 +54,7 @@ export default function AddEquipmentForm({ equipment, shelf, location, shelfEqui
             <DefaultSelect
                 title="機材"
                 name="equipment"
-                options={[...equipment.filter(eq => eq.count > getEquipmentCount(eq.id)).map(eq => ({ value: eq.id, label: `${getEquipmentId(eq)} ${eq.name} ${(eq.count - getEquipmentCount(eq.id)) === 1 ? "" : "×" + (eq.count - getEquipmentCount(eq.id))}` })), { value: -1, label: "その他" }]}
+                options={[{ value: -1, label: "その他" }, ...equipment.filter(eq => eq.count > getEquipmentCount(location, eq.id, shelf, shelfEquipment)).map(eq => ({ value: eq.id, label: `${getEquipmentId(eq)} ${eq.name} ${(eq.count - getEquipmentCount(location, eq.id, shelf, shelfEquipment)) === 1 ? "" : "×" + (eq.count - getEquipmentCount(location, eq.id, shelf, shelfEquipment))}` }))]}
                 required
             />
             <div>

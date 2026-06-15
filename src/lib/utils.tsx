@@ -1,6 +1,6 @@
 import { upload } from "@vercel/blob/client";
 import { RefObject } from "react";
-import { Equipment } from "./types";
+import { Equipment, EquipmentInstance, Location, Shelf } from "./types";
 import { EQUIPMENT_PREFIXES } from "./const";
 
 export const checkTier = (tier: number, allowParent: boolean = false, allowStudent: boolean = false) => {
@@ -39,6 +39,28 @@ export const getEquipmentId = (equipment: Equipment) => {
     if(equipment.count === 1) return `${EQUIPMENT_PREFIXES[equipment.type]}-${equipment.number}`;
 
     return `${EQUIPMENT_PREFIXES[equipment.type]}-${equipment.number} ~ ${EQUIPMENT_PREFIXES[equipment.type]}-${equipment.number + equipment.count - 1}`;
+}
+
+export const getEquipmentCount = (location: Location, id: number, shelf?: Shelf, shelfEquipment?: { equipment: EquipmentInstance, state: "none" | "added" | "updated" | "deleted" }[]) => {
+    let count = 0;
+    location.shelves.forEach(s => {
+        if(shelf != null && s.id === shelf.id) {
+            (shelfEquipment || []).forEach(eq => {
+                if (eq.state !== "deleted" && eq.equipment.id === id) {
+                    count++;
+                }
+            });
+            return;
+        }
+
+        s.equipment.forEach(eq => {
+            if (eq.id === id) {
+                count++;                
+            }
+        });
+    });
+
+    return count;
 }
 
 export const getDateId = (date: Date) => {

@@ -4,10 +4,11 @@ import DefaultInput from "@/components/ui/global/Form/DefaultInput";
 import DefaultSelect from "@/components/ui/global/Form/DefaultSelect";
 import DefaultVectorInput from "@/components/ui/global/Form/DefaultVectorInput";
 import { SHELF_TYPES } from "@/lib/const";
-import { Shelf } from "@/lib/types";
+import { Equipment, Location, Shelf } from "@/lib/types";
+import { getEquipmentCount, getEquipmentId } from "@/lib/utils";
 import { Dispatch, SetStateAction } from "react";
 
-export default function EditShelfForm({ locationSize, shelves, setShelves, selectedIndex, setSelectedIndex }: { locationSize: number[], shelves: {shelf: Shelf, state: "none" | "added" | "updated" | "deleted"}[], setShelves: Dispatch<SetStateAction<{shelf: Shelf, state: "none" | "added" | "updated" | "deleted"}[]>>, selectedIndex: number, setSelectedIndex: Dispatch<SetStateAction<number>> }) {
+export default function EditShelfForm({ location, shelves, setShelves, selectedIndex, setSelectedIndex, equipment }: { location: Location, shelves: {shelf: Shelf, state: "none" | "added" | "updated" | "deleted"}[], setShelves: Dispatch<SetStateAction<{shelf: Shelf, state: "none" | "added" | "updated" | "deleted"}[]>>, selectedIndex: number, setSelectedIndex: Dispatch<SetStateAction<number>>, equipment: Equipment[] }) {
     const shelf = shelves[selectedIndex].shelf;
 
     const markEdited = (shelf: {shelf: Shelf, state: "none" | "added" | "updated" | "deleted"}) => {
@@ -74,29 +75,80 @@ export default function EditShelfForm({ locationSize, shelves, setShelves, selec
                     required
                 />  
             }
-            <DefaultVectorInput 
-                title="サイズ[cm]" 
-                name="size" 
-                labels={["縦幅", "横幅"]} 
-                values={shelf.size} 
-                onChange={(e, i) => {
-                    const newShelves = shelves;
-                    const thisShelf = newShelves[selectedIndex].shelf;
-                    thisShelf.size[i] = Number(e.target.value);
+            {
+                shelf.type === 1 &&
+                <DefaultSelect
+                    title={"機材" + shelf.equipment[0].id}
+                    name="equipment"
+                    options={[{ value: -1, label: "その他" }, ...equipment.filter(eq => eq.count > getEquipmentCount(location, eq.id)).map(eq => ({ value: eq.id, label: `${getEquipmentId(eq)} ${eq.name} ${(eq.count - getEquipmentCount(location, eq.id)) === 1 ? "" : "×" + (eq.count - getEquipmentCount(location, eq.id))}` }))]}
+                    value={shelf.equipment.length > 0 ? shelf.equipment[0].id : -1}
+                    onChange={e => {
+                        const newShelves = shelves;
+                        const thisShelf = newShelves[selectedIndex];
 
-                    if(thisShelf.size[i] <= 0) {
-                        thisShelf.size[i] = 1;
-                    }
+                        if(e.target.value === "-1") {
+                            thisShelf.shelf.equipment = [{
+                                id: -1,
+                                name: "名無し",
+                                size: [20, 20],
+                                position: [0, 0],
+                                height: 39,
+                                z: 500
+                            }];
+                        } else {
+                            const equipmentData = equipment.find(eq => eq.id === Number(e.target.value));
 
-                    if(thisShelf.size[i] + thisShelf.position[i] > locationSize[i]) {
-                        thisShelf.size[i] = locationSize[i] - thisShelf.position[i];
-                    }
+                            if (!equipmentData) return;
 
-                    markEdited(newShelves[selectedIndex]);
+                            thisShelf.shelf.equipment = [{
+                                id: equipmentData.id,
+                                name: equipmentData.name,
+                                size: equipmentData.size,
+                                position: [0, 0],
+                                height: 39,
+                                z: 500
+                            }];
 
-                    setShelves([...newShelves]);
-                }} 
-            />
+                            thisShelf.shelf.name = equipmentData.name;
+                            thisShelf.shelf.size = equipmentData.size;
+                        }
+
+                        console.log(thisShelf.shelf.equipment);
+
+                        markEdited(thisShelf);
+
+                        setShelves([...newShelves]);
+                    }}
+                    required
+                    label
+                />
+            }
+            {
+                (shelf.type !== 1 || (shelf.equipment.length !== 0 && shelf.equipment[0].id === -1)) &&
+                <DefaultVectorInput 
+                    title="サイズ[cm]" 
+                    name="size" 
+                    labels={["縦幅", "横幅"]} 
+                    values={shelf.size} 
+                    onChange={(e, i) => {
+                        const newShelves = shelves;
+                        const thisShelf = newShelves[selectedIndex].shelf;
+                        thisShelf.size[i] = Number(e.target.value);
+
+                        if(thisShelf.size[i] <= 0) {
+                            thisShelf.size[i] = 1;
+                        }
+
+                        if(thisShelf.size[i] + thisShelf.position[i] > location.size[i]) {
+                            thisShelf.size[i] = location.size[i] - thisShelf.position[i];
+                        }
+
+                        markEdited(newShelves[selectedIndex]);
+
+                        setShelves([...newShelves]);
+                    }} 
+                />
+            }
             <DefaultVectorInput 
                 title="座標[cm]" 
                 name="position" 
@@ -111,8 +163,8 @@ export default function EditShelfForm({ locationSize, shelves, setShelves, selec
                         thisShelf.position[i] = 0;
                     }
 
-                    if(thisShelf.size[i] + thisShelf.position[i] > locationSize[i]) {
-                        thisShelf.position[i] = locationSize[i] - thisShelf.size[i];
+                    if(thisShelf.size[i] + thisShelf.position[i] > location.size[i]) {
+                        thisShelf.position[i] = location.size[i] - thisShelf.size[i];
                     }
 
                     markEdited(newShelves[selectedIndex]);
@@ -129,7 +181,7 @@ export default function EditShelfForm({ locationSize, shelves, setShelves, selec
                     閉じる
                 </BlueButton>
                 {
-                    shelves.filter(s => s.shelf !== shelf).every(s => s.shelf.z >= shelf.z) &&
+                    shelves.filter(s => s.shelf !== shelf).some(s => s.shelf.z >= shelf.z) &&
                     <BlueButton
                         type="button"
                         onClick={() => {
@@ -146,7 +198,7 @@ export default function EditShelfForm({ locationSize, shelves, setShelves, selec
                     </BlueButton>
                 }
                 {
-                    shelves.filter(s => s.shelf !== shelf).every(s => s.shelf.z <= shelf.z) &&
+                    shelves.filter(s => s.shelf !== shelf).some(s => s.shelf.z <= shelf.z) &&
                     <BlueButton
                         type="button"
                         onClick={() => {

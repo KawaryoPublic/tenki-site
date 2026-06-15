@@ -1,9 +1,9 @@
-import { Location, Shelf } from "@/lib/types";
+import { Equipment, Location, Shelf } from "@/lib/types";
 import { useState, Dispatch, SetStateAction } from "react";
 import WhiteFrameUI from "../../global/WhiteFrameUI";
 import EditShelfForm from "./Form/EditShelfForm";
 
-export default function EditLocationMapUI({ location, shelves, setShelves, size }: { location: Location, shelves: {shelf: Shelf, state: "none" | "added" | "updated" | "deleted"}[], setShelves: Dispatch<SetStateAction<{shelf: Shelf, state: "none" | "added" | "updated" | "deleted"}[]>>, size: number[] }) {
+export default function EditLocationMapUI({ location, shelves, setShelves, size, equipment }: { location: Location, shelves: {shelf: Shelf, state: "none" | "added" | "updated" | "deleted"}[], setShelves: Dispatch<SetStateAction<{shelf: Shelf, state: "none" | "added" | "updated" | "deleted"}[]>>, size: number[], equipment: Equipment[] }) {
     const [ selectedIndex, setSelectedIndex ] = useState<number>(-1);
 
     return (
@@ -73,7 +73,7 @@ export default function EditLocationMapUI({ location, shelves, setShelves, size 
                         </>
                         */
                        <WhiteFrameUI className={`z-1001 fixed left-3 right-3 md:left-[20%] md:right-[20%] shadow-2xl ${shelves[selectedIndex].shelf.position[1] + shelves[selectedIndex].shelf.size[1] < location.size[1] * 0.65 ? "top-3" : "bottom-3"}`}>
-                            <EditShelfForm locationSize={location.size} shelves={shelves} setShelves={setShelves} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+                            <EditShelfForm location={location} shelves={shelves} setShelves={setShelves} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} equipment={equipment} />
                         </WhiteFrameUI>
                 }
             </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { Location, Shelf } from "@/lib/types";
+import { Equipment, Location, Shelf } from "@/lib/types";
 import BlueButton from "@/components/ui/global/Button/BlueButton";
 import EditLocationMapUI from "@/components/ui/storage/location/EditLocationMapUI";
 import LoadingResultUI from "@/components/ui/global/LoadingResultUI";
@@ -11,6 +11,7 @@ import { fitToParentSize, preventRefresh } from "@/lib/utils";
 export default function EditLocationSection({ id }: { id: number }) {
     const parentRef = useRef(null);
     const [ location, setLocation ] = useState<Location | null>(null);
+    const [ equipment, setEquipment ] = useState<Equipment[]>([]);
     const [ shelves, setShelves ] = useState<{shelf: Shelf, state: "none" | "added" | "updated" | "deleted"}[]>([]);
     const [ loading, setLoading ] = useState(true);
     const [ size, setSize ] = useState<number[]>([]);
@@ -24,7 +25,12 @@ export default function EditLocationSection({ id }: { id: number }) {
                 setLocation(data);
                 setShelves(data.shelves.map((shelf: Shelf) => ({ shelf, state: "none" })));
             })
-            .finally(() => setLoading(false))
+            .then(() => {
+                fetch(`/api/equipment`)
+                    .then(res => res.json())
+                    .then(data => setEquipment(data.filter((equipment: Equipment) => equipment.location.id === id)))
+                    .finally(() => setLoading(false));
+            })
             .catch(err => console.log(err));
 
         return preventRefresh();
@@ -63,7 +69,7 @@ export default function EditLocationSection({ id }: { id: number }) {
             </div>
             <div className="w-full flex-1 flex flex-col gap-4 md:gap-8 items-center" ref={parentRef}>
                 <div className="flex justify-center">
-                    <EditLocationMapUI location={location} shelves={shelves} setShelves={setShelves} size={size} />
+                    <EditLocationMapUI location={location} shelves={shelves} setShelves={setShelves} size={size} equipment={equipment} />
                 </div>
                 <div className="w-full md:w-[80%] lg:w-[60%] z-1">
                     <BlueButton>
