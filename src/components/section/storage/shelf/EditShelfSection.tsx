@@ -64,7 +64,7 @@ export default function EditShelfSection({ id, height }: { id: number, height: n
                 <SaveShelfButton shelf={shelf} shelfEquipment={shelfEquipment} height={height} />
             </div>
             <div className="flex justify-center items-center">
-                <WhiteFrameUI className="flex gap-5 justify-center items-center text-lg md:text-xl font-bold md:hidden">
+                <WhiteFrameUI className="flex gap-5 justify-center md:text-xl md:hidden">
                     {
                         shelf.height.map((_, i) => (
                             <Link key={i} href={`/storage/shelf/edit/${shelf.id}?height=${i}`} className={`text-lg md:text-xl p-1 ${i === height ? "border-b-2 font-bold" : ""} hover:bg-gray-400`}>{i + 1}</Link>
@@ -73,26 +73,28 @@ export default function EditShelfSection({ id, height }: { id: number, height: n
                 </WhiteFrameUI>
             </div>
             <div className="w-full flex-1 flex flex-col gap-4 md:gap-8 items-center" ref={parentRef}>
-                <div className="flex justify-center items-center max-md:hidden">
-                    <WhiteFrameUI className="flex flex-col gap-5 justify-center items-center text-lg md:text-xl font-bold">
+                <div className="flex gap-8 justify-center">
+                    <div className="flex justify-center items-center max-md:hidden">
+                        <WhiteFrameUI className="flex flex-col gap-5 justify-center items-center text-lg md:text-xl font-bold">
+                            {
+                                shelf.height.map((_, i) => (
+                                    <Link key={i} href={`/storage/shelf/${shelf.id}?height=${i}`} className={`text-lg md:text-xl p-1 ${i === height ? "border-b-2 font-bold" : ""} hover:bg-gray-400`}>{i + 1}</Link>
+                                ))
+                            }
+                        </WhiteFrameUI>
+                    </div>
+                    <div className="flex justify-center">
                         {
-                            shelf.height.map((_, i) => (
-                                <Link key={i} href={`/storage/shelf/edit/${shelf.id}?height=${i}`} className={`text-lg md:text-xl p-1 ${i === height ? "border-b-2 font-bold" : ""} hover:bg-gray-400`}>{i + 1}</Link>
-                            ))
+                            location && <EditShelfMapUI location={location} shelf={shelf} shelfEquipment={shelfEquipment} setShelfEquipment={setShelfEquipment} size={size} height={height} add={add} setAdd={setAdd} equipment={equipment} />
                         }
-                    </WhiteFrameUI>
+                    </div>
+                    <div className="flex justify-center items-center opacity-0 max-md:hidden">
+                        <WhiteFrameUI className="flex flex-col gap-8 justify-center items-center text-lg md:text-xl font-bold">
+                            <span>1</span>
+                        </WhiteFrameUI>
+                    </div>
                 </div>
-                <div className="flex justify-center">
-                    {
-                        location && <EditShelfMapUI location={location} shelf={shelf} shelfEquipment={shelfEquipment} setShelfEquipment={setShelfEquipment} size={size} height={height} add={add} setAdd={setAdd} equipment={equipment} />
-                    }
-                </div>
-                <div className="flex justify-center items-center opacity-0 max-md:hidden">
-                    <WhiteFrameUI className="flex flex-col gap-8 justify-center items-center text-lg md:text-xl font-bold">
-                        <span>1</span>
-                    </WhiteFrameUI>
-                </div>
-                <div className="w-full md:w-[80%] lg:w-[60%]">
+                <div className="w-full z-1">
                     <BlueButton>
                         <a href={`/storage/shelf/${shelf.id}?height=${height}`}>
                             <span className="text-lg md:text-xl p-1 font-bold">{shelf.name}にもどる</span>
