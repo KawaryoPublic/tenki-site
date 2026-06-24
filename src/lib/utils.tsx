@@ -145,3 +145,31 @@ export const checkCollision = (size1: number[], position1: number[], size2: numb
 
     return true;
 }
+
+export const getEquipmentUnderShelf = (location: Location, thisShelf: Shelf) => {
+    const shelves = [];
+
+    for(const shelf of location.shelves) {
+        if(shelf === thisShelf) continue;
+        
+        if(checkCollision(thisShelf.size, thisShelf.position, shelf.size, shelf.position)) {
+            shelves.push(shelf);
+        }
+    }
+
+    return shelves;
+}
+
+export const getEquipmentUnderEquipment = (shelf: Shelf, thisEquipment: EquipmentInstance) => {
+    const equipment = [];
+
+    for(const eq of shelf.equipment) {
+        if(eq === thisEquipment || eq.height !== thisEquipment.height || eq.z > thisEquipment.z) continue;
+        
+        if(checkCollision(thisEquipment.size, thisEquipment.position, eq.size, eq.position)) {
+            equipment.push(eq);
+        }
+    }
+
+    return equipment;
+}

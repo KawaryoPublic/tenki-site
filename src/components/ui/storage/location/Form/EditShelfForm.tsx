@@ -43,11 +43,20 @@ export default function EditShelfForm({ location, shelves, setShelves, selectedI
                 onChange={e => {
                     const newShelves = shelves;
                     const thisShelf = newShelves[selectedIndex];
-                    thisShelf.shelf.type = Number(e.target.value);
 
-                    if(e.target.value !== "0") {
-                        thisShelf.shelf.height = [39];
-                    }
+                    if(thisShelf.shelf.type === 0 && e.target.value !== "0" && thisShelf.shelf.equipment.length > 0 && !confirm("たなの中の機材データが消えますがよろしいですか?")) return;
+
+                    
+                    thisShelf.shelf.equipment = thisShelf.shelf.type !== 1 && e.target.value === "1" ? [{
+                        id: -1,
+                        name: "名無し",
+                        size: [20, 20],
+                        position: [0, 0],
+                        height: 39,
+                        z: 500
+                    }] : [];
+
+                    thisShelf.shelf.type = Number(e.target.value);
 
                     markEdited(thisShelf);
 
@@ -78,10 +87,10 @@ export default function EditShelfForm({ location, shelves, setShelves, selectedI
             {
                 shelf.type === 1 &&
                 <DefaultSelect
-                    title={"機材" + shelf.equipment[0].id}
+                    title={"機材" + shelf.equipment.length}
                     name="equipment"
-                    options={[{ value: -1, label: "その他" }, ...equipment.filter(eq => eq.count > getEquipmentCount(location, eq.id)).map(eq => ({ value: eq.id, label: `${getEquipmentId(eq)} ${eq.name} ${(eq.count - getEquipmentCount(location, eq.id)) === 1 ? "" : "×" + (eq.count - getEquipmentCount(location, eq.id))}` }))]}
-                    value={shelf.equipment.length > 0 ? shelf.equipment[0].id : -1}
+                    options={[{ value: -1, label: "その他" }, ...equipment.filter(eq => eq.count > getEquipmentCount(location, eq.id) || eq.id === shelf.equipment[0].id).map(eq => ({ value: eq.id, label: `${getEquipmentId(eq)} ${eq.name} ${(eq.count - getEquipmentCount(location, eq.id)) <= 1 ? "" : "×" + (eq.count - getEquipmentCount(location, eq.id))}` }))]}
+                    value={shelf.equipment[0].id + 1 - 1}
                     onChange={e => {
                         const newShelves = shelves;
                         const thisShelf = newShelves[selectedIndex];
@@ -113,11 +122,9 @@ export default function EditShelfForm({ location, shelves, setShelves, selectedI
                             thisShelf.shelf.size = equipmentData.size;
                         }
 
-                        console.log(thisShelf.shelf.equipment);
-
                         markEdited(thisShelf);
 
-                        setShelves([...newShelves]);
+                        setShelves([...newShelves])
                     }}
                     required
                     label
